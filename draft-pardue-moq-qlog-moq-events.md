@@ -8,17 +8,17 @@ number:
 date:
 consensus: true
 v: 3
-area: WIT
-workgroup: moq
+area: ""
+workgroup: "Media Over QUIC"
 keyword:
  - hi fidelity
 venue:
-  group: WG
-  type: Working Group
-  mail: WG@example.com
-  arch: https://example.com/WG
-  github: USER/REPO
-  latest: https://example.com/LATEST
+  group: "Media Over QUIC"
+  type: ""
+  mail: "moq@ietf.org"
+  arch: "https://mailarchive.ietf.org/arch/browse/moq/"
+  github: "LPardue/draft-pardue-moq-qlog-moq-events"
+  latest: "https://LPardue.github.io/draft-pardue-moq-qlog-moq-events/draft-pardue-moq-qlog-moq-events.html"
 
 author:
  -

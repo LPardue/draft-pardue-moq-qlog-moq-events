@@ -4,8 +4,9 @@
 
 Media Over QUIC                                                L. Pardue
 Internet-Draft                                                Cloudflare
-Intended status: Informational                              1 March 2025
-Expires: 2 September 2025
+Intended status: Informational                              M. Engelbart
+Expires: 2 September 2025                 Technical University of Munich
+                                                            1 March 2025
 
 
                        MoQ qlog event definitions
@@ -123,7 +124,7 @@ Table of Contents
    7.  IANA Considerations
    8.  Normative References
    Acknowledgments
-   Author's Address
+   Authors' Addresses
 
 1.  Introduction
 
@@ -1038,8 +1039,13 @@ Acknowledgments
 
    TODO acknowledge.
 
-Author's Address
+Authors' Addresses
 
    Lucas Pardue
    Cloudflare
    Email: lucas@lucaspardue.com
+
+
+   Mathis Engelbart
+   Technical University of Munich
+   Email: mathis.engelbart@gmail.com

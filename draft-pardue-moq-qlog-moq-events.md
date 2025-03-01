@@ -356,6 +356,8 @@ created. It has Core importance level; see {{Section 9.2 of QLOG-MAIN}}.
 ~~~ cddl
 MOQTSubgroupObjectCreated = {
     stream_id: uint64
+    ? group_id: uint64
+    ? subgroup_id: uint64
     object_id: uint64
     extension_count: uint64
     ? extension_headers: [* MOQTExtensionHeader]
@@ -376,6 +378,8 @@ It has Core importance level; see {{Section 9.2 of QLOG-MAIN}}.
 ~~~ cddl
 MOQTSubgroupObjectParsed = {
     stream_id: uint64
+    ? group_id: uint64
+    ? subgroup_id: uint64
     object_id: uint64
     extension_count: uint64
     ? extension_headers: [* MOQTExtensionHeader]

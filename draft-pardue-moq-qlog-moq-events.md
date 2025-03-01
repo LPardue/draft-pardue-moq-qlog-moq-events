@@ -534,14 +534,14 @@ MOQTBaseControlMessages = MOQTClientSetupMessage /
                           MOQTSubscribeError /
                           MOQTFetchOk /
                           MOQTFetchError /
-                          MOQTFSubscribeDone /
+                          MOQTSubscribeDone /
                           MOQTMaxSubscribeId /
                           MOQTSubscribesBlocked /
                           MOQTAnnounce /
                           MOQTUnannounce /
                           MOQTTrackStatus /
                           MOQTSubscribeAnnouncesOk /
-                          MOQTFSubscribeAnnouncesError
+                          MOQTSubscribeAnnouncesError
 
 $MOQTControlMessage /= MOQTBaseControlMessages
 ~~~
@@ -810,10 +810,10 @@ MOQTFetchError = {
 ~~~
 {: #fetcherror-def title="MOQTFetchError definition"}
 
-### MOQTFSubscribeDone
+### MOQTSubscribeDone
 
 ~~~ cddl
-MOQTFSubscribeDone = {
+MOQTSubscribeDone = {
   type: "subscribe_done"
   ? length: uint64
   subscribe_id: uint64
@@ -822,7 +822,7 @@ MOQTFSubscribeDone = {
   reason_phrase: RawInfo
 }
 ~~~
-{: #subscribedone-def title="MOQTFSubscribeDone definition"}
+{: #subscribedone-def title="MOQTSubscribeDone definition"}
 
 ### MOQTMaxSubscribeId
 
@@ -897,10 +897,10 @@ MOQTSubscribeAnnouncesOk = {
 ~~~
 {: #subscribeannouncesok  -def title="MOQTSubscribeAnnouncesOk definition"}
 
-### MOQTFSubscribeAnnouncesError
+### MOQTSubscribeAnnouncesError
 
 ~~~ cddl
-MOQTFSubscribeAnnouncesError = {
+MOQTSubscribeAnnouncesError = {
   type: "subscribe_announces_error"
   ? length: uint64
   track_namespace: TODO pending tuple decision
@@ -908,7 +908,7 @@ MOQTFSubscribeAnnouncesError = {
   reason_phrase: RawInfo
 }
 ~~~
-{: #subscribeannounceserror-def title="MOQTFSubscribeAnnouncesError definition"}
+{: #subscribeannounceserror-def title="MOQTSubscribeAnnouncesError definition"}
 
 ## MOQTExtensionHeader
 

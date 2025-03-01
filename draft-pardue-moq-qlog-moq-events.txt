@@ -144,6 +144,8 @@ Table of Contents
     +=====================================+============+==============+
     | Name value                          | Importance | Definition   |
     +=====================================+============+==============+
+    | moqt:control_message_created        | Core       | Section 4.1  |
+    +-------------------------------------+------------+--------------+
     | moqt:control_message_parsed         | Core       | Section 4.2  |
     +-------------------------------------+------------+--------------+
     | moqt:stream_type_set                | Core       | Section 4.3  |
@@ -248,12 +250,21 @@ Table of Contents
    their use of per-event extension points via the $$ CDDL "group
    socket" syntax, as also described in [QLOG-MAIN].
 
-   MOQTEventData = MOQTStreamTypeSet /
-                 HTTP3ObjectDatagramCreated /
-                 HTTP3ObjectDatagramParsed /
-                 HTTP3DatagramCreated /
-                 HTTP3DatagramParsed /
-                 HTTP3PushResolved
+   MOQTEventData = MOQTControlMessageCreated /
+                   MOQTControlMessageParsed /
+                   MOQTStreamTypeSet /
+                   MOQTObjectDatagramCreated /
+                   MOQTObjectDatagramParsed /
+                   MOQTObjectDatagramStatusCreated /
+                   MOQTObjectDatagramStatusParsed /
+                   MOQTSubgroupHeaderCreated /
+                   MOQTSubgroupHeaderParsed /
+                   MOQTSubgroupObjectCreated /
+                   MOQTSubgroupObjectParsed /
+                   MOQTFetchHeaderCreated /
+                   MOQTFetchHeaderParsed /
+                   MOQTFetchObjectCreated /
+                   MOQTFetchObjectParsed
 
    $ProtocolEventData /= MOQTEventData
 
@@ -516,7 +527,7 @@ Table of Contents
    created.  It has Core importance level; see Section 9.2 of
    [QLOG-MAIN].
 
-   MOQTFetchpObjectCreated = {
+   MOQTFetchObjectCreated = {
        stream_id: uint64
        group_id: uint64
        subgroup_id: uint64
@@ -539,7 +550,7 @@ Table of Contents
    parsed.  It has Core importance level; see Section 9.2 of
    [QLOG-MAIN].
 
-   MOQTFetchpObjectParsed = {
+   MOQTFetchObjectParsed = {
        stream_id: uint64
        group_id: uint64
        subgroup_id: uint64

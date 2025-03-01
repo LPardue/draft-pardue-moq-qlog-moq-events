@@ -672,8 +672,7 @@ Table of Contents
    MOQTGoaway = {
      type: "goaway"
      ? length: uint64
-     ? new_session_uri_length: RawInfo
-     ? new_session_uri: RawInfo
+     new_session_uri: RawInfo
    }
 
                       Figure 24: MOQTGoaway definition

@@ -580,8 +580,7 @@ MOQTClientSetupMessage = {
 MOQTGoaway = {
   type: "goaway"
   ? length: uint64
-  ? new_session_uri_length: RawInfo
-  ? new_session_uri: RawInfo
+  new_session_uri: RawInfo
 }
 ~~~
 {: #goaway-def title="MOQTGoaway definition"}

@@ -556,7 +556,6 @@ $MOQTControlMessage /= MOQTBaseControlMessages
 ~~~ cddl
 MOQTClientSetupMessage = {
   type: "client_setup"
-  ? length: uint64
   number_of_support_versions: uint64
   supported_versions: [* uint64]
   number_of_parameters: uint64
@@ -570,7 +569,6 @@ MOQTClientSetupMessage = {
 ~~~ cddl
 MOQTClientSetupMessage = {
   type: "server_setup"
-  ? length: uint64
   selected_version: uint64
   number_of_parameters: uint64
   setup_parameters: [* MOQTParameter]
@@ -594,7 +592,6 @@ MOQTGoaway = {
 ~~~ cddl
 MOQTSubscribe = {
   type: "subscribe"
-  ? length: uint64
   subscribe_id: uint64
   track_alias: uint64
   track_namespace: TODO pending tuple decision
@@ -616,7 +613,6 @@ MOQTSubscribe = {
 ~~~ cddl
 MOQTSubscribeUpdate = {
   type: "subscribe_update"
-  ? length: uint64
   subscribe_id: uint64
   start_group: uint64
   start_object: uint64
@@ -633,7 +629,6 @@ MOQTSubscribeUpdate = {
 ~~~ cddl
 MOQTUnsubscribe = {
   type: "unsubscribe"
-  ? length: uint64
   subscribe_id: uint64
 }
 ~~~
@@ -644,7 +639,6 @@ MOQTUnsubscribe = {
 ~~~ cddl
 MOQTFetch = {
   type: "fetch"
-  ? length: uint64
   subscribe_id: uint64
   subscriber_priority: uint8
   group_order: uint8
@@ -672,7 +666,6 @@ MOQTFetch = {
 ~~~ cddl
 MOQTFetchCancel = {
   type: "fetch_cancel"
-  ? length: uint64
   subscribe_id: uint64
 }
 ~~~
@@ -683,7 +676,6 @@ MOQTFetchCancel = {
 ~~~ cddl
 MOQTAnnounceOk = {
   type: "announce_ok"
-  ? length: uint64
   track_namespace: TODO pending tuple decision
 }
 ~~~
@@ -694,7 +686,6 @@ MOQTAnnounceOk = {
 ~~~ cddl
 MOQTAnnounceError = {
   type: "announce_error"
-  ? length: uint64
   track_namespace: TODO pending tuple decision
   error_code: unit64
   reason_phrase: RawInfo
@@ -707,7 +698,6 @@ MOQTAnnounceError = {
 ~~~ cddl
 MOQTAnnounceCancel = {
   type: "announce_cancel"
-  ? length: uint64
   track_namespace: TODO pending tuple decision
   error_code: unit64
   reason_phrase: RawInfo
@@ -720,7 +710,6 @@ MOQTAnnounceCancel = {
 ~~~ cddl
 MOQTTrackStatusRequest = {
   type: "track_status_request"
-  ? length: uint64
   track_namespace: TODO pending tuple decision
   track_name: RawInfo
 }
@@ -732,7 +721,6 @@ MOQTTrackStatusRequest = {
 ~~~ cddl
 MOQTSubscribeAnnounces = {
   type: "subscribe_announces"
-  ? length: uint64
   track_namespace: TODO pending tuple decision
   number_of_parameters: uint64
   subscribe_parameters: [* MOQTParameter]
@@ -745,7 +733,6 @@ MOQTSubscribeAnnounces = {
 ~~~ cddl
 MOQTUnsubscribeAnnounces = {
   type: "subscribe_announces"
-  ? length: uint64
   track_namespace: TODO pending tuple decision
 }
 ~~~
@@ -756,7 +743,6 @@ MOQTUnsubscribeAnnounces = {
 ~~~ cddl
 MOQTSubscribeOk = {
   type: "subscribe_ok"
-  ? length: uint64
   subscribe_id: uint64
   expires: uint64
   group_order: uint8
@@ -774,7 +760,6 @@ MOQTSubscribeOk = {
 ~~~ cddl
 MOQTSubscribeError = {
   type: "subscribe_error"
-  ? length: uint64
   subscribe_id: uint64
   error_code: unit64
   reason_phrase: RawInfo
@@ -788,7 +773,6 @@ MOQTSubscribeError = {
 ~~~ cddl
 MOQTFetchOk = {
   type: "fetch_ok"
-  ? length: uint64
   subscribe_id: uint64
   group_order: uint8
   end_of_track: uint8
@@ -805,7 +789,6 @@ MOQTFetchOk = {
 ~~~ cddl
 MOQTFetchError = {
   type: "fetch_error"
-  ? length: uint64
   subscribe_id: uint64
   error_code: unit64
   reason_phrase: RawInfo
@@ -818,7 +801,6 @@ MOQTFetchError = {
 ~~~ cddl
 MOQTSubscribeDone = {
   type: "subscribe_done"
-  ? length: uint64
   subscribe_id: uint64
   status_code: unit64
   stream_count: unit64
@@ -832,7 +814,6 @@ MOQTSubscribeDone = {
 ~~~ cddl
 MOQTMaxSubscribeId = {
   type: "max_subscribe_id"
-  ? length: uint64
   subscribe_id: uint64
 }
 ~~~
@@ -843,7 +824,6 @@ MOQTMaxSubscribeId = {
 ~~~ cddl
 MOQTSubscribesBlocked = {
   type: "subscribes_blocked"
-  ? length: uint64
   maximum_subscribe_id: uint64
 }
 ~~~
@@ -854,7 +834,6 @@ MOQTSubscribesBlocked = {
 ~~~ cddl
 MOQTAnnounce = {
   type: "announce"
-  ? length: uint64
   track_namespace: TODO pending tuple decision
   number_of_parameters: uint64
   subscribe_parameters: [* MOQTParameter]
@@ -867,7 +846,6 @@ MOQTAnnounce = {
 ~~~ cddl
 MOQTUnannounce = {
   type: "unannounce"
-  ? length: uint64
   track_namespace: TODO pending tuple decision
 }
 ~~~
@@ -878,7 +856,6 @@ MOQTUnannounce = {
 ~~~ cddl
 MOQTTrackStatus = {
   type: "track_status"
-  ? length: uint64
   track_namespace: TODO pending tuple decision
   track_name: RawInfo
   status_code: uint64
@@ -894,7 +871,6 @@ MOQTTrackStatus = {
 ~~~ cddl
 MOQTSubscribeAnnouncesOk = {
   type: "subscribe_announces_ok"
-  ? length: uint64
   track_namespace: TODO pending tuple decision
 }
 ~~~
@@ -905,7 +881,6 @@ MOQTSubscribeAnnouncesOk = {
 ~~~ cddl
 MOQTSubscribeAnnouncesError = {
   type: "subscribe_announces_error"
-  ? length: uint64
   track_namespace: TODO pending tuple decision
   error_code: uint64
   reason_phrase: RawInfo

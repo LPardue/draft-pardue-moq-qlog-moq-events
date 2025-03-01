@@ -246,8 +246,6 @@ MOQTObjectDatagramCreated = {
     publisher_priority: uint8
     extension_count: uint64
     ? extension_headers: [* MOQTExtensionHeader]
-    object_payload_length: uint64
-    ? object_status: uint64
     object_payload: RawInfo
 
     * $$moqt-objectdatagramcreated-extension
@@ -268,8 +266,6 @@ MOQTObjectDatagramParsed = {
     publisher_priority: uint8
     extension_count: uint64
     ? extension_headers: [* MOQTExtensionHeader]
-    object_payload_length: uint64
-    ? object_status: uint64
     ? object_payload: RawInfo
 
     * $$moqt-objectdatagramparsed-extension
@@ -289,6 +285,8 @@ MOQTObjectDatagramStatusCreated = {
     group_id: uint64
     object_id: uint64
     publisher_priority: uint8
+    extension_count: uint64
+    ? extension_headers: [* MOQTExtensionHeader]
     object_status: uint64
 
     * $$moqt-objectdatagramstatuscreated-extension
@@ -308,6 +306,8 @@ MOQTObjectDatagramStatusParsed = {
     group_id: uint64
     object_id: uint64
     publisher_priority: uint8
+    extension_count: uint64
+    ? extension_headers: [* MOQTExtensionHeader]
     object_status: uint64
 
     * $$moqt-objectdatagramstatusparsed-extension

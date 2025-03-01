@@ -1286,7 +1286,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
                     <p id="section-toc.1-1.5.2.3.2.18.1"><a href="#section-5.3.18" class="auto internal xref">5.3.18</a>. <a href="#name-moqtfetcherror" class="internal xref">MOQTFetchError</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.3.2.19">
-                    <p id="section-toc.1-1.5.2.3.2.19.1"><a href="#section-5.3.19" class="auto internal xref">5.3.19</a>. <a href="#name-moqtfsubscribedone" class="internal xref">MOQTFSubscribeDone</a></p>
+                    <p id="section-toc.1-1.5.2.3.2.19.1"><a href="#section-5.3.19" class="auto internal xref">5.3.19</a>. <a href="#name-moqtsubscribedone" class="internal xref">MOQTSubscribeDone</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.3.2.20">
                     <p id="section-toc.1-1.5.2.3.2.20.1"><a href="#section-5.3.20" class="auto internal xref">5.3.20</a>. <a href="#name-moqtmaxsubscribeid" class="internal xref">MOQTMaxSubscribeId</a></p>
@@ -1307,7 +1307,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
                     <p id="section-toc.1-1.5.2.3.2.25.1"><a href="#section-5.3.25" class="auto internal xref">5.3.25</a>. <a href="#name-moqtsubscribeannouncesok" class="internal xref">MOQTSubscribeAnnouncesOk</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.3.2.26">
-                    <p id="section-toc.1-1.5.2.3.2.26.1"><a href="#section-5.3.26" class="auto internal xref">5.3.26</a>. <a href="#name-moqtfsubscribeannounceserro" class="internal xref">MOQTFSubscribeAnnouncesError</a></p>
+                    <p id="section-toc.1-1.5.2.3.2.26.1"><a href="#section-5.3.26" class="auto internal xref">5.3.26</a>. <a href="#name-moqtsubscribeannounceserror" class="internal xref">MOQTSubscribeAnnouncesError</a></p>
 </li>
                 </ul>
 </li>
@@ -2131,14 +2131,14 @@ MOQTBaseControlMessages = MOQTClientSetupMessage /
                           MOQTSubscribeError /
                           MOQTFetchOk /
                           MOQTFetchError /
-                          MOQTFSubscribeDone /
+                          MOQTSubscribeDone /
                           MOQTMaxSubscribeId /
                           MOQTSubscribesBlocked /
                           MOQTAnnounce /
                           MOQTUnannounce /
                           MOQTTrackStatus /
                           MOQTSubscribeAnnouncesOk /
-                          MOQTFSubscribeAnnouncesError
+                          MOQTSubscribeAnnouncesError
 
 $MOQTControlMessage /= MOQTBaseControlMessages
 </pre>
@@ -2608,16 +2608,16 @@ MOQTFetchError = {
 </div>
 </section>
 </div>
-<div id="moqtfsubscribedone">
+<div id="moqtsubscribedone">
 <section id="section-5.3.19">
-          <h4 id="name-moqtfsubscribedone">
-<a href="#section-5.3.19" class="section-number selfRef">5.3.19. </a><a href="#name-moqtfsubscribedone" class="section-name selfRef">MOQTFSubscribeDone</a>
+          <h4 id="name-moqtsubscribedone">
+<a href="#section-5.3.19" class="section-number selfRef">5.3.19. </a><a href="#name-moqtsubscribedone" class="section-name selfRef">MOQTSubscribeDone</a>
           </h4>
-<span id="name-moqtfsubscribedone-definiti"></span><div id="subscribedone-def">
+<span id="name-moqtsubscribedone-definitio"></span><div id="subscribedone-def">
 <figure id="figure-40">
             <div class="lang-cddl sourcecode" id="section-5.3.19-1.1">
 <pre>
-MOQTFSubscribeDone = {
+MOQTSubscribeDone = {
   type: "subscribe_done"
   ? length: uint64
   subscribe_id: uint64
@@ -2628,7 +2628,7 @@ MOQTFSubscribeDone = {
 </pre>
 </div>
 <figcaption><a href="#figure-40" class="selfRef">Figure 40</a>:
-<a href="#name-moqtfsubscribedone-definiti" class="selfRef">MOQTFSubscribeDone definition</a>
+<a href="#name-moqtsubscribedone-definitio" class="selfRef">MOQTSubscribeDone definition</a>
             </figcaption></figure>
 </div>
 </section>
@@ -2771,16 +2771,16 @@ MOQTSubscribeAnnouncesOk = {
 </div>
 </section>
 </div>
-<div id="moqtfsubscribeannounceserror">
+<div id="moqtsubscribeannounceserror">
 <section id="section-5.3.26">
-          <h4 id="name-moqtfsubscribeannounceserro">
-<a href="#section-5.3.26" class="section-number selfRef">5.3.26. </a><a href="#name-moqtfsubscribeannounceserro" class="section-name selfRef">MOQTFSubscribeAnnouncesError</a>
+          <h4 id="name-moqtsubscribeannounceserror">
+<a href="#section-5.3.26" class="section-number selfRef">5.3.26. </a><a href="#name-moqtsubscribeannounceserror" class="section-name selfRef">MOQTSubscribeAnnouncesError</a>
           </h4>
-<span id="name-moqtfsubscribeannounceserror"></span><div id="subscribeannounceserror-def">
+<span id="name-moqtsubscribeannounceserror-"></span><div id="subscribeannounceserror-def">
 <figure id="figure-47">
             <div class="lang-cddl sourcecode" id="section-5.3.26-1.1">
 <pre>
-MOQTFSubscribeAnnouncesError = {
+MOQTSubscribeAnnouncesError = {
   type: "subscribe_announces_error"
   ? length: uint64
   track_namespace: TODO pending tuple decision
@@ -2790,7 +2790,7 @@ MOQTFSubscribeAnnouncesError = {
 </pre>
 </div>
 <figcaption><a href="#figure-47" class="selfRef">Figure 47</a>:
-<a href="#name-moqtfsubscribeannounceserror" class="selfRef">MOQTFSubscribeAnnouncesError definition</a>
+<a href="#name-moqtsubscribeannounceserror-" class="selfRef">MOQTSubscribeAnnouncesError definition</a>
             </figcaption></figure>
 </div>
 </section>

@@ -111,14 +111,14 @@ Table of Contents
        5.3.16. MOQTSubscribeError
        5.3.17. MOQTFetchOk
        5.3.18. MOQTFetchError
-       5.3.19. MOQTFSubscribeDone
+       5.3.19. MOQTSubscribeDone
        5.3.20. MOQTMaxSubscribeId
        5.3.21. MOQTSubscribesBlocked
        5.3.22. MOQTAnnounce
        5.3.23. MOQTUnannounce
        5.3.24. MOQTTrackStatus
        5.3.25. MOQTSubscribeAnnouncesOk
-       5.3.26. MOQTFSubscribeAnnouncesError
+       5.3.26. MOQTSubscribeAnnouncesError
      5.4.  MOQTExtensionHeader
    6.  Security Considerations
    7.  IANA Considerations
@@ -629,14 +629,14 @@ Table of Contents
                              MOQTSubscribeError /
                              MOQTFetchOk /
                              MOQTFetchError /
-                             MOQTFSubscribeDone /
+                             MOQTSubscribeDone /
                              MOQTMaxSubscribeId /
                              MOQTSubscribesBlocked /
                              MOQTAnnounce /
                              MOQTUnannounce /
                              MOQTTrackStatus /
                              MOQTSubscribeAnnouncesOk /
-                             MOQTFSubscribeAnnouncesError
+                             MOQTSubscribeAnnouncesError
 
    $MOQTControlMessage /= MOQTBaseControlMessages
 
@@ -887,9 +887,9 @@ Table of Contents
 
                     Figure 39: MOQTFetchError definition
 
-5.3.19.  MOQTFSubscribeDone
+5.3.19.  MOQTSubscribeDone
 
-   MOQTFSubscribeDone = {
+   MOQTSubscribeDone = {
      type: "subscribe_done"
      ? length: uint64
      subscribe_id: uint64
@@ -898,7 +898,7 @@ Table of Contents
      reason_phrase: RawInfo
    }
 
-                  Figure 40: MOQTFSubscribeDone definition
+                  Figure 40: MOQTSubscribeDone definition
 
 5.3.20.  MOQTMaxSubscribeId
 
@@ -966,9 +966,9 @@ Table of Contents
 
                Figure 46: MOQTSubscribeAnnouncesOk definition
 
-5.3.26.  MOQTFSubscribeAnnouncesError
+5.3.26.  MOQTSubscribeAnnouncesError
 
-   MOQTFSubscribeAnnouncesError = {
+   MOQTSubscribeAnnouncesError = {
      type: "subscribe_announces_error"
      ? length: uint64
      track_namespace: TODO pending tuple decision
@@ -976,7 +976,7 @@ Table of Contents
      reason_phrase: RawInfo
    }
 
-             Figure 47: MOQTFSubscribeAnnouncesError definition
+             Figure 47: MOQTSubscribeAnnouncesError definition
 
 5.4.  MOQTExtensionHeader
 

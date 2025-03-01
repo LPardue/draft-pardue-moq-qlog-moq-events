@@ -60,6 +60,7 @@ bottom of this document for clarity.
 
 | Name value                          | Importance |  Definition |
 |:------------------------------------|:-----------|:------------|
+| moqt:control_message_created        | Core       | {{controlmessagecreated}} |
 | moqt:control_message_parsed         | Core       | {{controlmessageparsed}} |
 | moqt:stream_type_set                | Core       | {{streamtypeset}} |
 | moqt:object_datagram_created        | Core       | {{objectdatagramcreated}} |
@@ -142,12 +143,21 @@ per-event extension points via the `$$` CDDL "group socket" syntax, as also
 described in {{QLOG-MAIN}}.
 
 ~~~ cddl
-MOQTEventData = MOQTStreamTypeSet /
-              HTTP3ObjectDatagramCreated /
-              HTTP3ObjectDatagramParsed /
-              HTTP3DatagramCreated /
-              HTTP3DatagramParsed /
-              HTTP3PushResolved
+MOQTEventData = MOQTControlMessageCreated /
+                MOQTControlMessageParsed /
+                MOQTStreamTypeSet /
+                MOQTObjectDatagramCreated /
+                MOQTObjectDatagramParsed /
+                MOQTObjectDatagramStatusCreated /
+                MOQTObjectDatagramStatusParsed /
+                MOQTSubgroupHeaderCreated /
+                MOQTSubgroupHeaderParsed /
+                MOQTSubgroupObjectCreated /
+                MOQTSubgroupObjectParsed /
+                MOQTFetchHeaderCreated /
+                MOQTFetchHeaderParsed /
+                MOQTFetchObjectCreated /
+                MOQTFetchObjectParsed
 
 $ProtocolEventData /= MOQTEventData
 ~~~
@@ -415,7 +425,7 @@ The `fetch_object_created` event is emitted when a fetch object is created. It
 has Core importance level; see {{Section 9.2 of QLOG-MAIN}}.
 
 ~~~ cddl
-MOQTFetchpObjectCreated = {
+MOQTFetchObjectCreated = {
     stream_id: uint64
     group_id: uint64
     subgroup_id: uint64
@@ -438,7 +448,7 @@ The `fetch_object_parsed` event is emitted when a fetch object is parsed. It has
 Core importance level; see {{Section 9.2 of QLOG-MAIN}}.
 
 ~~~ cddl
-MOQTFetchpObjectParsed = {
+MOQTFetchObjectParsed = {
     stream_id: uint64
     group_id: uint64
     subgroup_id: uint64

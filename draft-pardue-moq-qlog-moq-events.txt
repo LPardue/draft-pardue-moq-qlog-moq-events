@@ -347,10 +347,8 @@ Table of Contents
        group_id: uint64
        object_id: uint64
        publisher_priority: uint8
-       extension_count: uint64
+       extension_headers_length: uint64
        ? extension_headers: [* MOQTExtensionHeader]
-       object_payload_length: uint64
-       ? object_status: uint64
        object_payload: RawInfo
 
        * $$moqt-objectdatagramcreated-extension
@@ -369,10 +367,8 @@ Table of Contents
        group_id: uint64
        object_id: uint64
        publisher_priority: uint8
-       extension_count: uint64
+       extension_headers_length: uint64
        ? extension_headers: [* MOQTExtensionHeader]
-       object_payload_length: uint64
-       ? object_status: uint64
        ? object_payload: RawInfo
 
        * $$moqt-objectdatagramparsed-extension
@@ -391,6 +387,8 @@ Table of Contents
        group_id: uint64
        object_id: uint64
        publisher_priority: uint8
+       extension_headers_length: uint64
+       ? extension_headers: [* MOQTExtensionHeader]
        object_status: uint64
 
        * $$moqt-objectdatagramstatuscreated-extension
@@ -409,6 +407,8 @@ Table of Contents
        group_id: uint64
        object_id: uint64
        publisher_priority: uint8
+       extension_headers_length: uint64
+       ? extension_headers: [* MOQTExtensionHeader]
        object_status: uint64
 
        * $$moqt-objectdatagramstatusparsed-extension
@@ -461,7 +461,7 @@ Table of Contents
    MOQTSubgroupObjectCreated = {
        stream_id: uint64
        object_id: uint64
-       extension_count: uint64
+       extension_headers_length: uint64
        ? extension_headers: [* MOQTExtensionHeader]
        object_payload_length: uint64
        ? object_status: uint64
@@ -481,7 +481,7 @@ Table of Contents
    MOQTSubgroupObjectParsed = {
        stream_id: uint64
        object_id: uint64
-       extension_count: uint64
+       extension_headers_length: uint64
        ? extension_headers: [* MOQTExtensionHeader]
        object_payload_length: uint64
        ? object_status: uint64
@@ -534,7 +534,7 @@ Table of Contents
        subgroup_id: uint64
        object_id: uint64
        publisher_priority: uint8
-       extension_count: uint64
+       extension_headers_length: uint64
        ? extension_headers: [* MOQTExtensionHeader]
        object_payload_length: uint64
        ? object_status: uint64
@@ -557,7 +557,7 @@ Table of Contents
        subgroup_id: uint64
        object_id: uint64
        publisher_priority: uint8
-       extension_count: uint64
+       extension_headers_length: uint64
        ? extension_headers: [* MOQTExtensionHeader]
        object_payload_length: uint64
        ? object_status: uint64

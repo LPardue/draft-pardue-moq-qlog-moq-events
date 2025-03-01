@@ -240,7 +240,7 @@ MOQTObjectDatagramCreated = {
     group_id: uint64
     object_id: uint64
     publisher_priority: uint8
-    extension_count: uint64
+    extension_headers_length: uint64
     ? extension_headers: [* MOQTExtensionHeader]
     object_payload: RawInfo
 
@@ -260,7 +260,7 @@ MOQTObjectDatagramParsed = {
     group_id: uint64
     object_id: uint64
     publisher_priority: uint8
-    extension_count: uint64
+    extension_headers_length: uint64
     ? extension_headers: [* MOQTExtensionHeader]
     ? object_payload: RawInfo
 
@@ -281,7 +281,7 @@ MOQTObjectDatagramStatusCreated = {
     group_id: uint64
     object_id: uint64
     publisher_priority: uint8
-    extension_count: uint64
+    extension_headers_length: uint64
     ? extension_headers: [* MOQTExtensionHeader]
     object_status: uint64
 
@@ -302,7 +302,7 @@ MOQTObjectDatagramStatusParsed = {
     group_id: uint64
     object_id: uint64
     publisher_priority: uint8
-    extension_count: uint64
+    extension_headers_length: uint64
     ? extension_headers: [* MOQTExtensionHeader]
     object_status: uint64
 
@@ -357,7 +357,7 @@ created. It has Core importance level; see {{Section 9.2 of QLOG-MAIN}}.
 MOQTSubgroupObjectCreated = {
     stream_id: uint64
     object_id: uint64
-    extension_count: uint64
+    extension_headers_length: uint64
     ? extension_headers: [* MOQTExtensionHeader]
     object_payload_length: uint64
     ? object_status: uint64
@@ -377,7 +377,7 @@ It has Core importance level; see {{Section 9.2 of QLOG-MAIN}}.
 MOQTSubgroupObjectParsed = {
     stream_id: uint64
     object_id: uint64
-    extension_count: uint64
+    extension_headers_length: uint64
     ? extension_headers: [* MOQTExtensionHeader]
     object_payload_length: uint64
     ? object_status: uint64
@@ -431,7 +431,7 @@ MOQTFetchObjectCreated = {
     subgroup_id: uint64
     object_id: uint64
     publisher_priority: uint8
-    extension_count: uint64
+    extension_headers_length: uint64
     ? extension_headers: [* MOQTExtensionHeader]
     object_payload_length: uint64
     ? object_status: uint64
@@ -454,7 +454,7 @@ MOQTFetchObjectParsed = {
     subgroup_id: uint64
     object_id: uint64
     publisher_priority: uint8
-    extension_count: uint64
+    extension_headers_length: uint64
     ? extension_headers: [* MOQTExtensionHeader]
     object_payload_length: uint64
     ? object_status: uint64

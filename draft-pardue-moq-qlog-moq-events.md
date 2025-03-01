@@ -172,7 +172,7 @@ The exchange of data between the HTTP and QUIC layer is logged via the
 The concrete MOQT event types are further defined below, their type identifier
 is the heading name.
 
-## control_message_created {#moqt-controlmessagecreated}
+## control_message_created {#controlmessagecreated}
 
 The `control_message_created` event is emitted when a control message is created.
 It has Core importance level; see {{Section 9.2 of QLOG-MAIN}}.

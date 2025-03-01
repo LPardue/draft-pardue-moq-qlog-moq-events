@@ -1868,6 +1868,8 @@ created. It has Core importance level; see <span><a href="https://datatracker.ie
 <pre>
 MOQTSubgroupObjectCreated = {
     stream_id: uint64
+    ? group_id: uint64
+    ? subgroup_id: uint64
     object_id: uint64
     extension_headers_length: uint64
     ? extension_headers: [* MOQTExtensionHeader]
@@ -1898,6 +1900,8 @@ It has Core importance level; see <span><a href="https://datatracker.ietf.org/do
 <pre>
 MOQTSubgroupObjectParsed = {
     stream_id: uint64
+    ? group_id: uint64
+    ? subgroup_id: uint64
     object_id: uint64
     extension_headers_length: uint64
     ? extension_headers: [* MOQTExtensionHeader]

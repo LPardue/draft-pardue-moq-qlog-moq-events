@@ -5,8 +5,8 @@
 Media Over QUIC                                                L. Pardue
 Internet-Draft                                                Cloudflare
 Intended status: Informational                              M. Engelbart
-Expires: 2 September 2025                 Technical University of Munich
-                                                            1 March 2025
+Expires: 3 September 2025                 Technical University of Munich
+                                                            2 March 2025
 
 
                        MoQ qlog event definitions
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 September 2025.
+   This Internet-Draft will expire on 3 September 2025.
 
 Copyright Notice
 
@@ -650,7 +650,6 @@ Table of Contents
 
    MOQTClientSetupMessage = {
      type: "client_setup"
-     ? length: uint64
      number_of_support_versions: uint64
      supported_versions: [* uint64]
      number_of_parameters: uint64
@@ -663,7 +662,6 @@ Table of Contents
 
    MOQTClientSetupMessage = {
      type: "server_setup"
-     ? length: uint64
      selected_version: uint64
      number_of_parameters: uint64
      setup_parameters: [* MOQTParameter]
@@ -685,7 +683,6 @@ Table of Contents
 
    MOQTSubscribe = {
      type: "subscribe"
-     ? length: uint64
      subscribe_id: uint64
      track_alias: uint64
      track_namespace: TODO pending tuple decision
@@ -706,7 +703,6 @@ Table of Contents
 
    MOQTSubscribeUpdate = {
      type: "subscribe_update"
-     ? length: uint64
      subscribe_id: uint64
      start_group: uint64
      start_object: uint64
@@ -722,7 +718,6 @@ Table of Contents
 
    MOQTUnsubscribe = {
      type: "unsubscribe"
-     ? length: uint64
      subscribe_id: uint64
    }
 
@@ -732,7 +727,6 @@ Table of Contents
 
    MOQTFetch = {
      type: "fetch"
-     ? length: uint64
      subscribe_id: uint64
      subscriber_priority: uint8
      group_order: uint8
@@ -759,7 +753,6 @@ Table of Contents
 
    MOQTFetchCancel = {
      type: "fetch_cancel"
-     ? length: uint64
      subscribe_id: uint64
    }
 
@@ -769,7 +762,6 @@ Table of Contents
 
    MOQTAnnounceOk = {
      type: "announce_ok"
-     ? length: uint64
      track_namespace: TODO pending tuple decision
    }
 
@@ -779,7 +771,6 @@ Table of Contents
 
    MOQTAnnounceError = {
      type: "announce_error"
-     ? length: uint64
      track_namespace: TODO pending tuple decision
      error_code: unit64
      reason_phrase: RawInfo
@@ -791,7 +782,6 @@ Table of Contents
 
    MOQTAnnounceCancel = {
      type: "announce_cancel"
-     ? length: uint64
      track_namespace: TODO pending tuple decision
      error_code: unit64
      reason_phrase: RawInfo
@@ -803,7 +793,6 @@ Table of Contents
 
    MOQTTrackStatusRequest = {
      type: "track_status_request"
-     ? length: uint64
      track_namespace: TODO pending tuple decision
      track_name: RawInfo
    }
@@ -814,7 +803,6 @@ Table of Contents
 
    MOQTSubscribeAnnounces = {
      type: "subscribe_announces"
-     ? length: uint64
      track_namespace: TODO pending tuple decision
      number_of_parameters: uint64
      subscribe_parameters: [* MOQTParameter]
@@ -826,7 +814,6 @@ Table of Contents
 
    MOQTUnsubscribeAnnounces = {
      type: "subscribe_announces"
-     ? length: uint64
      track_namespace: TODO pending tuple decision
    }
 
@@ -836,7 +823,6 @@ Table of Contents
 
    MOQTSubscribeOk = {
      type: "subscribe_ok"
-     ? length: uint64
      subscribe_id: uint64
      expires: uint64
      group_order: uint8
@@ -853,7 +839,6 @@ Table of Contents
 
    MOQTSubscribeError = {
      type: "subscribe_error"
-     ? length: uint64
      subscribe_id: uint64
      error_code: unit64
      reason_phrase: RawInfo
@@ -866,7 +851,6 @@ Table of Contents
 
    MOQTFetchOk = {
      type: "fetch_ok"
-     ? length: uint64
      subscribe_id: uint64
      group_order: uint8
      end_of_track: uint8
@@ -882,7 +866,6 @@ Table of Contents
 
    MOQTFetchError = {
      type: "fetch_error"
-     ? length: uint64
      subscribe_id: uint64
      error_code: unit64
      reason_phrase: RawInfo
@@ -894,7 +877,6 @@ Table of Contents
 
    MOQTSubscribeDone = {
      type: "subscribe_done"
-     ? length: uint64
      subscribe_id: uint64
      status_code: unit64
      stream_count: unit64
@@ -907,7 +889,6 @@ Table of Contents
 
    MOQTMaxSubscribeId = {
      type: "max_subscribe_id"
-     ? length: uint64
      subscribe_id: uint64
    }
 
@@ -917,7 +898,6 @@ Table of Contents
 
    MOQTSubscribesBlocked = {
      type: "subscribes_blocked"
-     ? length: uint64
      maximum_subscribe_id: uint64
    }
 
@@ -927,7 +907,6 @@ Table of Contents
 
    MOQTAnnounce = {
      type: "announce"
-     ? length: uint64
      track_namespace: TODO pending tuple decision
      number_of_parameters: uint64
      subscribe_parameters: [* MOQTParameter]
@@ -939,7 +918,6 @@ Table of Contents
 
    MOQTUnannounce = {
      type: "unannounce"
-     ? length: uint64
      track_namespace: TODO pending tuple decision
    }
 
@@ -949,7 +927,6 @@ Table of Contents
 
    MOQTTrackStatus = {
      type: "track_status"
-     ? length: uint64
      track_namespace: TODO pending tuple decision
      track_name: RawInfo
      status_code: uint64
@@ -963,7 +940,6 @@ Table of Contents
 
    MOQTSubscribeAnnouncesOk = {
      type: "subscribe_announces_ok"
-     ? length: uint64
      track_namespace: TODO pending tuple decision
    }
 
@@ -973,7 +949,6 @@ Table of Contents
 
    MOQTSubscribeAnnouncesError = {
      type: "subscribe_announces_error"
-     ? length: uint64
      track_namespace: TODO pending tuple decision
      error_code: uint64
      reason_phrase: RawInfo
@@ -1010,9 +985,9 @@ Table of Contents
 
    [MOQT]     Curley, L., Pugin, K., Nandakumar, S., Vasiliev, V., and
               I. Swett, "Media over QUIC Transport", Work in Progress,
-              Internet-Draft, draft-ietf-moq-transport-08, 12 February
-              2025, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              moq-transport-08>.
+              Internet-Draft, draft-ietf-moq-transport-09, 1 March 2025,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-moq-
+              transport-09>.
 
    [QLOG-MAIN]
               Marx, R., Niccolini, L., Seemann, M., and L. Pardue,

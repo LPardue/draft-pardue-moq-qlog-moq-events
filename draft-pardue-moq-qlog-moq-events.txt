@@ -5,8 +5,8 @@
 Media Over QUIC                                                L. Pardue
 Internet-Draft                                                Cloudflare
 Intended status: Informational                              M. Engelbart
-Expires: 3 September 2025                 Technical University of Munich
-                                                            2 March 2025
+Expires: 4 September 2025                 Technical University of Munich
+                                                            3 March 2025
 
 
                        MoQ qlog event definitions
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 3 September 2025.
+   This Internet-Draft will expire on 4 September 2025.
 
 Copyright Notice
 

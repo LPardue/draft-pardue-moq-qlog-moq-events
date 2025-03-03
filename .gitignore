@@ -21,3 +21,6 @@ draft-pardue-moq-qlog-moq-events.xml
 package-lock.json
 report.xml
 !requirements.txt
+*.cddl
+*.json
+*.lock

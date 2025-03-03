@@ -1592,6 +1592,13 @@ The exchange of data between the HTTP and QUIC layer is logged via the
 "stream_data_moved" and "datagram_data_moved" events in <span>[<a href="#QLOG-QUIC" class="cite xref">QLOG-QUIC</a>]</span>.<a href="#section-4-3" class="pilcrow">¶</a></p>
 <p id="section-4-4">The concrete MOQT event types are further defined below, their type identifier
 is the heading name.<a href="#section-4-4" class="pilcrow">¶</a></p>
+<p id="section-4-5">Some MOQT messages include a reason phrase that can provide additional
+information in the format of a byte sequences. However, these sequences are not
+guaranteed to be presentable as UTF-8. In order to accomodate various encodings,
+where the wire image of a message includes a reason phrase, the MOQT qlog event
+type, includes two option fields: <code>reason</code> (for UTF-8) and <code>reason_bytes</code> (a
+hex-encoded string representing raw bytes). Implementations <span class="bcp14">SHOULD</span> log at least
+one format, but <span class="bcp14">MAY</span> log both or none.<a href="#section-4-5" class="pilcrow">¶</a></p>
 <div id="controlmessagecreated">
 <section id="section-4.1">
         <h3 id="name-control_message_created">
@@ -2393,7 +2400,8 @@ MOQTAnnounceError = {
   type: "announce_error"
   ; track_namespace: TODO pending tuple decision
   error_code: uint64
-  reason_phrase: RawInfo
+  ? reason: text
+  ? reason_bytes: hexstring
 }
 </pre>
 </div>
@@ -2416,7 +2424,8 @@ MOQTAnnounceCancel = {
   type: "announce_cancel"
   ; track_namespace: TODO pending tuple decision
   error_code: uint64
-  reason_phrase: RawInfo
+  ? reason: text
+  ? reason_bytes: hexstring
 }
 </pre>
 </div>
@@ -2533,7 +2542,8 @@ MOQTSubscribeError = {
   type: "subscribe_error"
   subscribe_id: uint64
   error_code: uint64
-  reason_phrase: RawInfo
+  ? reason: text
+  ? reason_bytes: hexstring
   track_alias: uint64
 }
 </pre>
@@ -2584,7 +2594,8 @@ MOQTFetchError = {
   type: "fetch_error"
   subscribe_id: uint64
   error_code: uint64
-  reason_phrase: RawInfo
+  ? reason: text
+  ? reason_bytes: hexstring
 }
 </pre>
 </div>
@@ -2608,7 +2619,8 @@ MOQTSubscribeDone = {
   subscribe_id: uint64
   status_code: uint64
   stream_count: uint64
-  reason_phrase: RawInfo
+  ? reason: text
+  ? reason_bytes: hexstring
 }
 </pre>
 </div>
@@ -2763,7 +2775,8 @@ MOQTSubscribeAnnouncesError = {
   type: "subscribe_announces_error"
   ; track_namespace: TODO pending tuple decision
   error_code: uint64
-  reason_phrase: RawInfo
+  ? reason: text
+  ? reason_bytes: hexstring
 }
 </pre>
 </div>

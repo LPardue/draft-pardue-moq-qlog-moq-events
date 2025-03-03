@@ -567,7 +567,7 @@ MOQTClientSetupMessage = {
 ### MOQTServerSetupMessage
 
 ~~~ cddl
-MOQTClientSetupMessage = {
+MOQTServerSetupMessage = {
   type: "server_setup"
   selected_version: uint64
   number_of_parameters: uint64
@@ -594,7 +594,7 @@ MOQTSubscribe = {
   type: "subscribe"
   subscribe_id: uint64
   track_alias: uint64
-  track_namespace: TODO pending tuple decision
+  ; track_namespace: TODO pending tuple decision
   track_name: RawInfo
   subscriber_priority: uint8
   group_order: uint8
@@ -644,7 +644,7 @@ MOQTFetch = {
   group_order: uint8
   fetch_type: uint64
 
-  ? track_namespace: TODO pending tuple decision
+  ; ? track_namespace: TODO pending tuple decision
   ? track_name: RawInfo
   ? start_group: uint64
   ? start_object: uint64
@@ -676,7 +676,7 @@ MOQTFetchCancel = {
 ~~~ cddl
 MOQTAnnounceOk = {
   type: "announce_ok"
-  track_namespace: TODO pending tuple decision
+  ; track_namespace: TODO pending tuple decision
 }
 ~~~
 {: #announceok-def title="MOQTAnnounceOk definition"}
@@ -686,8 +686,8 @@ MOQTAnnounceOk = {
 ~~~ cddl
 MOQTAnnounceError = {
   type: "announce_error"
-  track_namespace: TODO pending tuple decision
-  error_code: unit64
+  ; track_namespace: TODO pending tuple decision
+  error_code: uint64
   reason_phrase: RawInfo
 }
 ~~~
@@ -698,8 +698,8 @@ MOQTAnnounceError = {
 ~~~ cddl
 MOQTAnnounceCancel = {
   type: "announce_cancel"
-  track_namespace: TODO pending tuple decision
-  error_code: unit64
+  ; track_namespace: TODO pending tuple decision
+  error_code: uint64
   reason_phrase: RawInfo
 }
 ~~~
@@ -710,7 +710,7 @@ MOQTAnnounceCancel = {
 ~~~ cddl
 MOQTTrackStatusRequest = {
   type: "track_status_request"
-  track_namespace: TODO pending tuple decision
+  ; track_namespace: TODO pending tuple decision
   track_name: RawInfo
 }
 ~~~
@@ -721,7 +721,7 @@ MOQTTrackStatusRequest = {
 ~~~ cddl
 MOQTSubscribeAnnounces = {
   type: "subscribe_announces"
-  track_namespace: TODO pending tuple decision
+  ; track_namespace: TODO pending tuple decision
   number_of_parameters: uint64
   subscribe_parameters: [* MOQTParameter]
 }
@@ -733,7 +733,7 @@ MOQTSubscribeAnnounces = {
 ~~~ cddl
 MOQTUnsubscribeAnnounces = {
   type: "subscribe_announces"
-  track_namespace: TODO pending tuple decision
+  ; track_namespace: TODO pending tuple decision
 }
 ~~~
 {: #unsubscribeannounces-def title="MOQTUnsubscribeAnnounces definition"}
@@ -761,7 +761,7 @@ MOQTSubscribeOk = {
 MOQTSubscribeError = {
   type: "subscribe_error"
   subscribe_id: uint64
-  error_code: unit64
+  error_code: uint64
   reason_phrase: RawInfo
   track_alias: uint64
 }
@@ -790,7 +790,7 @@ MOQTFetchOk = {
 MOQTFetchError = {
   type: "fetch_error"
   subscribe_id: uint64
-  error_code: unit64
+  error_code: uint64
   reason_phrase: RawInfo
 }
 ~~~
@@ -802,8 +802,8 @@ MOQTFetchError = {
 MOQTSubscribeDone = {
   type: "subscribe_done"
   subscribe_id: uint64
-  status_code: unit64
-  stream_count: unit64
+  status_code: uint64
+  stream_count: uint64
   reason_phrase: RawInfo
 }
 ~~~
@@ -834,7 +834,7 @@ MOQTSubscribesBlocked = {
 ~~~ cddl
 MOQTAnnounce = {
   type: "announce"
-  track_namespace: TODO pending tuple decision
+  ; track_namespace: TODO pending tuple decision
   number_of_parameters: uint64
   subscribe_parameters: [* MOQTParameter]
 }
@@ -846,7 +846,7 @@ MOQTAnnounce = {
 ~~~ cddl
 MOQTUnannounce = {
   type: "unannounce"
-  track_namespace: TODO pending tuple decision
+  ; track_namespace: TODO pending tuple decision
 }
 ~~~
 {: #unannounce-def title="MOQTAnnounce definition"}
@@ -856,7 +856,7 @@ MOQTUnannounce = {
 ~~~ cddl
 MOQTTrackStatus = {
   type: "track_status"
-  track_namespace: TODO pending tuple decision
+  ; track_namespace: TODO pending tuple decision
   track_name: RawInfo
   status_code: uint64
   last_group_id: uint64
@@ -871,7 +871,7 @@ MOQTTrackStatus = {
 ~~~ cddl
 MOQTSubscribeAnnouncesOk = {
   type: "subscribe_announces_ok"
-  track_namespace: TODO pending tuple decision
+  ; track_namespace: TODO pending tuple decision
 }
 ~~~
 {: #subscribeannouncesok  -def title="MOQTSubscribeAnnouncesOk definition"}
@@ -881,7 +881,7 @@ MOQTSubscribeAnnouncesOk = {
 ~~~ cddl
 MOQTSubscribeAnnouncesError = {
   type: "subscribe_announces_error"
-  track_namespace: TODO pending tuple decision
+  ; track_namespace: TODO pending tuple decision
   error_code: uint64
   reason_phrase: RawInfo
 }

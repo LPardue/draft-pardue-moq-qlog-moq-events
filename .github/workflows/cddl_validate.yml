@@ -14,7 +14,9 @@ jobs:
         ruby-version: ['3.3.0']
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
+      with:
+          submodules: 'recursive'
     - name: Apt update
       run: sudo apt update
     - name: Install System Dependencies

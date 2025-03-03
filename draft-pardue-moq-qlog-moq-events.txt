@@ -660,7 +660,7 @@ Table of Contents
 
 5.3.2.  MOQTServerSetupMessage
 
-   MOQTClientSetupMessage = {
+   MOQTServerSetupMessage = {
      type: "server_setup"
      selected_version: uint64
      number_of_parameters: uint64
@@ -685,7 +685,7 @@ Table of Contents
      type: "subscribe"
      subscribe_id: uint64
      track_alias: uint64
-     track_namespace: TODO pending tuple decision
+     ; track_namespace: TODO pending tuple decision
      track_name: RawInfo
      subscriber_priority: uint8
      group_order: uint8
@@ -732,7 +732,7 @@ Table of Contents
      group_order: uint8
      fetch_type: uint64
 
-     ? track_namespace: TODO pending tuple decision
+     ; ? track_namespace: TODO pending tuple decision
      ? track_name: RawInfo
      ? start_group: uint64
      ? start_object: uint64
@@ -762,7 +762,7 @@ Table of Contents
 
    MOQTAnnounceOk = {
      type: "announce_ok"
-     track_namespace: TODO pending tuple decision
+     ; track_namespace: TODO pending tuple decision
    }
 
                     Figure 30: MOQTAnnounceOk definition
@@ -771,8 +771,8 @@ Table of Contents
 
    MOQTAnnounceError = {
      type: "announce_error"
-     track_namespace: TODO pending tuple decision
-     error_code: unit64
+     ; track_namespace: TODO pending tuple decision
+     error_code: uint64
      reason_phrase: RawInfo
    }
 
@@ -782,8 +782,8 @@ Table of Contents
 
    MOQTAnnounceCancel = {
      type: "announce_cancel"
-     track_namespace: TODO pending tuple decision
-     error_code: unit64
+     ; track_namespace: TODO pending tuple decision
+     error_code: uint64
      reason_phrase: RawInfo
    }
 
@@ -793,7 +793,7 @@ Table of Contents
 
    MOQTTrackStatusRequest = {
      type: "track_status_request"
-     track_namespace: TODO pending tuple decision
+     ; track_namespace: TODO pending tuple decision
      track_name: RawInfo
    }
 
@@ -803,7 +803,7 @@ Table of Contents
 
    MOQTSubscribeAnnounces = {
      type: "subscribe_announces"
-     track_namespace: TODO pending tuple decision
+     ; track_namespace: TODO pending tuple decision
      number_of_parameters: uint64
      subscribe_parameters: [* MOQTParameter]
    }
@@ -814,7 +814,7 @@ Table of Contents
 
    MOQTUnsubscribeAnnounces = {
      type: "subscribe_announces"
-     track_namespace: TODO pending tuple decision
+     ; track_namespace: TODO pending tuple decision
    }
 
                Figure 35: MOQTUnsubscribeAnnounces definition
@@ -840,7 +840,7 @@ Table of Contents
    MOQTSubscribeError = {
      type: "subscribe_error"
      subscribe_id: uint64
-     error_code: unit64
+     error_code: uint64
      reason_phrase: RawInfo
      track_alias: uint64
    }
@@ -867,7 +867,7 @@ Table of Contents
    MOQTFetchError = {
      type: "fetch_error"
      subscribe_id: uint64
-     error_code: unit64
+     error_code: uint64
      reason_phrase: RawInfo
    }
 
@@ -878,8 +878,8 @@ Table of Contents
    MOQTSubscribeDone = {
      type: "subscribe_done"
      subscribe_id: uint64
-     status_code: unit64
-     stream_count: unit64
+     status_code: uint64
+     stream_count: uint64
      reason_phrase: RawInfo
    }
 
@@ -907,7 +907,7 @@ Table of Contents
 
    MOQTAnnounce = {
      type: "announce"
-     track_namespace: TODO pending tuple decision
+     ; track_namespace: TODO pending tuple decision
      number_of_parameters: uint64
      subscribe_parameters: [* MOQTParameter]
    }
@@ -918,7 +918,7 @@ Table of Contents
 
    MOQTUnannounce = {
      type: "unannounce"
-     track_namespace: TODO pending tuple decision
+     ; track_namespace: TODO pending tuple decision
    }
 
                      Figure 44: MOQTAnnounce definition
@@ -927,7 +927,7 @@ Table of Contents
 
    MOQTTrackStatus = {
      type: "track_status"
-     track_namespace: TODO pending tuple decision
+     ; track_namespace: TODO pending tuple decision
      track_name: RawInfo
      status_code: uint64
      last_group_id: uint64
@@ -940,7 +940,7 @@ Table of Contents
 
    MOQTSubscribeAnnouncesOk = {
      type: "subscribe_announces_ok"
-     track_namespace: TODO pending tuple decision
+     ; track_namespace: TODO pending tuple decision
    }
 
                Figure 46: MOQTSubscribeAnnouncesOk definition
@@ -949,7 +949,7 @@ Table of Contents
 
    MOQTSubscribeAnnouncesError = {
      type: "subscribe_announces_error"
-     track_namespace: TODO pending tuple decision
+     ; track_namespace: TODO pending tuple decision
      error_code: uint64
      reason_phrase: RawInfo
    }

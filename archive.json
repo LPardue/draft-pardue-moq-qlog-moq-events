@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-02T01:53:40.246901+00:00",
+  "timestamp": "2025-03-04T01:50:14.854641+00:00",
   "repo": "LPardue/draft-pardue-moq-qlog-moq-events",
   "labels": [
     {
@@ -55,15 +55,15 @@
       "id": "I_kwDOOBS9Ss6sMMO2",
       "title": "Length field in control message events and messages",
       "url": "https://github.com/LPardue/draft-pardue-moq-qlog-moq-events/issues/1",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "mengelbart",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "`MOQTControlMessageCreated`, `MOQTControlMessageParsed`, and all the `MOQTControlMessage` types have optional length fields. I think it would be enough to have it in the created/parsed events.\n\nSince it is part of the MoQ message types, should we also make it mandatory?",
       "createdAt": "2025-03-01T12:43:41Z",
-      "updatedAt": "2025-03-01T21:09:54Z",
-      "closedAt": null,
+      "updatedAt": "2025-03-02T18:27:45Z",
+      "closedAt": "2025-03-02T18:27:45Z",
       "comments": [
         {
           "author": "LPardue",
@@ -71,6 +71,13 @@
           "body": "You've spotted that there was duplicate/redundant `length` fields in the MOQTControlMessage concrete types. https://github.com/LPardue/draft-pardue-moq-qlog-moq-events/pull/11 fixes that up.\n\nGenerally I've tried to follow the model of HTTP/3 frames, which has worked well in my experience, see  https://quicwg.org/qlog/draft-ietf-quic-qlog-h3-events.html#name-frame_created and https://quicwg.org/qlog/draft-ietf-quic-qlog-h3-events.html#name-http3frame.\n\nWhile the `length` field is mandatory for the wire image - its debatable how much its useful for qlog. In my experience, we benefit more from the semantic content of a field, rather than the properties of it like length. Reducing log size by omitting fields is a useful technique for a few reasons (storage and processing). \n\n",
           "createdAt": "2025-03-01T21:09:53Z",
           "updatedAt": "2025-03-01T21:09:53Z"
+        },
+        {
+          "author": "mengelbart",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Sounds good. I think we can close this one with #11, then.",
+          "createdAt": "2025-03-02T18:21:43Z",
+          "updatedAt": "2025-03-02T18:21:43Z"
         }
       ]
     },
@@ -81,7 +88,7 @@
       "url": "https://github.com/LPardue/draft-pardue-moq-qlog-moq-events/issues/2",
       "state": "CLOSED",
       "author": "mengelbart",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Control messages are always sent on a bidirectional stream, and opening more than one bidirectional stream may be treated as a protocol violation (https://datatracker.ietf.org/doc/html/draft-ietf-moq-transport-08#section-3.3). Thus, the stream ID should always be 0. Do we still need/want it, or can we remove it or make it optional?",
@@ -98,7 +105,7 @@
         },
         {
           "author": "mengelbart",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "Makes sense. I didn't think about WebTransport. ",
           "createdAt": "2025-03-01T20:22:32Z",
           "updatedAt": "2025-03-01T20:22:32Z"
@@ -112,7 +119,7 @@
       "url": "https://github.com/LPardue/draft-pardue-moq-qlog-moq-events/issues/4",
       "state": "CLOSED",
       "author": "mengelbart",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "I think it would be useful to have group ID and subgroup ID included in the MOQTSubgroupObjectCreated and MOQTSubgroupObjectParsed events. It is probably not strictly necessary because one can always find them using the Stream ID and the subgroup header that was sent on the same Stream ID, but that sounds more complicated to process.",
@@ -134,15 +141,15 @@
       "id": "I_kwDOOBS9Ss6sMUxA",
       "title": "What is owner used for?",
       "url": "https://github.com/LPardue/draft-pardue-moq-qlog-moq-events/issues/5",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "mengelbart",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "I don't understand the use of the `Owner` type.",
       "createdAt": "2025-03-01T13:43:31Z",
-      "updatedAt": "2025-03-01T21:11:26Z",
-      "closedAt": null,
+      "updatedAt": "2025-03-02T20:42:23Z",
+      "closedAt": "2025-03-02T18:53:12Z",
       "comments": [
         {
           "author": "LPardue",
@@ -157,6 +164,20 @@
           "body": "For reference, see HTTP/3 which I borrowed this from https://quicwg.org/qlog/draft-ietf-quic-qlog-h3-events.html#name-stream_type_set",
           "createdAt": "2025-03-01T21:11:25Z",
           "updatedAt": "2025-03-01T21:11:25Z"
+        },
+        {
+          "author": "mengelbart",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Ok, this sounds useful. Currently, the type is only used in the `stream_type_set` event and I was wondering if the owner can be known from the stream type/stream ID, but I just learned from [RFC 9308](https://www.rfc-editor.org/rfc/rfc9308.html#section-4) that this may not always be true.",
+          "createdAt": "2025-03-02T18:53:12Z",
+          "updatedAt": "2025-03-02T18:53:12Z"
+        },
+        {
+          "author": "LPardue",
+          "authorAssociation": "OWNER",
+          "body": "Yeah so IME it's useful to have log lines that are as stateless as possible. While it's jot too hard to infer details from stream ID, it puts an onus on the parsing tool to know that. Groping for a `\"owner\": \"remote\"` can be a little more consistent, stateless and simple",
+          "createdAt": "2025-03-02T20:42:22Z",
+          "updatedAt": "2025-03-02T20:42:22Z"
         }
       ]
     },
@@ -204,9 +225,55 @@
       "labels": [],
       "body": "The MOQT doc defines these as a `tuple` type, and I still don't fully grok how people want to use them. It's perhaps up in the air in the MoQ group so I've punted on describing them in qlog. However, many events carry a track namespace and so it will be important to figure out a nice format for log serialization .",
       "createdAt": "2025-03-01T23:23:51Z",
-      "updatedAt": "2025-03-01T23:23:51Z",
+      "updatedAt": "2025-03-03T16:44:19Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "mengelbart",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I implemented tuples as a list of byte arrays. I do some manual checking to enforce the 32 elements restriction. I think logging them as an array would be useful. However, MoQT does not define the encoding and leaves it open to the application. One option would be to log them as RawInfo as we currently do for `reason_phrase`. If the namespace elements are strings, logging those strings would probably be more useful, but only works if we know how they are encoded.",
+          "createdAt": "2025-03-03T15:29:32Z",
+          "updatedAt": "2025-03-03T15:29:32Z"
+        },
+        {
+          "author": "LPardue",
+          "authorAssociation": "OWNER",
+          "body": "Thanks for the explanation. \n\nWe sort of have a similar issue for the HTTP headers in the h3 qlog schema. It's likely that the values are \"safe\" strings but there is no guarantee.\n\nI suspect we'll benefit from supporting both encodings in moqt qlog. A log producer will know itself if it is generating a compatible string, or if its bytes that need hex encoding. The consumer can tell from the log which type it is.  \n\nThis approach allow would allow for human-readablilty of track names / namespaces when possible, which can greatly aid debugging.",
+          "createdAt": "2025-03-03T16:44:18Z",
+          "updatedAt": "2025-03-03T16:44:18Z"
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "id": "I_kwDOOBS9Ss6sWahw",
+      "title": "Reason phrases",
+      "url": "https://github.com/LPardue/draft-pardue-moq-qlog-moq-events/issues/15",
+      "state": "CLOSED",
+      "author": "mengelbart",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Currently, the draft defines `reason_phrase` fields of error messages as RawInfo. I am not sure if the encoding of reason phrases is defined anywhere in the MoQT draft, but I assume it would be useful to log them as strings instead of hex-strings if possible.",
+      "createdAt": "2025-03-03T15:22:22Z",
+      "updatedAt": "2025-03-03T21:53:28Z",
+      "closedAt": "2025-03-03T21:48:15Z",
+      "comments": [
+        {
+          "author": "LPardue",
+          "authorAssociation": "OWNER",
+          "body": "Good spot. I was trying to copy the other qlog specs but I think I did it a little wrong. Let's look at QUIC's CONNECTION_CLOSE frame https://quicwg.org/qlog/draft-ietf-quic-qlog-quic-events.html#section-8.13.19\n\n```\nErrorSpace = \"transport\" /\n             \"application\"\n\nConnectionCloseFrame = {\n    frame_type: \"connection_close\"\n    ? error_space: ErrorSpace\n    ? error_code: $TransportError /\n                  CryptoError /\n                  $ApplicationError /\n                  uint64\n    ? reason: text\n    ? reason_bytes: hexstring\n\n    ; when error_space === \"transport\"\n    ? trigger_frame_type: uint64 /\n                          text\n}\n```\n\nthat has both `reason` and `reason_bytes` and some text to explain why someone might want to use one or the other. We should probably emulate this design.",
+          "createdAt": "2025-03-03T16:50:39Z",
+          "updatedAt": "2025-03-03T16:50:39Z"
+        },
+        {
+          "author": "LPardue",
+          "authorAssociation": "OWNER",
+          "body": "I added a comment onto https://github.com/moq-wg/moq-transport/issues/273#issuecomment-2695646437 about reason phrase encoding",
+          "createdAt": "2025-03-03T21:53:27Z",
+          "updatedAt": "2025-03-03T21:53:27Z"
+        }
+      ]
     }
   ],
   "pulls": [
@@ -217,7 +284,7 @@
       "url": "https://github.com/LPardue/draft-pardue-moq-qlog-moq-events/pull/3",
       "state": "MERGED",
       "author": "mengelbart",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Status was removed from datagram objects and the extensions were added to status datagrams.",
@@ -238,7 +305,7 @@
       "comments": [
         {
           "author": "mengelbart",
-          "authorAssociation": "CONTRIBUTOR",
+          "authorAssociation": "COLLABORATOR",
           "body": "I also updated the extension_count, which was changed to the total length of all extensions in bytes,",
           "createdAt": "2025-03-01T13:39:02Z",
           "updatedAt": "2025-03-01T13:39:02Z"
@@ -253,7 +320,7 @@
       "url": "https://github.com/LPardue/draft-pardue-moq-qlog-moq-events/pull/6",
       "state": "MERGED",
       "author": "mengelbart",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "This is the same as, e.g., reason_phrase in the error messages.",
@@ -281,7 +348,7 @@
       "url": "https://github.com/LPardue/draft-pardue-moq-qlog-moq-events/pull/7",
       "state": "MERGED",
       "author": "mengelbart",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
@@ -309,7 +376,7 @@
       "url": "https://github.com/LPardue/draft-pardue-moq-qlog-moq-events/pull/8",
       "state": "MERGED",
       "author": "mengelbart",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
@@ -337,7 +404,7 @@
       "url": "https://github.com/LPardue/draft-pardue-moq-qlog-moq-events/pull/9",
       "state": "MERGED",
       "author": "mengelbart",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
@@ -365,7 +432,7 @@
       "url": "https://github.com/LPardue/draft-pardue-moq-qlog-moq-events/pull/10",
       "state": "MERGED",
       "author": "mengelbart",
-      "authorAssociation": "CONTRIBUTOR",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "fixes #4 ",
@@ -391,24 +458,175 @@
       "id": "PR_kwDOOBS9Ss6NC4i7",
       "title": "Remove redundant length field in concrete control message types",
       "url": "https://github.com/LPardue/draft-pardue-moq-qlog-moq-events/pull/11",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "LPardue",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "Part of #1.",
       "createdAt": "2025-03-01T21:05:31Z",
-      "updatedAt": "2025-03-01T21:05:31Z",
+      "updatedAt": "2025-03-02T18:27:44Z",
       "baseRepository": "LPardue/draft-pardue-moq-qlog-moq-events",
       "baseRefName": "main",
       "baseRefOid": "fd8572759f2a36894d0f05228f327c0d9271bf42",
       "headRepository": "LPardue/draft-pardue-moq-qlog-moq-events",
       "headRefName": "remove-length-from-concrete-control-message",
       "headRefOid": "e08a551058a339167d851685257e73788b254679",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2025-03-02T18:27:44Z",
+      "mergedAt": "2025-03-02T18:27:44Z",
+      "mergedBy": "mengelbart",
+      "mergeCommit": {
+        "oid": "c98c92ab3056d378dfbbf4b9e98c0cf5bb3d21b0"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 16,
+      "id": "PR_kwDOOBS9Ss6NL3Iy",
+      "title": "Make object datagram created payload optional",
+      "url": "https://github.com/LPardue/draft-pardue-moq-qlog-moq-events/pull/16",
+      "state": "MERGED",
+      "author": "mengelbart",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "It is already mandatory for the object datagram created event and since status datagrams now have their own type, there should always be a payload.",
+      "createdAt": "2025-03-03T17:28:19Z",
+      "updatedAt": "2025-03-03T21:47:52Z",
+      "baseRepository": "LPardue/draft-pardue-moq-qlog-moq-events",
+      "baseRefName": "main",
+      "baseRefOid": "5c89712698bbdf022cc6cc1a82c65d4bc0e49cb2",
+      "headRepository": "mengelbart/draft-pardue-moq-qlog-moq-events",
+      "headRefName": "object-datagra-parsed-payload",
+      "headRefOid": "e3e6eb580a719505c0b9ded29446d659ada23e8d",
+      "closedAt": "2025-03-03T21:47:52Z",
+      "mergedAt": "2025-03-03T21:47:52Z",
+      "mergedBy": "LPardue",
+      "mergeCommit": {
+        "oid": "949d20436bd584eee29744f14900eaed7b5af0bc"
+      },
+      "comments": [
+        {
+          "author": "LPardue",
+          "authorAssociation": "OWNER",
+          "body": "So I've been a bit inconsistent through this document. In other qlog documents, the pattern tends to be to have an optional `raw: RawInfo` field that allows for logging of bytes. The rationale being that while the wire image needs to carry mandatory fields, logging often doesn't need or want to for size and data minimization reasons.\r\n\r\nMy mistake has been to approach optional logging by mandating a `raw` field and allowing the optional internal fields to be omitted. But that just means that logs get full up with empty raw fields, which is sort of pointless. I'd rather we make raw field consistently optional. In addition, where it makes sense, allow logging a specific field for strings or hex-encoded bytestrings so they are more easily consumed.",
+          "createdAt": "2025-03-03T21:02:43Z",
+          "updatedAt": "2025-03-03T21:02:43Z"
+        },
+        {
+          "author": "mengelbart",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Oh, that makes sense, too. And it is also what the subgroup and fetch objects already do. I'll update the PR to make it optional for the created event instead.",
+          "createdAt": "2025-03-03T21:24:09Z",
+          "updatedAt": "2025-03-03T21:24:09Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOOBS9Ss6eRiV_",
+          "commit": {
+            "abbreviatedOid": "e3e6eb5"
+          },
+          "author": "LPardue",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-03-03T21:33:17Z",
+          "updatedAt": "2025-03-03T21:33:17Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "id": "PR_kwDOOBS9Ss6NM11_",
+      "title": "Try to add CDDL checks and CI",
+      "url": "https://github.com/LPardue/draft-pardue-moq-qlog-moq-events/pull/17",
+      "state": "MERGED",
+      "author": "LPardue",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "I don't like duplicating the cddl_validate.sh script but I'm too lazy to work out how to change the qlog repo to allow defining a path to the main schema.",
+      "createdAt": "2025-03-03T19:39:25Z",
+      "updatedAt": "2025-03-03T19:57:53Z",
+      "baseRepository": "LPardue/draft-pardue-moq-qlog-moq-events",
+      "baseRefName": "main",
+      "baseRefOid": "c98c92ab3056d378dfbbf4b9e98c0cf5bb3d21b0",
+      "headRepository": "LPardue/draft-pardue-moq-qlog-moq-events",
+      "headRefName": "validation",
+      "headRefOid": "c11529c82f0f1bded93fd6ea30ca79b256a4d072",
+      "closedAt": "2025-03-03T19:57:48Z",
+      "mergedAt": "2025-03-03T19:57:48Z",
+      "mergedBy": "LPardue",
+      "mergeCommit": {
+        "oid": "c1a6db6f2ea89e2c632d5436ca0f8090544bc945"
+      },
+      "comments": [
+        {
+          "author": "LPardue",
+          "authorAssociation": "OWNER",
+          "body": "The failure is a real CDDL one. Will fix that up in a separate PR.",
+          "createdAt": "2025-03-03T19:54:36Z",
+          "updatedAt": "2025-03-03T19:54:36Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 18,
+      "id": "PR_kwDOOBS9Ss6NNAgH",
+      "title": "Fixup CDDL breakages",
+      "url": "https://github.com/LPardue/draft-pardue-moq-qlog-moq-events/pull/18",
+      "state": "MERGED",
+      "author": "LPardue",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-03-03T20:03:23Z",
+      "updatedAt": "2025-03-03T20:06:12Z",
+      "baseRepository": "LPardue/draft-pardue-moq-qlog-moq-events",
+      "baseRefName": "main",
+      "baseRefOid": "c1a6db6f2ea89e2c632d5436ca0f8090544bc945",
+      "headRepository": "LPardue/draft-pardue-moq-qlog-moq-events",
+      "headRefName": "fix-MOQTServerSetupMessage",
+      "headRefOid": "9b72af1cb4cbf436960ab84ea7bcc82a5deb219a",
+      "closedAt": "2025-03-03T20:06:12Z",
+      "mergedAt": "2025-03-03T20:06:12Z",
+      "mergedBy": "LPardue",
+      "mergeCommit": {
+        "oid": "5c89712698bbdf022cc6cc1a82c65d4bc0e49cb2"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 19,
+      "id": "PR_kwDOOBS9Ss6NNrpg",
+      "title": "Convert reason_phrase to split reason and reason_bytes",
+      "url": "https://github.com/LPardue/draft-pardue-moq-qlog-moq-events/pull/19",
+      "state": "MERGED",
+      "author": "LPardue",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #15 ",
+      "createdAt": "2025-03-03T21:44:54Z",
+      "updatedAt": "2025-03-03T21:48:18Z",
+      "baseRepository": "LPardue/draft-pardue-moq-qlog-moq-events",
+      "baseRefName": "main",
+      "baseRefOid": "5c89712698bbdf022cc6cc1a82c65d4bc0e49cb2",
+      "headRepository": "LPardue/draft-pardue-moq-qlog-moq-events",
+      "headRefName": "better-reasons",
+      "headRefOid": "4f1d9dda842a218308d28f804b312d2c92b08430",
+      "closedAt": "2025-03-03T21:48:14Z",
+      "mergedAt": "2025-03-03T21:48:14Z",
+      "mergedBy": "LPardue",
+      "mergeCommit": {
+        "oid": "29e844cd48f363fb06f90936837a5c3242987f1e"
+      },
       "comments": [],
       "reviews": []
     }

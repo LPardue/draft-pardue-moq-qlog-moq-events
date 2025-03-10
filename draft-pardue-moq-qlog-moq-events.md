@@ -614,6 +614,16 @@ MOQTUnknownParameter = {
 ~~~
 {: #moqtunknownparameter-def title="MOQTUnknownParameter definition"}
 
+## MOQTStringOrBytes
+
+~~~ cddl
+MOQTStringOrBytes = {
+  ? value: text
+  ? value_bytes: hexstring
+}
+~~~
+{: #moqtstringorbytes-def title="MOQTStringOrBytes definition"}
+
 ## MOQTControlMessage
 
 The generic `$MOQTControlMessage` is defined here as a CDDL "type socket" extension point.
@@ -704,8 +714,8 @@ MOQTSubscribe = {
   type: "subscribe"
   subscribe_id: uint64
   track_alias: uint64
-  ; track_namespace: TODO pending tuple decision
-  track_name: RawInfo
+  track_namespace: [ *MOQTStringOrBytes]
+  track_name: MOQTStringOrBytes
   subscriber_priority: uint8
   group_order: uint8
   filter_type: uint64
@@ -754,8 +764,8 @@ MOQTFetch = {
   group_order: uint8
   fetch_type: uint64
 
-  ; ? track_namespace: TODO pending tuple decision
-  ? track_name: RawInfo
+  track_namespace: [ *MOQTStringOrBytes]
+  ? track_name: MOQTStringOrBytes
   ? start_group: uint64
   ? start_object: uint64
   ? end_group: uint64
@@ -786,7 +796,7 @@ MOQTFetchCancel = {
 ~~~ cddl
 MOQTAnnounceOk = {
   type: "announce_ok"
-  ; track_namespace: TODO pending tuple decision
+  track_namespace: [ *MOQTStringOrBytes]
 }
 ~~~
 {: #announceok-def title="MOQTAnnounceOk definition"}
@@ -796,7 +806,7 @@ MOQTAnnounceOk = {
 ~~~ cddl
 MOQTAnnounceError = {
   type: "announce_error"
-  ; track_namespace: TODO pending tuple decision
+  track_namespace: [ *MOQTStringOrBytes]
   error_code: uint64
   ? reason: text
   ? reason_bytes: hexstring
@@ -809,7 +819,7 @@ MOQTAnnounceError = {
 ~~~ cddl
 MOQTAnnounceCancel = {
   type: "announce_cancel"
-  ; track_namespace: TODO pending tuple decision
+  track_namespace: [ *MOQTStringOrBytes]
   error_code: uint64
   ? reason: text
   ? reason_bytes: hexstring
@@ -822,8 +832,8 @@ MOQTAnnounceCancel = {
 ~~~ cddl
 MOQTTrackStatusRequest = {
   type: "track_status_request"
-  ; track_namespace: TODO pending tuple decision
-  track_name: RawInfo
+  track_namespace: [ *MOQTStringOrBytes]
+  track_name: MOQTStringOrBytes
 }
 ~~~
 {: #trackstatusrequest-def title="MOQTTrackStatusRequest definition"}
@@ -833,7 +843,7 @@ MOQTTrackStatusRequest = {
 ~~~ cddl
 MOQTSubscribeAnnounces = {
   type: "subscribe_announces"
-  ; track_namespace: TODO pending tuple decision
+  track_namespace: [ *MOQTStringOrBytes]
   number_of_parameters: uint64
   subscribe_parameters: [* $MOQTParameter]
 }
@@ -845,7 +855,7 @@ MOQTSubscribeAnnounces = {
 ~~~ cddl
 MOQTUnsubscribeAnnounces = {
   type: "subscribe_announces"
-  ; track_namespace: TODO pending tuple decision
+  track_namespace: [ *MOQTStringOrBytes]
 }
 ~~~
 {: #unsubscribeannounces-def title="MOQTUnsubscribeAnnounces definition"}
@@ -949,7 +959,7 @@ MOQTSubscribesBlocked = {
 ~~~ cddl
 MOQTAnnounce = {
   type: "announce"
-  ; track_namespace: TODO pending tuple decision
+  track_namespace: [ *MOQTStringOrBytes]
   number_of_parameters: uint64
   subscribe_parameters: [* $MOQTParameter]
 }
@@ -961,7 +971,7 @@ MOQTAnnounce = {
 ~~~ cddl
 MOQTUnannounce = {
   type: "unannounce"
-  ; track_namespace: TODO pending tuple decision
+  track_namespace: [ *MOQTStringOrBytes]
 }
 ~~~
 {: #unannounce-def title="MOQTAnnounce definition"}
@@ -971,8 +981,8 @@ MOQTUnannounce = {
 ~~~ cddl
 MOQTTrackStatus = {
   type: "track_status"
-  ; track_namespace: TODO pending tuple decision
-  track_name: RawInfo
+  track_namespace: [ *MOQTStringOrBytes]
+  track_name: MOQTStringOrBytes
   status_code: uint64
   last_group_id: uint64
   last_object_id: uint64
@@ -986,7 +996,7 @@ MOQTTrackStatus = {
 ~~~ cddl
 MOQTSubscribeAnnouncesOk = {
   type: "subscribe_announces_ok"
-  ; track_namespace: TODO pending tuple decision
+  track_namespace: [ *MOQTStringOrBytes]
 }
 ~~~
 {: #subscribeannouncesok  -def title="MOQTSubscribeAnnouncesOk definition"}
@@ -996,7 +1006,7 @@ MOQTSubscribeAnnouncesOk = {
 ~~~ cddl
 MOQTSubscribeAnnouncesError = {
   type: "subscribe_announces_error"
-  ; track_namespace: TODO pending tuple decision
+  track_namespace: [ *MOQTStringOrBytes]
   error_code: uint64
   ? reason: text
   ? reason_bytes: hexstring

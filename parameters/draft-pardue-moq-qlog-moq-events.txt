@@ -625,7 +625,7 @@ Table of Contents
 
    MOQTPathSetupParameter = {
      name: "path"
-     ? value: text
+     value: text
    }
 
                 Figure 21: MOQTPathSetupParameter definition

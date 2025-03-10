@@ -694,7 +694,7 @@ Table of Contents
 5.3.3.  MOQTMaxCacheDurationParameter
 
    MOQTMaxCacheDurationParameter = {
-     name: "cache_duration"
+     name: "max_cache_duration"
      value: uint64
    }
 

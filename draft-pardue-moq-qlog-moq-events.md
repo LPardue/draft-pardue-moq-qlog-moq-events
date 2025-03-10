@@ -493,24 +493,126 @@ Owner = "local" /
 ~~~
 {: #owner-def title="Owner definition"}
 
-## MOQTParameter
+## MOQTSetupParameter
+
+The generic $MOQTSetupParameter is defined here as a CDDL "type socket"
+extension point. It can be extended to support additional MOQT Setup Parameters.
 
 ~~~ cddl
-MOQTParameter = {
-  name: $MOQTParameterName
-  length: uint64
-  ? value: RawInfo
+; The MOQTSetupParameter is any key-value map (e.g., JSON object)
+$MOQTSetupParameter /= {
+    * text => any
 }
-
-$MOQTParameterName /= "authorization_info" /
-                    "delivery_timeout" /
-                    "max_cache_duration" /
-                    "path" /
-                    "max_subscribe_id"
-
 ~~~
-{: #moqtparameter-def title="MOQTParameter definition"}
+{: #moqtsetupparameter-def title="MOQTSetupParameter type socket definition"}
 
+~~~ cddl
+MOQTBaseSetupParameters /= MOQTPathSetupParameter /
+                            MOQTMaxSubscribeIdSetupParameter /
+                            MOQTUnknownSetupParameter
+
+$MOQTSetupParameter /= MOQTBaseSetupParameters
+~~~
+{: #moqtbasesetupparameters-def title="MOQTBaseSetupParameters definition"}
+
+### MOQTPathSetupParameter
+
+~~~ cddl
+MOQTPathSetupParameter = {
+  name: "path"
+  value: text
+}
+~~~
+{: #moqtpathsetupparameter-def title="MOQTPathSetupParameter definition"}
+
+### MOQTMaxSubscribeIdSetupParameter
+
+~~~ cddl
+MOQTMaxSubscribeIdSetupParameter = {
+  name: "max_subscribe_id"
+  value: uint64
+}
+~~~
+{: #moqtmaxsubscribeidsetupparameter-def title="MOQTMaxSubscribeIdSetupParameter definition"}
+
+### MOQTUnknownSetupParameter
+
+~~~ cddl
+MOQTUnknownSetupParameter = {
+  name:"unknown"
+  name_bytes: uint64
+  ? length: uint64
+  ? value: uint64
+  ? value_bytes: RawInfo
+}
+~~~
+{: #moqtunknownsetupparameter-def title="MOQTUnknownSetupParameter definition"}
+
+## MOQTParameter
+
+The generic $MOQTParameter is defined here as a CDDL "type socket" extension
+point. It can be extended to support additional MOQT Parameters.
+
+~~~ cddl
+; The MOQTParameter is any key-value map (e.g., JSON object)
+$MOQTParameter /= {
+    * text => any
+}
+~~~
+{: #moqtparameter-def title="MOQTParameter type socket definition"}
+
+~~~ cddl
+MOQTBaseParameters /= MOQTAuthorizationInfoParameter /
+                      MOQTDeliveryTimeoutParameter /
+                      MOQTMaxCacheDurationParameter /
+                      MOQTUnknownParameter
+
+$MOQTParameter /= MOQTBaseParameters
+~~~
+{: #moqtbaseparameters-def title="MOQTBaseParameters definition"}
+
+### MOQTAuthorizationInfoParameter
+
+~~~ cddl
+MOQTAuthorizationInfoParameter = {
+  name: "authorization_info"
+  ? value: text
+}
+~~~
+{: #moqtauthorizationinfoparameter-def title="MOQTAuthorizationInfoParameter definition"}
+
+### MOQTDeliveryTimeoutParameter
+
+~~~ cddl
+MOQTDeliveryTimeoutParameter = {
+  name: "delivery_timeout"
+  value: uint64
+}
+~~~
+{: #moqtdeliverytimeoutparameter-def title="MOQTDeliveryTimeoutParameter definition"}
+
+### MOQTMaxCacheDurationParameter
+
+~~~ cddl
+MOQTMaxCacheDurationParameter = {
+  name: "max_cache_duration"
+  value: uint64
+}
+~~~
+{: #moqtmaxcachedurationparameter-def title="MOQTMaxCacheDurationParameter definition"}
+
+### MOQTUnknownParameter
+
+~~~ cddl
+MOQTUnknownParameter = {
+  name:"unknown"
+  name_bytes: uint64
+  ? length: uint64
+  ? value: uint64
+  ? value_bytes: RawInfo
+}
+~~~
+{: #moqtunknownparameter-def title="MOQTUnknownParameter definition"}
 
 ## MOQTControlMessage
 
@@ -567,7 +669,7 @@ MOQTClientSetupMessage = {
   number_of_support_versions: uint64
   supported_versions: [* uint64]
   number_of_parameters: uint64
-  setup_parameters: [* MOQTParameter]
+  setup_parameters: [* $MOQTSetupParameter]
 }
 ~~~
 {: #clientsetup-def title="MOQTClientSetupMessage definition"}
@@ -579,7 +681,7 @@ MOQTServerSetupMessage = {
   type: "server_setup"
   selected_version: uint64
   number_of_parameters: uint64
-  setup_parameters: [* MOQTParameter]
+  setup_parameters: [* $MOQTSetupParameter]
 }
 ~~~
 {: #serversetup-def title="MOQTServerSetupMessage definition"}
@@ -611,7 +713,7 @@ MOQTSubscribe = {
   ? start_object: uint64
   ? end_group: uint64
   number_of_parameters: uint64
-  subscribe_parameters: [* MOQTParameter]
+  subscribe_parameters: [* $MOQTParameter]
 }
 ~~~
 {: #subscribe-def title="MOQTSubscribe definition"}
@@ -627,7 +729,7 @@ MOQTSubscribeUpdate = {
   end_group: uint64
   subscriber_priority: uint8
   number_of_parameters: uint64
-  subscribe_parameters: [* MOQTParameter]
+  subscribe_parameters: [* $MOQTParameter]
 }
 ~~~
 {: #subscribeupdate-def title="MOQTSubscribeUpdate definition"}
@@ -663,7 +765,7 @@ MOQTFetch = {
   ? preceding_group_offset: uint64
 
   number_of_parameters: uint64
-  parameters: [* MOQTParameter]
+  parameters: [* $MOQTParameter]
 
 }
 ~~~
@@ -733,7 +835,7 @@ MOQTSubscribeAnnounces = {
   type: "subscribe_announces"
   ; track_namespace: TODO pending tuple decision
   number_of_parameters: uint64
-  subscribe_parameters: [* MOQTParameter]
+  subscribe_parameters: [* $MOQTParameter]
 }
 ~~~
 {: #subscribeannounces-def title="MOQTSubscribeAnnounces definition"}
@@ -760,7 +862,7 @@ MOQTSubscribeOk = {
   ? largest_group_id: uint64
   ? largest_object_id: uint64
   number_of_parameters: uint64
-  subscribe_parameters: [* MOQTParameter]
+  subscribe_parameters: [* $MOQTParameter]
 }
 ~~~
 {: #subscribeok-def title="MOQTSubscribeOk definition"}
@@ -790,7 +892,7 @@ MOQTFetchOk = {
   largest_group_id: uint64
   largest_object_id: uint64
   number_of_parameters: uint64
-  subscribe_parameters: [* MOQTParameter]
+  subscribe_parameters: [* $MOQTParameter]
 }
 ~~~
 {: #fetchok-def title="MOQTFetchOk definition"}
@@ -849,7 +951,7 @@ MOQTAnnounce = {
   type: "announce"
   ; track_namespace: TODO pending tuple decision
   number_of_parameters: uint64
-  subscribe_parameters: [* MOQTParameter]
+  subscribe_parameters: [* $MOQTParameter]
 }
 ~~~
 {: #announce-def title="MOQTAnnounce definition"}

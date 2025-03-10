@@ -643,7 +643,7 @@ Table of Contents
 
    MOQTUnknownSetupParameter = {
      name:"unknown"
-     ? name_bytes: uint64
+     name_bytes: uint64
      ? length: uint64
      ? value: uint64
      ? value_bytes: RawInfo
@@ -704,7 +704,7 @@ Table of Contents
 
    MOQTUnknownParameter = {
      name:"unknown"
-     ? name_bytes: uint64
+     name_bytes: uint64
      ? length: uint64
      ? value: uint64
      ? value_bytes: RawInfo

@@ -614,15 +614,24 @@ MOQTUnknownParameter = {
 ~~~
 {: #moqtunknownparameter-def title="MOQTUnknownParameter definition"}
 
-## MOQTStringOrBytes
+## MOQTByteString
+
+The MOQTByteString type allows representing MOQT bytestrings, such as the value
+of a Track or Track Namespace tuple field, using two different encodings. The
+`value` field can be used for bytestrings that can be encoded in UTF-8. The
+`value_bytes` field can be used for bytestrings of any type by using the
+`hexstring` encoding.
+
+Implementations SHOULD populate one of either the `value` or `value_bytes`
+field. Populating both fields is redundant.
 
 ~~~ cddl
-MOQTStringOrBytes = {
+MOQTByteString = {
   ? value: text
   ? value_bytes: hexstring
 }
 ~~~
-{: #moqtstringorbytes-def title="MOQTStringOrBytes definition"}
+{: #MOQTByteString-def title="MOQTByteString definition"}
 
 ## MOQTControlMessage
 
@@ -714,8 +723,8 @@ MOQTSubscribe = {
   type: "subscribe"
   subscribe_id: uint64
   track_alias: uint64
-  track_namespace: [ *MOQTStringOrBytes]
-  track_name: MOQTStringOrBytes
+  track_namespace: [ *MOQTByteString]
+  track_name: MOQTByteString
   subscriber_priority: uint8
   group_order: uint8
   filter_type: uint64
@@ -764,8 +773,8 @@ MOQTFetch = {
   group_order: uint8
   fetch_type: uint64
 
-  track_namespace: [ *MOQTStringOrBytes]
-  ? track_name: MOQTStringOrBytes
+  track_namespace: [ *MOQTByteString]
+  ? track_name: MOQTByteString
   ? start_group: uint64
   ? start_object: uint64
   ? end_group: uint64
@@ -796,7 +805,7 @@ MOQTFetchCancel = {
 ~~~ cddl
 MOQTAnnounceOk = {
   type: "announce_ok"
-  track_namespace: [ *MOQTStringOrBytes]
+  track_namespace: [ *MOQTByteString]
 }
 ~~~
 {: #announceok-def title="MOQTAnnounceOk definition"}
@@ -806,7 +815,7 @@ MOQTAnnounceOk = {
 ~~~ cddl
 MOQTAnnounceError = {
   type: "announce_error"
-  track_namespace: [ *MOQTStringOrBytes]
+  track_namespace: [ *MOQTByteString]
   error_code: uint64
   ? reason: text
   ? reason_bytes: hexstring
@@ -819,7 +828,7 @@ MOQTAnnounceError = {
 ~~~ cddl
 MOQTAnnounceCancel = {
   type: "announce_cancel"
-  track_namespace: [ *MOQTStringOrBytes]
+  track_namespace: [ *MOQTByteString]
   error_code: uint64
   ? reason: text
   ? reason_bytes: hexstring
@@ -832,8 +841,8 @@ MOQTAnnounceCancel = {
 ~~~ cddl
 MOQTTrackStatusRequest = {
   type: "track_status_request"
-  track_namespace: [ *MOQTStringOrBytes]
-  track_name: MOQTStringOrBytes
+  track_namespace: [ *MOQTByteString]
+  track_name: MOQTByteString
 }
 ~~~
 {: #trackstatusrequest-def title="MOQTTrackStatusRequest definition"}
@@ -843,7 +852,7 @@ MOQTTrackStatusRequest = {
 ~~~ cddl
 MOQTSubscribeAnnounces = {
   type: "subscribe_announces"
-  track_namespace: [ *MOQTStringOrBytes]
+  track_namespace: [ *MOQTByteString]
   number_of_parameters: uint64
   subscribe_parameters: [* $MOQTParameter]
 }
@@ -855,7 +864,7 @@ MOQTSubscribeAnnounces = {
 ~~~ cddl
 MOQTUnsubscribeAnnounces = {
   type: "subscribe_announces"
-  track_namespace: [ *MOQTStringOrBytes]
+  track_namespace: [ *MOQTByteString]
 }
 ~~~
 {: #unsubscribeannounces-def title="MOQTUnsubscribeAnnounces definition"}
@@ -959,7 +968,7 @@ MOQTSubscribesBlocked = {
 ~~~ cddl
 MOQTAnnounce = {
   type: "announce"
-  track_namespace: [ *MOQTStringOrBytes]
+  track_namespace: [ *MOQTByteString]
   number_of_parameters: uint64
   subscribe_parameters: [* $MOQTParameter]
 }
@@ -971,7 +980,7 @@ MOQTAnnounce = {
 ~~~ cddl
 MOQTUnannounce = {
   type: "unannounce"
-  track_namespace: [ *MOQTStringOrBytes]
+  track_namespace: [ *MOQTByteString]
 }
 ~~~
 {: #unannounce-def title="MOQTAnnounce definition"}
@@ -981,8 +990,8 @@ MOQTUnannounce = {
 ~~~ cddl
 MOQTTrackStatus = {
   type: "track_status"
-  track_namespace: [ *MOQTStringOrBytes]
-  track_name: MOQTStringOrBytes
+  track_namespace: [ *MOQTByteString]
+  track_name: MOQTByteString
   status_code: uint64
   last_group_id: uint64
   last_object_id: uint64
@@ -996,7 +1005,7 @@ MOQTTrackStatus = {
 ~~~ cddl
 MOQTSubscribeAnnouncesOk = {
   type: "subscribe_announces_ok"
-  track_namespace: [ *MOQTStringOrBytes]
+  track_namespace: [ *MOQTByteString]
 }
 ~~~
 {: #subscribeannouncesok  -def title="MOQTSubscribeAnnouncesOk definition"}
@@ -1006,7 +1015,7 @@ MOQTSubscribeAnnouncesOk = {
 ~~~ cddl
 MOQTSubscribeAnnouncesError = {
   type: "subscribe_announces_error"
-  track_namespace: [ *MOQTStringOrBytes]
+  track_namespace: [ *MOQTByteString]
   error_code: uint64
   ? reason: text
   ? reason_bytes: hexstring

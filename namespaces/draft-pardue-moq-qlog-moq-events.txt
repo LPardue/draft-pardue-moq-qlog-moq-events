@@ -5,8 +5,8 @@
 Media Over QUIC                                                L. Pardue
 Internet-Draft                                                Cloudflare
 Intended status: Informational                              M. Engelbart
-Expires: 11 September 2025                Technical University of Munich
-                                                           10 March 2025
+Expires: 12 September 2025                Technical University of Munich
+                                                           11 March 2025
 
 
                        MoQ qlog event definitions
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 September 2025.
+   This Internet-Draft will expire on 12 September 2025.
 
 Copyright Notice
 
@@ -92,7 +92,7 @@ Table of Contents
    5.  MOQT Data Type Definitions
      5.1.  Owner
      5.2.  MOQTParameter
-     5.3.  MOQTStringOrBytes
+     5.3.  MOQTByteString
      5.4.  MOQTControlMessage
        5.4.1.  MOQTClientSetupMessage
        5.4.2.  MOQTServerSetupMessage
@@ -609,14 +609,23 @@ Table of Contents
 
                     Figure 19: MOQTParameter definition
 
-5.3.  MOQTStringOrBytes
+5.3.  MOQTByteString
 
-   MOQTStringOrBytes = {
+   The MOQTByteString type allows representing MOQT bytestrings, such as
+   the value of a Track or Track Namespace tuple field, using two
+   different encodings.  The value field can be used for bytestrings
+   that can be encoded in UTF-8.  The value_bytes field can be used for
+   bytestrings of any type by using the hexstring encoding.
+
+   Implementations SHOULD populate one of either the value or
+   value_bytes field.  Populating both fields is redundant.
+
+   MOQTByteString = {
      ? value: text
      ? value_bytes: hexstring
    }
 
-                  Figure 20: MOQTStringOrBytes definition
+                    Figure 20: MOQTByteString definition
 
 5.4.  MOQTControlMessage
 
@@ -704,8 +713,8 @@ Table of Contents
      type: "subscribe"
      subscribe_id: uint64
      track_alias: uint64
-     track_namespace: [ *MOQTStringOrBytes]
-     track_name: MOQTStringOrBytes
+     track_namespace: [ *MOQTByteString]
+     track_name: MOQTByteString
      subscriber_priority: uint8
      group_order: uint8
      filter_type: uint64
@@ -751,8 +760,8 @@ Table of Contents
      group_order: uint8
      fetch_type: uint64
 
-     track_namespace: [ *MOQTStringOrBytes]
-     ? track_name: MOQTStringOrBytes
+     track_namespace: [ *MOQTByteString]
+     ? track_name: MOQTByteString
      ? start_group: uint64
      ? start_object: uint64
      ? end_group: uint64
@@ -781,7 +790,7 @@ Table of Contents
 
    MOQTAnnounceOk = {
      type: "announce_ok"
-     track_namespace: [ *MOQTStringOrBytes]
+     track_namespace: [ *MOQTByteString]
    }
 
                     Figure 31: MOQTAnnounceOk definition
@@ -790,7 +799,7 @@ Table of Contents
 
    MOQTAnnounceError = {
      type: "announce_error"
-     track_namespace: [ *MOQTStringOrBytes]
+     track_namespace: [ *MOQTByteString]
      error_code: uint64
      ? reason: text
      ? reason_bytes: hexstring
@@ -802,7 +811,7 @@ Table of Contents
 
    MOQTAnnounceCancel = {
      type: "announce_cancel"
-     track_namespace: [ *MOQTStringOrBytes]
+     track_namespace: [ *MOQTByteString]
      error_code: uint64
      ? reason: text
      ? reason_bytes: hexstring
@@ -814,8 +823,8 @@ Table of Contents
 
    MOQTTrackStatusRequest = {
      type: "track_status_request"
-     track_namespace: [ *MOQTStringOrBytes]
-     track_name: MOQTStringOrBytes
+     track_namespace: [ *MOQTByteString]
+     track_name: MOQTByteString
    }
 
                 Figure 34: MOQTTrackStatusRequest definition
@@ -824,7 +833,7 @@ Table of Contents
 
    MOQTSubscribeAnnounces = {
      type: "subscribe_announces"
-     track_namespace: [ *MOQTStringOrBytes]
+     track_namespace: [ *MOQTByteString]
      number_of_parameters: uint64
      subscribe_parameters: [* MOQTParameter]
    }
@@ -835,7 +844,7 @@ Table of Contents
 
    MOQTUnsubscribeAnnounces = {
      type: "subscribe_announces"
-     track_namespace: [ *MOQTStringOrBytes]
+     track_namespace: [ *MOQTByteString]
    }
 
                Figure 36: MOQTUnsubscribeAnnounces definition
@@ -931,7 +940,7 @@ Table of Contents
 
    MOQTAnnounce = {
      type: "announce"
-     track_namespace: [ *MOQTStringOrBytes]
+     track_namespace: [ *MOQTByteString]
      number_of_parameters: uint64
      subscribe_parameters: [* MOQTParameter]
    }
@@ -942,7 +951,7 @@ Table of Contents
 
    MOQTUnannounce = {
      type: "unannounce"
-     track_namespace: [ *MOQTStringOrBytes]
+     track_namespace: [ *MOQTByteString]
    }
 
                      Figure 45: MOQTAnnounce definition
@@ -951,8 +960,8 @@ Table of Contents
 
    MOQTTrackStatus = {
      type: "track_status"
-     track_namespace: [ *MOQTStringOrBytes]
-     track_name: MOQTStringOrBytes
+     track_namespace: [ *MOQTByteString]
+     track_name: MOQTByteString
      status_code: uint64
      last_group_id: uint64
      last_object_id: uint64
@@ -964,7 +973,7 @@ Table of Contents
 
    MOQTSubscribeAnnouncesOk = {
      type: "subscribe_announces_ok"
-     track_namespace: [ *MOQTStringOrBytes]
+     track_namespace: [ *MOQTByteString]
    }
 
                Figure 47: MOQTSubscribeAnnouncesOk definition
@@ -973,7 +982,7 @@ Table of Contents
 
    MOQTSubscribeAnnouncesError = {
      type: "subscribe_announces_error"
-     track_namespace: [ *MOQTStringOrBytes]
+     track_namespace: [ *MOQTByteString]
      error_code: uint64
      ? reason: text
      ? reason_bytes: hexstring

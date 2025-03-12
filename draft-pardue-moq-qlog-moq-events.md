@@ -866,7 +866,7 @@ MOQTSubscribeAnnounces = {
 
 ~~~ cddl
 MOQTUnsubscribeAnnounces = {
-  type: "subscribe_announces"
+  type: "unsubscribe_announces"
   track_namespace: [ *MOQTByteString]
 }
 ~~~

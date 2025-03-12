@@ -854,7 +854,7 @@ MOQTSubscribeAnnounces = {
   type: "subscribe_announces"
   track_namespace: [ *MOQTByteString]
   number_of_parameters: uint64
-  subscribe_parameters: [* $MOQTParameter]
+  parameters: [* $MOQTParameter]
 }
 ~~~
 {: #subscribeannounces-def title="MOQTSubscribeAnnounces definition"}
@@ -970,7 +970,7 @@ MOQTAnnounce = {
   type: "announce"
   track_namespace: [ *MOQTByteString]
   number_of_parameters: uint64
-  subscribe_parameters: [* $MOQTParameter]
+  parameters: [* $MOQTParameter]
 }
 ~~~
 {: #announce-def title="MOQTAnnounce definition"}

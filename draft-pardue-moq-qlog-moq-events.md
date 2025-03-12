@@ -236,8 +236,9 @@ MOQTStreamTypeSet = {
     * $$moqt-streamtypeset-extension
 }
 
-$MOQTStreamType /=   "subgroup_header" /
-                     "fetch_header"
+$MOQTStreamType /=  "control" /
+                    "subgroup_header" /
+                    "fetch_header"
 ~~~
 {: #streamtypeset-def title="MOQTStreamTypeSet definition"}
 

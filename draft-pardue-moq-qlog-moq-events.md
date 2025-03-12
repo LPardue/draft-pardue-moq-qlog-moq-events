@@ -112,8 +112,11 @@ in the Concise Data Definition Language {{!CDDL=RFC8610}} and its
 extensions described in {{QLOG-MAIN}}.
 
 The following fields from {{QLOG-MAIN}} are imported and used: name, namespace,
-type, data, group_id, protocol_types, importance, RawInfo, and time-related
+type, data, group_id, protocol_types, RawInfo, and time-related
 fields.
+
+Events are defined with an importance level as described in {{Section 8.3 of
+QLOG-MAIN}}.
 
 As is the case for {{QLOG-MAIN}}, the qlog schema definitions in this document
 are intentionally agnostic to serialization formats. The choice of format is an
@@ -187,7 +190,7 @@ one format, but MAY log both or none.
 ## control_message_created {#controlmessagecreated}
 
 The `control_message_created` event is emitted when a control message is created.
-It has Core importance level; see {{Section 9.2 of QLOG-MAIN}}.
+It has Core importance level.
 
 The definition of control message content is in {{moqtcontrolmessage}}.
 
@@ -206,7 +209,7 @@ MOQTControlMessageCreated = {
 ## control_message_parsed {#controlmessageparsed}
 
 The `control_message_parsed` event is emitted when a control message is parsed.
-It has Core importance level; see {{Section 9.2 of QLOG-MAIN}}.
+It has Core importance level.
 
 The definition of control message content is in {{moqtcontrolmessage}}.
 
@@ -225,7 +228,7 @@ MOQTControlMessageParsed = {
 ## stream_type_set {#streamtypeset}
 
 The `stream_type_set` event conveys when a MOQT stream type becomes known. It
-has Base importance level; see {{Section 9.2 of QLOG-MAIN}}.
+has Base importance level.
 
 ~~~ cddl
 MOQTStreamTypeSet = {
@@ -244,7 +247,7 @@ $MOQTStreamType /=   "subgroup_header" /
 ## object_datagram_created {#objectdatagramcreated}
 
 The `object_datagram_created` event is emitted when the OBJECT_DATAGRAM message
-is created. It has Core importance level; see {{Section 9.2 of QLOG-MAIN}}.
+is created. It has Core importance level.
 
 ~~~ cddl
 MOQTObjectDatagramCreated = {
@@ -264,7 +267,7 @@ MOQTObjectDatagramCreated = {
 ## object_datagram_parsed {#objectdatagramparsed}
 
 The `object_datagram_parsed` event is emitted when the OBJECT_DATAGRAM message
-is parsed. It has Core importance level; see {{Section 9.2 of QLOG-MAIN}}.
+is parsed. It has Core importance level.
 
 ~~~ cddl
 MOQTObjectDatagramParsed = {
@@ -345,7 +348,7 @@ MOQTSubgroupHeaderCreated = {
 ## subgroup_header_parsed {#subgroupheaderparsed}
 
 The `subgroup_header_parsed` event is emitted when the SUBGROUP_HEADER is
-parsed. It has Core importance level; see {{Section 9.2 of QLOG-MAIN}}.
+parsed. It has Core importance level.
 
 ~~~ cddl
 MOQTSubgroupHeaderParsed = {
@@ -363,7 +366,7 @@ MOQTSubgroupHeaderParsed = {
 ## subgroup_object_created {#subgroupobjectcreated}
 
 The `subgroup_object_created` event is emitted when a subgroup object is
-created. It has Core importance level; see {{Section 9.2 of QLOG-MAIN}}.
+created. It has Core importance level.
 
 ~~~ cddl
 MOQTSubgroupObjectCreated = {
@@ -385,7 +388,7 @@ MOQTSubgroupObjectCreated = {
 ## subgroup_object_parsed {#subgroupobjectparsed}
 
 The `subgroup_object_parsed` event is emitted when a subgroup object is parsed.
-It has Core importance level; see {{Section 9.2 of QLOG-MAIN}}.
+It has Core importance level.
 
 ~~~ cddl
 MOQTSubgroupObjectParsed = {
@@ -407,8 +410,7 @@ MOQTSubgroupObjectParsed = {
 ## fetch_header_created {#fetchheadercreated}
 
 The `fetch_header_created` event is emitted when a stream begins and a
-FETCH_HEADER is created. It has Core importance level; see {{Section 9.2 of
-QLOG-MAIN}}.
+FETCH_HEADER is created. It has Core importance level.
 
 ~~~ cddl
 MOQTFetchHeaderCreated = {
@@ -423,7 +425,7 @@ MOQTFetchHeaderCreated = {
 ## fetch_header_parsed {#fetchheaderparsed}
 
 The `fetch_header_parsed` event is emitted when the SUBGROUP_HEADER is
-parsed. It has Core importance level; see {{Section 9.2 of QLOG-MAIN}}.
+parsed. It has Core importance level.
 
 ~~~ cddl
 MOQTFetchHeaderParsed = {
@@ -438,7 +440,7 @@ MOQTFetchHeaderParsed = {
 ## fetch_object_created {#fetchobjectcreated}
 
 The `fetch_object_created` event is emitted when a fetch object is created. It
-has Core importance level; see {{Section 9.2 of QLOG-MAIN}}.
+has Core importance level.
 
 ~~~ cddl
 MOQTFetchObjectCreated = {
@@ -461,7 +463,7 @@ MOQTFetchObjectCreated = {
 ## fetch_object_parsed {#fetchobjectparsed}
 
 The `fetch_object_parsed` event is emitted when a fetch object is parsed. It has
-Core importance level; see {{Section 9.2 of QLOG-MAIN}}.
+Core importance level.
 
 ~~~ cddl
 MOQTFetchObjectParsed = {

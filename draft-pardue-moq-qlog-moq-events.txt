@@ -940,7 +940,7 @@ Table of Contents
 5.5.14.  MOQTUnsubscribeAnnounces
 
    MOQTUnsubscribeAnnounces = {
-     type: "subscribe_announces"
+     type: "unsubscribe_announces"
      track_namespace: [ *MOQTByteString]
    }
 

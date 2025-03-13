@@ -1049,7 +1049,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Pardue &amp; Engelbart</td>
-<td class="center">Expires 13 September 2025</td>
+<td class="center">Expires 14 September 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1062,12 +1062,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-pardue-moq-qlog-moq-events-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-03-12" class="published">12 March 2025</time>
+<time datetime="2025-03-13" class="published">13 March 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-09-13">13 September 2025</time></dd>
+<dd class="expires"><time datetime="2025-09-14">14 September 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1121,7 +1121,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 13 September 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 14 September 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1548,11 +1548,12 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 in the Concise Data Definition Language <span>[<a href="#CDDL" class="cite xref">CDDL</a>]</span> and its
 extensions described in <span>[<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>.<a href="#section-2-2" class="pilcrow">¶</a></p>
 <p id="section-2-3">The following fields from <span>[<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span> are imported and used: name, namespace,
-type, data, group_id, protocol_types, importance, RawInfo, and time-related
+type, data, group_id, protocol_types, RawInfo, and time-related
 fields.<a href="#section-2-3" class="pilcrow">¶</a></p>
-<p id="section-2-4">As is the case for <span>[<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>, the qlog schema definitions in this document
+<p id="section-2-4">Events are defined with an importance level as described in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-10#section-8.3" class="relref">Section 8.3</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>.<a href="#section-2-4" class="pilcrow">¶</a></p>
+<p id="section-2-5">As is the case for <span>[<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>, the qlog schema definitions in this document
 are intentionally agnostic to serialization formats. The choice of format is an
-implementation decision.<a href="#section-2-4" class="pilcrow">¶</a></p>
+implementation decision.<a href="#section-2-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="schema-def">
@@ -1636,7 +1637,7 @@ one format, but <span class="bcp14">MAY</span> log both or none.<a href="#sectio
 <a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-control_message_created" class="section-name selfRef">control_message_created</a>
         </h3>
 <p id="section-4.1-1">The <code>control_message_created</code> event is emitted when a control message is created.
-It has Core importance level; see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-10#section-9.2" class="relref">Section 9.2</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+It has Core importance level.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
 <p id="section-4.1-2">The definition of control message content is in <a href="#moqtcontrolmessage" class="auto internal xref">Section 5.5</a>.<a href="#section-4.1-2" class="pilcrow">¶</a></p>
 <span id="name-moqtcontrolmessagecreated-d"></span><div id="moqt-controlmessagecreated-def">
 <figure id="figure-3">
@@ -1664,7 +1665,7 @@ MOQTControlMessageCreated = {
 <a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-control_message_parsed" class="section-name selfRef">control_message_parsed</a>
         </h3>
 <p id="section-4.2-1">The <code>control_message_parsed</code> event is emitted when a control message is parsed.
-It has Core importance level; see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-10#section-9.2" class="relref">Section 9.2</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+It has Core importance level.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
 <p id="section-4.2-2">The definition of control message content is in <a href="#moqtcontrolmessage" class="auto internal xref">Section 5.5</a>.<a href="#section-4.2-2" class="pilcrow">¶</a></p>
 <span id="name-moqtcontrolmessageparsed-de"></span><div id="controlmessageparsed-def">
 <figure id="figure-4">
@@ -1692,7 +1693,7 @@ MOQTControlMessageParsed = {
 <a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-stream_type_set" class="section-name selfRef">stream_type_set</a>
         </h3>
 <p id="section-4.3-1">The <code>stream_type_set</code> event conveys when a MOQT stream type becomes known. It
-has Base importance level; see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-10#section-9.2" class="relref">Section 9.2</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+has Base importance level.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
 <span id="name-moqtstreamtypeset-definitio"></span><div id="streamtypeset-def">
 <figure id="figure-5">
           <div class="lang-cddl sourcecode" id="section-4.3-2.1">
@@ -1721,7 +1722,7 @@ $MOQTStreamType /=   "subgroup_header" /
 <a href="#section-4.4" class="section-number selfRef">4.4. </a><a href="#name-object_datagram_created" class="section-name selfRef">object_datagram_created</a>
         </h3>
 <p id="section-4.4-1">The <code>object_datagram_created</code> event is emitted when the OBJECT_DATAGRAM message
-is created. It has Core importance level; see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-10#section-9.2" class="relref">Section 9.2</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>.<a href="#section-4.4-1" class="pilcrow">¶</a></p>
+is created. It has Core importance level.<a href="#section-4.4-1" class="pilcrow">¶</a></p>
 <span id="name-moqtobjectdatagramcreated-d"></span><div id="objectdatagramcreated-def">
 <figure id="figure-6">
           <div class="lang-cddl sourcecode" id="section-4.4-2.1">
@@ -1751,7 +1752,7 @@ MOQTObjectDatagramCreated = {
 <a href="#section-4.5" class="section-number selfRef">4.5. </a><a href="#name-object_datagram_parsed" class="section-name selfRef">object_datagram_parsed</a>
         </h3>
 <p id="section-4.5-1">The <code>object_datagram_parsed</code> event is emitted when the OBJECT_DATAGRAM message
-is parsed. It has Core importance level; see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-10#section-9.2" class="relref">Section 9.2</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>.<a href="#section-4.5-1" class="pilcrow">¶</a></p>
+is parsed. It has Core importance level.<a href="#section-4.5-1" class="pilcrow">¶</a></p>
 <span id="name-moqtobjectdatagramparsed-de"></span><div id="objectdatagramparsed-def">
 <figure id="figure-7">
           <div class="lang-cddl sourcecode" id="section-4.5-2.1">
@@ -1871,7 +1872,7 @@ MOQTSubgroupHeaderCreated = {
 <a href="#section-4.9" class="section-number selfRef">4.9. </a><a href="#name-subgroup_header_parsed" class="section-name selfRef">subgroup_header_parsed</a>
         </h3>
 <p id="section-4.9-1">The <code>subgroup_header_parsed</code> event is emitted when the SUBGROUP_HEADER is
-parsed. It has Core importance level; see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-10#section-9.2" class="relref">Section 9.2</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>.<a href="#section-4.9-1" class="pilcrow">¶</a></p>
+parsed. It has Core importance level.<a href="#section-4.9-1" class="pilcrow">¶</a></p>
 <span id="name-moqtsubgroupheaderparsed-de"></span><div id="subgroupheaderparsed-def">
 <figure id="figure-11">
           <div class="lang-cddl sourcecode" id="section-4.9-2.1">
@@ -1899,7 +1900,7 @@ MOQTSubgroupHeaderParsed = {
 <a href="#section-4.10" class="section-number selfRef">4.10. </a><a href="#name-subgroup_object_created" class="section-name selfRef">subgroup_object_created</a>
         </h3>
 <p id="section-4.10-1">The <code>subgroup_object_created</code> event is emitted when a subgroup object is
-created. It has Core importance level; see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-10#section-9.2" class="relref">Section 9.2</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>.<a href="#section-4.10-1" class="pilcrow">¶</a></p>
+created. It has Core importance level.<a href="#section-4.10-1" class="pilcrow">¶</a></p>
 <span id="name-moqtsubgroupobjectcreated-d"></span><div id="subgroupobjectcreated-def">
 <figure id="figure-12">
           <div class="lang-cddl sourcecode" id="section-4.10-2.1">
@@ -1931,7 +1932,7 @@ MOQTSubgroupObjectCreated = {
 <a href="#section-4.11" class="section-number selfRef">4.11. </a><a href="#name-subgroup_object_parsed" class="section-name selfRef">subgroup_object_parsed</a>
         </h3>
 <p id="section-4.11-1">The <code>subgroup_object_parsed</code> event is emitted when a subgroup object is parsed.
-It has Core importance level; see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-10#section-9.2" class="relref">Section 9.2</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>.<a href="#section-4.11-1" class="pilcrow">¶</a></p>
+It has Core importance level.<a href="#section-4.11-1" class="pilcrow">¶</a></p>
 <span id="name-moqtsubgroupobjectparsed-de"></span><div id="subgroupobjectparsed-def">
 <figure id="figure-13">
           <div class="lang-cddl sourcecode" id="section-4.11-2.1">
@@ -1963,7 +1964,7 @@ MOQTSubgroupObjectParsed = {
 <a href="#section-4.12" class="section-number selfRef">4.12. </a><a href="#name-fetch_header_created" class="section-name selfRef">fetch_header_created</a>
         </h3>
 <p id="section-4.12-1">The <code>fetch_header_created</code> event is emitted when a stream begins and a
-FETCH_HEADER is created. It has Core importance level; see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-10#section-9.2" class="relref">Section 9.2</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>.<a href="#section-4.12-1" class="pilcrow">¶</a></p>
+FETCH_HEADER is created. It has Core importance level.<a href="#section-4.12-1" class="pilcrow">¶</a></p>
 <span id="name-moqtfetchheadercreated-defi"></span><div id="fetchheadercreated-def">
 <figure id="figure-14">
           <div class="lang-cddl sourcecode" id="section-4.12-2.1">
@@ -1988,7 +1989,7 @@ MOQTFetchHeaderCreated = {
 <a href="#section-4.13" class="section-number selfRef">4.13. </a><a href="#name-fetch_header_parsed" class="section-name selfRef">fetch_header_parsed</a>
         </h3>
 <p id="section-4.13-1">The <code>fetch_header_parsed</code> event is emitted when the SUBGROUP_HEADER is
-parsed. It has Core importance level; see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-10#section-9.2" class="relref">Section 9.2</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>.<a href="#section-4.13-1" class="pilcrow">¶</a></p>
+parsed. It has Core importance level.<a href="#section-4.13-1" class="pilcrow">¶</a></p>
 <span id="name-moqtfetchheaderparsed-defin"></span><div id="fetchheaderparsedd-def">
 <figure id="figure-15">
           <div class="lang-cddl sourcecode" id="section-4.13-2.1">
@@ -2013,7 +2014,7 @@ MOQTFetchHeaderParsed = {
 <a href="#section-4.14" class="section-number selfRef">4.14. </a><a href="#name-fetch_object_created" class="section-name selfRef">fetch_object_created</a>
         </h3>
 <p id="section-4.14-1">The <code>fetch_object_created</code> event is emitted when a fetch object is created. It
-has Core importance level; see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-10#section-9.2" class="relref">Section 9.2</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>.<a href="#section-4.14-1" class="pilcrow">¶</a></p>
+has Core importance level.<a href="#section-4.14-1" class="pilcrow">¶</a></p>
 <span id="name-moqtfetchobjectcreated-defi"></span><div id="fetchobjectcreated-def">
 <figure id="figure-16">
           <div class="lang-cddl sourcecode" id="section-4.14-2.1">
@@ -2046,7 +2047,7 @@ MOQTFetchObjectCreated = {
 <a href="#section-4.15" class="section-number selfRef">4.15. </a><a href="#name-fetch_object_parsed" class="section-name selfRef">fetch_object_parsed</a>
         </h3>
 <p id="section-4.15-1">The <code>fetch_object_parsed</code> event is emitted when a fetch object is parsed. It has
-Core importance level; see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-10#section-9.2" class="relref">Section 9.2</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>.<a href="#section-4.15-1" class="pilcrow">¶</a></p>
+Core importance level.<a href="#section-4.15-1" class="pilcrow">¶</a></p>
 <span id="name-moqtfetchobjectparsed-defin"></span><div id="fetchobjectparsed-def">
 <figure id="figure-17">
           <div class="lang-cddl sourcecode" id="section-4.15-2.1">

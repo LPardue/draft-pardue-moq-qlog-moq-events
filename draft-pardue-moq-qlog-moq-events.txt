@@ -5,8 +5,8 @@
 Media Over QUIC                                                L. Pardue
 Internet-Draft                                                Cloudflare
 Intended status: Informational                              M. Engelbart
-Expires: 13 September 2025                Technical University of Munich
-                                                           12 March 2025
+Expires: 14 September 2025                Technical University of Munich
+                                                           13 March 2025
 
 
                        MoQ qlog event definitions
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 13 September 2025.
+   This Internet-Draft will expire on 14 September 2025.
 
 Copyright Notice
 
@@ -223,8 +223,11 @@ Table of Contents
    extensions described in [QLOG-MAIN].
 
    The following fields from [QLOG-MAIN] are imported and used: name,
-   namespace, type, data, group_id, protocol_types, importance, RawInfo,
-   and time-related fields.
+   namespace, type, data, group_id, protocol_types, RawInfo, and time-
+   related fields.
+
+   Events are defined with an importance level as described in
+   Section 8.3 of [QLOG-MAIN].
 
    As is the case for [QLOG-MAIN], the qlog schema definitions in this
    document are intentionally agnostic to serialization formats.  The
@@ -301,8 +304,7 @@ Table of Contents
 4.1.  control_message_created
 
    The control_message_created event is emitted when a control message
-   is created.  It has Core importance level; see Section 9.2 of
-   [QLOG-MAIN].
+   is created.  It has Core importance level.
 
    The definition of control message content is in Section 5.5.
 
@@ -320,8 +322,7 @@ Table of Contents
 4.2.  control_message_parsed
 
    The control_message_parsed event is emitted when a control message is
-   parsed.  It has Core importance level; see Section 9.2 of
-   [QLOG-MAIN].
+   parsed.  It has Core importance level.
 
    The definition of control message content is in Section 5.5.
 
@@ -339,7 +340,7 @@ Table of Contents
 4.3.  stream_type_set
 
    The stream_type_set event conveys when a MOQT stream type becomes
-   known.  It has Base importance level; see Section 9.2 of [QLOG-MAIN].
+   known.  It has Base importance level.
 
    MOQTStreamTypeSet = {
        ? owner: Owner
@@ -357,8 +358,7 @@ Table of Contents
 4.4.  object_datagram_created
 
    The object_datagram_created event is emitted when the OBJECT_DATAGRAM
-   message is created.  It has Core importance level; see Section 9.2 of
-   [QLOG-MAIN].
+   message is created.  It has Core importance level.
 
    MOQTObjectDatagramCreated = {
        track_alias: uint64
@@ -377,8 +377,7 @@ Table of Contents
 4.5.  object_datagram_parsed
 
    The object_datagram_parsed event is emitted when the OBJECT_DATAGRAM
-   message is parsed.  It has Core importance level; see Section 9.2 of
-   [QLOG-MAIN].
+   message is parsed.  It has Core importance level.
 
    MOQTObjectDatagramParsed = {
        track_alias: uint64
@@ -455,8 +454,7 @@ Table of Contents
 4.9.  subgroup_header_parsed
 
    The subgroup_header_parsed event is emitted when the SUBGROUP_HEADER
-   is parsed.  It has Core importance level; see Section 9.2 of
-   [QLOG-MAIN].
+   is parsed.  It has Core importance level.
 
    MOQTSubgroupHeaderParsed = {
        stream_id: uint64
@@ -473,8 +471,7 @@ Table of Contents
 4.10.  subgroup_object_created
 
    The subgroup_object_created event is emitted when a subgroup object
-   is created.  It has Core importance level; see Section 9.2 of
-   [QLOG-MAIN].
+   is created.  It has Core importance level.
 
    MOQTSubgroupObjectCreated = {
        stream_id: uint64
@@ -495,8 +492,7 @@ Table of Contents
 4.11.  subgroup_object_parsed
 
    The subgroup_object_parsed event is emitted when a subgroup object is
-   parsed.  It has Core importance level; see Section 9.2 of
-   [QLOG-MAIN].
+   parsed.  It has Core importance level.
 
    MOQTSubgroupObjectParsed = {
        stream_id: uint64
@@ -517,8 +513,7 @@ Table of Contents
 4.12.  fetch_header_created
 
    The fetch_header_created event is emitted when a stream begins and a
-   FETCH_HEADER is created.  It has Core importance level; see
-   Section 9.2 of [QLOG-MAIN].
+   FETCH_HEADER is created.  It has Core importance level.
 
    MOQTFetchHeaderCreated = {
        stream_id: uint64
@@ -532,8 +527,7 @@ Table of Contents
 4.13.  fetch_header_parsed
 
    The fetch_header_parsed event is emitted when the SUBGROUP_HEADER is
-   parsed.  It has Core importance level; see Section 9.2 of
-   [QLOG-MAIN].
+   parsed.  It has Core importance level.
 
    MOQTFetchHeaderParsed = {
        stream_id: uint64
@@ -547,8 +541,7 @@ Table of Contents
 4.14.  fetch_object_created
 
    The fetch_object_created event is emitted when a fetch object is
-   created.  It has Core importance level; see Section 9.2 of
-   [QLOG-MAIN].
+   created.  It has Core importance level.
 
    MOQTFetchObjectCreated = {
        stream_id: uint64
@@ -570,8 +563,7 @@ Table of Contents
 4.15.  fetch_object_parsed
 
    The fetch_object_parsed event is emitted when a fetch object is
-   parsed.  It has Core importance level; see Section 9.2 of
-   [QLOG-MAIN].
+   parsed.  It has Core importance level.
 
    MOQTFetchObjectParsed = {
        stream_id: uint64

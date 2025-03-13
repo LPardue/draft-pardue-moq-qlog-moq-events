@@ -350,8 +350,9 @@ Table of Contents
        * $$moqt-streamtypeset-extension
    }
 
-   $MOQTStreamType /=   "subgroup_header" /
-                        "fetch_header"
+   $MOQTStreamType /=  "control" /
+                       "subgroup_header" /
+                       "fetch_header"
 
                    Figure 5: MOQTStreamTypeSet definition
 

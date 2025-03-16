@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-13T01:51:55.690662+00:00",
+  "timestamp": "2025-03-16T01:57:25.924592+00:00",
   "repo": "LPardue/draft-pardue-moq-qlog-moq-events",
   "labels": [
     {
@@ -202,15 +202,15 @@
       "id": "I_kwDOOBS9Ss6sNUN3",
       "title": "Event for control stream creation",
       "url": "https://github.com/LPardue/draft-pardue-moq-qlog-moq-events/issues/13",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "LPardue",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "In the absence of qlog for WebTransport, it is hard to know when the MOQT client stream has been opened. We could add a specific event, or blend it into the stream_type_set event.\n\nAlso in non-webtransport modes, it might be useful any way.",
       "createdAt": "2025-03-01T21:44:38Z",
-      "updatedAt": "2025-03-12T10:48:18Z",
-      "closedAt": null,
+      "updatedAt": "2025-03-13T18:34:07Z",
+      "closedAt": "2025-03-13T18:34:07Z",
       "comments": [
         {
           "author": "lminiero",
@@ -288,15 +288,15 @@
       "id": "I_kwDOOBS9Ss6tqSVx",
       "title": "Name of parameters property is inconsistent across different messages",
       "url": "https://github.com/LPardue/draft-pardue-moq-qlog-moq-events/issues/22",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "lminiero",
       "authorAssociation": "NONE",
       "assignees": [],
       "labels": [],
       "body": "I see #20 solved some ambiguities on how parameters are serialized, but I think the draft still has inconsistencies in how the array is named across different messages. `MOQTAnnounce` has `subscribe_parameters`, for instance, which seems incorrect; at the same time, `MOQTFetch` has `parameters`, but `MOQTFetchOk` has `subscribe_parameters`, which is confusing. A way to simplify that may be to simply always call it `parameters`, except in the setup messages (which are indeed different since they're `MOQTSetupParameter`).",
       "createdAt": "2025-03-12T10:53:11Z",
-      "updatedAt": "2025-03-12T21:57:51Z",
-      "closedAt": null,
+      "updatedAt": "2025-03-13T18:37:26Z",
+      "closedAt": "2025-03-13T18:37:25Z",
       "comments": [
         {
           "author": "LPardue",
@@ -304,6 +304,13 @@
           "body": "I think this is likely a copy / paste error by me when first populating the document. Generally, as a convention I'd prefer to maintain consistency of field names between the protocol document and the qlog doc - that reduces some of the arbitrary nature of naming, which makes it easier to spot mistakes like this. I'll make a pass and ensure all control messages that contain parameters of either kind use a field name that is consistent with the MOQT protocol definition.",
           "createdAt": "2025-03-12T21:57:50Z",
           "updatedAt": "2025-03-12T21:57:50Z"
+        },
+        {
+          "author": "LPardue",
+          "authorAssociation": "OWNER",
+          "body": "I've landed a PR that made it consistent within this specs rules. I suspect MOQT churn a little in this area but we can't predict the future. Always happen to reopen or create a new ticket to deal with MOQT change tracking ",
+          "createdAt": "2025-03-13T18:37:25Z",
+          "updatedAt": "2025-03-13T18:37:25Z"
         }
       ]
     },
@@ -328,6 +335,30 @@
           "body": "Sounds like a reasonable idea",
           "createdAt": "2025-03-12T22:13:19Z",
           "updatedAt": "2025-03-12T22:13:19Z"
+        }
+      ]
+    },
+    {
+      "number": 28,
+      "id": "I_kwDOOBS9Ss6uLHIu",
+      "title": "Should the parameters field in messages be optional in order to simplify empty parameter cases",
+      "url": "https://github.com/LPardue/draft-pardue-moq-qlog-moq-events/issues/28",
+      "state": "OPEN",
+      "author": "LPardue",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "The events that contain parameters (defined as of https://github.com/LPardue/draft-pardue-moq-qlog-moq-events/commit/da1b175d36d6dda538ca4a43ceacd88ad89af1e8) do so as a mandatory array \n\nIgnoring the name of the parameter field, all parameter carrying events have something like this\n\n```\nMOQTClientSetupMessage = {\n  type: \"client_setup\"\n  number_of_support_versions: uint64\n  supported_versions: [* uint64]\n  number_of_parameters: uint64\n  setup_parameters: [* $MOQTSetupParameter]\n}\n```\nthis means that technically all serialized logs need to include the field even if the array is empty. Using the example above, we'd have something like \n\n```\n\u001e{\"time\":0.167678,\"name\":\"moqt:control_message_created\",\"data\":{\"stream_id\":0,\"length\":19,\"message\":{\"type\":\"client_setup\",\"number_of_supported_versions\":1,\"supported_versions\":[4278190088],\"number_of_parameters\":0,\"setup_parameters\":[]}}}\n```\n\n\nI hit an interop issue parsing @mengelbart's qlogs, which omitted the parameters field when the number of parameters was 0. Hence the question, should we just make the field optional to allow omitting it?",
+      "createdAt": "2025-03-15T14:27:55Z",
+      "updatedAt": "2025-03-16T01:08:34Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "mengelbart",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Good point. I don't know why I interpreted the field as optional. I'm happy with making it optional, but can also live with the empty list. Should be easy to fix in my implementation.",
+          "createdAt": "2025-03-16T01:08:33Z",
+          "updatedAt": "2025-03-16T01:08:33Z"
         }
       ]
     }
@@ -747,104 +778,176 @@
       "id": "PR_kwDOOBS9Ss6OagL9",
       "title": "Align parameter field names with MOQT spec",
       "url": "https://github.com/LPardue/draft-pardue-moq-qlog-moq-events/pull/24",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "LPardue",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "Closes #22 ",
       "createdAt": "2025-03-12T22:10:59Z",
-      "updatedAt": "2025-03-12T22:10:59Z",
+      "updatedAt": "2025-03-15T14:19:54Z",
       "baseRepository": "LPardue/draft-pardue-moq-qlog-moq-events",
       "baseRefName": "main",
       "baseRefOid": "0619e9d87579048a2e3f8f0570eb91a221d62c04",
       "headRepository": "LPardue/draft-pardue-moq-qlog-moq-events",
       "headRefName": "parameter-field-names",
       "headRefOid": "040648ce11cbf4e8faad560e83133a130aee4f46",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
-      "comments": [],
-      "reviews": []
+      "closedAt": "2025-03-15T14:19:54Z",
+      "mergedAt": "2025-03-15T14:19:54Z",
+      "mergedBy": "LPardue",
+      "mergeCommit": {
+        "oid": "da1b175d36d6dda538ca4a43ceacd88ad89af1e8"
+      },
+      "comments": [
+        {
+          "author": "LPardue",
+          "authorAssociation": "OWNER",
+          "body": "The MOQT might change these again but let's just move ahead and deal with that later.",
+          "createdAt": "2025-03-13T18:35:30Z",
+          "updatedAt": "2025-03-13T18:35:30Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOOBS9Ss6f26QT",
+          "commit": {
+            "abbreviatedOid": "040648c"
+          },
+          "author": "mengelbart",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-03-13T13:42:36Z",
+          "updatedAt": "2025-03-13T13:42:36Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 25,
       "id": "PR_kwDOOBS9Ss6OaguS",
       "title": "Fix event name type",
       "url": "https://github.com/LPardue/draft-pardue-moq-qlog-moq-events/pull/25",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "LPardue",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2025-03-12T22:12:48Z",
-      "updatedAt": "2025-03-12T22:12:48Z",
+      "updatedAt": "2025-03-13T18:34:38Z",
       "baseRepository": "LPardue/draft-pardue-moq-qlog-moq-events",
       "baseRefName": "main",
       "baseRefOid": "0619e9d87579048a2e3f8f0570eb91a221d62c04",
       "headRepository": "LPardue/draft-pardue-moq-qlog-moq-events",
       "headRefName": "unsubscribe_announces-typo",
       "headRefOid": "b5005a0bce80119a0f0f4e76b079177c8a48ca20",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2025-03-13T18:34:34Z",
+      "mergedAt": "2025-03-13T18:34:34Z",
+      "mergedBy": "LPardue",
+      "mergeCommit": {
+        "oid": "279cf7156307fca5adad824c53ffdeca9bface89"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOOBS9Ss6f26dH",
+          "commit": {
+            "abbreviatedOid": "b5005a0"
+          },
+          "author": "mengelbart",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-03-13T13:42:49Z",
+          "updatedAt": "2025-03-13T13:42:49Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 26,
       "id": "PR_kwDOOBS9Ss6OaiS3",
       "title": "Add control value to MOQTStreamType",
       "url": "https://github.com/LPardue/draft-pardue-moq-qlog-moq-events/pull/26",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "LPardue",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "Closes #13 ",
       "createdAt": "2025-03-12T22:16:53Z",
-      "updatedAt": "2025-03-12T22:16:53Z",
+      "updatedAt": "2025-03-13T18:34:09Z",
       "baseRepository": "LPardue/draft-pardue-moq-qlog-moq-events",
       "baseRefName": "main",
       "baseRefOid": "0619e9d87579048a2e3f8f0570eb91a221d62c04",
       "headRepository": "LPardue/draft-pardue-moq-qlog-moq-events",
       "headRefName": "control-stream-type",
       "headRefOid": "2d367d23708ff384443e4cdc1caa81eee0c2f499",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2025-03-13T18:34:06Z",
+      "mergedAt": "2025-03-13T18:34:06Z",
+      "mergedBy": "LPardue",
+      "mergeCommit": {
+        "oid": "ff9382048694499b515e39b6de7ca20b45c27027"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOOBS9Ss6f26zJ",
+          "commit": {
+            "abbreviatedOid": "2d367d2"
+          },
+          "author": "mengelbart",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-03-13T13:43:10Z",
+          "updatedAt": "2025-03-13T13:43:10Z",
+          "comments": []
+        }
+      ]
     },
     {
       "number": 27,
       "id": "PR_kwDOOBS9Ss6OalDD",
       "title": "Remove excessive citation of the same qlog main schema section",
       "url": "https://github.com/LPardue/draft-pardue-moq-qlog-moq-events/pull/27",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "LPardue",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2025-03-12T22:25:03Z",
-      "updatedAt": "2025-03-12T22:25:03Z",
+      "updatedAt": "2025-03-13T18:33:31Z",
       "baseRepository": "LPardue/draft-pardue-moq-qlog-moq-events",
       "baseRefName": "main",
       "baseRefOid": "0619e9d87579048a2e3f8f0570eb91a221d62c04",
       "headRepository": "LPardue/draft-pardue-moq-qlog-moq-events",
       "headRefName": "remove-excessive-citation",
       "headRefOid": "3067ea141737329002925fe1df009d7baf802a41",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2025-03-13T18:33:30Z",
+      "mergedAt": "2025-03-13T18:33:30Z",
+      "mergedBy": "LPardue",
+      "mergeCommit": {
+        "oid": "101011f8b985a7a63eb5d7e912692b8a3177f6b5"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOOBS9Ss6f27BB",
+          "commit": {
+            "abbreviatedOid": "3067ea1"
+          },
+          "author": "mengelbart",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-03-13T13:43:24Z",
+          "updatedAt": "2025-03-13T13:43:24Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }

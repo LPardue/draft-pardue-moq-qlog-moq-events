@@ -691,7 +691,7 @@ MOQTClientSetupMessage = {
   number_of_supported_versions: uint64
   supported_versions: [* uint64]
   number_of_parameters: uint64
-  setup_parameters: [* $MOQTSetupParameter]
+  ? setup_parameters: [* $MOQTSetupParameter]
 }
 ~~~
 {: #clientsetup-def title="MOQTClientSetupMessage definition"}
@@ -703,7 +703,7 @@ MOQTServerSetupMessage = {
   type: "server_setup"
   selected_version: uint64
   number_of_parameters: uint64
-  setup_parameters: [* $MOQTSetupParameter]
+  ? setup_parameters: [* $MOQTSetupParameter]
 }
 ~~~
 {: #serversetup-def title="MOQTServerSetupMessage definition"}
@@ -735,7 +735,7 @@ MOQTSubscribe = {
   ? start_object: uint64
   ? end_group: uint64
   number_of_parameters: uint64
-  subscribe_parameters: [* $MOQTParameter]
+  ? subscribe_parameters: [* $MOQTParameter]
 }
 ~~~
 {: #subscribe-def title="MOQTSubscribe definition"}
@@ -751,7 +751,7 @@ MOQTSubscribeUpdate = {
   end_group: uint64
   subscriber_priority: uint8
   number_of_parameters: uint64
-  subscribe_parameters: [* $MOQTParameter]
+  ? subscribe_parameters: [* $MOQTParameter]
 }
 ~~~
 {: #subscribeupdate-def title="MOQTSubscribeUpdate definition"}
@@ -787,7 +787,7 @@ MOQTFetch = {
   ? preceding_group_offset: uint64
 
   number_of_parameters: uint64
-  parameters: [* $MOQTParameter]
+  ? parameters: [* $MOQTParameter]
 
 }
 ~~~
@@ -857,7 +857,7 @@ MOQTSubscribeAnnounces = {
   type: "subscribe_announces"
   track_namespace: [ *MOQTByteString]
   number_of_parameters: uint64
-  parameters: [* $MOQTParameter]
+  ? parameters: [* $MOQTParameter]
 }
 ~~~
 {: #subscribeannounces-def title="MOQTSubscribeAnnounces definition"}
@@ -884,7 +884,7 @@ MOQTSubscribeOk = {
   ? largest_group_id: uint64
   ? largest_object_id: uint64
   number_of_parameters: uint64
-  subscribe_parameters: [* $MOQTParameter]
+  ? subscribe_parameters: [* $MOQTParameter]
 }
 ~~~
 {: #subscribeok-def title="MOQTSubscribeOk definition"}
@@ -914,7 +914,7 @@ MOQTFetchOk = {
   largest_group_id: uint64
   largest_object_id: uint64
   number_of_parameters: uint64
-  subscribe_parameters: [* $MOQTParameter]
+  ? subscribe_parameters: [* $MOQTParameter]
 }
 ~~~
 {: #fetchok-def title="MOQTFetchOk definition"}
@@ -973,7 +973,7 @@ MOQTAnnounce = {
   type: "announce"
   track_namespace: [ *MOQTByteString]
   number_of_parameters: uint64
-  parameters: [* $MOQTParameter]
+  ? parameters: [* $MOQTParameter]
 }
 ~~~
 {: #announce-def title="MOQTAnnounce definition"}

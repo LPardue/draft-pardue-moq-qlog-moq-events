@@ -2434,7 +2434,7 @@ MOQTClientSetupMessage = {
   number_of_supported_versions: uint64
   supported_versions: [* uint64]
   number_of_parameters: uint64
-  setup_parameters: [* $MOQTSetupParameter]
+  ? setup_parameters: [* $MOQTSetupParameter]
 }
 </pre>
 </div>
@@ -2457,7 +2457,7 @@ MOQTServerSetupMessage = {
   type: "server_setup"
   selected_version: uint64
   number_of_parameters: uint64
-  setup_parameters: [* $MOQTSetupParameter]
+  ? setup_parameters: [* $MOQTSetupParameter]
 }
 </pre>
 </div>
@@ -2511,7 +2511,7 @@ MOQTSubscribe = {
   ? start_object: uint64
   ? end_group: uint64
   number_of_parameters: uint64
-  subscribe_parameters: [* $MOQTParameter]
+  ? subscribe_parameters: [* $MOQTParameter]
 }
 </pre>
 </div>
@@ -2538,7 +2538,7 @@ MOQTSubscribeUpdate = {
   end_group: uint64
   subscriber_priority: uint8
   number_of_parameters: uint64
-  subscribe_parameters: [* $MOQTParameter]
+  ? subscribe_parameters: [* $MOQTParameter]
 }
 </pre>
 </div>
@@ -2596,7 +2596,7 @@ MOQTFetch = {
   ? preceding_group_offset: uint64
 
   number_of_parameters: uint64
-  parameters: [* $MOQTParameter]
+  ? parameters: [* $MOQTParameter]
 
 }
 </pre>
@@ -2732,7 +2732,7 @@ MOQTSubscribeAnnounces = {
   type: "subscribe_announces"
   track_namespace: [ *MOQTByteString]
   number_of_parameters: uint64
-  parameters: [* $MOQTParameter]
+  ? parameters: [* $MOQTParameter]
 }
 </pre>
 </div>
@@ -2781,7 +2781,7 @@ MOQTSubscribeOk = {
   ? largest_group_id: uint64
   ? largest_object_id: uint64
   number_of_parameters: uint64
-  subscribe_parameters: [* $MOQTParameter]
+  ? subscribe_parameters: [* $MOQTParameter]
 }
 </pre>
 </div>
@@ -2833,7 +2833,7 @@ MOQTFetchOk = {
   largest_group_id: uint64
   largest_object_id: uint64
   number_of_parameters: uint64
-  subscribe_parameters: [* $MOQTParameter]
+  ? subscribe_parameters: [* $MOQTParameter]
 }
 </pre>
 </div>
@@ -2947,7 +2947,7 @@ MOQTAnnounce = {
   type: "announce"
   track_namespace: [ *MOQTByteString]
   number_of_parameters: uint64
-  parameters: [* $MOQTParameter]
+  ? parameters: [* $MOQTParameter]
 }
 </pre>
 </div>

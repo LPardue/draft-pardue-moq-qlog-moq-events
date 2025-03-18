@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-16T01:57:25.924592+00:00",
+  "timestamp": "2025-03-18T01:52:17.080111+00:00",
   "repo": "LPardue/draft-pardue-moq-qlog-moq-events",
   "labels": [
     {
@@ -343,15 +343,15 @@
       "id": "I_kwDOOBS9Ss6uLHIu",
       "title": "Should the parameters field in messages be optional in order to simplify empty parameter cases",
       "url": "https://github.com/LPardue/draft-pardue-moq-qlog-moq-events/issues/28",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "LPardue",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "The events that contain parameters (defined as of https://github.com/LPardue/draft-pardue-moq-qlog-moq-events/commit/da1b175d36d6dda538ca4a43ceacd88ad89af1e8) do so as a mandatory array \n\nIgnoring the name of the parameter field, all parameter carrying events have something like this\n\n```\nMOQTClientSetupMessage = {\n  type: \"client_setup\"\n  number_of_support_versions: uint64\n  supported_versions: [* uint64]\n  number_of_parameters: uint64\n  setup_parameters: [* $MOQTSetupParameter]\n}\n```\nthis means that technically all serialized logs need to include the field even if the array is empty. Using the example above, we'd have something like \n\n```\n\u001e{\"time\":0.167678,\"name\":\"moqt:control_message_created\",\"data\":{\"stream_id\":0,\"length\":19,\"message\":{\"type\":\"client_setup\",\"number_of_supported_versions\":1,\"supported_versions\":[4278190088],\"number_of_parameters\":0,\"setup_parameters\":[]}}}\n```\n\n\nI hit an interop issue parsing @mengelbart's qlogs, which omitted the parameters field when the number of parameters was 0. Hence the question, should we just make the field optional to allow omitting it?",
       "createdAt": "2025-03-15T14:27:55Z",
-      "updatedAt": "2025-03-16T01:08:34Z",
-      "closedAt": null,
+      "updatedAt": "2025-03-17T02:24:05Z",
+      "closedAt": "2025-03-17T02:24:05Z",
       "comments": [
         {
           "author": "mengelbart",
@@ -361,6 +361,22 @@
           "updatedAt": "2025-03-16T01:08:33Z"
         }
       ]
+    },
+    {
+      "number": 29,
+      "id": "I_kwDOOBS9Ss6uNaTD",
+      "title": "typo: number_of_support_versions should be number_of_supported_versions",
+      "url": "https://github.com/LPardue/draft-pardue-moq-qlog-moq-events/issues/29",
+      "state": "CLOSED",
+      "author": "LPardue",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-03-16T03:56:03Z",
+      "updatedAt": "2025-03-17T01:06:44Z",
+      "closedAt": "2025-03-17T01:06:43Z",
+      "comments": []
     }
   ],
   "pulls": [
@@ -948,6 +964,62 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 30,
+      "id": "PR_kwDOOBS9Ss6OzkLg",
+      "title": "s/number_of_support_versions/number_of_supported_versions",
+      "url": "https://github.com/LPardue/draft-pardue-moq-qlog-moq-events/pull/30",
+      "state": "MERGED",
+      "author": "LPardue",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #29\r\n",
+      "createdAt": "2025-03-16T04:01:25Z",
+      "updatedAt": "2025-03-17T01:06:43Z",
+      "baseRepository": "LPardue/draft-pardue-moq-qlog-moq-events",
+      "baseRefName": "main",
+      "baseRefOid": "da1b175d36d6dda538ca4a43ceacd88ad89af1e8",
+      "headRepository": "LPardue/draft-pardue-moq-qlog-moq-events",
+      "headRefName": "add-ed",
+      "headRefOid": "ce5960e89d20609fb38c140eff1593496b786e38",
+      "closedAt": "2025-03-17T01:06:42Z",
+      "mergedAt": "2025-03-17T01:06:42Z",
+      "mergedBy": "LPardue",
+      "mergeCommit": {
+        "oid": "c540453a840bb5e9e166b745ae545fc589fda9bf"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 31,
+      "id": "PR_kwDOOBS9Ss6O2DCG",
+      "title": "make message parameters an optional field",
+      "url": "https://github.com/LPardue/draft-pardue-moq-qlog-moq-events/pull/31",
+      "state": "MERGED",
+      "author": "LPardue",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Closes #28 \r\n\r\nAfter sleeping on it and speaking more with @mengelbart, we prefer log brevity and feel that making this optional is the most straightforward thing. (pave the cow paths and all)",
+      "createdAt": "2025-03-17T02:22:35Z",
+      "updatedAt": "2025-03-17T02:24:04Z",
+      "baseRepository": "LPardue/draft-pardue-moq-qlog-moq-events",
+      "baseRefName": "main",
+      "baseRefOid": "c540453a840bb5e9e166b745ae545fc589fda9bf",
+      "headRepository": "LPardue/draft-pardue-moq-qlog-moq-events",
+      "headRefName": "optional-params",
+      "headRefOid": "c166a8fa72a246ceef469c15d67d973be5d822b1",
+      "closedAt": "2025-03-17T02:24:04Z",
+      "mergedAt": "2025-03-17T02:24:04Z",
+      "mergedBy": "LPardue",
+      "mergeCommit": {
+        "oid": "bcafea074072a88a3e0e2f1c5e9053dd63ac49e9"
+      },
+      "comments": [],
+      "reviews": []
     }
   ]
 }

@@ -416,7 +416,7 @@ FETCH_HEADER is created. It has Core importance level.
 ~~~ cddl
 MOQTFetchHeaderCreated = {
     stream_id: uint64
-    subscribe_id: uint64
+    request_id: uint64
 
     * $$moqt-fetchheadercreated-extension
 }
@@ -431,7 +431,7 @@ parsed. It has Core importance level.
 ~~~ cddl
 MOQTFetchHeaderParsed = {
     stream_id: uint64
-    subscribe_id: uint64
+    request_id: uint64
 
     * $$moqt-fetchheaderparsed-extension
 }
@@ -728,7 +728,6 @@ MOQTGoaway = {
 MOQTSubscribe = {
   type: "subscribe"
   request_id: uint64
-  track_alias: uint64
   track_namespace: [ *MOQTByteString]
   track_name: MOQTByteString
   subscriber_priority: uint8
@@ -788,7 +787,7 @@ MOQTFetch = {
   ? end_group: uint64
   ? end_object: uint64
 
-  ? joining_subscribe_id: uint64
+  ? joining_request_id: uint64
   ? preceding_group_offset: uint64
 
   number_of_parameters: uint64
@@ -962,9 +961,9 @@ MOQTSubscribeDone = {
 MOQTPublish = {
   type: "publish"
   request_id: uint64
-  track_alias: uint64
   track_namespace: [ *MOQTByteString]
   track_name: MOQTByteString
+  track_alias: uint64
   group_order: uint8
   content_exists: uint8
   ? largest_group: uint64
@@ -974,7 +973,7 @@ MOQTPublish = {
   ? parameters: [* $MOQTParameter]
 }
 ~~~
-{: #subscribedone-def title="MOQTPublish definition"}
+{: #publish-def title="MOQTPublish definition"}
 
 ### MOQTPublishOk
 
@@ -993,7 +992,7 @@ MOQTPublishOk = {
   ? parameters: [* $MOQTParameter]
 }
 ~~~
-{: #subscribedone-def title="MOQTPublishOk definition"}
+{: #publishok-def title="MOQTPublishOk definition"}
 
 ### MOQTPublishError
 
@@ -1006,7 +1005,7 @@ MOQTPublishError = {
   ? reason_bytes: hexstring
 }
 ~~~
-{: #subscribedone-def title="MOQTPublishError definition"}
+{: #publisherror-def title="MOQTPublishError definition"}
 
 
 ### MOQTMaxRequestId

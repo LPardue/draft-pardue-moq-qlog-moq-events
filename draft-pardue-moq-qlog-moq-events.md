@@ -1012,7 +1012,7 @@ MOQTPublishError = {
 ### MOQTMaxRequestId
 
 ~~~ cddl
-MOQTMaxSubscribeId = {
+MOQTMaxRequestId = {
   type: "max_request_id"
   request_id: uint64
 }

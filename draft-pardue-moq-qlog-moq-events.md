@@ -1022,7 +1022,7 @@ MOQTMaxRequestId = {
 ### MOQTRequestsBlocked
 
 ~~~ cddl
-MOQTSubscribesBlocked = {
+MOQTRequestsBlocked = {
   type: "requests_blocked"
   maximum_request_id: uint64
 }

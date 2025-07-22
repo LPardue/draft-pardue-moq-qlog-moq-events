@@ -987,7 +987,7 @@ MOQTPublishOk = {
   filter_type: uint64
   ? start_group: uint64
   ? start_object: uint64
-  ? end_group: uint64_t
+  ? end_group: uint64
   number_of_parameters: uint64
   ? parameters: [* $MOQTParameter]
 }

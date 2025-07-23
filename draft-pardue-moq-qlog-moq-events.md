@@ -658,32 +658,32 @@ The MOQT control message types defined in this document are as follows:
 MOQTBaseControlMessages = MOQTClientSetupMessage /
                           MOQTServerSetupMessage /
                           MOQTGoaway /
+                          MOQTMaxRequestId /
+                          MOQTRequestsBlocked /
                           MOQTSubscribe /
-                          MOQTSubscribeUpdate /
-                          MOQTUnsubscribe /
-                          MOQTFetch /
-                          MOQTFetchCancel /
-                          MOQTAnnounceOk /
-                          MOQTAnnounceError /
-                          MOQTAnnounceCancel /
-                          MOQTTrackStatusRequest /
-                          MOQTSubscribeAnnounces /
-                          MOQTUnsubscribeAnnounces /
                           MOQTSubscribeOk /
                           MOQTSubscribeError /
-                          MOQTFetchOk /
-                          MOQTFetchError /
+                          MOQTSubscribeUpdate /
+                          MOQTUnsubscribe /
                           MOQTSubscribeDone /
                           MOQTPublish /
                           MOQTPublishOk /
                           MOQTPublishError /
-                          MOQTMaxRequestId /
-                          MOQTRequestsBlocked /
-                          MOQTAnnounce /
-                          MOQTUnannounce /
+                          MOQTFetch /
+                          MOQTFetchOk /
+                          MOQTFetchError /
+                          MOQTFetchCancel /
+                          MOQTTrackStatusRequest /
                           MOQTTrackStatus /
+                          MOQTAnnounce /
+                          MOQTAnnounceOk /
+                          MOQTAnnounceError /
+                          MOQTUnannounce /
+                          MOQTAnnounceCancel /
+                          MOQTSubscribeAnnounces /
                           MOQTSubscribeAnnouncesOk /
-                          MOQTSubscribeAnnouncesError
+                          MOQTSubscribeAnnouncesError /
+                          MOQTUnsubscribeAnnounces
 
 $MOQTControlMessage /= MOQTBaseControlMessages
 ~~~
@@ -725,6 +725,26 @@ MOQTGoaway = {
 ~~~
 {: #goaway-def title="MOQTGoaway definition"}
 
+### MOQTMaxRequestId
+
+~~~ cddl
+MOQTMaxRequestId = {
+  type: "max_request_id"
+  request_id: uint64
+}
+~~~
+{: #maxsubscribeid-def title="MOQTMaxRequestId definition"}
+
+### MOQTRequestsBlocked
+
+~~~ cddl
+MOQTRequestsBlocked = {
+  type: "requests_blocked"
+  maximum_request_id: uint64
+}
+~~~
+{: #subscribesblocked-def title="MOQTRequestsBlocked definition"}
+
 ### MOQTSubscribe
 
 ~~~ cddl
@@ -745,143 +765,6 @@ MOQTSubscribe = {
 }
 ~~~
 {: #subscribe-def title="MOQTSubscribe definition"}
-
-### MOQTSubscribeUpdate
-
-~~~ cddl
-MOQTSubscribeUpdate = {
-  type: "subscribe_update"
-  request_id: uint64
-  start_group: uint64
-  start_object: uint64
-  end_group: uint64
-  subscriber_priority: uint8
-  forward: uint8
-  number_of_parameters: uint64
-  ? subscribe_parameters: [* $MOQTParameter]
-}
-~~~
-{: #subscribeupdate-def title="MOQTSubscribeUpdate definition"}
-
-### MOQTUnsubscribe
-
-~~~ cddl
-MOQTUnsubscribe = {
-  type: "unsubscribe"
-  request_id: uint64
-}
-~~~
-{: #unsubscribe-def title="MOQTUnsubscribe definition"}
-
-### MOQTFetch
-
-~~~ cddl
-MOQTFetch = {
-  type: "fetch"
-  request_id: uint64
-  subscriber_priority: uint8
-  group_order: uint8
-  fetch_type: uint64
-
-  track_namespace: [ *MOQTByteString]
-  ? track_name: MOQTByteString
-  ? start_group: uint64
-  ? start_object: uint64
-  ? end_group: uint64
-  ? end_object: uint64
-
-  ? joining_request_id: uint64
-  ? preceding_group_offset: uint64
-
-  number_of_parameters: uint64
-  ? parameters: [* $MOQTParameter]
-
-}
-~~~
-{: #fetch-def title="MOQTFetch definition"}
-
-### MOQTFetchCancel
-
-~~~ cddl
-MOQTFetchCancel = {
-  type: "fetch_cancel"
-  request_id: uint64
-}
-~~~
-{: #fetchcancel-def title="MOQTFetchCancel definition"}
-
-### MOQTAnnounceOk
-
-~~~ cddl
-MOQTAnnounceOk = {
-  type: "announce_ok"
-  request_id: uint64
-}
-~~~
-{: #announceok-def title="MOQTAnnounceOk definition"}
-
-### MOQTAnnounceError
-
-~~~ cddl
-MOQTAnnounceError = {
-  type: "announce_error"
-  request_id: uint64
-  error_code: uint64
-  ? reason: text
-  ? reason_bytes: hexstring
-}
-~~~
-{: #announceerror-def title="MOQTAnnounceError definition"}
-
-### MOQTAnnounceCancel
-
-~~~ cddl
-MOQTAnnounceCancel = {
-  type: "announce_cancel"
-  request_id: uint64
-  error_code: uint64
-  ? reason: text
-  ? reason_bytes: hexstring
-}
-~~~
-{: #announcecancel-def title="MOQTAnnounceCancel definition"}
-
-### MOQTTrackStatusRequest
-
-~~~ cddl
-MOQTTrackStatusRequest = {
-  type: "track_status_request"
-  request_id: uint64
-  track_namespace: [ *MOQTByteString]
-  track_name: MOQTByteString
-  number_of_parameters: uint64
-  ? parameters: [* $MOQTParameter]
-}
-~~~
-{: #trackstatusrequest-def title="MOQTTrackStatusRequest definition"}
-
-### MOQTSubscribeAnnounces
-
-~~~ cddl
-MOQTSubscribeAnnounces = {
-  type: "subscribe_announces"
-  request_id: uint64
-  track_namespace_prefix: [ *MOQTByteString]
-  number_of_parameters: uint64
-  ? parameters: [* $MOQTParameter]
-}
-~~~
-{: #subscribeannounces-def title="MOQTSubscribeAnnounces definition"}
-
-### MOQTUnsubscribeAnnounces
-
-~~~ cddl
-MOQTUnsubscribeAnnounces = {
-  type: "unsubscribe_announces"
-  track_namespace_prefix: [ *MOQTByteString]
-}
-~~~
-{: #unsubscribeannounces-def title="MOQTUnsubscribeAnnounces definition"}
 
 ### MOQTSubscribeOk
 
@@ -915,34 +798,32 @@ MOQTSubscribeError = {
 ~~~
 {: #subscribeerror-def title="MOQTSubscribeError definition"}
 
-### MOQTFetchOk
+### MOQTSubscribeUpdate
 
 ~~~ cddl
-MOQTFetchOk = {
-  type: "fetch_ok"
+MOQTSubscribeUpdate = {
+  type: "subscribe_update"
   request_id: uint64
-  group_order: uint8
-  end_of_track: uint8
-  end_group_id: uint64
-  end_object_id: uint64
+  start_group: uint64
+  start_object: uint64
+  end_group: uint64
+  subscriber_priority: uint8
+  forward: uint8
   number_of_parameters: uint64
   ? subscribe_parameters: [* $MOQTParameter]
 }
 ~~~
-{: #fetchok-def title="MOQTFetchOk definition"}
+{: #subscribeupdate-def title="MOQTSubscribeUpdate definition"}
 
-### MOQTFetchError
+### MOQTUnsubscribe
 
 ~~~ cddl
-MOQTFetchError = {
-  type: "fetch_error"
+MOQTUnsubscribe = {
+  type: "unsubscribe"
   request_id: uint64
-  error_code: uint64
-  ? reason: text
-  ? reason_bytes: hexstring
 }
 ~~~
-{: #fetcherror-def title="MOQTFetchError definition"}
+{: #unsubscribe-def title="MOQTUnsubscribe definition"}
 
 ### MOQTSubscribeDone
 
@@ -1010,49 +891,85 @@ MOQTPublishError = {
 ~~~
 {: #publisherror-def title="MOQTPublishError definition"}
 
-
-### MOQTMaxRequestId
+### MOQTFetch
 
 ~~~ cddl
-MOQTMaxRequestId = {
-  type: "max_request_id"
+MOQTFetch = {
+  type: "fetch"
+  request_id: uint64
+  subscriber_priority: uint8
+  group_order: uint8
+  fetch_type: uint64
+
+  track_namespace: [ *MOQTByteString]
+  ? track_name: MOQTByteString
+  ? start_group: uint64
+  ? start_object: uint64
+  ? end_group: uint64
+  ? end_object: uint64
+
+  ? joining_request_id: uint64
+  ? preceding_group_offset: uint64
+
+  number_of_parameters: uint64
+  ? parameters: [* $MOQTParameter]
+
+}
+~~~
+{: #fetch-def title="MOQTFetch definition"}
+
+### MOQTFetchOk
+
+~~~ cddl
+MOQTFetchOk = {
+  type: "fetch_ok"
+  request_id: uint64
+  group_order: uint8
+  end_of_track: uint8
+  end_group_id: uint64
+  end_object_id: uint64
+  number_of_parameters: uint64
+  ? subscribe_parameters: [* $MOQTParameter]
+}
+~~~
+{: #fetchok-def title="MOQTFetchOk definition"}
+
+### MOQTFetchError
+
+~~~ cddl
+MOQTFetchError = {
+  type: "fetch_error"
+  request_id: uint64
+  error_code: uint64
+  ? reason: text
+  ? reason_bytes: hexstring
+}
+~~~
+{: #fetcherror-def title="MOQTFetchError definition"}
+
+### MOQTFetchCancel
+
+~~~ cddl
+MOQTFetchCancel = {
+  type: "fetch_cancel"
   request_id: uint64
 }
 ~~~
-{: #maxsubscribeid-def title="MOQTMaxRequestId definition"}
+{: #fetchcancel-def title="MOQTFetchCancel definition"}
 
-### MOQTRequestsBlocked
-
-~~~ cddl
-MOQTRequestsBlocked = {
-  type: "requests_blocked"
-  maximum_request_id: uint64
-}
-~~~
-{: #subscribesblocked-def title="MOQTRequestsBlocked definition"}
-
-### MOQTAnnounce
+### MOQTTrackStatusRequest
 
 ~~~ cddl
-MOQTAnnounce = {
-  type: "announce"
+MOQTTrackStatusRequest = {
+  type: "track_status_request"
   request_id: uint64
   track_namespace: [ *MOQTByteString]
+  track_name: MOQTByteString
   number_of_parameters: uint64
   ? parameters: [* $MOQTParameter]
 }
 ~~~
-{: #announce-def title="MOQTAnnounce definition"}
-
-### MOQTUnannounce
-
-~~~ cddl
-MOQTUnannounce = {
-  type: "unannounce"
-  track_namespace: [ *MOQTByteString]
-}
-~~~
-{: #unannounce-def title="MOQTAnnounce definition"}
+{: #trackstatusrequest-def title="MOQTTrackStatusRequest definition"}
 
 ### MOQTTrackStatus
 
@@ -1069,6 +986,77 @@ MOQTTrackStatus = {
 ~~~
 {: #trackstatus-def title="MOQTTrackStatus definition"}
 
+### MOQTAnnounce
+
+~~~ cddl
+MOQTAnnounce = {
+  type: "announce"
+  request_id: uint64
+  track_namespace: [ *MOQTByteString]
+  number_of_parameters: uint64
+  ? parameters: [* $MOQTParameter]
+}
+~~~
+{: #announce-def title="MOQTAnnounce definition"}
+
+### MOQTAnnounceOk
+
+~~~ cddl
+MOQTAnnounceOk = {
+  type: "announce_ok"
+  request_id: uint64
+}
+~~~
+{: #announceok-def title="MOQTAnnounceOk definition"}
+
+### MOQTAnnounceError
+
+~~~ cddl
+MOQTAnnounceError = {
+  type: "announce_error"
+  request_id: uint64
+  error_code: uint64
+  ? reason: text
+  ? reason_bytes: hexstring
+}
+~~~
+{: #announceerror-def title="MOQTAnnounceError definition"}
+
+### MOQTUnannounce
+
+~~~ cddl
+MOQTUnannounce = {
+  type: "unannounce"
+  track_namespace: [ *MOQTByteString]
+}
+~~~
+{: #unannounce-def title="MOQTAnnounce definition"}
+
+### MOQTAnnounceCancel
+
+~~~ cddl
+MOQTAnnounceCancel = {
+  type: "announce_cancel"
+  request_id: uint64
+  error_code: uint64
+  ? reason: text
+  ? reason_bytes: hexstring
+}
+~~~
+{: #announcecancel-def title="MOQTAnnounceCancel definition"}
+
+### MOQTSubscribeAnnounces
+
+~~~ cddl
+MOQTSubscribeAnnounces = {
+  type: "subscribe_announces"
+  request_id: uint64
+  track_namespace_prefix: [ *MOQTByteString]
+  number_of_parameters: uint64
+  ? parameters: [* $MOQTParameter]
+}
+~~~
+{: #subscribeannounces-def title="MOQTSubscribeAnnounces definition"}
 
 ### MOQTSubscribeAnnouncesOk
 
@@ -1092,6 +1080,16 @@ MOQTSubscribeAnnouncesError = {
 }
 ~~~
 {: #subscribeannounceserror-def title="MOQTSubscribeAnnouncesError definition"}
+
+### MOQTUnsubscribeAnnounces
+
+~~~ cddl
+MOQTUnsubscribeAnnounces = {
+  type: "unsubscribe_announces"
+  track_namespace_prefix: [ *MOQTByteString]
+}
+~~~
+{: #unsubscribeannounces-def title="MOQTUnsubscribeAnnounces definition"}
 
 ## MOQTExtensionHeader
 

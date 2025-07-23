@@ -10,22 +10,22 @@
 <meta content="
        This document defines a qlog event schema containing concrete events for MoQ. 
     " name="description">
-<meta content="xml2rfc 3.28.0" name="generator">
+<meta content="xml2rfc 3.30.0" name="generator">
 <meta content="hi fidelity" name="keyword">
 <meta content="draft-pardue-moq-qlog-moq-events-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.28.0
-    Python 3.12.9
+  xml2rfc 3.30.0
+    Python 3.12.11
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.1.0
-    Jinja2 3.1.5
-    lxml 5.3.0
-    platformdirs 4.3.6
+    Jinja2 3.1.6
+    lxml 5.3.1
+    platformdirs 4.3.8
     pycountry 24.6.1
     PyYAML 6.0.2
-    requests 2.32.3
-    setuptools 70.3.0
+    requests 2.32.4
+    setuptools 80.9.0
     wcwidth 0.2.13
 -->
 <link href="draft-pardue-moq-qlog-moq-events.xml" rel="alternate" type="application/rfc+xml">
@@ -1045,11 +1045,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">MoQ qlog event definitions</td>
-<td class="right">March 2025</td>
+<td class="right">July 2025</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Pardue &amp; Engelbart</td>
-<td class="center">Expires 18 September 2025</td>
+<td class="center">Expires 24 January 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1062,12 +1062,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-pardue-moq-qlog-moq-events-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-03-17" class="published">17 March 2025</time>
+<time datetime="2025-07-23" class="published">23 July 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-09-18">18 September 2025</time></dd>
+<dd class="expires"><time datetime="2026-01-24">24 January 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1121,7 +1121,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 18 September 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 24 January 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1371,11 +1371,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">This document defines a qlog event schema (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-10#section-8" class="relref">Section 8</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>)
+<p id="section-1-1">This document defines a qlog event schema (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-12#section-8" class="relref">Section 8</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>)
 containing concrete events for Media over QUIC Transport <span>[<a href="#MOQT" class="cite xref">MOQT</a>]</span>.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">The event namespace with identifier <code>moqt</code> is defined; see <a href="#schema-def" class="auto internal xref">Section 3</a>. In
 this namespace multiple events derive from the qlog abstract Event class
-(<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-10#section-7" class="relref">Section 7</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>), each extending the "data" field and defining
+(<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-12#section-7" class="relref">Section 7</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>), each extending the "data" field and defining
 their "name" field values and semantics.<a href="#section-1-2" class="pilcrow">¶</a></p>
 <p id="section-1-3"><a href="#events-table" class="auto internal xref">Table 1</a> summarizes the name value of each event type that is defined in
 this specification. Some event data fields use complex data types. These are
@@ -1550,7 +1550,7 @@ extensions described in <span>[<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN<
 <p id="section-2-3">The following fields from <span>[<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span> are imported and used: name, namespace,
 type, data, group_id, protocol_types, RawInfo, and time-related
 fields.<a href="#section-2-3" class="pilcrow">¶</a></p>
-<p id="section-2-4">Events are defined with an importance level as described in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-10#section-8.3" class="relref">Section 8.3</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>.<a href="#section-2-4" class="pilcrow">¶</a></p>
+<p id="section-2-4">Events are defined with an importance level as described in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-12#section-8.3" class="relref">Section 8.3</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>.<a href="#section-2-4" class="pilcrow">¶</a></p>
 <p id="section-2-5">As is the case for <span>[<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>, the qlog schema definitions in this document
 are intentionally agnostic to serialization formats. The choice of format is an
 implementation decision.<a href="#section-2-5" class="pilcrow">¶</a></p>
@@ -1562,7 +1562,7 @@ implementation decision.<a href="#section-2-5" class="pilcrow">¶</a></p>
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-event-schema-definition" class="section-name selfRef">Event Schema Definition</a>
       </h2>
 <p id="section-3-1">This document describes how the MOQT protocol is expressed in qlog with an event
-schema. Per the requirements in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-10#section-8" class="relref">Section 8</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>, this document
+schema. Per the requirements in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-12#section-8" class="relref">Section 8</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>, this document
 registers the <code>moqt</code> namespace. The event schema URI is
 <code>urn:ietf:params:qlog:events:moqt</code>.<a href="#section-3-1" class="pilcrow">¶</a></p>
 <div id="draft-event-schema-identification">
@@ -1784,7 +1784,7 @@ MOQTObjectDatagramParsed = {
         </h3>
 <p id="section-4.6-1">The <code>object_datagram_status_created</code> event is emitted when the
 OBJECT_DATAGRAM_STATUS message is created. It has Core importance level; see
-<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-10#section-9.2" class="relref">Section 9.2</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>.<a href="#section-4.6-1" class="pilcrow">¶</a></p>
+<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-12#section-9.2" class="relref">Section 9.2</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>.<a href="#section-4.6-1" class="pilcrow">¶</a></p>
 <span id="name-moqtobjectdatagramstatuscre"></span><div id="objectdatagramstatuscreated-def">
 <figure id="figure-8">
           <div class="lang-cddl sourcecode" id="section-4.6-2.1">
@@ -1815,7 +1815,7 @@ MOQTObjectDatagramStatusCreated = {
         </h3>
 <p id="section-4.7-1">The <code>object_datagram_status_parsed</code> event is emitted when the
 OBJECT_DATAGRAM_STATUS message is parsed. It has Core importance level; see
-<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-10#section-9.2" class="relref">Section 9.2</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>.<a href="#section-4.7-1" class="pilcrow">¶</a></p>
+<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-12#section-9.2" class="relref">Section 9.2</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>.<a href="#section-4.7-1" class="pilcrow">¶</a></p>
 <span id="name-moqtobjectdatagramstatuspar"></span><div id="objectdatagramstatusparsed-def">
 <figure id="figure-9">
           <div class="lang-cddl sourcecode" id="section-4.7-2.1">
@@ -1845,7 +1845,7 @@ MOQTObjectDatagramStatusParsed = {
 <a href="#section-4.8" class="section-number selfRef">4.8. </a><a href="#name-subgroup_header_created" class="section-name selfRef">subgroup_header_created</a>
         </h3>
 <p id="section-4.8-1">The <code>subgroup_header_created</code> event is emitted when a stream begins and a
-SUBGROUP_HEADER is created. It has Core importance level; see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-10#section-9.2" class="relref">Section 9.2</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>.<a href="#section-4.8-1" class="pilcrow">¶</a></p>
+SUBGROUP_HEADER is created. It has Core importance level; see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-12#section-9.2" class="relref">Section 9.2</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>.<a href="#section-4.8-1" class="pilcrow">¶</a></p>
 <span id="name-moqtsubgroupheadercreated-d"></span><div id="subgroupheadercreated-def">
 <figure id="figure-10">
           <div class="lang-cddl sourcecode" id="section-4.8-2.1">
@@ -3103,15 +3103,15 @@ MOQTExtensionHeader = {
 <dd class="break"></dd>
 <dt id="MOQT">[MOQT]</dt>
       <dd>
-<span class="refAuthor">Curley, L.</span>, <span class="refAuthor">Pugin, K.</span>, <span class="refAuthor">Nandakumar, S.</span>, <span class="refAuthor">Vasiliev, V.</span>, and <span class="refAuthor">I. Swett</span>, <span class="refTitle">"Media over QUIC Transport"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-moq-transport-10</span>, <time datetime="2025-03-03" class="refDate">3 March 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-moq-transport-10">https://datatracker.ietf.org/doc/html/draft-ietf-moq-transport-10</a>&gt;</span>. </dd>
+<span class="refAuthor">Nandakumar, S.</span>, <span class="refAuthor">Vasiliev, V.</span>, <span class="refAuthor">Swett, I.</span>, and <span class="refAuthor">A. Frindell</span>, <span class="refTitle">"Media over QUIC Transport"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-moq-transport-13</span>, <time datetime="2025-07-07" class="refDate">7 July 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-moq-transport-13">https://datatracker.ietf.org/doc/html/draft-ietf-moq-transport-13</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="QLOG-MAIN">[QLOG-MAIN]</dt>
       <dd>
-<span class="refAuthor">Marx, R.</span>, <span class="refAuthor">Niccolini, L.</span>, <span class="refAuthor">Seemann, M.</span>, and <span class="refAuthor">L. Pardue</span>, <span class="refTitle">"qlog: Structured Logging for Network Protocols"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-quic-qlog-main-schema-10</span>, <time datetime="2024-10-21" class="refDate">21 October 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-10">https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-10</a>&gt;</span>. </dd>
+<span class="refAuthor">Marx, R.</span>, <span class="refAuthor">Niccolini, L.</span>, <span class="refAuthor">Seemann, M.</span>, and <span class="refAuthor">L. Pardue</span>, <span class="refTitle">"qlog: Structured Logging for Network Protocols"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-quic-qlog-main-schema-12</span>, <time datetime="2025-07-07" class="refDate">7 July 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-12">https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-12</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="QLOG-QUIC">[QLOG-QUIC]</dt>
       <dd>
-<span class="refAuthor">Marx, R.</span>, <span class="refAuthor">Niccolini, L.</span>, <span class="refAuthor">Seemann, M.</span>, and <span class="refAuthor">L. Pardue</span>, <span class="refTitle">"QUIC event definitions for qlog"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-quic-qlog-quic-events-09</span>, <time datetime="2024-10-21" class="refDate">21 October 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-quic-events-09">https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-quic-events-09</a>&gt;</span>. </dd>
+<span class="refAuthor">Marx, R.</span>, <span class="refAuthor">Niccolini, L.</span>, <span class="refAuthor">Seemann, M.</span>, and <span class="refAuthor">L. Pardue</span>, <span class="refTitle">"QUIC event definitions for qlog"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-quic-qlog-quic-events-11</span>, <time datetime="2025-07-07" class="refDate">7 July 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-quic-events-11">https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-quic-events-11</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC2119">[RFC2119]</dt>
       <dd>

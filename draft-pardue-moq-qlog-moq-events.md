@@ -565,7 +565,7 @@ $MOQTParameter /= {
 {: #moqtparameter-def title="MOQTParameter type socket definition"}
 
 ~~~ cddl
-MOQTBaseParameters /= MOQTAuthorizationInfoParameter /
+MOQTBaseParameters /= MOQTAuthorizationTokenParameter /
                       MOQTDeliveryTimeoutParameter /
                       MOQTMaxCacheDurationParameter /
                       MOQTUnknownParameter
@@ -574,15 +574,18 @@ $MOQTParameter /= MOQTBaseParameters
 ~~~
 {: #moqtbaseparameters-def title="MOQTBaseParameters definition"}
 
-### MOQTAuthorizationInfoParameter
+### MOQTAuthorizationTokenParameter
 
 ~~~ cddl
-MOQTAuthorizationInfoParameter = {
-  name: "authorization_info"
-  ? value: text
+MOQTAuthorizationTokenParameter = {
+  name: "authorization_token"
+  alias_type: uint64
+  ? token_alias: uint64
+  ? token_type: uint64
+  ? token_value: RawInfo
 }
 ~~~
-{: #moqtauthorizationinfoparameter-def title="MOQTAuthorizationInfoParameter definition"}
+{: #moqtauthorizationTokenparameter-def title="MOQTAuthorizationTokenParameter definition"}
 
 ### MOQTDeliveryTimeoutParameter
 

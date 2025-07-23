@@ -1243,7 +1243,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
                 <p id="section-toc.1-1.5.2.3.1"><a href="#section-5.3" class="auto internal xref">5.3</a>.  <a href="#name-moqtparameter" class="internal xref">MOQTParameter</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.3.2.1">
-                    <p id="section-toc.1-1.5.2.3.2.1.1"><a href="#section-5.3.1" class="auto internal xref">5.3.1</a>.  <a href="#name-moqtauthorizationinfoparame" class="internal xref">MOQTAuthorizationInfoParameter</a></p>
+                    <p id="section-toc.1-1.5.2.3.2.1.1"><a href="#section-5.3.1" class="auto internal xref">5.3.1</a>.  <a href="#name-moqtauthorizationtokenparam" class="internal xref">MOQTAuthorizationTokenParameter</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.3.2.2">
                     <p id="section-toc.1-1.5.2.3.2.2.1"><a href="#section-5.3.2" class="auto internal xref">5.3.2</a>.  <a href="#name-moqtdeliverytimeoutparamete" class="internal xref">MOQTDeliveryTimeoutParameter</a></p>
@@ -2240,7 +2240,7 @@ $MOQTParameter /= {
 <figure id="figure-25">
           <div class="lang-cddl sourcecode" id="section-5.3-3.1">
 <pre>
-MOQTBaseParameters /= MOQTAuthorizationInfoParameter /
+MOQTBaseParameters /= MOQTAuthorizationTokenParameter /
                       MOQTDeliveryTimeoutParameter /
                       MOQTMaxCacheDurationParameter /
                       MOQTUnknownParameter
@@ -2252,23 +2252,26 @@ $MOQTParameter /= MOQTBaseParameters
 <a href="#name-moqtbaseparameters-definiti" class="selfRef">MOQTBaseParameters definition</a>
           </figcaption></figure>
 </div>
-<div id="moqtauthorizationinfoparameter">
+<div id="moqtauthorizationtokenparameter">
 <section id="section-5.3.1">
-          <h4 id="name-moqtauthorizationinfoparame">
-<a href="#section-5.3.1" class="section-number selfRef">5.3.1. </a><a href="#name-moqtauthorizationinfoparame" class="section-name selfRef">MOQTAuthorizationInfoParameter</a>
+          <h4 id="name-moqtauthorizationtokenparam">
+<a href="#section-5.3.1" class="section-number selfRef">5.3.1. </a><a href="#name-moqtauthorizationtokenparam" class="section-name selfRef">MOQTAuthorizationTokenParameter</a>
           </h4>
-<span id="name-moqtauthorizationinfoparamet"></span><div id="moqtauthorizationinfoparameter-def">
+<span id="name-moqtauthorizationtokenparame"></span><div id="moqtauthorizationTokenparameter-def">
 <figure id="figure-26">
             <div class="lang-cddl sourcecode" id="section-5.3.1-1.1">
 <pre>
-MOQTAuthorizationInfoParameter = {
-  name: "authorization_info"
-  ? value: text
+MOQTAuthorizationTokenParameter = {
+  name: "authorization_token"
+  alias_type: uint64
+  ? token_alias: uint64
+  ? token_type: uint64
+  ? token_value: RawInfo
 }
 </pre>
 </div>
 <figcaption><a href="#figure-26" class="selfRef">Figure 26</a>:
-<a href="#name-moqtauthorizationinfoparamet" class="selfRef">MOQTAuthorizationInfoParameter definition</a>
+<a href="#name-moqtauthorizationtokenparame" class="selfRef">MOQTAuthorizationTokenParameter definition</a>
             </figcaption></figure>
 </div>
 </section>

@@ -96,7 +96,7 @@ Table of Contents
        5.2.2.  MOQTMaxRequestIdSetupParameter
        5.2.3.  MOQTUnknownSetupParameter
      5.3.  MOQTParameter
-       5.3.1.  MOQTAuthorizationInfoParameter
+       5.3.1.  MOQTAuthorizationTokenParameter
        5.3.2.  MOQTDeliveryTimeoutParameter
        5.3.3.  MOQTMaxCacheDurationParameter
        5.3.4.  MOQTUnknownParameter
@@ -661,7 +661,7 @@ Table of Contents
 
               Figure 24: MOQTParameter type socket definition
 
-   MOQTBaseParameters /= MOQTAuthorizationInfoParameter /
+   MOQTBaseParameters /= MOQTAuthorizationTokenParameter /
                          MOQTDeliveryTimeoutParameter /
                          MOQTMaxCacheDurationParameter /
                          MOQTUnknownParameter
@@ -670,14 +670,17 @@ Table of Contents
 
                   Figure 25: MOQTBaseParameters definition
 
-5.3.1.  MOQTAuthorizationInfoParameter
+5.3.1.  MOQTAuthorizationTokenParameter
 
-   MOQTAuthorizationInfoParameter = {
-     name: "authorization_info"
-     ? value: text
+   MOQTAuthorizationTokenParameter = {
+     name: "authorization_token"
+     alias_type: uint64
+     ? token_alias: uint64
+     ? token_type: uint64
+     ? token_value: RawInfo
    }
 
-            Figure 26: MOQTAuthorizationInfoParameter definition
+           Figure 26: MOQTAuthorizationTokenParameter definition
 
 5.3.2.  MOQTDeliveryTimeoutParameter
 

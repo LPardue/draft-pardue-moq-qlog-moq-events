@@ -416,7 +416,7 @@ FETCH_HEADER is created. It has Core importance level.
 ~~~ cddl
 MOQTFetchHeaderCreated = {
     stream_id: uint64
-    subscribe_id: uint64
+    request_id: uint64
 
     * $$moqt-fetchheadercreated-extension
 }
@@ -431,7 +431,7 @@ parsed. It has Core importance level.
 ~~~ cddl
 MOQTFetchHeaderParsed = {
     stream_id: uint64
-    subscribe_id: uint64
+    request_id: uint64
 
     * $$moqt-fetchheaderparsed-extension
 }
@@ -511,7 +511,7 @@ $MOQTSetupParameter /= {
 
 ~~~ cddl
 MOQTBaseSetupParameters /= MOQTPathSetupParameter /
-                            MOQTMaxSubscribeIdSetupParameter /
+                            MOQTMaxRequestIdSetupParameter /
                             MOQTUnknownSetupParameter
 
 $MOQTSetupParameter /= MOQTBaseSetupParameters
@@ -528,15 +528,15 @@ MOQTPathSetupParameter = {
 ~~~
 {: #moqtpathsetupparameter-def title="MOQTPathSetupParameter definition"}
 
-### MOQTMaxSubscribeIdSetupParameter
+### MOQTMaxRequestIdSetupParameter
 
 ~~~ cddl
-MOQTMaxSubscribeIdSetupParameter = {
-  name: "max_subscribe_id"
+MOQTMaxRequestIdSetupParameter = {
+  name: "max_request_id"
   value: uint64
 }
 ~~~
-{: #moqtmaxsubscribeidsetupparameter-def title="MOQTMaxSubscribeIdSetupParameter definition"}
+{: #moqtmaxsubscribeidsetupparameter-def title="MOQTMaxRequestIdSetupParameter definition"}
 
 ### MOQTUnknownSetupParameter
 
@@ -671,8 +671,11 @@ MOQTBaseControlMessages = MOQTClientSetupMessage /
                           MOQTFetchOk /
                           MOQTFetchError /
                           MOQTSubscribeDone /
-                          MOQTMaxSubscribeId /
-                          MOQTSubscribesBlocked /
+                          MOQTPublish /
+                          MOQTPublishOk /
+                          MOQTPublishError /
+                          MOQTMaxRequestId /
+                          MOQTRequestsBlocked /
                           MOQTAnnounce /
                           MOQTUnannounce /
                           MOQTTrackStatus /
@@ -724,12 +727,12 @@ MOQTGoaway = {
 ~~~ cddl
 MOQTSubscribe = {
   type: "subscribe"
-  subscribe_id: uint64
-  track_alias: uint64
+  request_id: uint64
   track_namespace: [ *MOQTByteString]
   track_name: MOQTByteString
   subscriber_priority: uint8
   group_order: uint8
+  forward: uint8
   filter_type: uint64
   ? start_group: uint64
   ? start_object: uint64
@@ -745,11 +748,12 @@ MOQTSubscribe = {
 ~~~ cddl
 MOQTSubscribeUpdate = {
   type: "subscribe_update"
-  subscribe_id: uint64
+  request_id: uint64
   start_group: uint64
   start_object: uint64
   end_group: uint64
   subscriber_priority: uint8
+  forward: uint8
   number_of_parameters: uint64
   ? subscribe_parameters: [* $MOQTParameter]
 }
@@ -761,7 +765,7 @@ MOQTSubscribeUpdate = {
 ~~~ cddl
 MOQTUnsubscribe = {
   type: "unsubscribe"
-  subscribe_id: uint64
+  request_id: uint64
 }
 ~~~
 {: #unsubscribe-def title="MOQTUnsubscribe definition"}
@@ -771,7 +775,7 @@ MOQTUnsubscribe = {
 ~~~ cddl
 MOQTFetch = {
   type: "fetch"
-  subscribe_id: uint64
+  request_id: uint64
   subscriber_priority: uint8
   group_order: uint8
   fetch_type: uint64
@@ -783,7 +787,7 @@ MOQTFetch = {
   ? end_group: uint64
   ? end_object: uint64
 
-  ? joining_subscribe_id: uint64
+  ? joining_request_id: uint64
   ? preceding_group_offset: uint64
 
   number_of_parameters: uint64
@@ -798,7 +802,7 @@ MOQTFetch = {
 ~~~ cddl
 MOQTFetchCancel = {
   type: "fetch_cancel"
-  subscribe_id: uint64
+  request_id: uint64
 }
 ~~~
 {: #fetchcancel-def title="MOQTFetchCancel definition"}
@@ -808,7 +812,7 @@ MOQTFetchCancel = {
 ~~~ cddl
 MOQTAnnounceOk = {
   type: "announce_ok"
-  track_namespace: [ *MOQTByteString]
+  request_id: uint64
 }
 ~~~
 {: #announceok-def title="MOQTAnnounceOk definition"}
@@ -818,7 +822,7 @@ MOQTAnnounceOk = {
 ~~~ cddl
 MOQTAnnounceError = {
   type: "announce_error"
-  track_namespace: [ *MOQTByteString]
+  request_id: uint64
   error_code: uint64
   ? reason: text
   ? reason_bytes: hexstring
@@ -831,7 +835,7 @@ MOQTAnnounceError = {
 ~~~ cddl
 MOQTAnnounceCancel = {
   type: "announce_cancel"
-  track_namespace: [ *MOQTByteString]
+  request_id: uint64
   error_code: uint64
   ? reason: text
   ? reason_bytes: hexstring
@@ -844,8 +848,11 @@ MOQTAnnounceCancel = {
 ~~~ cddl
 MOQTTrackStatusRequest = {
   type: "track_status_request"
+  request_id: uint64
   track_namespace: [ *MOQTByteString]
   track_name: MOQTByteString
+  number_of_parameters: uint64
+  ? parameters: [* $MOQTParameter]
 }
 ~~~
 {: #trackstatusrequest-def title="MOQTTrackStatusRequest definition"}
@@ -855,7 +862,8 @@ MOQTTrackStatusRequest = {
 ~~~ cddl
 MOQTSubscribeAnnounces = {
   type: "subscribe_announces"
-  track_namespace: [ *MOQTByteString]
+  request_id: uint64
+  track_namespace_prefix: [ *MOQTByteString]
   number_of_parameters: uint64
   ? parameters: [* $MOQTParameter]
 }
@@ -867,7 +875,7 @@ MOQTSubscribeAnnounces = {
 ~~~ cddl
 MOQTUnsubscribeAnnounces = {
   type: "unsubscribe_announces"
-  track_namespace: [ *MOQTByteString]
+  track_namespace_prefix: [ *MOQTByteString]
 }
 ~~~
 {: #unsubscribeannounces-def title="MOQTUnsubscribeAnnounces definition"}
@@ -877,7 +885,8 @@ MOQTUnsubscribeAnnounces = {
 ~~~ cddl
 MOQTSubscribeOk = {
   type: "subscribe_ok"
-  subscribe_id: uint64
+  request_id: uint64
+  track_alias: uint64
   expires: uint64
   group_order: uint8
   content_exists: uint8
@@ -894,7 +903,7 @@ MOQTSubscribeOk = {
 ~~~ cddl
 MOQTSubscribeError = {
   type: "subscribe_error"
-  subscribe_id: uint64
+  request_id: uint64
   error_code: uint64
   ? reason: text
   ? reason_bytes: hexstring
@@ -908,11 +917,11 @@ MOQTSubscribeError = {
 ~~~ cddl
 MOQTFetchOk = {
   type: "fetch_ok"
-  subscribe_id: uint64
+  request_id: uint64
   group_order: uint8
   end_of_track: uint8
-  largest_group_id: uint64
-  largest_object_id: uint64
+  end_group_id: uint64
+  end_object_id: uint64
   number_of_parameters: uint64
   ? subscribe_parameters: [* $MOQTParameter]
 }
@@ -924,7 +933,7 @@ MOQTFetchOk = {
 ~~~ cddl
 MOQTFetchError = {
   type: "fetch_error"
-  subscribe_id: uint64
+  request_id: uint64
   error_code: uint64
   ? reason: text
   ? reason_bytes: hexstring
@@ -937,7 +946,7 @@ MOQTFetchError = {
 ~~~ cddl
 MOQTSubscribeDone = {
   type: "subscribe_done"
-  subscribe_id: uint64
+  request_id: uint64
   status_code: uint64
   stream_count: uint64
   ? reason: text
@@ -946,31 +955,85 @@ MOQTSubscribeDone = {
 ~~~
 {: #subscribedone-def title="MOQTSubscribeDone definition"}
 
-### MOQTMaxSubscribeId
+### MOQTPublish
 
 ~~~ cddl
-MOQTMaxSubscribeId = {
-  type: "max_subscribe_id"
-  subscribe_id: uint64
+MOQTPublish = {
+  type: "publish"
+  request_id: uint64
+  track_namespace: [ *MOQTByteString]
+  track_name: MOQTByteString
+  track_alias: uint64
+  group_order: uint8
+  content_exists: uint8
+  ? largest_group: uint64
+  ? largest_object: uint64
+  forward: uint8
+  number_of_parameters: uint64
+  ? parameters: [* $MOQTParameter]
 }
 ~~~
-{: #maxsubscribeid-def title="MOQTMaxSubscribeId definition"}
+{: #publish-def title="MOQTPublish definition"}
 
-### MOQTSubscribesBlocked
+### MOQTPublishOk
 
 ~~~ cddl
-MOQTSubscribesBlocked = {
-  type: "subscribes_blocked"
-  maximum_subscribe_id: uint64
+MOQTPublishOk = {
+  type: "publish_ok"
+  request_id: uint64
+  forward: uint8
+  subscriber_priority: uint8
+  group_order: uint8
+  filter_type: uint64
+  ? start_group: uint64
+  ? start_object: uint64
+  ? end_group: uint64
+  number_of_parameters: uint64
+  ? parameters: [* $MOQTParameter]
 }
 ~~~
-{: #subscribesblocked-def title="MOQTSubscribesBlocked definition"}
+{: #publishok-def title="MOQTPublishOk definition"}
+
+### MOQTPublishError
+
+~~~ cddl
+MOQTPublishError = {
+  type: "publish_error"
+  request_id: uint64
+  error_code: uint64
+  ? reason: text
+  ? reason_bytes: hexstring
+}
+~~~
+{: #publisherror-def title="MOQTPublishError definition"}
+
+
+### MOQTMaxRequestId
+
+~~~ cddl
+MOQTMaxRequestId = {
+  type: "max_request_id"
+  request_id: uint64
+}
+~~~
+{: #maxsubscribeid-def title="MOQTMaxRequestId definition"}
+
+### MOQTRequestsBlocked
+
+~~~ cddl
+MOQTRequestsBlocked = {
+  type: "requests_blocked"
+  maximum_request_id: uint64
+}
+~~~
+{: #subscribesblocked-def title="MOQTRequestsBlocked definition"}
 
 ### MOQTAnnounce
 
 ~~~ cddl
 MOQTAnnounce = {
   type: "announce"
+  request_id: uint64
   track_namespace: [ *MOQTByteString]
   number_of_parameters: uint64
   ? parameters: [* $MOQTParameter]
@@ -993,11 +1056,12 @@ MOQTUnannounce = {
 ~~~ cddl
 MOQTTrackStatus = {
   type: "track_status"
-  track_namespace: [ *MOQTByteString]
-  track_name: MOQTByteString
+  request_id: uint64
   status_code: uint64
   last_group_id: uint64
   last_object_id: uint64
+  number_of_parameters: uint64
+  ? parameters: [* $MOQTParameter]
 }
 ~~~
 {: #trackstatus-def title="MOQTTrackStatus definition"}
@@ -1008,7 +1072,7 @@ MOQTTrackStatus = {
 ~~~ cddl
 MOQTSubscribeAnnouncesOk = {
   type: "subscribe_announces_ok"
-  track_namespace: [ *MOQTByteString]
+  request_id: uint64
 }
 ~~~
 {: #subscribeannouncesok  -def title="MOQTSubscribeAnnouncesOk definition"}
@@ -1018,7 +1082,7 @@ MOQTSubscribeAnnouncesOk = {
 ~~~ cddl
 MOQTSubscribeAnnouncesError = {
   type: "subscribe_announces_error"
-  track_namespace: [ *MOQTByteString]
+  request_id: uint64
   error_code: uint64
   ? reason: text
   ? reason_bytes: hexstring

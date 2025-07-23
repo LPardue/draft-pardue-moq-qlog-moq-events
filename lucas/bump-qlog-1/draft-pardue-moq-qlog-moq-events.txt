@@ -5,8 +5,8 @@
 Media Over QUIC                                                L. Pardue
 Internet-Draft                                                Cloudflare
 Intended status: Informational                              M. Engelbart
-Expires: 4 September 2025                 Technical University of Munich
-                                                            3 March 2025
+Expires: 24 January 2026                  Technical University of Munich
+                                                            23 July 2025
 
 
                        MoQ qlog event definitions
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 September 2025.
+   This Internet-Draft will expire on 24 January 2026.
 
 Copyright Notice
 
@@ -91,35 +91,44 @@ Table of Contents
      4.15. fetch_object_parsed
    5.  MOQT Data Type Definitions
      5.1.  Owner
-     5.2.  MOQTParameter
-     5.3.  MOQTControlMessage
-       5.3.1.  MOQTClientSetupMessage
-       5.3.2.  MOQTServerSetupMessage
-       5.3.3.  MOQTGoaway
-       5.3.4.  MOQTSubscribe
-       5.3.5.  MOQTSubscribeUpdate
-       5.3.6.  MOQTUnsubscribe
-       5.3.7.  MOQTFetch
-       5.3.8.  MOQTFetchCancel
-       5.3.9.  MOQTAnnounceOk
-       5.3.10. MOQTAnnounceError
-       5.3.11. MOQTAnnounceCancel
-       5.3.12. MOQTTrackStatusRequest
-       5.3.13. MOQTSubscribeAnnounces
-       5.3.14. MOQTUnsubscribeAnnounces
-       5.3.15. MOQTSubscribeOk
-       5.3.16. MOQTSubscribeError
-       5.3.17. MOQTFetchOk
-       5.3.18. MOQTFetchError
-       5.3.19. MOQTSubscribeDone
-       5.3.20. MOQTMaxSubscribeId
-       5.3.21. MOQTSubscribesBlocked
-       5.3.22. MOQTAnnounce
-       5.3.23. MOQTUnannounce
-       5.3.24. MOQTTrackStatus
-       5.3.25. MOQTSubscribeAnnouncesOk
-       5.3.26. MOQTSubscribeAnnouncesError
-     5.4.  MOQTExtensionHeader
+     5.2.  MOQTSetupParameter
+       5.2.1.  MOQTPathSetupParameter
+       5.2.2.  MOQTMaxSubscribeIdSetupParameter
+       5.2.3.  MOQTUnknownSetupParameter
+     5.3.  MOQTParameter
+       5.3.1.  MOQTAuthorizationInfoParameter
+       5.3.2.  MOQTDeliveryTimeoutParameter
+       5.3.3.  MOQTMaxCacheDurationParameter
+       5.3.4.  MOQTUnknownParameter
+     5.4.  MOQTByteString
+     5.5.  MOQTControlMessage
+       5.5.1.  MOQTClientSetupMessage
+       5.5.2.  MOQTServerSetupMessage
+       5.5.3.  MOQTGoaway
+       5.5.4.  MOQTSubscribe
+       5.5.5.  MOQTSubscribeUpdate
+       5.5.6.  MOQTUnsubscribe
+       5.5.7.  MOQTFetch
+       5.5.8.  MOQTFetchCancel
+       5.5.9.  MOQTAnnounceOk
+       5.5.10. MOQTAnnounceError
+       5.5.11. MOQTAnnounceCancel
+       5.5.12. MOQTTrackStatusRequest
+       5.5.13. MOQTSubscribeAnnounces
+       5.5.14. MOQTUnsubscribeAnnounces
+       5.5.15. MOQTSubscribeOk
+       5.5.16. MOQTSubscribeError
+       5.5.17. MOQTFetchOk
+       5.5.18. MOQTFetchError
+       5.5.19. MOQTSubscribeDone
+       5.5.20. MOQTMaxSubscribeId
+       5.5.21. MOQTSubscribesBlocked
+       5.5.22. MOQTAnnounce
+       5.5.23. MOQTUnannounce
+       5.5.24. MOQTTrackStatus
+       5.5.25. MOQTSubscribeAnnouncesOk
+       5.5.26. MOQTSubscribeAnnouncesError
+     5.6.  MOQTExtensionHeader
    6.  Security Considerations
    7.  IANA Considerations
    8.  Normative References
@@ -214,8 +223,11 @@ Table of Contents
    extensions described in [QLOG-MAIN].
 
    The following fields from [QLOG-MAIN] are imported and used: name,
-   namespace, type, data, group_id, protocol_types, importance, RawInfo,
-   and time-related fields.
+   namespace, type, data, group_id, protocol_types, RawInfo, and time-
+   related fields.
+
+   Events are defined with an importance level as described in
+   Section 8.3 of [QLOG-MAIN].
 
    As is the case for [QLOG-MAIN], the qlog schema definitions in this
    document are intentionally agnostic to serialization formats.  The
@@ -280,13 +292,21 @@ Table of Contents
    The concrete MOQT event types are further defined below, their type
    identifier is the heading name.
 
+   Some MOQT messages include a reason phrase that can provide
+   additional information in the format of a byte sequences.  However,
+   these sequences are not guaranteed to be presentable as UTF-8.  In
+   order to accomodate various encodings, where the wire image of a
+   message includes a reason phrase, the MOQT qlog event type, includes
+   two option fields: reason (for UTF-8) and reason_bytes (a hex-encoded
+   string representing raw bytes).  Implementations SHOULD log at least
+   one format, but MAY log both or none.
+
 4.1.  control_message_created
 
    The control_message_created event is emitted when a control message
-   is created.  It has Core importance level; see Section 9.2 of
-   [QLOG-MAIN].
+   is created.  It has Core importance level.
 
-   The definition of control message content is in Section 5.3.
+   The definition of control message content is in Section 5.5.
 
    MOQTControlMessageCreated = {
        stream_id: uint64
@@ -302,10 +322,9 @@ Table of Contents
 4.2.  control_message_parsed
 
    The control_message_parsed event is emitted when a control message is
-   parsed.  It has Core importance level; see Section 9.2 of
-   [QLOG-MAIN].
+   parsed.  It has Core importance level.
 
-   The definition of control message content is in Section 5.3.
+   The definition of control message content is in Section 5.5.
 
    MOQTControlMessageParsed = {
        stream_id: uint64
@@ -321,7 +340,7 @@ Table of Contents
 4.3.  stream_type_set
 
    The stream_type_set event conveys when a MOQT stream type becomes
-   known.  It has Base importance level; see Section 9.2 of [QLOG-MAIN].
+   known.  It has Base importance level.
 
    MOQTStreamTypeSet = {
        ? owner: Owner
@@ -331,16 +350,16 @@ Table of Contents
        * $$moqt-streamtypeset-extension
    }
 
-   $MOQTStreamType /=   "subgroup_header" /
-                        "fetch_header"
+   $MOQTStreamType /=  "control" /
+                       "subgroup_header" /
+                       "fetch_header"
 
                    Figure 5: MOQTStreamTypeSet definition
 
 4.4.  object_datagram_created
 
    The object_datagram_created event is emitted when the OBJECT_DATAGRAM
-   message is created.  It has Core importance level; see Section 9.2 of
-   [QLOG-MAIN].
+   message is created.  It has Core importance level.
 
    MOQTObjectDatagramCreated = {
        track_alias: uint64
@@ -349,7 +368,7 @@ Table of Contents
        publisher_priority: uint8
        extension_headers_length: uint64
        ? extension_headers: [* MOQTExtensionHeader]
-       object_payload: RawInfo
+       ? object_payload: RawInfo
 
        * $$moqt-objectdatagramcreated-extension
    }
@@ -359,8 +378,7 @@ Table of Contents
 4.5.  object_datagram_parsed
 
    The object_datagram_parsed event is emitted when the OBJECT_DATAGRAM
-   message is parsed.  It has Core importance level; see Section 9.2 of
-   [QLOG-MAIN].
+   message is parsed.  It has Core importance level.
 
    MOQTObjectDatagramParsed = {
        track_alias: uint64
@@ -437,8 +455,7 @@ Table of Contents
 4.9.  subgroup_header_parsed
 
    The subgroup_header_parsed event is emitted when the SUBGROUP_HEADER
-   is parsed.  It has Core importance level; see Section 9.2 of
-   [QLOG-MAIN].
+   is parsed.  It has Core importance level.
 
    MOQTSubgroupHeaderParsed = {
        stream_id: uint64
@@ -455,8 +472,7 @@ Table of Contents
 4.10.  subgroup_object_created
 
    The subgroup_object_created event is emitted when a subgroup object
-   is created.  It has Core importance level; see Section 9.2 of
-   [QLOG-MAIN].
+   is created.  It has Core importance level.
 
    MOQTSubgroupObjectCreated = {
        stream_id: uint64
@@ -477,8 +493,7 @@ Table of Contents
 4.11.  subgroup_object_parsed
 
    The subgroup_object_parsed event is emitted when a subgroup object is
-   parsed.  It has Core importance level; see Section 9.2 of
-   [QLOG-MAIN].
+   parsed.  It has Core importance level.
 
    MOQTSubgroupObjectParsed = {
        stream_id: uint64
@@ -499,8 +514,7 @@ Table of Contents
 4.12.  fetch_header_created
 
    The fetch_header_created event is emitted when a stream begins and a
-   FETCH_HEADER is created.  It has Core importance level; see
-   Section 9.2 of [QLOG-MAIN].
+   FETCH_HEADER is created.  It has Core importance level.
 
    MOQTFetchHeaderCreated = {
        stream_id: uint64
@@ -514,8 +528,7 @@ Table of Contents
 4.13.  fetch_header_parsed
 
    The fetch_header_parsed event is emitted when the SUBGROUP_HEADER is
-   parsed.  It has Core importance level; see Section 9.2 of
-   [QLOG-MAIN].
+   parsed.  It has Core importance level.
 
    MOQTFetchHeaderParsed = {
        stream_id: uint64
@@ -529,8 +542,7 @@ Table of Contents
 4.14.  fetch_object_created
 
    The fetch_object_created event is emitted when a fetch object is
-   created.  It has Core importance level; see Section 9.2 of
-   [QLOG-MAIN].
+   created.  It has Core importance level.
 
    MOQTFetchObjectCreated = {
        stream_id: uint64
@@ -552,8 +564,7 @@ Table of Contents
 4.15.  fetch_object_parsed
 
    The fetch_object_parsed event is emitted when a fetch object is
-   parsed.  It has Core importance level; see Section 9.2 of
-   [QLOG-MAIN].
+   parsed.  It has Core importance level.
 
    MOQTFetchObjectParsed = {
        stream_id: uint64
@@ -583,23 +594,137 @@ Table of Contents
 
                         Figure 18: Owner definition
 
-5.2.  MOQTParameter
+5.2.  MOQTSetupParameter
 
-   MOQTParameter = {
-     name: $MOQTParameterName
-     length: uint64
-     ? value: RawInfo
+   The generic $MOQTSetupParameter is defined here as a CDDL "type
+   socket" extension point.  It can be extended to support additional
+   MOQT Setup Parameters.
+
+   ; The MOQTSetupParameter is any key-value map (e.g., JSON object)
+   $MOQTSetupParameter /= {
+       * text => any
    }
 
-   $MOQTParameterName /= "authorization_info" /
-                       "delivery_timeout" /
-                       "max_cache_duration" /
-                       "path" /
-                       "max_subscribe_id"
+            Figure 19: MOQTSetupParameter type socket definition
 
-                    Figure 19: MOQTParameter definition
+   MOQTBaseSetupParameters /= MOQTPathSetupParameter /
+                               MOQTMaxSubscribeIdSetupParameter /
+                               MOQTUnknownSetupParameter
 
-5.3.  MOQTControlMessage
+   $MOQTSetupParameter /= MOQTBaseSetupParameters
+
+               Figure 20: MOQTBaseSetupParameters definition
+
+5.2.1.  MOQTPathSetupParameter
+
+   MOQTPathSetupParameter = {
+     name: "path"
+     value: text
+   }
+
+                Figure 21: MOQTPathSetupParameter definition
+
+5.2.2.  MOQTMaxSubscribeIdSetupParameter
+
+   MOQTMaxSubscribeIdSetupParameter = {
+     name: "max_subscribe_id"
+     value: uint64
+   }
+
+           Figure 22: MOQTMaxSubscribeIdSetupParameter definition
+
+5.2.3.  MOQTUnknownSetupParameter
+
+   MOQTUnknownSetupParameter = {
+     name:"unknown"
+     name_bytes: uint64
+     ? length: uint64
+     ? value: uint64
+     ? value_bytes: RawInfo
+   }
+
+              Figure 23: MOQTUnknownSetupParameter definition
+
+5.3.  MOQTParameter
+
+   The generic $MOQTParameter is defined here as a CDDL "type socket"
+   extension point.  It can be extended to support additional MOQT
+   Parameters.
+
+   ; The MOQTParameter is any key-value map (e.g., JSON object)
+   $MOQTParameter /= {
+       * text => any
+   }
+
+              Figure 24: MOQTParameter type socket definition
+
+   MOQTBaseParameters /= MOQTAuthorizationInfoParameter /
+                         MOQTDeliveryTimeoutParameter /
+                         MOQTMaxCacheDurationParameter /
+                         MOQTUnknownParameter
+
+   $MOQTParameter /= MOQTBaseParameters
+
+                  Figure 25: MOQTBaseParameters definition
+
+5.3.1.  MOQTAuthorizationInfoParameter
+
+   MOQTAuthorizationInfoParameter = {
+     name: "authorization_info"
+     ? value: text
+   }
+
+            Figure 26: MOQTAuthorizationInfoParameter definition
+
+5.3.2.  MOQTDeliveryTimeoutParameter
+
+   MOQTDeliveryTimeoutParameter = {
+     name: "delivery_timeout"
+     value: uint64
+   }
+
+             Figure 27: MOQTDeliveryTimeoutParameter definition
+
+5.3.3.  MOQTMaxCacheDurationParameter
+
+   MOQTMaxCacheDurationParameter = {
+     name: "max_cache_duration"
+     value: uint64
+   }
+
+            Figure 28: MOQTMaxCacheDurationParameter definition
+
+5.3.4.  MOQTUnknownParameter
+
+   MOQTUnknownParameter = {
+     name:"unknown"
+     name_bytes: uint64
+     ? length: uint64
+     ? value: uint64
+     ? value_bytes: RawInfo
+   }
+
+                 Figure 29: MOQTUnknownParameter definition
+
+5.4.  MOQTByteString
+
+   The MOQTByteString type allows representing MOQT bytestrings, such as
+   the value of a Track or Track Namespace tuple field, using two
+   different encodings.  The value field can be used for bytestrings
+   that can be encoded in UTF-8.  The value_bytes field can be used for
+   bytestrings of any type by using the hexstring encoding.
+
+   Implementations SHOULD populate one of either the value or
+   value_bytes field.  Populating both fields is redundant.
+
+   MOQTByteString = {
+     ? value: text
+     ? value_bytes: hexstring
+   }
+
+                    Figure 30: MOQTByteString definition
+
+5.5.  MOQTControlMessage
 
    The generic $MOQTControlMessage is defined here as a CDDL "type
    socket" extension point.  It can be extended to support additional
@@ -610,7 +735,7 @@ Table of Contents
        * text => any
    }
 
-            Figure 20: MOQTControlMessage type socket definition
+            Figure 31: MOQTControlMessage type socket definition
 
    The MOQT control message types defined in this document are as
    follows:
@@ -644,32 +769,32 @@ Table of Contents
 
    $MOQTControlMessage /= MOQTBaseControlMessages
 
-               Figure 21: MOQTBaseControlMessages definition
+               Figure 32: MOQTBaseControlMessages definition
 
-5.3.1.  MOQTClientSetupMessage
+5.5.1.  MOQTClientSetupMessage
 
    MOQTClientSetupMessage = {
      type: "client_setup"
-     number_of_support_versions: uint64
+     number_of_supported_versions: uint64
      supported_versions: [* uint64]
      number_of_parameters: uint64
-     setup_parameters: [* MOQTParameter]
+     ? setup_parameters: [* $MOQTSetupParameter]
    }
 
-                Figure 22: MOQTClientSetupMessage definition
+                Figure 33: MOQTClientSetupMessage definition
 
-5.3.2.  MOQTServerSetupMessage
+5.5.2.  MOQTServerSetupMessage
 
    MOQTServerSetupMessage = {
      type: "server_setup"
      selected_version: uint64
      number_of_parameters: uint64
-     setup_parameters: [* MOQTParameter]
+     ? setup_parameters: [* $MOQTSetupParameter]
    }
 
-                Figure 23: MOQTServerSetupMessage definition
+                Figure 34: MOQTServerSetupMessage definition
 
-5.3.3.  MOQTGoaway
+5.5.3.  MOQTGoaway
 
    MOQTGoaway = {
      type: "goaway"
@@ -677,16 +802,16 @@ Table of Contents
      new_session_uri: RawInfo
    }
 
-                      Figure 24: MOQTGoaway definition
+                      Figure 35: MOQTGoaway definition
 
-5.3.4.  MOQTSubscribe
+5.5.4.  MOQTSubscribe
 
    MOQTSubscribe = {
      type: "subscribe"
      subscribe_id: uint64
      track_alias: uint64
-     ; track_namespace: TODO pending tuple decision
-     track_name: RawInfo
+     track_namespace: [ *MOQTByteString]
+     track_name: MOQTByteString
      subscriber_priority: uint8
      group_order: uint8
      filter_type: uint64
@@ -694,12 +819,12 @@ Table of Contents
      ? start_object: uint64
      ? end_group: uint64
      number_of_parameters: uint64
-     subscribe_parameters: [* MOQTParameter]
+     ? subscribe_parameters: [* $MOQTParameter]
    }
 
-                    Figure 25: MOQTSubscribe definition
+                    Figure 36: MOQTSubscribe definition
 
-5.3.5.  MOQTSubscribeUpdate
+5.5.5.  MOQTSubscribeUpdate
 
    MOQTSubscribeUpdate = {
      type: "subscribe_update"
@@ -709,21 +834,21 @@ Table of Contents
      end_group: uint64
      subscriber_priority: uint8
      number_of_parameters: uint64
-     subscribe_parameters: [* MOQTParameter]
+     ? subscribe_parameters: [* $MOQTParameter]
    }
 
-                 Figure 26: MOQTSubscribeUpdate definition
+                 Figure 37: MOQTSubscribeUpdate definition
 
-5.3.6.  MOQTUnsubscribe
+5.5.6.  MOQTUnsubscribe
 
    MOQTUnsubscribe = {
      type: "unsubscribe"
      subscribe_id: uint64
    }
 
-                   Figure 27: MOQTUnsubscribe definition
+                   Figure 38: MOQTUnsubscribe definition
 
-5.3.7.  MOQTFetch
+5.5.7.  MOQTFetch
 
    MOQTFetch = {
      type: "fetch"
@@ -732,8 +857,8 @@ Table of Contents
      group_order: uint8
      fetch_type: uint64
 
-     ; ? track_namespace: TODO pending tuple decision
-     ? track_name: RawInfo
+     track_namespace: [ *MOQTByteString]
+     ? track_name: MOQTByteString
      ? start_group: uint64
      ? start_object: uint64
      ? end_group: uint64
@@ -743,83 +868,85 @@ Table of Contents
      ? preceding_group_offset: uint64
 
      number_of_parameters: uint64
-     parameters: [* MOQTParameter]
+     ? parameters: [* $MOQTParameter]
 
    }
 
-                      Figure 28: MOQTFetch definition
+                      Figure 39: MOQTFetch definition
 
-5.3.8.  MOQTFetchCancel
+5.5.8.  MOQTFetchCancel
 
    MOQTFetchCancel = {
      type: "fetch_cancel"
      subscribe_id: uint64
    }
 
-                   Figure 29: MOQTFetchCancel definition
+                   Figure 40: MOQTFetchCancel definition
 
-5.3.9.  MOQTAnnounceOk
+5.5.9.  MOQTAnnounceOk
 
    MOQTAnnounceOk = {
      type: "announce_ok"
-     ; track_namespace: TODO pending tuple decision
+     track_namespace: [ *MOQTByteString]
    }
 
-                    Figure 30: MOQTAnnounceOk definition
+                    Figure 41: MOQTAnnounceOk definition
 
-5.3.10.  MOQTAnnounceError
+5.5.10.  MOQTAnnounceError
 
    MOQTAnnounceError = {
      type: "announce_error"
-     ; track_namespace: TODO pending tuple decision
+     track_namespace: [ *MOQTByteString]
      error_code: uint64
-     reason_phrase: RawInfo
+     ? reason: text
+     ? reason_bytes: hexstring
    }
 
-                  Figure 31: MOQTAnnounceError definition
+                  Figure 42: MOQTAnnounceError definition
 
-5.3.11.  MOQTAnnounceCancel
+5.5.11.  MOQTAnnounceCancel
 
    MOQTAnnounceCancel = {
      type: "announce_cancel"
-     ; track_namespace: TODO pending tuple decision
+     track_namespace: [ *MOQTByteString]
      error_code: uint64
-     reason_phrase: RawInfo
+     ? reason: text
+     ? reason_bytes: hexstring
    }
 
-                  Figure 32: MOQTAnnounceCancel definition
+                  Figure 43: MOQTAnnounceCancel definition
 
-5.3.12.  MOQTTrackStatusRequest
+5.5.12.  MOQTTrackStatusRequest
 
    MOQTTrackStatusRequest = {
      type: "track_status_request"
-     ; track_namespace: TODO pending tuple decision
-     track_name: RawInfo
+     track_namespace: [ *MOQTByteString]
+     track_name: MOQTByteString
    }
 
-                Figure 33: MOQTTrackStatusRequest definition
+                Figure 44: MOQTTrackStatusRequest definition
 
-5.3.13.  MOQTSubscribeAnnounces
+5.5.13.  MOQTSubscribeAnnounces
 
    MOQTSubscribeAnnounces = {
      type: "subscribe_announces"
-     ; track_namespace: TODO pending tuple decision
+     track_namespace: [ *MOQTByteString]
      number_of_parameters: uint64
-     subscribe_parameters: [* MOQTParameter]
+     ? parameters: [* $MOQTParameter]
    }
 
-                Figure 34: MOQTSubscribeAnnounces definition
+                Figure 45: MOQTSubscribeAnnounces definition
 
-5.3.14.  MOQTUnsubscribeAnnounces
+5.5.14.  MOQTUnsubscribeAnnounces
 
    MOQTUnsubscribeAnnounces = {
-     type: "subscribe_announces"
-     ; track_namespace: TODO pending tuple decision
+     type: "unsubscribe_announces"
+     track_namespace: [ *MOQTByteString]
    }
 
-               Figure 35: MOQTUnsubscribeAnnounces definition
+               Figure 46: MOQTUnsubscribeAnnounces definition
 
-5.3.15.  MOQTSubscribeOk
+5.5.15.  MOQTSubscribeOk
 
    MOQTSubscribeOk = {
      type: "subscribe_ok"
@@ -830,24 +957,25 @@ Table of Contents
      ? largest_group_id: uint64
      ? largest_object_id: uint64
      number_of_parameters: uint64
-     subscribe_parameters: [* MOQTParameter]
+     ? subscribe_parameters: [* $MOQTParameter]
    }
 
-                   Figure 36: MOQTSubscribeOk definition
+                   Figure 47: MOQTSubscribeOk definition
 
-5.3.16.  MOQTSubscribeError
+5.5.16.  MOQTSubscribeError
 
    MOQTSubscribeError = {
      type: "subscribe_error"
      subscribe_id: uint64
      error_code: uint64
-     reason_phrase: RawInfo
+     ? reason: text
+     ? reason_bytes: hexstring
      track_alias: uint64
    }
 
-                  Figure 37: MOQTSubscribeError definition
+                  Figure 48: MOQTSubscribeError definition
 
-5.3.17.  MOQTFetchOk
+5.5.17.  MOQTFetchOk
 
    MOQTFetchOk = {
      type: "fetch_ok"
@@ -857,106 +985,109 @@ Table of Contents
      largest_group_id: uint64
      largest_object_id: uint64
      number_of_parameters: uint64
-     subscribe_parameters: [* MOQTParameter]
+     ? subscribe_parameters: [* $MOQTParameter]
    }
 
-                     Figure 38: MOQTFetchOk definition
+                     Figure 49: MOQTFetchOk definition
 
-5.3.18.  MOQTFetchError
+5.5.18.  MOQTFetchError
 
    MOQTFetchError = {
      type: "fetch_error"
      subscribe_id: uint64
      error_code: uint64
-     reason_phrase: RawInfo
+     ? reason: text
+     ? reason_bytes: hexstring
    }
 
-                    Figure 39: MOQTFetchError definition
+                    Figure 50: MOQTFetchError definition
 
-5.3.19.  MOQTSubscribeDone
+5.5.19.  MOQTSubscribeDone
 
    MOQTSubscribeDone = {
      type: "subscribe_done"
      subscribe_id: uint64
      status_code: uint64
      stream_count: uint64
-     reason_phrase: RawInfo
+     ? reason: text
+     ? reason_bytes: hexstring
    }
 
-                  Figure 40: MOQTSubscribeDone definition
+                  Figure 51: MOQTSubscribeDone definition
 
-5.3.20.  MOQTMaxSubscribeId
+5.5.20.  MOQTMaxSubscribeId
 
    MOQTMaxSubscribeId = {
      type: "max_subscribe_id"
      subscribe_id: uint64
    }
 
-                  Figure 41: MOQTMaxSubscribeId definition
+                  Figure 52: MOQTMaxSubscribeId definition
 
-5.3.21.  MOQTSubscribesBlocked
+5.5.21.  MOQTSubscribesBlocked
 
    MOQTSubscribesBlocked = {
      type: "subscribes_blocked"
      maximum_subscribe_id: uint64
    }
 
-                Figure 42: MOQTSubscribesBlocked definition
+                Figure 53: MOQTSubscribesBlocked definition
 
-5.3.22.  MOQTAnnounce
+5.5.22.  MOQTAnnounce
 
    MOQTAnnounce = {
      type: "announce"
-     ; track_namespace: TODO pending tuple decision
+     track_namespace: [ *MOQTByteString]
      number_of_parameters: uint64
-     subscribe_parameters: [* MOQTParameter]
+     ? parameters: [* $MOQTParameter]
    }
 
-                     Figure 43: MOQTAnnounce definition
+                     Figure 54: MOQTAnnounce definition
 
-5.3.23.  MOQTUnannounce
+5.5.23.  MOQTUnannounce
 
    MOQTUnannounce = {
      type: "unannounce"
-     ; track_namespace: TODO pending tuple decision
+     track_namespace: [ *MOQTByteString]
    }
 
-                     Figure 44: MOQTAnnounce definition
+                     Figure 55: MOQTAnnounce definition
 
-5.3.24.  MOQTTrackStatus
+5.5.24.  MOQTTrackStatus
 
    MOQTTrackStatus = {
      type: "track_status"
-     ; track_namespace: TODO pending tuple decision
-     track_name: RawInfo
+     track_namespace: [ *MOQTByteString]
+     track_name: MOQTByteString
      status_code: uint64
      last_group_id: uint64
      last_object_id: uint64
    }
 
-                   Figure 45: MOQTTrackStatus definition
+                   Figure 56: MOQTTrackStatus definition
 
-5.3.25.  MOQTSubscribeAnnouncesOk
+5.5.25.  MOQTSubscribeAnnouncesOk
 
    MOQTSubscribeAnnouncesOk = {
      type: "subscribe_announces_ok"
-     ; track_namespace: TODO pending tuple decision
+     track_namespace: [ *MOQTByteString]
    }
 
-               Figure 46: MOQTSubscribeAnnouncesOk definition
+               Figure 57: MOQTSubscribeAnnouncesOk definition
 
-5.3.26.  MOQTSubscribeAnnouncesError
+5.5.26.  MOQTSubscribeAnnouncesError
 
    MOQTSubscribeAnnouncesError = {
      type: "subscribe_announces_error"
-     ; track_namespace: TODO pending tuple decision
+     track_namespace: [ *MOQTByteString]
      error_code: uint64
-     reason_phrase: RawInfo
+     ? reason: text
+     ? reason_bytes: hexstring
    }
 
-             Figure 47: MOQTSubscribeAnnouncesError definition
+             Figure 58: MOQTSubscribeAnnouncesError definition
 
-5.4.  MOQTExtensionHeader
+5.6.  MOQTExtensionHeader
 
    MOQTExtensionHeader = {
      header_type: uint64
@@ -965,7 +1096,7 @@ Table of Contents
      ? payload: RawInfo
    }
 
-                   Figure 48: Extension Header definition
+                   Figure 59: Extension Header definition
 
 6.  Security Considerations
 
@@ -983,26 +1114,26 @@ Table of Contents
               JSON Data Structures", RFC 8610, DOI 10.17487/RFC8610,
               June 2019, <https://www.rfc-editor.org/rfc/rfc8610>.
 
-   [MOQT]     Curley, L., Pugin, K., Nandakumar, S., Vasiliev, V., and
-              I. Swett, "Media over QUIC Transport", Work in Progress,
-              Internet-Draft, draft-ietf-moq-transport-09, 1 March 2025,
+   [MOQT]     Nandakumar, S., Vasiliev, V., Swett, I., and A. Frindell,
+              "Media over QUIC Transport", Work in Progress, Internet-
+              Draft, draft-ietf-moq-transport-13, 7 July 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-moq-
-              transport-09>.
+              transport-13>.
 
    [QLOG-MAIN]
               Marx, R., Niccolini, L., Seemann, M., and L. Pardue,
               "qlog: Structured Logging for Network Protocols", Work in
               Progress, Internet-Draft, draft-ietf-quic-qlog-main-
-              schema-10, 21 October 2024,
+              schema-12, 7 July 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-quic-
-              qlog-main-schema-10>.
+              qlog-main-schema-12>.
 
    [QLOG-QUIC]
               Marx, R., Niccolini, L., Seemann, M., and L. Pardue, "QUIC
               event definitions for qlog", Work in Progress, Internet-
-              Draft, draft-ietf-quic-qlog-quic-events-09, 21 October
-              2024, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              quic-qlog-quic-events-09>.
+              Draft, draft-ietf-quic-qlog-quic-events-11, 7 July 2025,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-quic-
+              qlog-quic-events-11>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,

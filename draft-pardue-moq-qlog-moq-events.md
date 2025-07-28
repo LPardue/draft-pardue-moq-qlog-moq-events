@@ -1110,13 +1110,41 @@ MOQTExtensionHeader = {
 
 # Security Considerations
 
-TODO Security
-
+The security and privacy considerations discussed in {{QLOG-MAIN}} apply to this
+document as well.
 
 # IANA Considerations
 
-This document has no IANA actions.
+This document registers a new entry in the "qlog event schema URIs" registry (created in {{Section 15 of QLOG-MAIN}}).
 
+Event schema URI:
+: urn:ietf:params:qlog:events:moqt
+
+Namespace
+: moqt
+
+Event Types
+: control_message_created,
+  control_message_parsed,
+  stream_type_set,
+  object_datagram_created,
+  object_datagram_parsed,
+  object_datagram_status_created,
+  object_datagram_status_parsed,
+  subgroup_header_created,
+  subgroup_header_parsed,
+  subgroup_object_created,
+  subgroup_object_parsed,
+  fetch_header_created,
+  fetch_header_parsed,
+  fetch_object_created,
+  fetch_object_parsed
+
+Description:
+: Event definitions related to the MOQT protocol.
+
+Reference:
+: This Document
 
 --- back
 

@@ -697,7 +697,7 @@ A Location, as defined in {{Section 1.3.1 of MOQT}}
 ~~~ cddl
 MOQTLocation = {
   group: uint64
-  order: uint64
+  object: uint64
 }
 ~~~
 {: #moqtlocation-def title="MOQTLocation definition}

@@ -1216,7 +1216,7 @@ Table of Contents
 
 Acknowledgments
 
-   TODO acknowledge.
+   Thanks to Sujay Patel for contributions to this document.
 
 Authors' Addresses
 

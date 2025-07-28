@@ -5,8 +5,8 @@
 Media Over QUIC                                                L. Pardue
 Internet-Draft                                                Cloudflare
 Intended status: Informational                              M. Engelbart
-Expires: 25 January 2026                  Technical University of Munich
-                                                            24 July 2025
+Expires: 29 January 2026                  Technical University of Munich
+                                                            28 July 2025
 
 
                        MoQ qlog event definitions
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 January 2026.
+   This Internet-Draft will expire on 29 January 2026.
 
 Copyright Notice
 
@@ -102,35 +102,36 @@ Table of Contents
        5.3.4.  MOQTUnknownParameter
      5.4.  MOQTByteString
      5.5.  MOQTControlMessage
-       5.5.1.  MOQTClientSetupMessage
-       5.5.2.  MOQTServerSetupMessage
-       5.5.3.  MOQTGoaway
-       5.5.4.  MOQTMaxRequestId
-       5.5.5.  MOQTRequestsBlocked
-       5.5.6.  MOQTSubscribe
-       5.5.7.  MOQTSubscribeOk
-       5.5.8.  MOQTSubscribeError
-       5.5.9.  MOQTSubscribeUpdate
-       5.5.10. MOQTUnsubscribe
-       5.5.11. MOQTSubscribeDone
-       5.5.12. MOQTPublish
-       5.5.13. MOQTPublishOk
-       5.5.14. MOQTPublishError
-       5.5.15. MOQTFetch
-       5.5.16. MOQTFetchOk
-       5.5.17. MOQTFetchError
-       5.5.18. MOQTFetchCancel
-       5.5.19. MOQTTrackStatusRequest
-       5.5.20. MOQTTrackStatus
-       5.5.21. MOQTAnnounce
-       5.5.22. MOQTAnnounceOk
-       5.5.23. MOQTAnnounceError
-       5.5.24. MOQTUnannounce
-       5.5.25. MOQTAnnounceCancel
-       5.5.26. MOQTSubscribeAnnounces
-       5.5.27. MOQTSubscribeAnnouncesOk
-       5.5.28. MOQTSubscribeAnnouncesError
-       5.5.29. MOQTUnsubscribeAnnounces
+       5.5.1.  MOQTLocation
+       5.5.2.  MOQTClientSetupMessage
+       5.5.3.  MOQTServerSetupMessage
+       5.5.4.  MOQTGoaway
+       5.5.5.  MOQTMaxRequestId
+       5.5.6.  MOQTRequestsBlocked
+       5.5.7.  MOQTSubscribe
+       5.5.8.  MOQTSubscribeOk
+       5.5.9.  MOQTSubscribeError
+       5.5.10. MOQTSubscribeUpdate
+       5.5.11. MOQTUnsubscribe
+       5.5.12. MOQTSubscribeDone
+       5.5.13. MOQTPublish
+       5.5.14. MOQTPublishOk
+       5.5.15. MOQTPublishError
+       5.5.16. MOQTFetch
+       5.5.17. MOQTFetchOk
+       5.5.18. MOQTFetchError
+       5.5.19. MOQTFetchCancel
+       5.5.20. MOQTTrackStatusRequest
+       5.5.21. MOQTTrackStatus
+       5.5.22. MOQTAnnounce
+       5.5.23. MOQTAnnounceOk
+       5.5.24. MOQTAnnounceError
+       5.5.25. MOQTUnannounce
+       5.5.26. MOQTAnnounceCancel
+       5.5.27. MOQTSubscribeAnnounces
+       5.5.28. MOQTSubscribeAnnouncesOk
+       5.5.29. MOQTSubscribeAnnouncesError
+       5.5.30. MOQTUnsubscribeAnnounces
      5.6.  MOQTExtensionHeader
    6.  Security Considerations
    7.  IANA Considerations
@@ -780,7 +781,18 @@ Table of Contents
 
                Figure 32: MOQTBaseControlMessages definition
 
-5.5.1.  MOQTClientSetupMessage
+5.5.1.  MOQTLocation
+
+   A Location, as defined in Section 1.3.1 of [MOQT]
+
+   MOQTLocation = {
+     group: uint64
+     object: uint64
+   }
+
+                                 Figure 33
+
+5.5.2.  MOQTClientSetupMessage
 
    MOQTClientSetupMessage = {
      type: "client_setup"
@@ -790,9 +802,9 @@ Table of Contents
      ? setup_parameters: [* $MOQTSetupParameter]
    }
 
-                Figure 33: MOQTClientSetupMessage definition
+                Figure 34: MOQTClientSetupMessage definition
 
-5.5.2.  MOQTServerSetupMessage
+5.5.3.  MOQTServerSetupMessage
 
    MOQTServerSetupMessage = {
      type: "server_setup"
@@ -801,9 +813,9 @@ Table of Contents
      ? setup_parameters: [* $MOQTSetupParameter]
    }
 
-                Figure 34: MOQTServerSetupMessage definition
+                Figure 35: MOQTServerSetupMessage definition
 
-5.5.3.  MOQTGoaway
+5.5.4.  MOQTGoaway
 
    MOQTGoaway = {
      type: "goaway"
@@ -811,27 +823,27 @@ Table of Contents
      new_session_uri: RawInfo
    }
 
-                      Figure 35: MOQTGoaway definition
+                      Figure 36: MOQTGoaway definition
 
-5.5.4.  MOQTMaxRequestId
+5.5.5.  MOQTMaxRequestId
 
    MOQTMaxRequestId = {
      type: "max_request_id"
      request_id: uint64
    }
 
-                   Figure 36: MOQTMaxRequestId definition
+                   Figure 37: MOQTMaxRequestId definition
 
-5.5.5.  MOQTRequestsBlocked
+5.5.6.  MOQTRequestsBlocked
 
    MOQTRequestsBlocked = {
      type: "requests_blocked"
      maximum_request_id: uint64
    }
 
-                 Figure 37: MOQTRequestsBlocked definition
+                 Figure 38: MOQTRequestsBlocked definition
 
-5.5.6.  MOQTSubscribe
+5.5.7.  MOQTSubscribe
 
    MOQTSubscribe = {
      type: "subscribe"
@@ -842,16 +854,15 @@ Table of Contents
      group_order: uint8
      forward: uint8
      filter_type: uint64
-     ? start_group: uint64
-     ? start_object: uint64
+     ? start_location: MOQTLocation
      ? end_group: uint64
      number_of_parameters: uint64
      ? subscribe_parameters: [* $MOQTParameter]
    }
 
-                    Figure 38: MOQTSubscribe definition
+                    Figure 39: MOQTSubscribe definition
 
-5.5.7.  MOQTSubscribeOk
+5.5.8.  MOQTSubscribeOk
 
    MOQTSubscribeOk = {
      type: "subscribe_ok"
@@ -860,15 +871,14 @@ Table of Contents
      expires: uint64
      group_order: uint8
      content_exists: uint8
-     ? largest_group_id: uint64
-     ? largest_object_id: uint64
+     ? largest_location: MOQTLocation
      number_of_parameters: uint64
      ? subscribe_parameters: [* $MOQTParameter]
    }
 
-                   Figure 39: MOQTSubscribeOk definition
+                   Figure 40: MOQTSubscribeOk definition
 
-5.5.8.  MOQTSubscribeError
+5.5.9.  MOQTSubscribeError
 
    MOQTSubscribeError = {
      type: "subscribe_error"
@@ -879,15 +889,14 @@ Table of Contents
      track_alias: uint64
    }
 
-                  Figure 40: MOQTSubscribeError definition
+                  Figure 41: MOQTSubscribeError definition
 
-5.5.9.  MOQTSubscribeUpdate
+5.5.10.  MOQTSubscribeUpdate
 
    MOQTSubscribeUpdate = {
      type: "subscribe_update"
      request_id: uint64
-     start_group: uint64
-     start_object: uint64
+     start_location: MOQTLocation
      end_group: uint64
      subscriber_priority: uint8
      forward: uint8
@@ -895,18 +904,18 @@ Table of Contents
      ? subscribe_parameters: [* $MOQTParameter]
    }
 
-                 Figure 41: MOQTSubscribeUpdate definition
+                 Figure 42: MOQTSubscribeUpdate definition
 
-5.5.10.  MOQTUnsubscribe
+5.5.11.  MOQTUnsubscribe
 
    MOQTUnsubscribe = {
      type: "unsubscribe"
      request_id: uint64
    }
 
-                   Figure 42: MOQTUnsubscribe definition
+                   Figure 43: MOQTUnsubscribe definition
 
-5.5.11.  MOQTSubscribeDone
+5.5.12.  MOQTSubscribeDone
 
    MOQTSubscribeDone = {
      type: "subscribe_done"
@@ -917,9 +926,9 @@ Table of Contents
      ? reason_bytes: hexstring
    }
 
-                  Figure 43: MOQTSubscribeDone definition
+                  Figure 44: MOQTSubscribeDone definition
 
-5.5.12.  MOQTPublish
+5.5.13.  MOQTPublish
 
    MOQTPublish = {
      type: "publish"
@@ -929,16 +938,15 @@ Table of Contents
      track_alias: uint64
      group_order: uint8
      content_exists: uint8
-     ? largest_group: uint64
-     ? largest_object: uint64
+     ? largest: MOQTLocation
      forward: uint8
      number_of_parameters: uint64
      ? parameters: [* $MOQTParameter]
    }
 
-                     Figure 44: MOQTPublish definition
+                     Figure 45: MOQTPublish definition
 
-5.5.13.  MOQTPublishOk
+5.5.14.  MOQTPublishOk
 
    MOQTPublishOk = {
      type: "publish_ok"
@@ -947,16 +955,15 @@ Table of Contents
      subscriber_priority: uint8
      group_order: uint8
      filter_type: uint64
-     ? start_group: uint64
-     ? start_object: uint64
+     ? start: MOQTLocation
      ? end_group: uint64
      number_of_parameters: uint64
      ? parameters: [* $MOQTParameter]
    }
 
-                    Figure 45: MOQTPublishOk definition
+                    Figure 46: MOQTPublishOk definition
 
-5.5.14.  MOQTPublishError
+5.5.15.  MOQTPublishError
 
    MOQTPublishError = {
      type: "publish_error"
@@ -966,9 +973,9 @@ Table of Contents
      ? reason_bytes: hexstring
    }
 
-                   Figure 46: MOQTPublishError definition
+                   Figure 47: MOQTPublishError definition
 
-5.5.15.  MOQTFetch
+5.5.16.  MOQTFetch
 
    MOQTFetch = {
      type: "fetch"
@@ -979,10 +986,8 @@ Table of Contents
 
      track_namespace: [ *MOQTByteString]
      ? track_name: MOQTByteString
-     ? start_group: uint64
-     ? start_object: uint64
-     ? end_group: uint64
-     ? end_object: uint64
+     ? start_location: MOQTLocation
+     ? end_location: MOQTLocation
 
      ? joining_request_id: uint64
      ? preceding_group_offset: uint64
@@ -992,24 +997,23 @@ Table of Contents
 
    }
 
-                      Figure 47: MOQTFetch definition
+                      Figure 48: MOQTFetch definition
 
-5.5.16.  MOQTFetchOk
+5.5.17.  MOQTFetchOk
 
    MOQTFetchOk = {
      type: "fetch_ok"
      request_id: uint64
      group_order: uint8
      end_of_track: uint8
-     end_group_id: uint64
-     end_object_id: uint64
+     end_location: MOQTLocation
      number_of_parameters: uint64
      ? subscribe_parameters: [* $MOQTParameter]
    }
 
-                     Figure 48: MOQTFetchOk definition
+                     Figure 49: MOQTFetchOk definition
 
-5.5.17.  MOQTFetchError
+5.5.18.  MOQTFetchError
 
    MOQTFetchError = {
      type: "fetch_error"
@@ -1019,18 +1023,18 @@ Table of Contents
      ? reason_bytes: hexstring
    }
 
-                    Figure 49: MOQTFetchError definition
+                    Figure 50: MOQTFetchError definition
 
-5.5.18.  MOQTFetchCancel
+5.5.19.  MOQTFetchCancel
 
    MOQTFetchCancel = {
      type: "fetch_cancel"
      request_id: uint64
    }
 
-                   Figure 50: MOQTFetchCancel definition
+                   Figure 51: MOQTFetchCancel definition
 
-5.5.19.  MOQTTrackStatusRequest
+5.5.20.  MOQTTrackStatusRequest
 
    MOQTTrackStatusRequest = {
      type: "track_status_request"
@@ -1041,9 +1045,9 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                Figure 51: MOQTTrackStatusRequest definition
+                Figure 52: MOQTTrackStatusRequest definition
 
-5.5.20.  MOQTTrackStatus
+5.5.21.  MOQTTrackStatus
 
    MOQTTrackStatus = {
      type: "track_status"
@@ -1055,9 +1059,9 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                   Figure 52: MOQTTrackStatus definition
+                   Figure 53: MOQTTrackStatus definition
 
-5.5.21.  MOQTAnnounce
+5.5.22.  MOQTAnnounce
 
    MOQTAnnounce = {
      type: "announce"
@@ -1067,18 +1071,18 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                     Figure 53: MOQTAnnounce definition
+                     Figure 54: MOQTAnnounce definition
 
-5.5.22.  MOQTAnnounceOk
+5.5.23.  MOQTAnnounceOk
 
    MOQTAnnounceOk = {
      type: "announce_ok"
      request_id: uint64
    }
 
-                    Figure 54: MOQTAnnounceOk definition
+                    Figure 55: MOQTAnnounceOk definition
 
-5.5.23.  MOQTAnnounceError
+5.5.24.  MOQTAnnounceError
 
    MOQTAnnounceError = {
      type: "announce_error"
@@ -1088,18 +1092,18 @@ Table of Contents
      ? reason_bytes: hexstring
    }
 
-                  Figure 55: MOQTAnnounceError definition
+                  Figure 56: MOQTAnnounceError definition
 
-5.5.24.  MOQTUnannounce
+5.5.25.  MOQTUnannounce
 
    MOQTUnannounce = {
      type: "unannounce"
      track_namespace: [ *MOQTByteString]
    }
 
-                     Figure 56: MOQTAnnounce definition
+                     Figure 57: MOQTAnnounce definition
 
-5.5.25.  MOQTAnnounceCancel
+5.5.26.  MOQTAnnounceCancel
 
    MOQTAnnounceCancel = {
      type: "announce_cancel"
@@ -1109,9 +1113,9 @@ Table of Contents
      ? reason_bytes: hexstring
    }
 
-                  Figure 57: MOQTAnnounceCancel definition
+                  Figure 58: MOQTAnnounceCancel definition
 
-5.5.26.  MOQTSubscribeAnnounces
+5.5.27.  MOQTSubscribeAnnounces
 
    MOQTSubscribeAnnounces = {
      type: "subscribe_announces"
@@ -1121,18 +1125,18 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                Figure 58: MOQTSubscribeAnnounces definition
+                Figure 59: MOQTSubscribeAnnounces definition
 
-5.5.27.  MOQTSubscribeAnnouncesOk
+5.5.28.  MOQTSubscribeAnnouncesOk
 
    MOQTSubscribeAnnouncesOk = {
      type: "subscribe_announces_ok"
      request_id: uint64
    }
 
-               Figure 59: MOQTSubscribeAnnouncesOk definition
+               Figure 60: MOQTSubscribeAnnouncesOk definition
 
-5.5.28.  MOQTSubscribeAnnouncesError
+5.5.29.  MOQTSubscribeAnnouncesError
 
    MOQTSubscribeAnnouncesError = {
      type: "subscribe_announces_error"
@@ -1142,16 +1146,16 @@ Table of Contents
      ? reason_bytes: hexstring
    }
 
-             Figure 60: MOQTSubscribeAnnouncesError definition
+             Figure 61: MOQTSubscribeAnnouncesError definition
 
-5.5.29.  MOQTUnsubscribeAnnounces
+5.5.30.  MOQTUnsubscribeAnnounces
 
    MOQTUnsubscribeAnnounces = {
      type: "unsubscribe_announces"
      track_namespace_prefix: [ *MOQTByteString]
    }
 
-               Figure 61: MOQTUnsubscribeAnnounces definition
+               Figure 62: MOQTUnsubscribeAnnounces definition
 
 5.6.  MOQTExtensionHeader
 
@@ -1162,7 +1166,7 @@ Table of Contents
      ? payload: RawInfo
    }
 
-                   Figure 62: Extension Header definition
+                   Figure 63: Extension Header definition
 
 6.  Security Considerations
 

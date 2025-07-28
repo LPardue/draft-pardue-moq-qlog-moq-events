@@ -689,6 +689,19 @@ $MOQTControlMessage /= MOQTBaseControlMessages
 ~~~
 {: #moqtbasecontrolmessage-def title="MOQTBaseControlMessages definition"}
 
+
+### MOQTLocation
+
+A Location, as defined in {{Section 1.3.1 of MOQT}}
+
+~~~ cddl
+MOQTLocation = {
+  group: uint64
+  object: uint64
+}
+~~~
+{: #moqtlocation-def title="MOQTLocation definition}
+
 ### MOQTClientSetupMessage
 
 ~~~ cddl
@@ -757,8 +770,7 @@ MOQTSubscribe = {
   group_order: uint8
   forward: uint8
   filter_type: uint64
-  ? start_group: uint64
-  ? start_object: uint64
+  ? start_location: MOQTLocation
   ? end_group: uint64
   number_of_parameters: uint64
   ? subscribe_parameters: [* $MOQTParameter]
@@ -776,8 +788,7 @@ MOQTSubscribeOk = {
   expires: uint64
   group_order: uint8
   content_exists: uint8
-  ? largest_group_id: uint64
-  ? largest_object_id: uint64
+  ? largest_location: MOQTLocation
   number_of_parameters: uint64
   ? subscribe_parameters: [* $MOQTParameter]
 }
@@ -804,8 +815,7 @@ MOQTSubscribeError = {
 MOQTSubscribeUpdate = {
   type: "subscribe_update"
   request_id: uint64
-  start_group: uint64
-  start_object: uint64
+  start_location: MOQTLocation
   end_group: uint64
   subscriber_priority: uint8
   forward: uint8
@@ -850,8 +860,7 @@ MOQTPublish = {
   track_alias: uint64
   group_order: uint8
   content_exists: uint8
-  ? largest_group: uint64
-  ? largest_object: uint64
+  ? largest: MOQTLocation
   forward: uint8
   number_of_parameters: uint64
   ? parameters: [* $MOQTParameter]
@@ -869,8 +878,7 @@ MOQTPublishOk = {
   subscriber_priority: uint8
   group_order: uint8
   filter_type: uint64
-  ? start_group: uint64
-  ? start_object: uint64
+  ? start: MOQTLocation
   ? end_group: uint64
   number_of_parameters: uint64
   ? parameters: [* $MOQTParameter]
@@ -903,10 +911,8 @@ MOQTFetch = {
 
   track_namespace: [ *MOQTByteString]
   ? track_name: MOQTByteString
-  ? start_group: uint64
-  ? start_object: uint64
-  ? end_group: uint64
-  ? end_object: uint64
+  ? start_location: MOQTLocation
+  ? end_location: MOQTLocation
 
   ? joining_request_id: uint64
   ? preceding_group_offset: uint64
@@ -926,8 +932,7 @@ MOQTFetchOk = {
   request_id: uint64
   group_order: uint8
   end_of_track: uint8
-  end_group_id: uint64
-  end_object_id: uint64
+  end_location: MOQTLocation
   number_of_parameters: uint64
   ? subscribe_parameters: [* $MOQTParameter]
 }

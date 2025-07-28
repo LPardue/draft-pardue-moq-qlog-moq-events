@@ -5,8 +5,8 @@
 Media Over QUIC                                                L. Pardue
 Internet-Draft                                                Cloudflare
 Intended status: Informational                              M. Engelbart
-Expires: 26 January 2026                  Technical University of Munich
-                                                            25 July 2025
+Expires: 29 January 2026                  Technical University of Munich
+                                                            28 July 2025
 
 
                        MoQ qlog event definitions
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 26 January 2026.
+   This Internet-Draft will expire on 29 January 2026.
 
 Copyright Notice
 
@@ -787,7 +787,7 @@ Table of Contents
 
    MOQTLocation = {
      group: uint64
-     order: uint64
+     object: uint64
    }
 
                                  Figure 33

@@ -5,8 +5,8 @@
 Media Over QUIC                                                L. Pardue
 Internet-Draft                                                Cloudflare
 Intended status: Informational                              M. Engelbart
-Expires: 29 January 2026                  Technical University of Munich
-                                                            28 July 2025
+Expires: 30 January 2026                  Technical University of Munich
+                                                            29 July 2025
 
 
                        MoQ qlog event definitions
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 29 January 2026.
+   This Internet-Draft will expire on 30 January 2026.
 
 Copyright Notice
 
@@ -1170,11 +1170,29 @@ Table of Contents
 
 6.  Security Considerations
 
-   TODO Security
+   The security and privacy considerations discussed in [QLOG-MAIN]
+   apply to this document as well.
 
 7.  IANA Considerations
 
-   This document has no IANA actions.
+   This document registers a new entry in the "qlog event schema URIs"
+   registry (created in Section 15 of [QLOG-MAIN]).
+
+   Event schema URI:  urn:ietf:params:qlog:events:moqt
+
+   Namespace  moqt
+
+   Event Types  control_message_created, control_message_parsed,
+      stream_type_set, object_datagram_created, object_datagram_parsed,
+      object_datagram_status_created, object_datagram_status_parsed,
+      subgroup_header_created, subgroup_header_parsed,
+      subgroup_object_created, subgroup_object_parsed,
+      fetch_header_created, fetch_header_parsed, fetch_object_created,
+      fetch_object_parsed
+
+   Description:  Event definitions related to the MOQT protocol.
+
+   Reference:  This Document
 
 8.  Normative References
 

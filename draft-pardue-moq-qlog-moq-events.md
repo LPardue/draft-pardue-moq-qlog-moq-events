@@ -338,7 +338,7 @@ MOQTSubgroupHeaderCreated = {
     stream_id: uint64
     track_alias: uint64
     group_id: uint64
-    subgroup_id: uint64
+    ? subgroup_id: uint64
     publisher_priority: uint8
 
     * $$moqt-subgroupheadercreated-extension
@@ -356,7 +356,7 @@ MOQTSubgroupHeaderParsed = {
     stream_id: uint64
     track_alias: uint64
     group_id: uint64
-    subgroup_id: uint64
+    ? subgroup_id: uint64
     publisher_priority: uint8
 
     * $$moqt-subgroupheaderparsed-extension

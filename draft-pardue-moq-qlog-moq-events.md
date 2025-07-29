@@ -639,6 +639,19 @@ MOQTByteString = {
 ~~~
 {: #MOQTByteString-def title="MOQTByteString definition"}
 
+## MOQTLocation
+
+A Location, as defined in {{Section 1.3.1 of MOQT}}
+
+~~~ cddl
+MOQTLocation = {
+  group: uint64
+  object: uint64
+}
+~~~
+{: #moqtlocation-def title="MOQTLocation definition}
+
+
 ## MOQTControlMessage
 
 The generic `$MOQTControlMessage` is defined here as a CDDL "type socket" extension point.
@@ -689,18 +702,6 @@ $MOQTControlMessage /= MOQTBaseControlMessages
 ~~~
 {: #moqtbasecontrolmessage-def title="MOQTBaseControlMessages definition"}
 
-
-### MOQTLocation
-
-A Location, as defined in {{Section 1.3.1 of MOQT}}
-
-~~~ cddl
-MOQTLocation = {
-  group: uint64
-  object: uint64
-}
-~~~
-{: #moqtlocation-def title="MOQTLocation definition}
 
 ### MOQTClientSetupMessage
 

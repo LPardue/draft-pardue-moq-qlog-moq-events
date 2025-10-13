@@ -806,7 +806,6 @@ MOQTSubscribeError = {
   error_code: uint64
   ? reason: text
   ? reason_bytes: hexstring
-  track_alias: uint64
 }
 ~~~
 {: #subscribeerror-def title="MOQTSubscribeError definition"}

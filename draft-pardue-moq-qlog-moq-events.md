@@ -688,6 +688,7 @@ MOQTBaseControlMessages = MOQTClientSetupMessage /
                           MOQTFetchCancel /
                           MOQTTrackStatusRequest /
                           MOQTTrackStatus /
+                          MOQTTrackStatusError /
                           MOQTAnnounce /
                           MOQTAnnounceOk /
                           MOQTAnnounceError /
@@ -963,34 +964,55 @@ MOQTFetchCancel = {
 ~~~
 {: #fetchcancel-def title="MOQTFetchCancel definition"}
 
-### MOQTTrackStatusRequest
-
-~~~ cddl
-MOQTTrackStatusRequest = {
-  type: "track_status_request"
-  request_id: uint64
-  track_namespace: [ *MOQTByteString]
-  track_name: MOQTByteString
-  number_of_parameters: uint64
-  ? parameters: [* $MOQTParameter]
-}
-~~~
-{: #trackstatusrequest-def title="MOQTTrackStatusRequest definition"}
-
 ### MOQTTrackStatus
 
 ~~~ cddl
 MOQTTrackStatus = {
   type: "track_status"
   request_id: uint64
-  status_code: uint64
-  last_group_id: uint64
-  last_object_id: uint64
+  track_namespace: [ *MOQTByteString]
+  track_name: MOQTByteString
+  subscriber_priority: uint8
+  group_order: uint8
+  forward: uint8
+  filter_type: uint64
+  ? start_location: MOQTLocation
+  ? end_group: uint64
   number_of_parameters: uint64
-  ? parameters: [* $MOQTParameter]
+  ? subscribe_parameters: [* $MOQTParameter]
 }
 ~~~
 {: #trackstatus-def title="MOQTTrackStatus definition"}
+
+### MOQTTrackStatusOk
+
+~~~ cddl
+MOQTTrackStatusOk = {
+  type: "track_status_ok"
+  request_id: uint64
+  track_alias: uint64
+  expires: uint64
+  group_order: uint8
+  content_exists: uint8
+  ? largest_location: MOQTLocation
+  number_of_parameters: uint64
+  ? subscribe_parameters: [* $MOQTParameter]
+}
+~~~
+{: #trackstatusok-def title="MOQTTrackStatusOk definition"}
+
+### MOQTTrackStatusError
+
+~~~ cddl
+MOQTTrackStatusError = {
+  type: "track_status_error"
+  request_id: uint64
+  error_code: uint64
+  ? reason: text
+  ? reason_bytes: hexstring
+}
+~~~
+{: #trackstatuserror-def title="MOQTTrackStatusError definition"}
 
 ### MOQTAnnounce
 

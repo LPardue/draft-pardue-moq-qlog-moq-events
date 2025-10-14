@@ -687,6 +687,7 @@ MOQTBaseControlMessages = MOQTClientSetupMessage /
                           MOQTFetchError /
                           MOQTFetchCancel /
                           MOQTTrackStatus /
+                          MOQTTrackStatusOk /
                           MOQTTrackStatusError /
                           MOQTAnnounce /
                           MOQTAnnounceOk /

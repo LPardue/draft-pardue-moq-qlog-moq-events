@@ -686,7 +686,6 @@ MOQTBaseControlMessages = MOQTClientSetupMessage /
                           MOQTFetchOk /
                           MOQTFetchError /
                           MOQTFetchCancel /
-                          MOQTTrackStatusRequest /
                           MOQTTrackStatus /
                           MOQTTrackStatusError /
                           MOQTAnnounce /
@@ -775,7 +774,7 @@ MOQTSubscribe = {
   ? start_location: MOQTLocation
   ? end_group: uint64
   number_of_parameters: uint64
-  ? subscribe_parameters: [* $MOQTParameter]
+  ? parameters: [* $MOQTParameter]
 }
 ~~~
 {: #subscribe-def title="MOQTSubscribe definition"}
@@ -792,7 +791,7 @@ MOQTSubscribeOk = {
   content_exists: uint8
   ? largest_location: MOQTLocation
   number_of_parameters: uint64
-  ? subscribe_parameters: [* $MOQTParameter]
+  ? parameters: [* $MOQTParameter]
 }
 ~~~
 {: #subscribeok-def title="MOQTSubscribeOk definition"}
@@ -822,7 +821,7 @@ MOQTSubscribeUpdate = {
   subscriber_priority: uint8
   forward: uint8
   number_of_parameters: uint64
-  ? subscribe_parameters: [* $MOQTParameter]
+  ? parameters: [* $MOQTParameter]
 }
 ~~~
 {: #subscribeupdate-def title="MOQTSubscribeUpdate definition"}
@@ -936,7 +935,7 @@ MOQTFetchOk = {
   end_of_track: uint8
   end_location: MOQTLocation
   number_of_parameters: uint64
-  ? subscribe_parameters: [* $MOQTParameter]
+  ? parameters: [* $MOQTParameter]
 }
 ~~~
 {: #fetchok-def title="MOQTFetchOk definition"}
@@ -979,7 +978,7 @@ MOQTTrackStatus = {
   ? start_location: MOQTLocation
   ? end_group: uint64
   number_of_parameters: uint64
-  ? subscribe_parameters: [* $MOQTParameter]
+  ? parameters: [* $MOQTParameter]
 }
 ~~~
 {: #trackstatus-def title="MOQTTrackStatus definition"}
@@ -996,7 +995,7 @@ MOQTTrackStatusOk = {
   content_exists: uint8
   ? largest_location: MOQTLocation
   number_of_parameters: uint64
-  ? subscribe_parameters: [* $MOQTParameter]
+  ? parameters: [* $MOQTParameter]
 }
 ~~~
 {: #trackstatusok-def title="MOQTTrackStatusOk definition"}

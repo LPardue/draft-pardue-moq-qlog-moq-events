@@ -1296,7 +1296,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
                     <p id="section-toc.1-1.5.2.6.2.10.1"><a href="#section-5.6.10" class="auto internal xref">5.6.10</a>. <a href="#name-moqtunsubscribe" class="internal xref">MOQTUnsubscribe</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.6.2.11">
-                    <p id="section-toc.1-1.5.2.6.2.11.1"><a href="#section-5.6.11" class="auto internal xref">5.6.11</a>. <a href="#name-moqtsubscribedone" class="internal xref">MOQTSubscribeDone</a></p>
+                    <p id="section-toc.1-1.5.2.6.2.11.1"><a href="#section-5.6.11" class="auto internal xref">5.6.11</a>. <a href="#name-moqtpublishdone" class="internal xref">MOQTPublishDone</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.6.2.12">
                     <p id="section-toc.1-1.5.2.6.2.12.1"><a href="#section-5.6.12" class="auto internal xref">5.6.12</a>. <a href="#name-moqtpublish" class="internal xref">MOQTPublish</a></p>
@@ -2434,7 +2434,7 @@ MOQTBaseControlMessages = MOQTClientSetupMessage /
                           MOQTSubscribeError /
                           MOQTSubscribeUpdate /
                           MOQTUnsubscribe /
-                          MOQTSubscribeDone /
+                          MOQTPublishDone /
                           MOQTPublish /
                           MOQTPublishOk /
                           MOQTPublishError /
@@ -2704,17 +2704,17 @@ MOQTUnsubscribe = {
 </div>
 </section>
 </div>
-<div id="moqtsubscribedone">
+<div id="moqtpublishdone">
 <section id="section-5.6.11">
-          <h4 id="name-moqtsubscribedone">
-<a href="#section-5.6.11" class="section-number selfRef">5.6.11. </a><a href="#name-moqtsubscribedone" class="section-name selfRef">MOQTSubscribeDone</a>
+          <h4 id="name-moqtpublishdone">
+<a href="#section-5.6.11" class="section-number selfRef">5.6.11. </a><a href="#name-moqtpublishdone" class="section-name selfRef">MOQTPublishDone</a>
           </h4>
-<span id="name-moqtsubscribedone-definitio"></span><div id="subscribedone-def">
+<span id="name-moqtpublishdone-definition"></span><div id="publishdone-def">
 <figure id="figure-44">
             <div class="lang-cddl sourcecode" id="section-5.6.11-1.1">
 <pre>
-MOQTSubscribeDone = {
-  type: "subscribe_done"
+MOQTPublishDone = {
+  type: "publish_done"
   request_id: uint64
   status_code: uint64
   stream_count: uint64
@@ -2724,7 +2724,7 @@ MOQTSubscribeDone = {
 </pre>
 </div>
 <figcaption><a href="#figure-44" class="selfRef">Figure 44</a>:
-<a href="#name-moqtsubscribedone-definitio" class="selfRef">MOQTSubscribeDone definition</a>
+<a href="#name-moqtpublishdone-definition" class="selfRef">MOQTPublishDone definition</a>
             </figcaption></figure>
 </div>
 </section>

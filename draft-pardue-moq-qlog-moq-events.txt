@@ -113,7 +113,7 @@ Table of Contents
        5.6.8.  MOQTSubscribeError
        5.6.9.  MOQTSubscribeUpdate
        5.6.10. MOQTUnsubscribe
-       5.6.11. MOQTSubscribeDone
+       5.6.11. MOQTPublishDone
        5.6.12. MOQTPublish
        5.6.13. MOQTPublishOk
        5.6.14. MOQTPublishError
@@ -769,7 +769,7 @@ Table of Contents
                              MOQTSubscribeError /
                              MOQTSubscribeUpdate /
                              MOQTUnsubscribe /
-                             MOQTSubscribeDone /
+                             MOQTPublishDone /
                              MOQTPublish /
                              MOQTPublishOk /
                              MOQTPublishError /
@@ -916,10 +916,10 @@ Table of Contents
 
                    Figure 43: MOQTUnsubscribe definition
 
-5.6.11.  MOQTSubscribeDone
+5.6.11.  MOQTPublishDone
 
-   MOQTSubscribeDone = {
-     type: "subscribe_done"
+   MOQTPublishDone = {
+     type: "publish_done"
      request_id: uint64
      status_code: uint64
      stream_count: uint64
@@ -927,7 +927,7 @@ Table of Contents
      ? reason_bytes: hexstring
    }
 
-                  Figure 44: MOQTSubscribeDone definition
+                   Figure 44: MOQTPublishDone definition
 
 5.6.12.  MOQTPublish
 

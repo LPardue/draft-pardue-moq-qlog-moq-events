@@ -5,8 +5,8 @@
 Media Over QUIC                                                L. Pardue
 Internet-Draft                                                Cloudflare
 Intended status: Informational                              M. Engelbart
-Expires: 30 January 2026                  Technical University of Munich
-                                                            29 July 2025
+Expires: 18 April 2026                    Technical University of Munich
+                                                         15 October 2025
 
 
                        MoQ qlog event definitions
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 30 January 2026.
+   This Internet-Draft will expire on 18 April 2026.
 
 Copyright Notice
 
@@ -121,17 +121,18 @@ Table of Contents
        5.6.16. MOQTFetchOk
        5.6.17. MOQTFetchError
        5.6.18. MOQTFetchCancel
-       5.6.19. MOQTTrackStatusRequest
-       5.6.20. MOQTTrackStatus
-       5.6.21. MOQTAnnounce
-       5.6.22. MOQTAnnounceOk
-       5.6.23. MOQTAnnounceError
-       5.6.24. MOQTUnannounce
-       5.6.25. MOQTAnnounceCancel
-       5.6.26. MOQTSubscribeAnnounces
-       5.6.27. MOQTSubscribeAnnouncesOk
-       5.6.28. MOQTSubscribeAnnouncesError
-       5.6.29. MOQTUnsubscribeAnnounces
+       5.6.19. MOQTTrackStatus
+       5.6.20. MOQTTrackStatusOk
+       5.6.21. MOQTTrackStatusError
+       5.6.22. MOQTAnnounce
+       5.6.23. MOQTAnnounceOk
+       5.6.24. MOQTAnnounceError
+       5.6.25. MOQTUnannounce
+       5.6.26. MOQTAnnounceCancel
+       5.6.27. MOQTSubscribeAnnounces
+       5.6.28. MOQTSubscribeAnnouncesOk
+       5.6.29. MOQTSubscribeAnnouncesError
+       5.6.30. MOQTUnsubscribeAnnounces
      5.7.  MOQTExtensionHeader
    6.  Security Considerations
    7.  IANA Considerations
@@ -776,8 +777,9 @@ Table of Contents
                              MOQTFetchOk /
                              MOQTFetchError /
                              MOQTFetchCancel /
-                             MOQTTrackStatusRequest /
                              MOQTTrackStatus /
+                             MOQTTrackStatusOk /
+                             MOQTTrackStatusError /
                              MOQTAnnounce /
                              MOQTAnnounceOk /
                              MOQTAnnounceError /
@@ -857,7 +859,7 @@ Table of Contents
      ? start_location: MOQTLocation
      ? end_group: uint64
      number_of_parameters: uint64
-     ? subscribe_parameters: [* $MOQTParameter]
+     ? parameters: [* $MOQTParameter]
    }
 
                     Figure 39: MOQTSubscribe definition
@@ -873,7 +875,7 @@ Table of Contents
      content_exists: uint8
      ? largest_location: MOQTLocation
      number_of_parameters: uint64
-     ? subscribe_parameters: [* $MOQTParameter]
+     ? parameters: [* $MOQTParameter]
    }
 
                    Figure 40: MOQTSubscribeOk definition
@@ -901,7 +903,7 @@ Table of Contents
      subscriber_priority: uint8
      forward: uint8
      number_of_parameters: uint64
-     ? subscribe_parameters: [* $MOQTParameter]
+     ? parameters: [* $MOQTParameter]
    }
 
                  Figure 42: MOQTSubscribeUpdate definition
@@ -1008,7 +1010,7 @@ Table of Contents
      end_of_track: uint8
      end_location: MOQTLocation
      number_of_parameters: uint64
-     ? subscribe_parameters: [* $MOQTParameter]
+     ? parameters: [* $MOQTParameter]
    }
 
                      Figure 49: MOQTFetchOk definition
@@ -1034,34 +1036,54 @@ Table of Contents
 
                    Figure 51: MOQTFetchCancel definition
 
-5.6.19.  MOQTTrackStatusRequest
-
-   MOQTTrackStatusRequest = {
-     type: "track_status_request"
-     request_id: uint64
-     track_namespace: [ *MOQTByteString]
-     track_name: MOQTByteString
-     number_of_parameters: uint64
-     ? parameters: [* $MOQTParameter]
-   }
-
-                Figure 52: MOQTTrackStatusRequest definition
-
-5.6.20.  MOQTTrackStatus
+5.6.19.  MOQTTrackStatus
 
    MOQTTrackStatus = {
      type: "track_status"
      request_id: uint64
-     status_code: uint64
-     last_group_id: uint64
-     last_object_id: uint64
+     track_namespace: [ *MOQTByteString]
+     track_name: MOQTByteString
+     subscriber_priority: uint8
+     group_order: uint8
+     forward: uint8
+     filter_type: uint64
+     ? start_location: MOQTLocation
+     ? end_group: uint64
      number_of_parameters: uint64
      ? parameters: [* $MOQTParameter]
    }
 
-                   Figure 53: MOQTTrackStatus definition
+                   Figure 52: MOQTTrackStatus definition
 
-5.6.21.  MOQTAnnounce
+5.6.20.  MOQTTrackStatusOk
+
+   MOQTTrackStatusOk = {
+     type: "track_status_ok"
+     request_id: uint64
+     track_alias: uint64
+     expires: uint64
+     group_order: uint8
+     content_exists: uint8
+     ? largest_location: MOQTLocation
+     number_of_parameters: uint64
+     ? parameters: [* $MOQTParameter]
+   }
+
+                  Figure 53: MOQTTrackStatusOk definition
+
+5.6.21.  MOQTTrackStatusError
+
+   MOQTTrackStatusError = {
+     type: "track_status_error"
+     request_id: uint64
+     error_code: uint64
+     ? reason: text
+     ? reason_bytes: hexstring
+   }
+
+                 Figure 54: MOQTTrackStatusError definition
+
+5.6.22.  MOQTAnnounce
 
    MOQTAnnounce = {
      type: "announce"
@@ -1071,18 +1093,18 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                     Figure 54: MOQTAnnounce definition
+                     Figure 55: MOQTAnnounce definition
 
-5.6.22.  MOQTAnnounceOk
+5.6.23.  MOQTAnnounceOk
 
    MOQTAnnounceOk = {
      type: "announce_ok"
      request_id: uint64
    }
 
-                    Figure 55: MOQTAnnounceOk definition
+                    Figure 56: MOQTAnnounceOk definition
 
-5.6.23.  MOQTAnnounceError
+5.6.24.  MOQTAnnounceError
 
    MOQTAnnounceError = {
      type: "announce_error"
@@ -1092,18 +1114,18 @@ Table of Contents
      ? reason_bytes: hexstring
    }
 
-                  Figure 56: MOQTAnnounceError definition
+                  Figure 57: MOQTAnnounceError definition
 
-5.6.24.  MOQTUnannounce
+5.6.25.  MOQTUnannounce
 
    MOQTUnannounce = {
      type: "unannounce"
      track_namespace: [ *MOQTByteString]
    }
 
-                     Figure 57: MOQTAnnounce definition
+                     Figure 58: MOQTAnnounce definition
 
-5.6.25.  MOQTAnnounceCancel
+5.6.26.  MOQTAnnounceCancel
 
    MOQTAnnounceCancel = {
      type: "announce_cancel"
@@ -1113,9 +1135,9 @@ Table of Contents
      ? reason_bytes: hexstring
    }
 
-                  Figure 58: MOQTAnnounceCancel definition
+                  Figure 59: MOQTAnnounceCancel definition
 
-5.6.26.  MOQTSubscribeAnnounces
+5.6.27.  MOQTSubscribeAnnounces
 
    MOQTSubscribeAnnounces = {
      type: "subscribe_announces"
@@ -1125,18 +1147,18 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                Figure 59: MOQTSubscribeAnnounces definition
+                Figure 60: MOQTSubscribeAnnounces definition
 
-5.6.27.  MOQTSubscribeAnnouncesOk
+5.6.28.  MOQTSubscribeAnnouncesOk
 
    MOQTSubscribeAnnouncesOk = {
      type: "subscribe_announces_ok"
      request_id: uint64
    }
 
-               Figure 60: MOQTSubscribeAnnouncesOk definition
+               Figure 61: MOQTSubscribeAnnouncesOk definition
 
-5.6.28.  MOQTSubscribeAnnouncesError
+5.6.29.  MOQTSubscribeAnnouncesError
 
    MOQTSubscribeAnnouncesError = {
      type: "subscribe_announces_error"
@@ -1146,16 +1168,16 @@ Table of Contents
      ? reason_bytes: hexstring
    }
 
-             Figure 61: MOQTSubscribeAnnouncesError definition
+             Figure 62: MOQTSubscribeAnnouncesError definition
 
-5.6.29.  MOQTUnsubscribeAnnounces
+5.6.30.  MOQTUnsubscribeAnnounces
 
    MOQTUnsubscribeAnnounces = {
      type: "unsubscribe_announces"
      track_namespace_prefix: [ *MOQTByteString]
    }
 
-               Figure 62: MOQTUnsubscribeAnnounces definition
+               Figure 63: MOQTUnsubscribeAnnounces definition
 
 5.7.  MOQTExtensionHeader
 
@@ -1166,7 +1188,7 @@ Table of Contents
      ? payload: RawInfo
    }
 
-                   Figure 63: Extension Header definition
+                   Figure 64: Extension Header definition
 
 6.  Security Considerations
 
@@ -1204,9 +1226,9 @@ Table of Contents
 
    [MOQT]     Nandakumar, S., Vasiliev, V., Swett, I., and A. Frindell,
               "Media over QUIC Transport", Work in Progress, Internet-
-              Draft, draft-ietf-moq-transport-13, 7 July 2025,
+              Draft, draft-ietf-moq-transport-14, 2 September 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-moq-
-              transport-13>.
+              transport-14>.
 
    [QLOG-MAIN]
               Marx, R., Niccolini, L., Seemann, M., and L. Pardue,

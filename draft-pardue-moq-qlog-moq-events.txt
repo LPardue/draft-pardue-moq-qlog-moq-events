@@ -888,7 +888,6 @@ Table of Contents
      error_code: uint64
      ? reason: text
      ? reason_bytes: hexstring
-     track_alias: uint64
    }
 
                   Figure 41: MOQTSubscribeError definition

@@ -1173,4 +1173,4 @@ Reference:
 # Acknowledgments
 {:numbered="false"}
 
-Thanks to Sujay Patel for contributions to this document.
+Thanks to Lorenzo Miniero, Sujay Patel, and Aman Sharm for feedback and contributions to this document.

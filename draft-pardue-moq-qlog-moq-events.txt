@@ -5,8 +5,8 @@
 Media Over QUIC                                                L. Pardue
 Internet-Draft                                                Cloudflare
 Intended status: Informational                              M. Engelbart
-Expires: 18 April 2026                    Technical University of Munich
-                                                         15 October 2025
+Expires: 20 April 2026                    Technical University of Munich
+                                                         17 October 2025
 
 
                        MoQ qlog event definitions
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 18 April 2026.
+   This Internet-Draft will expire on 20 April 2026.
 
 Copyright Notice
 
@@ -129,10 +129,10 @@ Table of Contents
        5.6.24. MOQTAnnounceError
        5.6.25. MOQTUnannounce
        5.6.26. MOQTAnnounceCancel
-       5.6.27. MOQTSubscribeAnnounces
-       5.6.28. MOQTSubscribeAnnouncesOk
-       5.6.29. MOQTSubscribeAnnouncesError
-       5.6.30. MOQTUnsubscribeAnnounces
+       5.6.27. MOQTSubscribeNamespace
+       5.6.28. MOQTSubscribeNamespaceOk
+       5.6.29. MOQTSubscribeNamespaceError
+       5.6.30. MOQTUnsubscribeNamespace
      5.7.  MOQTExtensionHeader
    6.  Security Considerations
    7.  IANA Considerations
@@ -785,10 +785,10 @@ Table of Contents
                              MOQTAnnounceError /
                              MOQTUnannounce /
                              MOQTAnnounceCancel /
-                             MOQTSubscribeAnnounces /
-                             MOQTSubscribeAnnouncesOk /
-                             MOQTSubscribeAnnouncesError /
-                             MOQTUnsubscribeAnnounces
+                             MOQTSubscribeNamespace /
+                             MOQTSubscribeNamespaceOk /
+                             MOQTSubscribeNamespaceError /
+                             MOQTUnsubscribeNamespace
 
    $MOQTControlMessage /= MOQTBaseControlMessages
 
@@ -1136,47 +1136,47 @@ Table of Contents
 
                   Figure 59: MOQTAnnounceCancel definition
 
-5.6.27.  MOQTSubscribeAnnounces
+5.6.27.  MOQTSubscribeNamespace
 
-   MOQTSubscribeAnnounces = {
-     type: "subscribe_announces"
+   MOQTSubscribeNamespace = {
+     type: "subscribe_namespace"
      request_id: uint64
      track_namespace_prefix: [ *MOQTByteString]
      number_of_parameters: uint64
      ? parameters: [* $MOQTParameter]
    }
 
-                Figure 60: MOQTSubscribeAnnounces definition
+                Figure 60: MOQTSubscribeNamespace definition
 
-5.6.28.  MOQTSubscribeAnnouncesOk
+5.6.28.  MOQTSubscribeNamespaceOk
 
-   MOQTSubscribeAnnouncesOk = {
-     type: "subscribe_announces_ok"
+   MOQTSubscribeNamespaceOk = {
+     type: "subscribe_namespace_ok"
      request_id: uint64
    }
 
-               Figure 61: MOQTSubscribeAnnouncesOk definition
+               Figure 61: MOQTSubscribeNamespaceOk definition
 
-5.6.29.  MOQTSubscribeAnnouncesError
+5.6.29.  MOQTSubscribeNamespaceError
 
-   MOQTSubscribeAnnouncesError = {
-     type: "subscribe_announces_error"
+   MOQTSubscribeNamespaceError = {
+     type: "subscribe_namespace_error"
      request_id: uint64
      error_code: uint64
      ? reason: text
      ? reason_bytes: hexstring
    }
 
-             Figure 62: MOQTSubscribeAnnouncesError definition
+             Figure 62: MOQTSubscribeNamespaceError definition
 
-5.6.30.  MOQTUnsubscribeAnnounces
+5.6.30.  MOQTUnsubscribeNamespace
 
-   MOQTUnsubscribeAnnounces = {
-     type: "unsubscribe_announces"
+   MOQTUnsubscribeNamespace = {
+     type: "unsubscribe_namespace"
      track_namespace_prefix: [ *MOQTByteString]
    }
 
-               Figure 63: MOQTUnsubscribeAnnounces definition
+               Figure 63: MOQTUnsubscribeNamespace definition
 
 5.7.  MOQTExtensionHeader
 

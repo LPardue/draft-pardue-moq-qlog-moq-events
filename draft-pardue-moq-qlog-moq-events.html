@@ -10,22 +10,21 @@
 <meta content="
        This document defines a qlog event schema containing concrete events for MoQ. 
     " name="description">
-<meta content="xml2rfc 3.30.2" name="generator">
+<meta content="xml2rfc 3.31.0" name="generator">
 <meta content="hi fidelity" name="keyword">
 <meta content="draft-pardue-moq-qlog-moq-events-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.30.2
-    Python 3.12.11
+  xml2rfc 3.31.0
+    Python 3.12.12
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.1.0
     Jinja2 3.1.6
     lxml 5.3.1
-    platformdirs 4.4.0
+    platformdirs 4.5.0
     pycountry 24.6.1
     PyYAML 6.0.2
     requests 2.32.5
-    setuptools 80.9.0
     wcwidth 0.2.14
 -->
 <link href="draft-pardue-moq-qlog-moq-events.xml" rel="alternate" type="application/rfc+xml">
@@ -1049,7 +1048,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Pardue &amp; Engelbart</td>
-<td class="center">Expires 20 April 2026</td>
+<td class="center">Expires 23 April 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1062,12 +1061,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-pardue-moq-qlog-moq-events-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-10-17" class="published">17 October 2025</time>
+<time datetime="2025-10-20" class="published">20 October 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-04-20">20 April 2026</time></dd>
+<dd class="expires"><time datetime="2026-04-23">23 April 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1121,7 +1120,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 20 April 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 23 April 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1329,19 +1328,19 @@ svg :is([fill="white"], [fill^="#fff"]) {
                     <p id="section-toc.1-1.5.2.6.2.21.1"><a href="#section-5.6.21" class="auto internal xref">5.6.21</a>. <a href="#name-moqttrackstatuserror" class="internal xref">MOQTTrackStatusError</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.6.2.22">
-                    <p id="section-toc.1-1.5.2.6.2.22.1"><a href="#section-5.6.22" class="auto internal xref">5.6.22</a>. <a href="#name-moqtannounce" class="internal xref">MOQTAnnounce</a></p>
+                    <p id="section-toc.1-1.5.2.6.2.22.1"><a href="#section-5.6.22" class="auto internal xref">5.6.22</a>. <a href="#name-moqtpublishnamespace" class="internal xref">MOQTPublishNamespace</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.6.2.23">
-                    <p id="section-toc.1-1.5.2.6.2.23.1"><a href="#section-5.6.23" class="auto internal xref">5.6.23</a>. <a href="#name-moqtannounceok" class="internal xref">MOQTAnnounceOk</a></p>
+                    <p id="section-toc.1-1.5.2.6.2.23.1"><a href="#section-5.6.23" class="auto internal xref">5.6.23</a>. <a href="#name-moqtpublishnamespaceok" class="internal xref">MOQTPublishNamespaceOk</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.6.2.24">
-                    <p id="section-toc.1-1.5.2.6.2.24.1"><a href="#section-5.6.24" class="auto internal xref">5.6.24</a>. <a href="#name-moqtannounceerror" class="internal xref">MOQTAnnounceError</a></p>
+                    <p id="section-toc.1-1.5.2.6.2.24.1"><a href="#section-5.6.24" class="auto internal xref">5.6.24</a>. <a href="#name-moqtpublishnamespaceerror" class="internal xref">MOQTPublishNamespaceError</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.6.2.25">
-                    <p id="section-toc.1-1.5.2.6.2.25.1"><a href="#section-5.6.25" class="auto internal xref">5.6.25</a>. <a href="#name-moqtunannounce" class="internal xref">MOQTUnannounce</a></p>
+                    <p id="section-toc.1-1.5.2.6.2.25.1"><a href="#section-5.6.25" class="auto internal xref">5.6.25</a>. <a href="#name-moqtpublishnamespacedone" class="internal xref">MOQTPublishNamespaceDone</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.6.2.26">
-                    <p id="section-toc.1-1.5.2.6.2.26.1"><a href="#section-5.6.26" class="auto internal xref">5.6.26</a>. <a href="#name-moqtannouncecancel" class="internal xref">MOQTAnnounceCancel</a></p>
+                    <p id="section-toc.1-1.5.2.6.2.26.1"><a href="#section-5.6.26" class="auto internal xref">5.6.26</a>. <a href="#name-moqtpublishnamespacecancel" class="internal xref">MOQTPublishNamespaceCancel</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.6.2.27">
                     <p id="section-toc.1-1.5.2.6.2.27.1"><a href="#section-5.6.27" class="auto internal xref">5.6.27</a>. <a href="#name-moqtsubscribenamespace" class="internal xref">MOQTSubscribeNamespace</a></p>
@@ -1386,11 +1385,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">This document defines a qlog event schema (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-12#section-8" class="relref">Section 8</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>)
+<p id="section-1-1">This document defines a qlog event schema (<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-13#section-8" class="relref">Section 8</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>)
 containing concrete events for Media over QUIC Transport <span>[<a href="#MOQT" class="cite xref">MOQT</a>]</span>.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">The event namespace with identifier <code>moqt</code> is defined; see <a href="#schema-def" class="auto internal xref">Section 3</a>. In
 this namespace multiple events derive from the qlog abstract Event class
-(<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-12#section-7" class="relref">Section 7</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>), each extending the "data" field and defining
+(<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-13#section-7" class="relref">Section 7</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>), each extending the "data" field and defining
 their "name" field values and semantics.<a href="#section-1-2" class="pilcrow">¶</a></p>
 <p id="section-1-3"><a href="#events-table" class="auto internal xref">Table 1</a> summarizes the name value of each event type that is defined in
 this specification. Some event data fields use complex data types. These are
@@ -1565,7 +1564,7 @@ extensions described in <span>[<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN<
 <p id="section-2-3">The following fields from <span>[<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span> are imported and used: name, namespace,
 type, data, group_id, protocol_types, RawInfo, and time-related
 fields.<a href="#section-2-3" class="pilcrow">¶</a></p>
-<p id="section-2-4">Events are defined with an importance level as described in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-12#section-8.3" class="relref">Section 8.3</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>.<a href="#section-2-4" class="pilcrow">¶</a></p>
+<p id="section-2-4">Events are defined with an importance level as described in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-13#section-8.3" class="relref">Section 8.3</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>.<a href="#section-2-4" class="pilcrow">¶</a></p>
 <p id="section-2-5">As is the case for <span>[<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>, the qlog schema definitions in this document
 are intentionally agnostic to serialization formats. The choice of format is an
 implementation decision.<a href="#section-2-5" class="pilcrow">¶</a></p>
@@ -1577,7 +1576,7 @@ implementation decision.<a href="#section-2-5" class="pilcrow">¶</a></p>
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-event-schema-definition" class="section-name selfRef">Event Schema Definition</a>
       </h2>
 <p id="section-3-1">This document describes how the MOQT protocol is expressed in qlog with an event
-schema. Per the requirements in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-12#section-8" class="relref">Section 8</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>, this document
+schema. Per the requirements in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-13#section-8" class="relref">Section 8</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>, this document
 registers the <code>moqt</code> namespace. The event schema URI is
 <code>urn:ietf:params:qlog:events:moqt</code>.<a href="#section-3-1" class="pilcrow">¶</a></p>
 <div id="draft-event-schema-identification">
@@ -1799,7 +1798,7 @@ MOQTObjectDatagramParsed = {
         </h3>
 <p id="section-4.6-1">The <code>object_datagram_status_created</code> event is emitted when the
 OBJECT_DATAGRAM_STATUS message is created. It has Core importance level; see
-<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-12#section-9.2" class="relref">Section 9.2</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>.<a href="#section-4.6-1" class="pilcrow">¶</a></p>
+<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-13#section-9.2" class="relref">Section 9.2</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>.<a href="#section-4.6-1" class="pilcrow">¶</a></p>
 <span id="name-moqtobjectdatagramstatuscre"></span><div id="objectdatagramstatuscreated-def">
 <figure id="figure-8">
           <div class="lang-cddl sourcecode" id="section-4.6-2.1">
@@ -1830,7 +1829,7 @@ MOQTObjectDatagramStatusCreated = {
         </h3>
 <p id="section-4.7-1">The <code>object_datagram_status_parsed</code> event is emitted when the
 OBJECT_DATAGRAM_STATUS message is parsed. It has Core importance level; see
-<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-12#section-9.2" class="relref">Section 9.2</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>.<a href="#section-4.7-1" class="pilcrow">¶</a></p>
+<span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-13#section-9.2" class="relref">Section 9.2</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>.<a href="#section-4.7-1" class="pilcrow">¶</a></p>
 <span id="name-moqtobjectdatagramstatuspar"></span><div id="objectdatagramstatusparsed-def">
 <figure id="figure-9">
           <div class="lang-cddl sourcecode" id="section-4.7-2.1">
@@ -1860,7 +1859,7 @@ MOQTObjectDatagramStatusParsed = {
 <a href="#section-4.8" class="section-number selfRef">4.8. </a><a href="#name-subgroup_header_created" class="section-name selfRef">subgroup_header_created</a>
         </h3>
 <p id="section-4.8-1">The <code>subgroup_header_created</code> event is emitted when a stream begins and a
-SUBGROUP_HEADER is created. It has Core importance level; see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-12#section-9.2" class="relref">Section 9.2</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>.<a href="#section-4.8-1" class="pilcrow">¶</a></p>
+SUBGROUP_HEADER is created. It has Core importance level; see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-13#section-9.2" class="relref">Section 9.2</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>.<a href="#section-4.8-1" class="pilcrow">¶</a></p>
 <span id="name-moqtsubgroupheadercreated-d"></span><div id="subgroupheadercreated-def">
 <figure id="figure-10">
           <div class="lang-cddl sourcecode" id="section-4.8-2.1">
@@ -2445,11 +2444,11 @@ MOQTBaseControlMessages = MOQTClientSetupMessage /
                           MOQTTrackStatus /
                           MOQTTrackStatusOk /
                           MOQTTrackStatusError /
-                          MOQTAnnounce /
-                          MOQTAnnounceOk /
-                          MOQTAnnounceError /
-                          MOQTUnannounce /
-                          MOQTAnnounceCancel /
+                          MOQTPublishNamespace /
+                          MOQTPublishNamespaceOk /
+                          MOQTPublishNamespaceError /
+                          MOQTPublishNamespaceDone /
+                          MOQTPublishNamespaceCancel /
                           MOQTSubscribeNamespace /
                           MOQTSubscribeNamespaceOk /
                           MOQTSubscribeNamespaceError /
@@ -3002,17 +3001,17 @@ MOQTTrackStatusError = {
 </div>
 </section>
 </div>
-<div id="moqtannounce">
+<div id="moqtpublishnamespace">
 <section id="section-5.6.22">
-          <h4 id="name-moqtannounce">
-<a href="#section-5.6.22" class="section-number selfRef">5.6.22. </a><a href="#name-moqtannounce" class="section-name selfRef">MOQTAnnounce</a>
+          <h4 id="name-moqtpublishnamespace">
+<a href="#section-5.6.22" class="section-number selfRef">5.6.22. </a><a href="#name-moqtpublishnamespace" class="section-name selfRef">MOQTPublishNamespace</a>
           </h4>
-<span id="name-moqtannounce-definition"></span><div id="announce-def">
+<span id="name-moqtpublishnamespace-defini"></span><div id="publishnamespace-def">
 <figure id="figure-55">
             <div class="lang-cddl sourcecode" id="section-5.6.22-1.1">
 <pre>
-MOQTAnnounce = {
-  type: "announce"
+MOQTPublishNamespace = {
+  type: "publish_namespace"
   request_id: uint64
   track_namespace: [ *MOQTByteString]
   number_of_parameters: uint64
@@ -3021,43 +3020,43 @@ MOQTAnnounce = {
 </pre>
 </div>
 <figcaption><a href="#figure-55" class="selfRef">Figure 55</a>:
-<a href="#name-moqtannounce-definition" class="selfRef">MOQTAnnounce definition</a>
+<a href="#name-moqtpublishnamespace-defini" class="selfRef">MOQTPublishNamespace definition</a>
             </figcaption></figure>
 </div>
 </section>
 </div>
-<div id="moqtannounceok">
+<div id="moqtpublishnamespaceok">
 <section id="section-5.6.23">
-          <h4 id="name-moqtannounceok">
-<a href="#section-5.6.23" class="section-number selfRef">5.6.23. </a><a href="#name-moqtannounceok" class="section-name selfRef">MOQTAnnounceOk</a>
+          <h4 id="name-moqtpublishnamespaceok">
+<a href="#section-5.6.23" class="section-number selfRef">5.6.23. </a><a href="#name-moqtpublishnamespaceok" class="section-name selfRef">MOQTPublishNamespaceOk</a>
           </h4>
-<span id="name-moqtannounceok-definition"></span><div id="announceok-def">
+<span id="name-moqtpublishnamespaceok-defi"></span><div id="publishnamespaceok-def">
 <figure id="figure-56">
             <div class="lang-cddl sourcecode" id="section-5.6.23-1.1">
 <pre>
-MOQTAnnounceOk = {
-  type: "announce_ok"
+MOQTPublishNamespaceOk = {
+  type: "publish_namespace_ok"
   request_id: uint64
 }
 </pre>
 </div>
 <figcaption><a href="#figure-56" class="selfRef">Figure 56</a>:
-<a href="#name-moqtannounceok-definition" class="selfRef">MOQTAnnounceOk definition</a>
+<a href="#name-moqtpublishnamespaceok-defi" class="selfRef">MOQTPublishNamespaceOk definition</a>
             </figcaption></figure>
 </div>
 </section>
 </div>
-<div id="moqtannounceerror">
+<div id="moqtpublishnamespaceerror">
 <section id="section-5.6.24">
-          <h4 id="name-moqtannounceerror">
-<a href="#section-5.6.24" class="section-number selfRef">5.6.24. </a><a href="#name-moqtannounceerror" class="section-name selfRef">MOQTAnnounceError</a>
+          <h4 id="name-moqtpublishnamespaceerror">
+<a href="#section-5.6.24" class="section-number selfRef">5.6.24. </a><a href="#name-moqtpublishnamespaceerror" class="section-name selfRef">MOQTPublishNamespaceError</a>
           </h4>
-<span id="name-moqtannounceerror-definitio"></span><div id="announceerror-def">
+<span id="name-moqtpublishnamespaceerror-d"></span><div id="publishnamespaceerror-def">
 <figure id="figure-57">
             <div class="lang-cddl sourcecode" id="section-5.6.24-1.1">
 <pre>
-MOQTAnnounceError = {
-  type: "announce_error"
+MOQTPublishNamespaceError = {
+  type: "publish_namespace_error"
   request_id: uint64
   error_code: uint64
   ? reason: text
@@ -3066,44 +3065,44 @@ MOQTAnnounceError = {
 </pre>
 </div>
 <figcaption><a href="#figure-57" class="selfRef">Figure 57</a>:
-<a href="#name-moqtannounceerror-definitio" class="selfRef">MOQTAnnounceError definition</a>
+<a href="#name-moqtpublishnamespaceerror-d" class="selfRef">MOQTPublishNamespaceError definition</a>
             </figcaption></figure>
 </div>
 </section>
 </div>
-<div id="moqtunannounce">
+<div id="moqtpublishnamespacedone">
 <section id="section-5.6.25">
-          <h4 id="name-moqtunannounce">
-<a href="#section-5.6.25" class="section-number selfRef">5.6.25. </a><a href="#name-moqtunannounce" class="section-name selfRef">MOQTUnannounce</a>
+          <h4 id="name-moqtpublishnamespacedone">
+<a href="#section-5.6.25" class="section-number selfRef">5.6.25. </a><a href="#name-moqtpublishnamespacedone" class="section-name selfRef">MOQTPublishNamespaceDone</a>
           </h4>
-<span id="name-moqtannounce-definition-2"></span><div id="unannounce-def">
+<span id="name-moqtpublishnamespacedone-de"></span><div id="publishnamespacedone-def">
 <figure id="figure-58">
             <div class="lang-cddl sourcecode" id="section-5.6.25-1.1">
 <pre>
-MOQTUnannounce = {
-  type: "unannounce"
+MOQTPublishNamespaceDone = {
+  type: "publish_namespace_done"
   track_namespace: [ *MOQTByteString]
 }
 </pre>
 </div>
 <figcaption><a href="#figure-58" class="selfRef">Figure 58</a>:
-<a href="#name-moqtannounce-definition-2" class="selfRef">MOQTAnnounce definition</a>
+<a href="#name-moqtpublishnamespacedone-de" class="selfRef">MOQTPublishNamespaceDone definition</a>
             </figcaption></figure>
 </div>
 </section>
 </div>
-<div id="moqtannouncecancel">
+<div id="moqtpublishnamespacecancel">
 <section id="section-5.6.26">
-          <h4 id="name-moqtannouncecancel">
-<a href="#section-5.6.26" class="section-number selfRef">5.6.26. </a><a href="#name-moqtannouncecancel" class="section-name selfRef">MOQTAnnounceCancel</a>
+          <h4 id="name-moqtpublishnamespacecancel">
+<a href="#section-5.6.26" class="section-number selfRef">5.6.26. </a><a href="#name-moqtpublishnamespacecancel" class="section-name selfRef">MOQTPublishNamespaceCancel</a>
           </h4>
-<span id="name-moqtannouncecancel-definiti"></span><div id="announcecancel-def">
+<span id="name-moqtpublishnamespacecancel-"></span><div id="publishnamespacecancel-def">
 <figure id="figure-59">
             <div class="lang-cddl sourcecode" id="section-5.6.26-1.1">
 <pre>
-MOQTAnnounceCancel = {
-  type: "announce_cancel"
-  request_id: uint64
+MOQTPublishNamespaceCancel = {
+  type: "publish_namespace_cancel"
+  track_namespace: [ *MOQTByteString]
   error_code: uint64
   ? reason: text
   ? reason_bytes: hexstring
@@ -3111,7 +3110,7 @@ MOQTAnnounceCancel = {
 </pre>
 </div>
 <figcaption><a href="#figure-59" class="selfRef">Figure 59</a>:
-<a href="#name-moqtannouncecancel-definiti" class="selfRef">MOQTAnnounceCancel definition</a>
+<a href="#name-moqtpublishnamespacecancel-" class="selfRef">MOQTPublishNamespaceCancel definition</a>
             </figcaption></figure>
 </div>
 </section>
@@ -3247,7 +3246,7 @@ document as well.<a href="#section-6-1" class="pilcrow">¶</a></p>
       <h2 id="name-iana-considerations">
 <a href="#section-7" class="section-number selfRef">7. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<p id="section-7-1">This document registers a new entry in the "qlog event schema URIs" registry (created in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-12#section-15" class="relref">Section 15</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>).<a href="#section-7-1" class="pilcrow">¶</a></p>
+<p id="section-7-1">This document registers a new entry in the "qlog event schema URIs" registry (created in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-13#section-15" class="relref">Section 15</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>).<a href="#section-7-1" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-7-2">
         <dt id="section-7-2.1">Event schema URI:</dt>
         <dd style="margin-left: 1.5em" id="section-7-2.2">
@@ -3307,11 +3306,11 @@ fetch_object_parsed<a href="#section-7-2.6.1" class="pilcrow">¶</a></p>
 <dd class="break"></dd>
 <dt id="QLOG-MAIN">[QLOG-MAIN]</dt>
       <dd>
-<span class="refAuthor">Marx, R.</span>, <span class="refAuthor">Niccolini, L.</span>, <span class="refAuthor">Seemann, M.</span>, and <span class="refAuthor">L. Pardue</span>, <span class="refTitle">"qlog: Structured Logging for Network Protocols"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-quic-qlog-main-schema-12</span>, <time datetime="2025-07-07" class="refDate">7 July 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-12">https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-12</a>&gt;</span>. </dd>
+<span class="refAuthor">Marx, R.</span>, <span class="refAuthor">Niccolini, L.</span>, <span class="refAuthor">Seemann, M.</span>, and <span class="refAuthor">L. Pardue</span>, <span class="refTitle">"qlog: Structured Logging for Network Protocols"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-quic-qlog-main-schema-13</span>, <time datetime="2025-10-20" class="refDate">20 October 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-13">https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-13</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="QLOG-QUIC">[QLOG-QUIC]</dt>
       <dd>
-<span class="refAuthor">Marx, R.</span>, <span class="refAuthor">Niccolini, L.</span>, <span class="refAuthor">Seemann, M.</span>, and <span class="refAuthor">L. Pardue</span>, <span class="refTitle">"QUIC event definitions for qlog"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-quic-qlog-quic-events-11</span>, <time datetime="2025-07-07" class="refDate">7 July 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-quic-events-11">https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-quic-events-11</a>&gt;</span>. </dd>
+<span class="refAuthor">Marx, R.</span>, <span class="refAuthor">Niccolini, L.</span>, <span class="refAuthor">Seemann, M.</span>, and <span class="refAuthor">L. Pardue</span>, <span class="refTitle">"QUIC event definitions for qlog"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-quic-qlog-quic-events-12</span>, <time datetime="2025-10-20" class="refDate">20 October 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-quic-events-12">https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-quic-events-12</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC2119">[RFC2119]</dt>
       <dd>

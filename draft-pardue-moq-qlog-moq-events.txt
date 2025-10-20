@@ -5,8 +5,8 @@
 Media Over QUIC                                                L. Pardue
 Internet-Draft                                                Cloudflare
 Intended status: Informational                              M. Engelbart
-Expires: 20 April 2026                    Technical University of Munich
-                                                         17 October 2025
+Expires: 23 April 2026                    Technical University of Munich
+                                                         20 October 2025
 
 
                        MoQ qlog event definitions
@@ -50,7 +50,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 April 2026.
+   This Internet-Draft will expire on 23 April 2026.
 
 Copyright Notice
 
@@ -124,11 +124,11 @@ Table of Contents
        5.6.19. MOQTTrackStatus
        5.6.20. MOQTTrackStatusOk
        5.6.21. MOQTTrackStatusError
-       5.6.22. MOQTAnnounce
-       5.6.23. MOQTAnnounceOk
-       5.6.24. MOQTAnnounceError
-       5.6.25. MOQTUnannounce
-       5.6.26. MOQTAnnounceCancel
+       5.6.22. MOQTPublishNamespace
+       5.6.23. MOQTPublishNamespaceOk
+       5.6.24. MOQTPublishNamespaceError
+       5.6.25. MOQTPublishNamespaceDone
+       5.6.26. MOQTPublishNamespaceCancel
        5.6.27. MOQTSubscribeNamespace
        5.6.28. MOQTSubscribeNamespaceOk
        5.6.29. MOQTSubscribeNamespaceError
@@ -780,11 +780,11 @@ Table of Contents
                              MOQTTrackStatus /
                              MOQTTrackStatusOk /
                              MOQTTrackStatusError /
-                             MOQTAnnounce /
-                             MOQTAnnounceOk /
-                             MOQTAnnounceError /
-                             MOQTUnannounce /
-                             MOQTAnnounceCancel /
+                             MOQTPublishNamespace /
+                             MOQTPublishNamespaceOk /
+                             MOQTPublishNamespaceError /
+                             MOQTPublishNamespaceDone /
+                             MOQTPublishNamespaceCancel /
                              MOQTSubscribeNamespace /
                              MOQTSubscribeNamespaceOk /
                              MOQTSubscribeNamespaceError /
@@ -1082,59 +1082,59 @@ Table of Contents
 
                  Figure 54: MOQTTrackStatusError definition
 
-5.6.22.  MOQTAnnounce
+5.6.22.  MOQTPublishNamespace
 
-   MOQTAnnounce = {
-     type: "announce"
+   MOQTPublishNamespace = {
+     type: "publish_namespace"
      request_id: uint64
      track_namespace: [ *MOQTByteString]
      number_of_parameters: uint64
      ? parameters: [* $MOQTParameter]
    }
 
-                     Figure 55: MOQTAnnounce definition
+                 Figure 55: MOQTPublishNamespace definition
 
-5.6.23.  MOQTAnnounceOk
+5.6.23.  MOQTPublishNamespaceOk
 
-   MOQTAnnounceOk = {
-     type: "announce_ok"
+   MOQTPublishNamespaceOk = {
+     type: "publish_namespace_ok"
      request_id: uint64
    }
 
-                    Figure 56: MOQTAnnounceOk definition
+                Figure 56: MOQTPublishNamespaceOk definition
 
-5.6.24.  MOQTAnnounceError
+5.6.24.  MOQTPublishNamespaceError
 
-   MOQTAnnounceError = {
-     type: "announce_error"
+   MOQTPublishNamespaceError = {
+     type: "publish_namespace_error"
      request_id: uint64
      error_code: uint64
      ? reason: text
      ? reason_bytes: hexstring
    }
 
-                  Figure 57: MOQTAnnounceError definition
+              Figure 57: MOQTPublishNamespaceError definition
 
-5.6.25.  MOQTUnannounce
+5.6.25.  MOQTPublishNamespaceDone
 
-   MOQTUnannounce = {
-     type: "unannounce"
+   MOQTPublishNamespaceDone = {
+     type: "publish_namespace_done"
      track_namespace: [ *MOQTByteString]
    }
 
-                     Figure 58: MOQTAnnounce definition
+               Figure 58: MOQTPublishNamespaceDone definition
 
-5.6.26.  MOQTAnnounceCancel
+5.6.26.  MOQTPublishNamespaceCancel
 
-   MOQTAnnounceCancel = {
-     type: "announce_cancel"
-     request_id: uint64
+   MOQTPublishNamespaceCancel = {
+     type: "publish_namespace_cancel"
+     track_namespace: [ *MOQTByteString]
      error_code: uint64
      ? reason: text
      ? reason_bytes: hexstring
    }
 
-                  Figure 59: MOQTAnnounceCancel definition
+              Figure 59: MOQTPublishNamespaceCancel definition
 
 5.6.27.  MOQTSubscribeNamespace
 
@@ -1233,16 +1233,16 @@ Table of Contents
               Marx, R., Niccolini, L., Seemann, M., and L. Pardue,
               "qlog: Structured Logging for Network Protocols", Work in
               Progress, Internet-Draft, draft-ietf-quic-qlog-main-
-              schema-12, 7 July 2025,
+              schema-13, 20 October 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-quic-
-              qlog-main-schema-12>.
+              qlog-main-schema-13>.
 
    [QLOG-QUIC]
               Marx, R., Niccolini, L., Seemann, M., and L. Pardue, "QUIC
               event definitions for qlog", Work in Progress, Internet-
-              Draft, draft-ietf-quic-qlog-quic-events-11, 7 July 2025,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-quic-
-              qlog-quic-events-11>.
+              Draft, draft-ietf-quic-qlog-quic-events-12, 20 October
+              2025, <https://datatracker.ietf.org/doc/html/draft-ietf-
+              quic-qlog-quic-events-12>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,

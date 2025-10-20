@@ -153,8 +153,6 @@ MOQTEventData = MOQTControlMessageCreated /
                 MOQTStreamTypeSet /
                 MOQTObjectDatagramCreated /
                 MOQTObjectDatagramParsed /
-                MOQTObjectDatagramStatusCreated /
-                MOQTObjectDatagramStatusParsed /
                 MOQTSubgroupHeaderCreated /
                 MOQTSubgroupHeaderParsed /
                 MOQTSubgroupObjectCreated /

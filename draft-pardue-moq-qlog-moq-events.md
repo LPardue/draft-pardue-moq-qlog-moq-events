@@ -689,11 +689,11 @@ MOQTBaseControlMessages = MOQTClientSetupMessage /
                           MOQTTrackStatus /
                           MOQTTrackStatusOk /
                           MOQTTrackStatusError /
-                          MOQTAnnounce /
-                          MOQTAnnounceOk /
-                          MOQTAnnounceError /
-                          MOQTUnannounce /
-                          MOQTAnnounceCancel /
+                          MOQTPublishNamespace /
+                          MOQTPublishNamespaceOk /
+                          MOQTPublishNamespaceError /
+                          MOQTPublishNamespaceDone /
+                          MOQTPublishNamespaceCancel /
                           MOQTSubscribeNamespace /
                           MOQTSubscribeNamespaceOk /
                           MOQTSubscribeNamespaceError /
@@ -1013,64 +1013,64 @@ MOQTTrackStatusError = {
 ~~~
 {: #trackstatuserror-def title="MOQTTrackStatusError definition"}
 
-### MOQTAnnounce
+### MOQTPublishNamespace
 
 ~~~ cddl
-MOQTAnnounce = {
-  type: "announce"
+MOQTPublishNamespace = {
+  type: "publish_namespace"
   request_id: uint64
   track_namespace: [ *MOQTByteString]
   number_of_parameters: uint64
   ? parameters: [* $MOQTParameter]
 }
 ~~~
-{: #announce-def title="MOQTAnnounce definition"}
+{: #publishnamespace-def title="MOQTPublishNamespace definition"}
 
-### MOQTAnnounceOk
+### MOQTPublishNamespaceOk
 
 ~~~ cddl
-MOQTAnnounceOk = {
-  type: "announce_ok"
+MOQTPublishNamespaceOk = {
+  type: "publish_namespace_ok"
   request_id: uint64
 }
 ~~~
-{: #announceok-def title="MOQTAnnounceOk definition"}
+{: #publishnamespaceok-def title="MOQTPublishNamespaceOk definition"}
 
-### MOQTAnnounceError
+### MOQTPublishNamespaceError
 
 ~~~ cddl
-MOQTAnnounceError = {
-  type: "announce_error"
+MOQTPublishNamespaceError = {
+  type: "publish_namespace_error"
   request_id: uint64
   error_code: uint64
   ? reason: text
   ? reason_bytes: hexstring
 }
 ~~~
-{: #announceerror-def title="MOQTAnnounceError definition"}
+{: #publishnamespaceerror-def title="MOQTPublishNamespaceError definition"}
 
-### MOQTUnannounce
+### MOQTPublishNamespaceDone
 
 ~~~ cddl
-MOQTUnannounce = {
-  type: "unannounce"
+MOQTPublishNamespaceDone = {
+  type: "publish_namespace_done"
   track_namespace: [ *MOQTByteString]
 }
 ~~~
-{: #unannounce-def title="MOQTAnnounce definition"}
+{: #publishnamespacedone-def title="MOQTPublishNamespaceDone definition"}
 
-### MOQTAnnounceCancel
+### MOQTPublishNamespaceCancel
 
 ~~~ cddl
-MOQTAnnounceCancel = {
-  type: "announce_cancel"
-  request_id: uint64
+MOQTPublishNamespaceCancel = {
+  type: "publish_namespace_cancel"
+  track_namespace: [ *MOQTByteString]
   error_code: uint64
   ? reason: text
   ? reason_bytes: hexstring
 }
 ~~~
-{: #announcecancel-def title="MOQTAnnounceCancel definition"}
+{: #publishnamespacecancel-def title="MOQTPublishNamespaceCancel definition"}
 
 ### MOQTSubscribeNamespace
 

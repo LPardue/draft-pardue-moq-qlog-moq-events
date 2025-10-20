@@ -73,8 +73,6 @@ bottom of this document for clarity.
 | moqt:stream_type_set                | Core       | {{streamtypeset}} |
 | moqt:object_datagram_created        | Core       | {{objectdatagramcreated}} |
 | moqt:object_datagram_parsed         | Core       | {{objectdatagramparsed}} |
-| moqt:object_datagram_status_created | Core       | {{objectdatagramstatuscreated}} |
-| moqt:object_datagram_status_parsed  | Core       | {{objectdatagramstatusparsed}} |
 | moqt:subgroup_header_created        | Core       | {{subgroupheadercreated}} |
 | moqt:subgroup_header_parsed         | Core       | {{subgroupheaderparsed}} |
 | moqt:subgroup_object_created        | Core       | {{subgroupobjectcreated}} |
@@ -250,11 +248,13 @@ is created. It has Core importance level.
 MOQTObjectDatagramCreated = {
     track_alias: uint64
     group_id: uint64
-    object_id: uint64
+    ? object_id: uint64
     publisher_priority: uint8
     extension_headers_length: uint64
     ? extension_headers: [* MOQTExtensionHeader]
     ? object_payload: RawInfo
+    ? object_status: uint64
+    end_of_group: bool
 
     * $$moqt-objectdatagramcreated-extension
 }
@@ -270,58 +270,18 @@ is parsed. It has Core importance level.
 MOQTObjectDatagramParsed = {
     track_alias: uint64
     group_id: uint64
-    object_id: uint64
+    ? object_id: uint64
     publisher_priority: uint8
     extension_headers_length: uint64
     ? extension_headers: [* MOQTExtensionHeader]
     ? object_payload: RawInfo
+    ? object_status: uint64
+    end_of_group: bool
 
     * $$moqt-objectdatagramparsed-extension
 }
 ~~~
 {: #objectdatagramparsed-def title="MOQTObjectDatagramParsed definition"}
-
-## object_datagram_status_created {#objectdatagramstatuscreated}
-
-The `object_datagram_status_created` event is emitted when the
-OBJECT_DATAGRAM_STATUS message is created. It has Core importance level; see
-{{Section 9.2 of QLOG-MAIN}}.
-
-~~~ cddl
-MOQTObjectDatagramStatusCreated = {
-    track_alias: uint64
-    group_id: uint64
-    object_id: uint64
-    publisher_priority: uint8
-    extension_headers_length: uint64
-    ? extension_headers: [* MOQTExtensionHeader]
-    object_status: uint64
-
-    * $$moqt-objectdatagramstatuscreated-extension
-}
-~~~
-{: #objectdatagramstatuscreated-def title="MOQTObjectDatagramStatusCreated definition"}
-
-## object_datagram_status_parsed {#objectdatagramstatusparsed}
-
-The `object_datagram_status_parsed` event is emitted when the
-OBJECT_DATAGRAM_STATUS message is parsed. It has Core importance level; see
-{{Section 9.2 of QLOG-MAIN}}.
-
-~~~ cddl
-MOQTObjectDatagramStatusParsed = {
-    track_alias: uint64
-    group_id: uint64
-    object_id: uint64
-    publisher_priority: uint8
-    extension_headers_length: uint64
-    ? extension_headers: [* MOQTExtensionHeader]
-    object_status: uint64
-
-    * $$moqt-objectdatagramstatusparsed-extension
-}
-~~~
-{: #objectdatagramstatusparsed-def title="MOQTObjectDatagramStatusParsed definition"}
 
 ## subgroup_header_created {#subgroupheadercreated}
 
@@ -1147,8 +1107,6 @@ Event Types
   stream_type_set,
   object_datagram_created,
   object_datagram_parsed,
-  object_datagram_status_created,
-  object_datagram_status_parsed,
   subgroup_header_created,
   subgroup_header_parsed,
   subgroup_object_created,

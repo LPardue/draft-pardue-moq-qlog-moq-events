@@ -694,10 +694,10 @@ MOQTBaseControlMessages = MOQTClientSetupMessage /
                           MOQTPublishNamespaceError /
                           MOQTPublishNamespaceDone /
                           MOQTPublishNamespaceCancel /
-                          MOQTSubscribeAnnounces /
-                          MOQTSubscribeAnnouncesOk /
-                          MOQTSubscribeAnnouncesError /
-                          MOQTUnsubscribeAnnounces
+                          MOQTSubscribeNamespace /
+                          MOQTSubscribeNamespaceOk /
+                          MOQTSubscribeNamespaceError /
+                          MOQTUnsubscribeNamespace
 
 $MOQTControlMessage /= MOQTBaseControlMessages
 ~~~
@@ -1072,51 +1072,51 @@ MOQTPublishNamespaceCancel = {
 ~~~
 {: #publishnamespacecancel-def title="MOQTPublishNamespaceCancel definition"}
 
-### MOQTSubscribeAnnounces
+### MOQTSubscribeNamespace
 
 ~~~ cddl
-MOQTSubscribeAnnounces = {
-  type: "subscribe_announces"
+MOQTSubscribeNamespace = {
+  type: "subscribe_namespace"
   request_id: uint64
   track_namespace_prefix: [ *MOQTByteString]
   number_of_parameters: uint64
   ? parameters: [* $MOQTParameter]
 }
 ~~~
-{: #subscribeannounces-def title="MOQTSubscribeAnnounces definition"}
+{: #subscribenamespace-def title="MOQTSubscribeNamespace definition"}
 
-### MOQTSubscribeAnnouncesOk
+### MOQTSubscribeNamespaceOk
 
 ~~~ cddl
-MOQTSubscribeAnnouncesOk = {
-  type: "subscribe_announces_ok"
+MOQTSubscribeNamespaceOk = {
+  type: "subscribe_namespace_ok"
   request_id: uint64
 }
 ~~~
-{: #subscribeannouncesok  -def title="MOQTSubscribeAnnouncesOk definition"}
+{: #subscribenamespaceok  -def title="MOQTSubscribeNamespaceOk definition"}
 
-### MOQTSubscribeAnnouncesError
+### MOQTSubscribeNamespaceError
 
 ~~~ cddl
-MOQTSubscribeAnnouncesError = {
-  type: "subscribe_announces_error"
+MOQTSubscribeNamespaceError = {
+  type: "subscribe_namespace_error"
   request_id: uint64
   error_code: uint64
   ? reason: text
   ? reason_bytes: hexstring
 }
 ~~~
-{: #subscribeannounceserror-def title="MOQTSubscribeAnnouncesError definition"}
+{: #subscribenamespaceerror-def title="MOQTSubscribeNamespaceError definition"}
 
-### MOQTUnsubscribeAnnounces
+### MOQTUnsubscribeNamespace
 
 ~~~ cddl
-MOQTUnsubscribeAnnounces = {
-  type: "unsubscribe_announces"
+MOQTUnsubscribeNamespace = {
+  type: "unsubscribe_namespace"
   track_namespace_prefix: [ *MOQTByteString]
 }
 ~~~
-{: #unsubscribeannounces-def title="MOQTUnsubscribeAnnounces definition"}
+{: #unsubscribenamespace-def title="MOQTUnsubscribeNamespace definition"}
 
 ## MOQTExtensionHeader
 

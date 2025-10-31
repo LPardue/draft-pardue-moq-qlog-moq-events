@@ -248,7 +248,7 @@ MOQTObjectDatagramCreated = {
     group_id: uint64
     ? object_id: uint64
     publisher_priority: uint8
-    extension_headers_length: uint64
+    ? extension_headers_length: uint64
     ? extension_headers: [* MOQTExtensionHeader]
     ? object_payload: RawInfo
     ? object_status: uint64
@@ -270,7 +270,7 @@ MOQTObjectDatagramParsed = {
     group_id: uint64
     ? object_id: uint64
     publisher_priority: uint8
-    extension_headers_length: uint64
+    ? extension_headers_length: uint64
     ? extension_headers: [* MOQTExtensionHeader]
     ? object_payload: RawInfo
     ? object_status: uint64

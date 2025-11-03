@@ -250,8 +250,8 @@ MOQTObjectDatagramCreated = {
     publisher_priority: uint8
     ? extension_headers_length: uint64
     ? extension_headers: [* MOQTExtensionHeader]
-    ? object_payload: RawInfo
     ? object_status: uint64
+    ? object_payload: RawInfo
     end_of_group: bool
 
     * $$moqt-objectdatagramcreated-extension
@@ -272,8 +272,8 @@ MOQTObjectDatagramParsed = {
     publisher_priority: uint8
     ? extension_headers_length: uint64
     ? extension_headers: [* MOQTExtensionHeader]
-    ? object_payload: RawInfo
     ? object_status: uint64
+    ? object_payload: RawInfo
     end_of_group: bool
 
     * $$moqt-objectdatagramparsed-extension

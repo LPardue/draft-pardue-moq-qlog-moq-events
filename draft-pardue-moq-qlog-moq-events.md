@@ -81,14 +81,6 @@ bottom of this document for clarity.
 | moqt:fetch_object_parsed            | Core       | {{fetchobjectparsed}} |
 {: #events-table title="MOQT Events"}
 
-When any event from this document is included in a qlog trace, the
-"protocol_types" qlog array field MUST contain an entry with the value "MOQT":
-
-~~~ cddl
-$ProtocolType /= "MOQT"
-~~~
-{: #protocoltype-extension-moqt title="ProtocolType extension for MOQT"}
-
 ## Usage with QUIC
 
 The events described in this document can be used with or without logging the
@@ -112,7 +104,7 @@ in the Concise Data Definition Language {{!CDDL=RFC8610}} and its
 extensions described in {{QLOG-MAIN}}.
 
 The following fields from {{QLOG-MAIN}} are imported and used: name, namespace,
-type, data, group_id, protocol_types, RawInfo, and time-related
+type, data, group_id, RawInfo, and time-related
 fields.
 
 Events are defined with an importance level as described in {{Section 8.3 of

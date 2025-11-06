@@ -29,6 +29,10 @@ author:
     fullname: Mathis Engelbart
     organization: Technical University of Munich
     email: mathis.engelbart@gmail.com
+ -
+    fullname: Aman Sharma
+    organization: Meta
+    email: amsharma@meta.com
 
 normative:
 

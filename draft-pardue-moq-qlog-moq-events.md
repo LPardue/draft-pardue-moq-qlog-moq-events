@@ -287,6 +287,13 @@ The `subgroup_header_created` event is emitted when a stream begins and a
 SUBGROUP_HEADER is created. It has Core importance level; see {{Section 9.2 of
 QLOG-MAIN}}.
 
+The SUBGROUP_HEADER object in MoQT uses 12 type values to encode various
+properties. The `subgroup_header_created` event conveys these as explicit
+fields, such as contains_end_of_group.
+
+If the subgroup_id is the object_id of the first object, the subgroup_id is
+omitted. Otherwise, it is included with the relevant value.
+
 ~~~ cddl
 MOQTSubgroupHeaderCreated = {
     stream_id: uint64
@@ -294,6 +301,8 @@ MOQTSubgroupHeaderCreated = {
     group_id: uint64
     ? subgroup_id: uint64
     publisher_priority: uint8
+    contains_end_of_group: bool
+    extensions_present: bool
 
     * $$moqt-subgroupheadercreated-extension
 }
@@ -305,6 +314,13 @@ MOQTSubgroupHeaderCreated = {
 The `subgroup_header_parsed` event is emitted when the SUBGROUP_HEADER is
 parsed. It has Core importance level.
 
+The SUBGROUP_HEADER object in MoQT uses 12 type values to encode various
+properties. The event conveys these as explicit fields, such as
+contains_end_of_group.
+
+If the subgroup_id is the object_id of the first object, the subgroup_id is
+omitted. Otherwise, it is included with the relevant value.
+
 ~~~ cddl
 MOQTSubgroupHeaderParsed = {
     stream_id: uint64
@@ -312,6 +328,8 @@ MOQTSubgroupHeaderParsed = {
     group_id: uint64
     ? subgroup_id: uint64
     publisher_priority: uint8
+    contains_end_of_group: bool
+    extensions_present: bool
 
     * $$moqt-subgroupheaderparsed-extension
 }

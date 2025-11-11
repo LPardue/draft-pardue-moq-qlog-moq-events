@@ -516,28 +516,6 @@ MOQTMaxAuthTokenCacheSizeParameter = {
 ~~~
 {: #moqtmaxauthtokencachesizeparameter-def title="MOQTMaxAuthTokenCacheSizeParameter definition"}
 
-### MOQTAuthorizationTokenParameter
-
-~~~ cddl
-MOQTAuthorizationTokenParameter = {
-  name: "authorization_token"
-  value: [* AuthorizationToken]
-}
-
-$MOQTAuthorizationToken = {
-  alias_type: MOQTAliasType
-  ? token_alias: uint64
-  ? token_type: uint64
-  ? token_value: RawInfo
-}
-
-$MOQTAliasType /=  "delete" /
-                   "register" /
-                   "use_alias" /
-                   "use_value"
-~~~
-{: #moqtauthorizationtokenparameter-def title="MOQTAuthorizationTokenParameter definition"}
-
 ### MOQTImplementationParameter
 
 ~~~ cddl

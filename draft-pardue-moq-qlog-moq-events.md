@@ -534,7 +534,7 @@ $MOQTAuthorizationToken = {
 $MOQTAliasType /=  "delete" /
                    "register" /
                    "use_alias" /
-                   "use_value" /
+                   "use_value"
 ~~~
 {: #moqtauthorizationtokenparameter-def title="MOQTAuthorizationTokenParameter definition"}
 

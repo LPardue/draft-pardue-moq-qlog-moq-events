@@ -464,13 +464,27 @@ $MOQTSetupParameter /= {
 {: #moqtsetupparameter-def title="MOQTSetupParameter type socket definition"}
 
 ~~~ cddl
-MOQTBaseSetupParameters /= MOQTPathSetupParameter /
+MOQTBaseSetupParameters /=  MOQTAuthorityParameter /
+                            MOQTPathSetupParameter /
                             MOQTMaxRequestIdSetupParameter /
+                            MOQTMaxAuthTokenCacheSizeParameter /
+                            MOQTAuthorizationTokenParameter /
+                            MOQTImplementationParameter /
                             MOQTUnknownSetupParameter
 
 $MOQTSetupParameter /= MOQTBaseSetupParameters
 ~~~
 {: #moqtbasesetupparameters-def title="MOQTBaseSetupParameters definition"}
+
+### MOQTAuthorityParameter
+
+~~~ cddl
+MOQTAuthorityParameter = {
+  name: "authority"
+  value: text
+}
+~~~
+{: #moqtauthorityparameter-def title="MOQTAuthorityParameter definition"}
 
 ### MOQTPathSetupParameter
 
@@ -491,6 +505,48 @@ MOQTMaxRequestIdSetupParameter = {
 }
 ~~~
 {: #moqtmaxsubscribeidsetupparameter-def title="MOQTMaxRequestIdSetupParameter definition"}
+
+### MOQTMaxAuthTokenCacheSizeParameter
+
+~~~ cddl
+MOQTMaxAuthTokenCacheSizeParameter = {
+  name: "max_auth_token_cache_size"
+  value: uint64
+}
+~~~
+{: #moqtmaxauthtokencachesizeparameter-def title="MOQTMaxAuthTokenCacheSizeParameter definition"}
+
+### MOQTAuthorizationTokenParameter
+
+~~~ cddl
+MOQTAuthorizationTokenParameter = {
+  name: "authorization_token"
+  value: [* AuthorizationToken]
+}
+
+$MOQTAuthorizationToken = {
+  alias_type: MOQTAliasType
+  ? token_alias: uint64
+  ? token_type: uint64
+  ? token_value: RawInfo
+}
+
+$MOQTAliasType /=  "delete" /
+                   "register" /
+                   "use_alias" /
+                   "use_value" /
+~~~
+{: #moqtauthorizationtokenparameter-def title="MOQTAuthorizationTokenParameter definition"}
+
+### MOQTImplementationParameter
+
+~~~ cddl
+MOQTImplementationParameter = {
+  name: "implementation"
+  value: text
+}
+~~~
+{: #moqtimplementationparameter-def title="MOQTImplementationParameter definition"}
 
 ### MOQTUnknownSetupParameter
 

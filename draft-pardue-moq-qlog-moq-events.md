@@ -285,7 +285,11 @@ MOQTObjectDatagramParsed = {
 
 The `subgroup_header_created` event is emitted when a stream begins and a
 SUBGROUP_HEADER is created. It has Core importance level; see {{Section 9.2 of
-QLOG-MAIN}}.
+QLOG-MAIN}}. In the MoQ specification, the "type" field of the subgroup header
+encodes information such as the end of group boolean, but we don't log the
+wire-level "type" field in mLog, but rather the semantically reconstructed fields.
+The subgroup_id field is null if it is set to be the first object in the group.
+Otherwise, it has a value.
 
 ~~~ cddl
 MOQTSubgroupHeaderCreated = {
@@ -294,6 +298,8 @@ MOQTSubgroupHeaderCreated = {
     group_id: uint64
     ? subgroup_id: uint64
     publisher_priority: uint8
+    contains_end_of_group: bool
+    extensions_present: bool
 
     * $$moqt-subgroupheadercreated-extension
 }
@@ -303,7 +309,11 @@ MOQTSubgroupHeaderCreated = {
 ## subgroup_header_parsed {#subgroupheaderparsed}
 
 The `subgroup_header_parsed` event is emitted when the SUBGROUP_HEADER is
-parsed. It has Core importance level.
+parsed. It has Core importance level. In the MoQ specification, the "type"
+field of the subgroup header encodes information such as the end of group boolean,
+but we don't log the wire-level "type" field in mLog, but rather the semantically
+reconstructed fields. The subgroup_id field is null if it is set to be the first
+object in the group. Otherwise, it has a value.
 
 ~~~ cddl
 MOQTSubgroupHeaderParsed = {
@@ -312,6 +322,8 @@ MOQTSubgroupHeaderParsed = {
     group_id: uint64
     ? subgroup_id: uint64
     publisher_priority: uint8
+    contains_end_of_group: bool
+    extensions_present: bool
 
     * $$moqt-subgroupheaderparsed-extension
 }

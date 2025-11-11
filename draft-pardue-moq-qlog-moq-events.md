@@ -285,11 +285,10 @@ MOQTObjectDatagramParsed = {
 
 The `subgroup_header_created` event is emitted when a stream begins and a
 SUBGROUP_HEADER is created. It has Core importance level; see {{Section 9.2 of
-QLOG-MAIN}}. In the MoQ specification, the "type" field of the subgroup header
-encodes information such as the end of group boolean, but we don't log the
-wire-level "type" field in mLog, but rather the semantically reconstructed fields.
-The subgroup_id field is null if it is set to be the first object in the group.
-Otherwise, it has a value.
+QLOG-MAIN}}. The SUBGROUP_HEADER object in MoqT uses 12 type values to encode
+various properites. The event conveys these as explicit fields, such as
+contains_end_of_group. If the subgroup_id is the object_id of the first object,
+the subgroup_id is omitted. Otherwise, it is included with the relevant value.
 
 ~~~ cddl
 MOQTSubgroupHeaderCreated = {
@@ -309,11 +308,11 @@ MOQTSubgroupHeaderCreated = {
 ## subgroup_header_parsed {#subgroupheaderparsed}
 
 The `subgroup_header_parsed` event is emitted when the SUBGROUP_HEADER is
-parsed. It has Core importance level. In the MoQ specification, the "type"
-field of the subgroup header encodes information such as the end of group boolean,
-but we don't log the wire-level "type" field in mLog, but rather the semantically
-reconstructed fields. The subgroup_id field is null if it is set to be the first
-object in the group. Otherwise, it has a value.
+parsed. It has Core importance level. The SUBGROUP_HEADER object in MoqT uses
+12 type values to encode various properites. The event conveys these as explicit
+fields, such as contains_end_of_group. If the subgroup_id is the object_id of the
+first object, the subgroup_id is omitted. Otherwise, it is included with the relevant
+value.
 
 ~~~ cddl
 MOQTSubgroupHeaderParsed = {

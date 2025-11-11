@@ -312,11 +312,14 @@ MOQTSubgroupHeaderCreated = {
 ## subgroup_header_parsed {#subgroupheaderparsed}
 
 The `subgroup_header_parsed` event is emitted when the SUBGROUP_HEADER is
-parsed. It has Core importance level. The SUBGROUP_HEADER object in MoqT uses
-12 type values to encode various properites. The event conveys these as explicit
-fields, such as contains_end_of_group. If the subgroup_id is the object_id of the
-first object, the subgroup_id is omitted. Otherwise, it is included with the relevant
-value.
+parsed. It has Core importance level.
+
+The SUBGROUP_HEADER object in MoQT uses 12 type values to encode various
+properties. The event conveys these as explicit fields, such as
+contains_end_of_group. 
+
+If the subgroup_id is the object_id of the first object, the subgroup_id is
+omitted. Otherwise, it is included with the relevant value.
 
 ~~~ cddl
 MOQTSubgroupHeaderParsed = {

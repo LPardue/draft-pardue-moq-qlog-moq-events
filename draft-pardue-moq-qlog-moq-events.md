@@ -465,10 +465,10 @@ $MOQTSetupParameter /= {
 
 ~~~ cddl
 MOQTBaseSetupParameters /=  MOQTAuthoritySetupParameter /
+                            MOQTAuthorizationTokenSetupParameter /
                             MOQTPathSetupParameter /
                             MOQTMaxRequestIdSetupParameter /
                             MOQTMaxAuthTokenCacheSizeSetupParameter /
-                            MOQTAuthorizationTokenSetupParameter /
                             MOQTImplementationSetupParameter /
                             MOQTUnknownSetupParameter
 

@@ -464,27 +464,40 @@ $MOQTSetupParameter /= {
 {: #moqtsetupparameter-def title="MOQTSetupParameter type socket definition"}
 
 ~~~ cddl
-MOQTBaseSetupParameters /=  MOQTAuthorityParameter /
+MOQTBaseSetupParameters /=  MOQTAuthoritySetupParameter /
                             MOQTPathSetupParameter /
                             MOQTMaxRequestIdSetupParameter /
-                            MOQTMaxAuthTokenCacheSizeParameter /
-                            MOQTAuthorizationTokenParameter /
-                            MOQTImplementationParameter /
+                            MOQTMaxAuthTokenCacheSizeSetupParameter /
+                            MOQTAuthorizationTokenSetupParameter /
+                            MOQTImplementationSetupParameter /
                             MOQTUnknownSetupParameter
 
 $MOQTSetupParameter /= MOQTBaseSetupParameters
 ~~~
 {: #moqtbasesetupparameters-def title="MOQTBaseSetupParameters definition"}
 
-### MOQTAuthorityParameter
+### MOQTAuthoritySetupParameter
 
 ~~~ cddl
-MOQTAuthorityParameter = {
+MOQTAuthoritySetupParameter = {
   name: "authority"
   value: text
 }
 ~~~
-{: #moqtauthorityparameter-def title="MOQTAuthorityParameter definition"}
+{: #moqtauthoritysetupparameter-def title="MOQTAuthoritySetupParameter definition"}
+
+### MOQTAuthorizationTokenSetupParameter
+
+~~~ cddl
+MOQTAuthorizationTokenSetupParameter = {
+  name: "authorization_token"
+  alias_type: uint64
+  ? token_alias: uint64
+  ? token_type: uint64
+  ? token_value: RawInfo
+}
+~~~
+{: #moqtauthorizationtokensetupparameter-def title="MOQTAuthorizationTokenSetupParameter definition"}
 
 ### MOQTPathSetupParameter
 
@@ -506,25 +519,25 @@ MOQTMaxRequestIdSetupParameter = {
 ~~~
 {: #moqtmaxsubscribeidsetupparameter-def title="MOQTMaxRequestIdSetupParameter definition"}
 
-### MOQTMaxAuthTokenCacheSizeParameter
+### MOQTMaxAuthTokenCacheSizeSetupParameter
 
 ~~~ cddl
-MOQTMaxAuthTokenCacheSizeParameter = {
+MOQTMaxAuthTokenCacheSizeSetupParameter = {
   name: "max_auth_token_cache_size"
   value: uint64
 }
 ~~~
-{: #moqtmaxauthtokencachesizeparameter-def title="MOQTMaxAuthTokenCacheSizeParameter definition"}
+{: #moqtmaxauthtokencachesizesetupparameter-def title="MOQTMaxAuthTokenCacheSizeSetupParameter definition"}
 
-### MOQTImplementationParameter
+### MOQTImplementationSetupParameter
 
 ~~~ cddl
-MOQTImplementationParameter = {
+MOQTImplementationSetupParameter = {
   name: "implementation"
   value: text
 }
 ~~~
-{: #moqtimplementationparameter-def title="MOQTImplementationParameter definition"}
+{: #moqtimplementationsetupparameter-def title="MOQTImplementationSetupParameter definition"}
 
 ### MOQTUnknownSetupParameter
 

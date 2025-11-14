@@ -491,7 +491,7 @@ MOQTAuthoritySetupParameter = {
 ~~~ cddl
 MOQTAuthorizationTokenSetupParameter = {
   name: "authorization_token"
-  alias_type: MOQTAliasType
+  alias_type: $MOQTAliasType
   ? token_alias: uint64
   ? token_type: uint64
   ? token_value: RawInfo

@@ -1784,9 +1784,14 @@ MOQTObjectDatagramParsed = {
         </h3>
 <p id="section-4.6-1">The <code>subgroup_header_created</code> event is emitted when a stream begins and a
 SUBGROUP_HEADER is created. It has Core importance level; see <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-quic-qlog-main-schema-13#section-9.2" class="relref">Section 9.2</a> of [<a href="#QLOG-MAIN" class="cite xref">QLOG-MAIN</a>]</span>.<a href="#section-4.6-1" class="pilcrow">¶</a></p>
+<p id="section-4.6-2">The SUBGROUP_HEADER object in MoQT uses 12 type values to encode various
+properties. The <code>subgroup_header_created</code> event conveys these as explicit
+fields, such as contains_end_of_group.<a href="#section-4.6-2" class="pilcrow">¶</a></p>
+<p id="section-4.6-3">If the subgroup_id is the object_id of the first object, the subgroup_id is
+omitted. Otherwise, it is included with the relevant value.<a href="#section-4.6-3" class="pilcrow">¶</a></p>
 <span id="name-moqtsubgroupheadercreated-d"></span><div id="subgroupheadercreated-def">
 <figure id="figure-7">
-          <div class="lang-cddl sourcecode" id="section-4.6-2.1">
+          <div class="lang-cddl sourcecode" id="section-4.6-4.1">
 <pre>
 MOQTSubgroupHeaderCreated = {
     stream_id: uint64
@@ -1794,6 +1799,8 @@ MOQTSubgroupHeaderCreated = {
     group_id: uint64
     ? subgroup_id: uint64
     publisher_priority: uint8
+    contains_end_of_group: bool
+    extensions_present: bool
 
     * $$moqt-subgroupheadercreated-extension
 }
@@ -1812,9 +1819,14 @@ MOQTSubgroupHeaderCreated = {
         </h3>
 <p id="section-4.7-1">The <code>subgroup_header_parsed</code> event is emitted when the SUBGROUP_HEADER is
 parsed. It has Core importance level.<a href="#section-4.7-1" class="pilcrow">¶</a></p>
+<p id="section-4.7-2">The SUBGROUP_HEADER object in MoQT uses 12 type values to encode various
+properties. The event conveys these as explicit fields, such as
+contains_end_of_group.<a href="#section-4.7-2" class="pilcrow">¶</a></p>
+<p id="section-4.7-3">If the subgroup_id is the object_id of the first object, the subgroup_id is
+omitted. Otherwise, it is included with the relevant value.<a href="#section-4.7-3" class="pilcrow">¶</a></p>
 <span id="name-moqtsubgroupheaderparsed-de"></span><div id="subgroupheaderparsed-def">
 <figure id="figure-8">
-          <div class="lang-cddl sourcecode" id="section-4.7-2.1">
+          <div class="lang-cddl sourcecode" id="section-4.7-4.1">
 <pre>
 MOQTSubgroupHeaderParsed = {
     stream_id: uint64
@@ -1822,6 +1834,8 @@ MOQTSubgroupHeaderParsed = {
     group_id: uint64
     ? subgroup_id: uint64
     publisher_priority: uint8
+    contains_end_of_group: bool
+    extensions_present: bool
 
     * $$moqt-subgroupheaderparsed-extension
 }

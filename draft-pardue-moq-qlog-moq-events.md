@@ -840,6 +840,7 @@ MOQTSubscribeError = {
 MOQTSubscribeUpdate = {
   type: "subscribe_update"
   request_id: uint64
+  subscription_request_id: uint64_t
   start_location: MOQTLocation
   end_group: uint64
   subscriber_priority: uint8

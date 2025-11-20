@@ -5,10 +5,10 @@
 Media Over QUIC                                                L. Pardue
 Internet-Draft                                                Cloudflare
 Intended status: Informational                              M. Engelbart
-Expires: 21 May 2026                      Technical University of Munich
+Expires: 24 May 2026                      Technical University of Munich
                                                                A. Sharma
                                                                     Meta
-                                                        17 November 2025
+                                                        20 November 2025
 
 
                        MoQ qlog event definitions
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 May 2026.
+   This Internet-Draft will expire on 24 May 2026.
 
 Copyright Notice
 
@@ -1023,7 +1023,8 @@ Table of Contents
    }
 
    $MOQTFetchType /=  "standalone" /
-                      "joining"
+                      "absolute joining" /
+                      "relative joining"
 
                       Figure 49: MOQTFetch definition
 

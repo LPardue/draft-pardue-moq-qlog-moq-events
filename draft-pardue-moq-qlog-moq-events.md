@@ -933,20 +933,27 @@ MOQTFetch = {
   request_id: uint64
   subscriber_priority: uint8
   group_order: uint8
-  fetch_type: uint64
-
-  track_namespace: [ *MOQTByteString]
-  ? track_name: MOQTByteString
-  ? start_location: MOQTLocation
-  ? end_location: MOQTLocation
-
-  ? joining_request_id: uint64
-  ? preceding_group_offset: uint64
-
-  number_of_parameters: uint64
+  fetch_type: $MOQTFetchType
+  ? standalone_fetch: $MOQTStandaloneFetch
+  ? joining_fetch: $MOQTJoiningFetch
   ? parameters: [* $MOQTParameter]
-
 }
+
+$MOQTStandaloneFetch = {
+  track_namespace: [ *MOQTByteString]
+  track_name: MOQTByteString
+  start_location: MOQTLocation
+  end_location: MOQTLocation
+}
+
+$MOQTJoiningFetch = {
+  joining_request_id: uint64
+  joining_start: uint64
+}
+
+$MOQTFetchType /=  "standalone" /
+                   "absolute_joining" /
+                   "relative_joining"
 ~~~
 {: #fetch-def title="MOQTFetch definition"}
 

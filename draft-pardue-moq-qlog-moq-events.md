@@ -951,8 +951,8 @@ $MOQTJoiningFetch = {
 }
 
 $MOQTFetchType /=  "standalone" /
-                   "absolute joining" /
-                   "relative joining"
+                   "absolute_joining" /
+                   "relative_joining"
 ~~~
 {: #fetch-def title="MOQTFetch definition"}
 

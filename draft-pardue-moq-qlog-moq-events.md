@@ -478,7 +478,7 @@ MOQTLocation = {
   object: uint64
 }
 ~~~
-{: #moqtlocation-def title="MOQTLocation definition}
+{: #moqtlocation-def title="MOQTLocation definition"}
 
 ## MOQTSubscriptionFilter
 
@@ -491,7 +491,7 @@ MOQTSubscriptionFilter = {
   ? end_group: uint64
 }
 ~~~
-{: #moqtlocation-def title="MOQTSubscriptionFilter definition}
+{: #moqtlocation-def title="MOQTSubscriptionFilter definition"}
 
 ## MOQTSetupParameter
 

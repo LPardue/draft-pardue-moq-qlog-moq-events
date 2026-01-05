@@ -19,12 +19,12 @@
     Python 3.12.12
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
-    intervaltree 3.1.0
+    intervaltree 3.2.1
     Jinja2 3.1.6
-    lxml 5.3.1
-    platformdirs 4.5.0
+    lxml 6.0.2
+    platformdirs 4.5.1
     pycountry 24.6.1
-    PyYAML 6.0.2
+    PyYAML 6.0.3
     requests 2.32.5
     wcwidth 0.2.14
 -->
@@ -1045,11 +1045,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">MoQ qlog event definitions</td>
-<td class="right">November 2025</td>
+<td class="right">January 2026</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Pardue, et al.</td>
-<td class="center">Expires 21 May 2026</td>
+<td class="center">Expires 9 July 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1062,12 +1062,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-pardue-moq-qlog-moq-events-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-11-17" class="published">17 November 2025</time>
+<time datetime="2026-01-05" class="published">5 January 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-05-21">21 May 2026</time></dd>
+<dd class="expires"><time datetime="2026-07-09">9 July 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1125,7 +1125,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 21 May 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 9 July 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1134,7 +1134,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
         </h2>
 <p id="section-boilerplate.2-1">
-            Copyright (c) 2025 IETF Trust and the persons identified as the
+            Copyright (c) 2026 IETF Trust and the persons identified as the
             document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.2-2">
             This document is subject to BCP 78 and the IETF Trust's Legal
@@ -2506,8 +2506,6 @@ $MOQTControlMessage /= MOQTBaseControlMessages
 <pre>
 MOQTClientSetupMessage = {
   type: "client_setup"
-  number_of_supported_versions: uint64
-  supported_versions: [* uint64]
   number_of_parameters: uint64
   ? setup_parameters: [* $MOQTSetupParameter]
 }
@@ -2530,7 +2528,6 @@ MOQTClientSetupMessage = {
 <pre>
 MOQTServerSetupMessage = {
   type: "server_setup"
-  selected_version: uint64
   number_of_parameters: uint64
   ? setup_parameters: [* $MOQTSetupParameter]
 }
@@ -2860,20 +2857,27 @@ MOQTFetch = {
   request_id: uint64
   subscriber_priority: uint8
   group_order: uint8
-  fetch_type: uint64
-
-  track_namespace: [ *MOQTByteString]
-  ? track_name: MOQTByteString
-  ? start_location: MOQTLocation
-  ? end_location: MOQTLocation
-
-  ? joining_request_id: uint64
-  ? preceding_group_offset: uint64
-
-  number_of_parameters: uint64
+  fetch_type: $MOQTFetchType
+  ? standalone_fetch: $MOQTStandaloneFetch
+  ? joining_fetch: $MOQTJoiningFetch
   ? parameters: [* $MOQTParameter]
-
 }
+
+$MOQTStandaloneFetch = {
+  track_namespace: [ *MOQTByteString]
+  track_name: MOQTByteString
+  start_location: MOQTLocation
+  end_location: MOQTLocation
+}
+
+$MOQTJoiningFetch = {
+  joining_request_id: uint64
+  joining_start: uint64
+}
+
+$MOQTFetchType /=  "standalone" /
+                   "absolute_joining" /
+                   "relative_joining"
 </pre>
 </div>
 <figcaption><a href="#figure-49" class="selfRef">Figure 49</a>:

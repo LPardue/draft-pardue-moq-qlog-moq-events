@@ -5,10 +5,10 @@
 Media Over QUIC                                                L. Pardue
 Internet-Draft                                                Cloudflare
 Intended status: Informational                              M. Engelbart
-Expires: 21 May 2026                      Technical University of Munich
+Expires: 9 July 2026                      Technical University of Munich
                                                                A. Sharma
                                                                     Meta
-                                                        17 November 2025
+                                                          5 January 2026
 
 
                        MoQ qlog event definitions
@@ -52,11 +52,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 May 2026.
+   This Internet-Draft will expire on 9 July 2026.
 
 Copyright Notice
 
-   Copyright (c) 2025 IETF Trust and the persons identified as the
+   Copyright (c) 2026 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -819,8 +819,6 @@ Table of Contents
 
    MOQTClientSetupMessage = {
      type: "client_setup"
-     number_of_supported_versions: uint64
-     supported_versions: [* uint64]
      number_of_parameters: uint64
      ? setup_parameters: [* $MOQTSetupParameter]
    }
@@ -831,7 +829,6 @@ Table of Contents
 
    MOQTServerSetupMessage = {
      type: "server_setup"
-     selected_version: uint64
      number_of_parameters: uint64
      ? setup_parameters: [* $MOQTSetupParameter]
    }
@@ -1005,20 +1002,27 @@ Table of Contents
      request_id: uint64
      subscriber_priority: uint8
      group_order: uint8
-     fetch_type: uint64
-
-     track_namespace: [ *MOQTByteString]
-     ? track_name: MOQTByteString
-     ? start_location: MOQTLocation
-     ? end_location: MOQTLocation
-
-     ? joining_request_id: uint64
-     ? preceding_group_offset: uint64
-
-     number_of_parameters: uint64
+     fetch_type: $MOQTFetchType
+     ? standalone_fetch: $MOQTStandaloneFetch
+     ? joining_fetch: $MOQTJoiningFetch
      ? parameters: [* $MOQTParameter]
-
    }
+
+   $MOQTStandaloneFetch = {
+     track_namespace: [ *MOQTByteString]
+     track_name: MOQTByteString
+     start_location: MOQTLocation
+     end_location: MOQTLocation
+   }
+
+   $MOQTJoiningFetch = {
+     joining_request_id: uint64
+     joining_start: uint64
+   }
+
+   $MOQTFetchType /=  "standalone" /
+                      "absolute_joining" /
+                      "relative_joining"
 
                       Figure 49: MOQTFetch definition
 

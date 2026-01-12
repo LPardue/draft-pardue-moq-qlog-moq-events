@@ -5,10 +5,10 @@
 Media Over QUIC                                                L. Pardue
 Internet-Draft                                                Cloudflare
 Intended status: Informational                              M. Engelbart
-Expires: 9 July 2026                      Technical University of Munich
+Expires: 16 July 2026                     Technical University of Munich
                                                                A. Sharma
                                                                     Meta
-                                                          5 January 2026
+                                                         12 January 2026
 
 
                        MoQ qlog event definitions
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 July 2026.
+   This Internet-Draft will expire on 16 July 2026.
 
 Copyright Notice
 
@@ -108,12 +108,12 @@ Table of Contents
        5.5.4.  MOQTPublisherPriorityParameter
        5.5.5.  MOQTSubscriberPriorityParameter
        5.5.6.  MOQTGroupOrderParameter
-       5.5.7.  MOQTForwardParameter
+       5.5.7.  MOQTSubscriptionFilterParameter
        5.5.8.  MOQTExpiresParameter
        5.5.9.  MOQTLargestObjectParameter
-       5.5.10. MOQTDynamicGroupsParameter
-       5.5.11. MOQTNewGroupRequestParameter
-       5.5.12. MOQTSubscriptionFilterParameter
+       5.5.10. MOQTForwardParameter
+       5.5.11. MOQTDynamicGroupsParameter
+       5.5.12. MOQTNewGroupRequestParameter
        5.5.13. MOQTUnknownParameter
      5.6.  MOQTByteString
      5.7.  MOQTControlMessage
@@ -584,7 +584,7 @@ Table of Contents
 
 5.2.  MOQTLocation
 
-   A Location, as defined in Section 1.3.1 of [MOQT]
+   A Location, as defined in Section 1.4.1 of [MOQT]
 
    MOQTLocation = {
      group: uint64
@@ -723,12 +723,12 @@ Table of Contents
                          MOQTPublisherPriorityParameter /
                          MOQTSubscriberPriorityParameter /
                          MOQTGroupOrderParameter /
-                         MOQTForwardParameter /
+                         MOQTSubscriptionFilterParameter /
                          MOQTExpiresParameter /
                          MOQTLargestObjectParameter /
+                         MOQTForwardParameter /
                          MOQTDynamicGroupsParameter /
                          MOQTNewGroupRequestParameter /
-                         MOQTSubscriptionFilterParameter /
                          MOQTUnknownParameter
 
    $MOQTParameter /= MOQTBaseParameters
@@ -792,14 +792,14 @@ Table of Contents
 
                Figure 34: MOQTGroupOrderParameter definition
 
-5.5.7.  MOQTForwardParameter
+5.5.7.  MOQTSubscriptionFilterParameter
 
-   MOQTForwardParameter = {
-     name: "forward"
-     value: uint64
+   MOQTSubscriptionFilterParameter = {
+     name: "subscription_filter"
+     value: MOQTSubscriptionFilter
    }
 
-                 Figure 35: MOQTForwardParameter definition
+           Figure 35: MOQTSubscriptionFilterParameter definition
 
 5.5.8.  MOQTExpiresParameter
 
@@ -819,32 +819,32 @@ Table of Contents
 
               Figure 37: MOQTLargestObjectParameter definition
 
-5.5.10.  MOQTDynamicGroupsParameter
+5.5.10.  MOQTForwardParameter
+
+   MOQTForwardParameter = {
+     name: "forward"
+     value: uint64
+   }
+
+                 Figure 38: MOQTForwardParameter definition
+
+5.5.11.  MOQTDynamicGroupsParameter
 
    MOQTDynamicGroupsParameter = {
      name: "dynamic_groups"
      value: uint64
    }
 
-              Figure 38: MOQTDynamicGroupsParameter definition
+              Figure 39: MOQTDynamicGroupsParameter definition
 
-5.5.11.  MOQTNewGroupRequestParameter
+5.5.12.  MOQTNewGroupRequestParameter
 
    MOQTNewGroupRequestParameter = {
      name: "new_group_request"
      value: uint64
    }
 
-             Figure 39: MOQTNewGroupRequestParameter definition
-
-5.5.12.  MOQTSubscriptionFilterParameter
-
-   MOQTSubscriptionFilterParameter = {
-     name: "subscription_filter"
-     value: MOQTSubscriptionFilter
-   }
-
-           Figure 40: MOQTSubscriptionFilterParameter definition
+             Figure 40: MOQTNewGroupRequestParameter definition
 
 5.5.13.  MOQTUnknownParameter
 

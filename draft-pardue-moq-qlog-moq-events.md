@@ -470,7 +470,7 @@ Owner = "local" /
 
 ## MOQTLocation
 
-A Location, as defined in {{Section 1.3.1 of MOQT}}
+A Location, as defined in {{Section 1.4.1 of MOQT}}
 
 ~~~ cddl
 MOQTLocation = {
@@ -620,12 +620,12 @@ MOQTBaseParameters /= MOQTAuthorizationTokenParameter /
                       MOQTPublisherPriorityParameter /
                       MOQTSubscriberPriorityParameter /
                       MOQTGroupOrderParameter /
-                      MOQTForwardParameter /
+                      MOQTSubscriptionFilterParameter /
                       MOQTExpiresParameter /
                       MOQTLargestObjectParameter /
+                      MOQTForwardParameter /
                       MOQTDynamicGroupsParameter /
                       MOQTNewGroupRequestParameter /
-                      MOQTSubscriptionFilterParameter /
                       MOQTUnknownParameter
 
 $MOQTParameter /= MOQTBaseParameters
@@ -695,15 +695,15 @@ MOQTGroupOrderParameter = {
 ~~~
 {: #moqtgrouporderparameter-def title="MOQTGroupOrderParameter definition"}
 
-### MOQTForwardParameter
+### MOQTSubscriptionFilterParameter
 
 ~~~ cddl
-MOQTForwardParameter = {
-  name: "forward"
-  value: uint64
+MOQTSubscriptionFilterParameter = {
+  name: "subscription_filter"
+  value: MOQTSubscriptionFilter
 }
 ~~~
-{: #moqtforwardparameter-def title="MOQTForwardParameter definition"}
+{: #moqtsubscriptionfilterparameter-def title="MOQTSubscriptionFilterParameter definition"}
 
 ### MOQTExpiresParameter
 
@@ -725,6 +725,16 @@ MOQTLargestObjectParameter = {
 ~~~
 {: #moqtlargestobjectparameter-def title="MOQTLargestObjectParameter definition"}
 
+### MOQTForwardParameter
+
+~~~ cddl
+MOQTForwardParameter = {
+  name: "forward"
+  value: uint64
+}
+~~~
+{: #moqtforwardparameter-def title="MOQTForwardParameter definition"}
+
 ### MOQTDynamicGroupsParameter
 
 ~~~ cddl
@@ -744,16 +754,6 @@ MOQTNewGroupRequestParameter = {
 }
 ~~~
 {: #moqtnewgrouprequestparameter-def title="MOQTNewGroupRequestParameter definition"}
-
-### MOQTSubscriptionFilterParameter
-
-~~~ cddl
-MOQTSubscriptionFilterParameter = {
-  name: "subscription_filter"
-  value: MOQTSubscriptionFilter
-}
-~~~
-{: #moqtsubscriptionfilterparameter-def title="MOQTSubscriptionFilterParameter definition"}
 
 ### MOQTUnknownParameter
 

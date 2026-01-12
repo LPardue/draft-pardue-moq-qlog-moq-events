@@ -733,8 +733,6 @@ $MOQTControlMessage /= MOQTBaseControlMessages
 ~~~ cddl
 MOQTClientSetupMessage = {
   type: "client_setup"
-  number_of_supported_versions: uint64
-  supported_versions: [* uint64]
   number_of_parameters: uint64
   ? setup_parameters: [* $MOQTSetupParameter]
 }
@@ -746,7 +744,6 @@ MOQTClientSetupMessage = {
 ~~~ cddl
 MOQTServerSetupMessage = {
   type: "server_setup"
-  selected_version: uint64
   number_of_parameters: uint64
   ? setup_parameters: [* $MOQTSetupParameter]
 }

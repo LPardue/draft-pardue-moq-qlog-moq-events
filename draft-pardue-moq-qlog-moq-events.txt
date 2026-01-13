@@ -5,10 +5,10 @@
 Media Over QUIC                                                L. Pardue
 Internet-Draft                                                Cloudflare
 Intended status: Informational                              M. Engelbart
-Expires: 16 July 2026                     Technical University of Munich
+Expires: 17 July 2026                     Technical University of Munich
                                                                A. Sharma
                                                                     Meta
-                                                         12 January 2026
+                                                         13 January 2026
 
 
                        MoQ qlog event definitions
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 16 July 2026.
+   This Internet-Draft will expire on 17 July 2026.
 
 Copyright Notice
 
@@ -91,53 +91,63 @@ Table of Contents
      4.13. fetch_object_parsed
    5.  MOQT Data Type Definitions
      5.1.  Owner
-     5.2.  MOQTSetupParameter
-       5.2.1.  MOQTAuthoritySetupParameter
-       5.2.2.  MOQTAuthorizationTokenSetupParameter
-       5.2.3.  MOQTPathSetupParameter
-       5.2.4.  MOQTMaxRequestIdSetupParameter
-       5.2.5.  MOQTMaxAuthTokenCacheSizeSetupParameter
-       5.2.6.  MOQTImplementationSetupParameter
-       5.2.7.  MOQTUnknownSetupParameter
-     5.3.  MOQTParameter
-       5.3.1.  MOQTAuthorizationTokenParameter
-       5.3.2.  MOQTDeliveryTimeoutParameter
-       5.3.3.  MOQTMaxCacheDurationParameter
-       5.3.4.  MOQTUnknownParameter
-     5.4.  MOQTByteString
-     5.5.  MOQTLocation
-     5.6.  MOQTControlMessage
-       5.6.1.  MOQTClientSetupMessage
-       5.6.2.  MOQTServerSetupMessage
-       5.6.3.  MOQTGoaway
-       5.6.4.  MOQTMaxRequestId
-       5.6.5.  MOQTRequestsBlocked
-       5.6.6.  MOQTSubscribe
-       5.6.7.  MOQTSubscribeOk
-       5.6.8.  MOQTSubscribeError
-       5.6.9.  MOQTSubscribeUpdate
-       5.6.10. MOQTUnsubscribe
-       5.6.11. MOQTPublishDone
-       5.6.12. MOQTPublish
-       5.6.13. MOQTPublishOk
-       5.6.14. MOQTPublishError
-       5.6.15. MOQTFetch
-       5.6.16. MOQTFetchOk
-       5.6.17. MOQTFetchError
-       5.6.18. MOQTFetchCancel
-       5.6.19. MOQTTrackStatus
-       5.6.20. MOQTTrackStatusOk
-       5.6.21. MOQTTrackStatusError
-       5.6.22. MOQTPublishNamespace
-       5.6.23. MOQTPublishNamespaceOk
-       5.6.24. MOQTPublishNamespaceError
-       5.6.25. MOQTPublishNamespaceDone
-       5.6.26. MOQTPublishNamespaceCancel
-       5.6.27. MOQTSubscribeNamespace
-       5.6.28. MOQTSubscribeNamespaceOk
-       5.6.29. MOQTSubscribeNamespaceError
-       5.6.30. MOQTUnsubscribeNamespace
-     5.7.  MOQTExtensionHeader
+     5.2.  MOQTLocation
+     5.3.  MOQTSubscriptionFilter
+     5.4.  MOQTSetupParameter
+       5.4.1.  MOQTAuthoritySetupParameter
+       5.4.2.  MOQTAuthorizationTokenSetupParameter
+       5.4.3.  MOQTPathSetupParameter
+       5.4.4.  MOQTMaxRequestIdSetupParameter
+       5.4.5.  MOQTMaxAuthTokenCacheSizeSetupParameter
+       5.4.6.  MOQTImplementationSetupParameter
+       5.4.7.  MOQTUnknownSetupParameter
+     5.5.  MOQTParameter
+       5.5.1.  MOQTAuthorizationTokenParameter
+       5.5.2.  MOQTDeliveryTimeoutParameter
+       5.5.3.  MOQTMaxCacheDurationParameter
+       5.5.4.  MOQTPublisherPriorityParameter
+       5.5.5.  MOQTSubscriberPriorityParameter
+       5.5.6.  MOQTGroupOrderParameter
+       5.5.7.  MOQTSubscriptionFilterParameter
+       5.5.8.  MOQTExpiresParameter
+       5.5.9.  MOQTLargestObjectParameter
+       5.5.10. MOQTForwardParameter
+       5.5.11. MOQTDynamicGroupsParameter
+       5.5.12. MOQTNewGroupRequestParameter
+       5.5.13. MOQTUnknownParameter
+     5.6.  MOQTByteString
+     5.7.  MOQTControlMessage
+       5.7.1.  MOQTClientSetupMessage
+       5.7.2.  MOQTServerSetupMessage
+       5.7.3.  MOQTGoaway
+       5.7.4.  MOQTMaxRequestId
+       5.7.5.  MOQTRequestsBlocked
+       5.7.6.  MOQTSubscribe
+       5.7.7.  MOQTSubscribeOk
+       5.7.8.  MOQTSubscribeError
+       5.7.9.  MOQTSubscribeUpdate
+       5.7.10. MOQTUnsubscribe
+       5.7.11. MOQTPublishDone
+       5.7.12. MOQTPublish
+       5.7.13. MOQTPublishOk
+       5.7.14. MOQTPublishError
+       5.7.15. MOQTFetch
+       5.7.16. MOQTFetchOk
+       5.7.17. MOQTFetchError
+       5.7.18. MOQTFetchCancel
+       5.7.19. MOQTTrackStatus
+       5.7.20. MOQTTrackStatusOk
+       5.7.21. MOQTTrackStatusError
+       5.7.22. MOQTPublishNamespace
+       5.7.23. MOQTPublishNamespaceOk
+       5.7.24. MOQTPublishNamespaceError
+       5.7.25. MOQTPublishNamespaceDone
+       5.7.26. MOQTPublishNamespaceCancel
+       5.7.27. MOQTSubscribeNamespace
+       5.7.28. MOQTSubscribeNamespaceOk
+       5.7.29. MOQTSubscribeNamespaceError
+       5.7.30. MOQTUnsubscribeNamespace
+     5.8.  MOQTExtensionHeader
    6.  Security Considerations
    7.  IANA Considerations
    8.  Normative References
@@ -300,7 +310,7 @@ Table of Contents
    The control_message_created event is emitted when a control message
    is created.  It has Core importance level.
 
-   The definition of control message content is in Section 5.6.
+   The definition of control message content is in Section 5.7.
 
    MOQTControlMessageCreated = {
        stream_id: uint64
@@ -318,7 +328,7 @@ Table of Contents
    The control_message_parsed event is emitted when a control message is
    parsed.  It has Core importance level.
 
-   The definition of control message content is in Section 5.6.
+   The definition of control message content is in Section 5.7.
 
    MOQTControlMessageParsed = {
        stream_id: uint64
@@ -572,7 +582,30 @@ Table of Contents
 
                         Figure 15: Owner definition
 
-5.2.  MOQTSetupParameter
+5.2.  MOQTLocation
+
+   A Location, as defined in Section 1.4.1 of [MOQT]
+
+   MOQTLocation = {
+     group: uint64
+     object: uint64
+   }
+
+                     Figure 16: MOQTLocation definition
+
+5.3.  MOQTSubscriptionFilter
+
+   A Subscription Filter, as defined in Section 5.1.2 of [MOQT]
+
+   MOQTSubscriptionFilter = {
+     filter_type: uint64
+     ? start_location: MOQTLocation
+     ? end_group: uint64
+   }
+
+                Figure 17: MOQTSubscriptionFilter definition
+
+5.4.  MOQTSetupParameter
 
    The generic $MOQTSetupParameter is defined here as a CDDL "type
    socket" extension point.  It can be extended to support additional
@@ -583,7 +616,7 @@ Table of Contents
        * text => any
    }
 
-            Figure 16: MOQTSetupParameter type socket definition
+            Figure 18: MOQTSetupParameter type socket definition
 
    MOQTBaseSetupParameters /=  MOQTAuthoritySetupParameter /
                                MOQTAuthorizationTokenSetupParameter /
@@ -595,18 +628,18 @@ Table of Contents
 
    $MOQTSetupParameter /= MOQTBaseSetupParameters
 
-               Figure 17: MOQTBaseSetupParameters definition
+               Figure 19: MOQTBaseSetupParameters definition
 
-5.2.1.  MOQTAuthoritySetupParameter
+5.4.1.  MOQTAuthoritySetupParameter
 
    MOQTAuthoritySetupParameter = {
      name: "authority"
      value: text
    }
 
-             Figure 18: MOQTAuthoritySetupParameter definition
+             Figure 20: MOQTAuthoritySetupParameter definition
 
-5.2.2.  MOQTAuthorizationTokenSetupParameter
+5.4.2.  MOQTAuthorizationTokenSetupParameter
 
    MOQTAuthorizationTokenSetupParameter = {
      name: "authorization_token"
@@ -621,45 +654,45 @@ Table of Contents
                       "use_alias" /
                       "use_value"
 
-         Figure 19: MOQTAuthorizationTokenSetupParameter definition
+         Figure 21: MOQTAuthorizationTokenSetupParameter definition
 
-5.2.3.  MOQTPathSetupParameter
+5.4.3.  MOQTPathSetupParameter
 
    MOQTPathSetupParameter = {
      name: "path"
      value: text
    }
 
-                Figure 20: MOQTPathSetupParameter definition
+                Figure 22: MOQTPathSetupParameter definition
 
-5.2.4.  MOQTMaxRequestIdSetupParameter
+5.4.4.  MOQTMaxRequestIdSetupParameter
 
    MOQTMaxRequestIdSetupParameter = {
      name: "max_request_id"
      value: uint64
    }
 
-            Figure 21: MOQTMaxRequestIdSetupParameter definition
+            Figure 23: MOQTMaxRequestIdSetupParameter definition
 
-5.2.5.  MOQTMaxAuthTokenCacheSizeSetupParameter
+5.4.5.  MOQTMaxAuthTokenCacheSizeSetupParameter
 
    MOQTMaxAuthTokenCacheSizeSetupParameter = {
      name: "max_auth_token_cache_size"
      value: uint64
    }
 
-       Figure 22: MOQTMaxAuthTokenCacheSizeSetupParameter definition
+       Figure 24: MOQTMaxAuthTokenCacheSizeSetupParameter definition
 
-5.2.6.  MOQTImplementationSetupParameter
+5.4.6.  MOQTImplementationSetupParameter
 
    MOQTImplementationSetupParameter = {
      name: "implementation"
      value: text
    }
 
-           Figure 23: MOQTImplementationSetupParameter definition
+           Figure 25: MOQTImplementationSetupParameter definition
 
-5.2.7.  MOQTUnknownSetupParameter
+5.4.7.  MOQTUnknownSetupParameter
 
    MOQTUnknownSetupParameter = {
      name:"unknown"
@@ -669,9 +702,9 @@ Table of Contents
      ? value_bytes: RawInfo
    }
 
-              Figure 24: MOQTUnknownSetupParameter definition
+              Figure 26: MOQTUnknownSetupParameter definition
 
-5.3.  MOQTParameter
+5.5.  MOQTParameter
 
    The generic $MOQTParameter is defined here as a CDDL "type socket"
    extension point.  It can be extended to support additional MOQT
@@ -682,18 +715,27 @@ Table of Contents
        * text => any
    }
 
-              Figure 25: MOQTParameter type socket definition
+              Figure 27: MOQTParameter type socket definition
 
    MOQTBaseParameters /= MOQTAuthorizationTokenParameter /
                          MOQTDeliveryTimeoutParameter /
                          MOQTMaxCacheDurationParameter /
+                         MOQTPublisherPriorityParameter /
+                         MOQTSubscriberPriorityParameter /
+                         MOQTGroupOrderParameter /
+                         MOQTSubscriptionFilterParameter /
+                         MOQTExpiresParameter /
+                         MOQTLargestObjectParameter /
+                         MOQTForwardParameter /
+                         MOQTDynamicGroupsParameter /
+                         MOQTNewGroupRequestParameter /
                          MOQTUnknownParameter
 
    $MOQTParameter /= MOQTBaseParameters
 
-                  Figure 26: MOQTBaseParameters definition
+                  Figure 28: MOQTBaseParameters definition
 
-5.3.1.  MOQTAuthorizationTokenParameter
+5.5.1.  MOQTAuthorizationTokenParameter
 
    MOQTAuthorizationTokenParameter = {
      name: "authorization_token"
@@ -703,27 +745,108 @@ Table of Contents
      ? token_value: RawInfo
    }
 
-           Figure 27: MOQTAuthorizationTokenParameter definition
+           Figure 29: MOQTAuthorizationTokenParameter definition
 
-5.3.2.  MOQTDeliveryTimeoutParameter
+5.5.2.  MOQTDeliveryTimeoutParameter
 
    MOQTDeliveryTimeoutParameter = {
      name: "delivery_timeout"
      value: uint64
    }
 
-             Figure 28: MOQTDeliveryTimeoutParameter definition
+             Figure 30: MOQTDeliveryTimeoutParameter definition
 
-5.3.3.  MOQTMaxCacheDurationParameter
+5.5.3.  MOQTMaxCacheDurationParameter
 
    MOQTMaxCacheDurationParameter = {
      name: "max_cache_duration"
      value: uint64
    }
 
-            Figure 29: MOQTMaxCacheDurationParameter definition
+            Figure 31: MOQTMaxCacheDurationParameter definition
 
-5.3.4.  MOQTUnknownParameter
+5.5.4.  MOQTPublisherPriorityParameter
+
+   MOQTPublisherPriorityParameter = {
+     name: "publisher_priority"
+     value: uint64
+   }
+
+            Figure 32: MOQTPublisherPriorityParameter definition
+
+5.5.5.  MOQTSubscriberPriorityParameter
+
+   MOQTSubscriberPriorityParameter = {
+     name: "subscriber_priority"
+     value: uint64
+   }
+
+           Figure 33: MOQTSubscriberPriorityParameter definition
+
+5.5.6.  MOQTGroupOrderParameter
+
+   MOQTGroupOrderParameter = {
+     name: "group_order"
+     value: uint64
+   }
+
+               Figure 34: MOQTGroupOrderParameter definition
+
+5.5.7.  MOQTSubscriptionFilterParameter
+
+   MOQTSubscriptionFilterParameter = {
+     name: "subscription_filter"
+     value: MOQTSubscriptionFilter
+   }
+
+           Figure 35: MOQTSubscriptionFilterParameter definition
+
+5.5.8.  MOQTExpiresParameter
+
+   MOQTExpiresParameter = {
+     name: "expires"
+     value: uint64
+   }
+
+                 Figure 36: MOQTExpiresParameter definition
+
+5.5.9.  MOQTLargestObjectParameter
+
+   MOQTLargestObjectParameter = {
+     name: "largest_object"
+     value: MOQTLocation
+   }
+
+              Figure 37: MOQTLargestObjectParameter definition
+
+5.5.10.  MOQTForwardParameter
+
+   MOQTForwardParameter = {
+     name: "forward"
+     value: uint64
+   }
+
+                 Figure 38: MOQTForwardParameter definition
+
+5.5.11.  MOQTDynamicGroupsParameter
+
+   MOQTDynamicGroupsParameter = {
+     name: "dynamic_groups"
+     value: uint64
+   }
+
+              Figure 39: MOQTDynamicGroupsParameter definition
+
+5.5.12.  MOQTNewGroupRequestParameter
+
+   MOQTNewGroupRequestParameter = {
+     name: "new_group_request"
+     value: uint64
+   }
+
+             Figure 40: MOQTNewGroupRequestParameter definition
+
+5.5.13.  MOQTUnknownParameter
 
    MOQTUnknownParameter = {
      name:"unknown"
@@ -733,9 +856,9 @@ Table of Contents
      ? value_bytes: RawInfo
    }
 
-                 Figure 30: MOQTUnknownParameter definition
+                 Figure 41: MOQTUnknownParameter definition
 
-5.4.  MOQTByteString
+5.6.  MOQTByteString
 
    The MOQTByteString type allows representing MOQT bytestrings, such as
    the value of a Track or Track Namespace tuple field, using two
@@ -751,20 +874,9 @@ Table of Contents
      ? value_bytes: hexstring
    }
 
-                    Figure 31: MOQTByteString definition
+                    Figure 42: MOQTByteString definition
 
-5.5.  MOQTLocation
-
-   A Location, as defined in Section 1.3.1 of [MOQT]
-
-   MOQTLocation = {
-     group: uint64
-     object: uint64
-   }
-
-                                 Figure 32
-
-5.6.  MOQTControlMessage
+5.7.  MOQTControlMessage
 
    The generic $MOQTControlMessage is defined here as a CDDL "type
    socket" extension point.  It can be extended to support additional
@@ -775,7 +887,7 @@ Table of Contents
        * text => any
    }
 
-            Figure 33: MOQTControlMessage type socket definition
+            Figure 43: MOQTControlMessage type socket definition
 
    The MOQT control message types defined in this document are as
    follows:
@@ -813,9 +925,9 @@ Table of Contents
 
    $MOQTControlMessage /= MOQTBaseControlMessages
 
-               Figure 34: MOQTBaseControlMessages definition
+               Figure 44: MOQTBaseControlMessages definition
 
-5.6.1.  MOQTClientSetupMessage
+5.7.1.  MOQTClientSetupMessage
 
    MOQTClientSetupMessage = {
      type: "client_setup"
@@ -823,9 +935,9 @@ Table of Contents
      ? setup_parameters: [* $MOQTSetupParameter]
    }
 
-                Figure 35: MOQTClientSetupMessage definition
+                Figure 45: MOQTClientSetupMessage definition
 
-5.6.2.  MOQTServerSetupMessage
+5.7.2.  MOQTServerSetupMessage
 
    MOQTServerSetupMessage = {
      type: "server_setup"
@@ -833,9 +945,9 @@ Table of Contents
      ? setup_parameters: [* $MOQTSetupParameter]
    }
 
-                Figure 36: MOQTServerSetupMessage definition
+                Figure 46: MOQTServerSetupMessage definition
 
-5.6.3.  MOQTGoaway
+5.7.3.  MOQTGoaway
 
    MOQTGoaway = {
      type: "goaway"
@@ -843,27 +955,27 @@ Table of Contents
      new_session_uri: RawInfo
    }
 
-                      Figure 37: MOQTGoaway definition
+                      Figure 47: MOQTGoaway definition
 
-5.6.4.  MOQTMaxRequestId
+5.7.4.  MOQTMaxRequestId
 
    MOQTMaxRequestId = {
      type: "max_request_id"
      request_id: uint64
    }
 
-                   Figure 38: MOQTMaxRequestId definition
+                   Figure 48: MOQTMaxRequestId definition
 
-5.6.5.  MOQTRequestsBlocked
+5.7.5.  MOQTRequestsBlocked
 
    MOQTRequestsBlocked = {
      type: "requests_blocked"
      maximum_request_id: uint64
    }
 
-                 Figure 39: MOQTRequestsBlocked definition
+                 Figure 49: MOQTRequestsBlocked definition
 
-5.6.6.  MOQTSubscribe
+5.7.6.  MOQTSubscribe
 
    MOQTSubscribe = {
      type: "subscribe"
@@ -880,9 +992,9 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                    Figure 40: MOQTSubscribe definition
+                    Figure 50: MOQTSubscribe definition
 
-5.6.7.  MOQTSubscribeOk
+5.7.7.  MOQTSubscribeOk
 
    MOQTSubscribeOk = {
      type: "subscribe_ok"
@@ -896,9 +1008,9 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                   Figure 41: MOQTSubscribeOk definition
+                   Figure 51: MOQTSubscribeOk definition
 
-5.6.8.  MOQTSubscribeError
+5.7.8.  MOQTSubscribeError
 
    MOQTSubscribeError = {
      type: "subscribe_error"
@@ -908,9 +1020,9 @@ Table of Contents
      ? reason_bytes: hexstring
    }
 
-                  Figure 42: MOQTSubscribeError definition
+                  Figure 52: MOQTSubscribeError definition
 
-5.6.9.  MOQTSubscribeUpdate
+5.7.9.  MOQTSubscribeUpdate
 
    MOQTSubscribeUpdate = {
      type: "subscribe_update"
@@ -924,18 +1036,18 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                 Figure 43: MOQTSubscribeUpdate definition
+                 Figure 53: MOQTSubscribeUpdate definition
 
-5.6.10.  MOQTUnsubscribe
+5.7.10.  MOQTUnsubscribe
 
    MOQTUnsubscribe = {
      type: "unsubscribe"
      request_id: uint64
    }
 
-                   Figure 44: MOQTUnsubscribe definition
+                   Figure 54: MOQTUnsubscribe definition
 
-5.6.11.  MOQTPublishDone
+5.7.11.  MOQTPublishDone
 
    MOQTPublishDone = {
      type: "publish_done"
@@ -946,9 +1058,9 @@ Table of Contents
      ? reason_bytes: hexstring
    }
 
-                   Figure 45: MOQTPublishDone definition
+                   Figure 55: MOQTPublishDone definition
 
-5.6.12.  MOQTPublish
+5.7.12.  MOQTPublish
 
    MOQTPublish = {
      type: "publish"
@@ -964,9 +1076,9 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                     Figure 46: MOQTPublish definition
+                     Figure 56: MOQTPublish definition
 
-5.6.13.  MOQTPublishOk
+5.7.13.  MOQTPublishOk
 
    MOQTPublishOk = {
      type: "publish_ok"
@@ -981,9 +1093,9 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                    Figure 47: MOQTPublishOk definition
+                    Figure 57: MOQTPublishOk definition
 
-5.6.14.  MOQTPublishError
+5.7.14.  MOQTPublishError
 
    MOQTPublishError = {
      type: "publish_error"
@@ -993,9 +1105,9 @@ Table of Contents
      ? reason_bytes: hexstring
    }
 
-                   Figure 48: MOQTPublishError definition
+                   Figure 58: MOQTPublishError definition
 
-5.6.15.  MOQTFetch
+5.7.15.  MOQTFetch
 
    MOQTFetch = {
      type: "fetch"
@@ -1024,9 +1136,9 @@ Table of Contents
                       "absolute_joining" /
                       "relative_joining"
 
-                      Figure 49: MOQTFetch definition
+                      Figure 59: MOQTFetch definition
 
-5.6.16.  MOQTFetchOk
+5.7.16.  MOQTFetchOk
 
    MOQTFetchOk = {
      type: "fetch_ok"
@@ -1038,9 +1150,9 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                     Figure 50: MOQTFetchOk definition
+                     Figure 60: MOQTFetchOk definition
 
-5.6.17.  MOQTFetchError
+5.7.17.  MOQTFetchError
 
    MOQTFetchError = {
      type: "fetch_error"
@@ -1050,18 +1162,18 @@ Table of Contents
      ? reason_bytes: hexstring
    }
 
-                    Figure 51: MOQTFetchError definition
+                    Figure 61: MOQTFetchError definition
 
-5.6.18.  MOQTFetchCancel
+5.7.18.  MOQTFetchCancel
 
    MOQTFetchCancel = {
      type: "fetch_cancel"
      request_id: uint64
    }
 
-                   Figure 52: MOQTFetchCancel definition
+                   Figure 62: MOQTFetchCancel definition
 
-5.6.19.  MOQTTrackStatus
+5.7.19.  MOQTTrackStatus
 
    MOQTTrackStatus = {
      type: "track_status"
@@ -1078,9 +1190,9 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                   Figure 53: MOQTTrackStatus definition
+                   Figure 63: MOQTTrackStatus definition
 
-5.6.20.  MOQTTrackStatusOk
+5.7.20.  MOQTTrackStatusOk
 
    MOQTTrackStatusOk = {
      type: "track_status_ok"
@@ -1094,9 +1206,9 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                  Figure 54: MOQTTrackStatusOk definition
+                  Figure 64: MOQTTrackStatusOk definition
 
-5.6.21.  MOQTTrackStatusError
+5.7.21.  MOQTTrackStatusError
 
    MOQTTrackStatusError = {
      type: "track_status_error"
@@ -1106,9 +1218,9 @@ Table of Contents
      ? reason_bytes: hexstring
    }
 
-                 Figure 55: MOQTTrackStatusError definition
+                 Figure 65: MOQTTrackStatusError definition
 
-5.6.22.  MOQTPublishNamespace
+5.7.22.  MOQTPublishNamespace
 
    MOQTPublishNamespace = {
      type: "publish_namespace"
@@ -1118,18 +1230,18 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                 Figure 56: MOQTPublishNamespace definition
+                 Figure 66: MOQTPublishNamespace definition
 
-5.6.23.  MOQTPublishNamespaceOk
+5.7.23.  MOQTPublishNamespaceOk
 
    MOQTPublishNamespaceOk = {
      type: "publish_namespace_ok"
      request_id: uint64
    }
 
-                Figure 57: MOQTPublishNamespaceOk definition
+                Figure 67: MOQTPublishNamespaceOk definition
 
-5.6.24.  MOQTPublishNamespaceError
+5.7.24.  MOQTPublishNamespaceError
 
    MOQTPublishNamespaceError = {
      type: "publish_namespace_error"
@@ -1139,18 +1251,18 @@ Table of Contents
      ? reason_bytes: hexstring
    }
 
-              Figure 58: MOQTPublishNamespaceError definition
+              Figure 68: MOQTPublishNamespaceError definition
 
-5.6.25.  MOQTPublishNamespaceDone
+5.7.25.  MOQTPublishNamespaceDone
 
    MOQTPublishNamespaceDone = {
      type: "publish_namespace_done"
      track_namespace: [ *MOQTByteString]
    }
 
-               Figure 59: MOQTPublishNamespaceDone definition
+               Figure 69: MOQTPublishNamespaceDone definition
 
-5.6.26.  MOQTPublishNamespaceCancel
+5.7.26.  MOQTPublishNamespaceCancel
 
    MOQTPublishNamespaceCancel = {
      type: "publish_namespace_cancel"
@@ -1160,9 +1272,9 @@ Table of Contents
      ? reason_bytes: hexstring
    }
 
-              Figure 60: MOQTPublishNamespaceCancel definition
+              Figure 70: MOQTPublishNamespaceCancel definition
 
-5.6.27.  MOQTSubscribeNamespace
+5.7.27.  MOQTSubscribeNamespace
 
    MOQTSubscribeNamespace = {
      type: "subscribe_namespace"
@@ -1172,18 +1284,18 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                Figure 61: MOQTSubscribeNamespace definition
+                Figure 71: MOQTSubscribeNamespace definition
 
-5.6.28.  MOQTSubscribeNamespaceOk
+5.7.28.  MOQTSubscribeNamespaceOk
 
    MOQTSubscribeNamespaceOk = {
      type: "subscribe_namespace_ok"
      request_id: uint64
    }
 
-               Figure 62: MOQTSubscribeNamespaceOk definition
+               Figure 72: MOQTSubscribeNamespaceOk definition
 
-5.6.29.  MOQTSubscribeNamespaceError
+5.7.29.  MOQTSubscribeNamespaceError
 
    MOQTSubscribeNamespaceError = {
      type: "subscribe_namespace_error"
@@ -1193,18 +1305,18 @@ Table of Contents
      ? reason_bytes: hexstring
    }
 
-             Figure 63: MOQTSubscribeNamespaceError definition
+             Figure 73: MOQTSubscribeNamespaceError definition
 
-5.6.30.  MOQTUnsubscribeNamespace
+5.7.30.  MOQTUnsubscribeNamespace
 
    MOQTUnsubscribeNamespace = {
      type: "unsubscribe_namespace"
      track_namespace_prefix: [ *MOQTByteString]
    }
 
-               Figure 64: MOQTUnsubscribeNamespace definition
+               Figure 74: MOQTUnsubscribeNamespace definition
 
-5.7.  MOQTExtensionHeader
+5.8.  MOQTExtensionHeader
 
    MOQTExtensionHeader = {
      header_type: uint64
@@ -1213,7 +1325,7 @@ Table of Contents
      ? payload: RawInfo
    }
 
-                   Figure 65: Extension Header definition
+                   Figure 75: Extension Header definition
 
 6.  Security Considerations
 

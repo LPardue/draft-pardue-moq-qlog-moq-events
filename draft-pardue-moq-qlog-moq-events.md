@@ -468,6 +468,31 @@ Owner = "local" /
 ~~~
 {: #owner-def title="Owner definition"}
 
+## MOQTLocation
+
+A Location, as defined in {{Section 1.4.1 of MOQT}}
+
+~~~ cddl
+MOQTLocation = {
+  group: uint64
+  object: uint64
+}
+~~~
+{: #moqtlocation-def title="MOQTLocation definition"}
+
+## MOQTSubscriptionFilter
+
+A Subscription Filter, as defined in {{Section 5.1.2 of MOQT}}
+
+~~~ cddl
+MOQTSubscriptionFilter = {
+  filter_type: uint64
+  ? start_location: MOQTLocation
+  ? end_group: uint64
+}
+~~~
+{: #moqtsubscriptionfilter-def title="MOQTSubscriptionFilter definition"}
+
 ## MOQTSetupParameter
 
 The generic $MOQTSetupParameter is defined here as a CDDL "type socket"
@@ -592,6 +617,15 @@ $MOQTParameter /= {
 MOQTBaseParameters /= MOQTAuthorizationTokenParameter /
                       MOQTDeliveryTimeoutParameter /
                       MOQTMaxCacheDurationParameter /
+                      MOQTPublisherPriorityParameter /
+                      MOQTSubscriberPriorityParameter /
+                      MOQTGroupOrderParameter /
+                      MOQTSubscriptionFilterParameter /
+                      MOQTExpiresParameter /
+                      MOQTLargestObjectParameter /
+                      MOQTForwardParameter /
+                      MOQTDynamicGroupsParameter /
+                      MOQTNewGroupRequestParameter /
                       MOQTUnknownParameter
 
 $MOQTParameter /= MOQTBaseParameters
@@ -631,6 +665,96 @@ MOQTMaxCacheDurationParameter = {
 ~~~
 {: #moqtmaxcachedurationparameter-def title="MOQTMaxCacheDurationParameter definition"}
 
+### MOQTPublisherPriorityParameter
+
+~~~ cddl
+MOQTPublisherPriorityParameter = {
+  name: "publisher_priority"
+  value: uint64
+}
+~~~
+{: #moqtpublisherpriorityparameter-def title="MOQTPublisherPriorityParameter definition"}
+
+### MOQTSubscriberPriorityParameter
+
+~~~ cddl
+MOQTSubscriberPriorityParameter = {
+  name: "subscriber_priority"
+  value: uint64
+}
+~~~
+{: #moqtsubscriberpriorityparameter-def title="MOQTSubscriberPriorityParameter definition"}
+
+### MOQTGroupOrderParameter
+
+~~~ cddl
+MOQTGroupOrderParameter = {
+  name: "group_order"
+  value: uint64
+}
+~~~
+{: #moqtgrouporderparameter-def title="MOQTGroupOrderParameter definition"}
+
+### MOQTSubscriptionFilterParameter
+
+~~~ cddl
+MOQTSubscriptionFilterParameter = {
+  name: "subscription_filter"
+  value: MOQTSubscriptionFilter
+}
+~~~
+{: #moqtsubscriptionfilterparameter-def title="MOQTSubscriptionFilterParameter definition"}
+
+### MOQTExpiresParameter
+
+~~~ cddl
+MOQTExpiresParameter = {
+  name: "expires"
+  value: uint64
+}
+~~~
+{: #moqtexpiresparameter-def title="MOQTExpiresParameter definition"}
+
+### MOQTLargestObjectParameter
+
+~~~ cddl
+MOQTLargestObjectParameter = {
+  name: "largest_object"
+  value: MOQTLocation
+}
+~~~
+{: #moqtlargestobjectparameter-def title="MOQTLargestObjectParameter definition"}
+
+### MOQTForwardParameter
+
+~~~ cddl
+MOQTForwardParameter = {
+  name: "forward"
+  value: uint64
+}
+~~~
+{: #moqtforwardparameter-def title="MOQTForwardParameter definition"}
+
+### MOQTDynamicGroupsParameter
+
+~~~ cddl
+MOQTDynamicGroupsParameter = {
+  name: "dynamic_groups"
+  value: uint64
+}
+~~~
+{: #moqtdynamicgroupsparameter-def title="MOQTDynamicGroupsParameter definition"}
+
+### MOQTNewGroupRequestParameter
+
+~~~ cddl
+MOQTNewGroupRequestParameter = {
+  name: "new_group_request"
+  value: uint64
+}
+~~~
+{: #moqtnewgrouprequestparameter-def title="MOQTNewGroupRequestParameter definition"}
+
 ### MOQTUnknownParameter
 
 ~~~ cddl
@@ -662,18 +786,6 @@ MOQTByteString = {
 }
 ~~~
 {: #MOQTByteString-def title="MOQTByteString definition"}
-
-## MOQTLocation
-
-A Location, as defined in {{Section 1.3.1 of MOQT}}
-
-~~~ cddl
-MOQTLocation = {
-  group: uint64
-  object: uint64
-}
-~~~
-{: #moqtlocation-def title="MOQTLocation definition}
 
 
 ## MOQTControlMessage

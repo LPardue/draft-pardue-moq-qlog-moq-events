@@ -5,10 +5,10 @@
 Media Over QUIC                                                L. Pardue
 Internet-Draft                                                Cloudflare
 Intended status: Informational                              M. Engelbart
-Expires: 16 July 2026                     Technical University of Munich
+Expires: 17 July 2026                     Technical University of Munich
                                                                A. Sharma
                                                                     Meta
-                                                         12 January 2026
+                                                         13 January 2026
 
 
                        MoQ qlog event definitions
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 16 July 2026.
+   This Internet-Draft will expire on 17 July 2026.
 
 Copyright Notice
 
@@ -931,8 +931,6 @@ Table of Contents
 
    MOQTClientSetupMessage = {
      type: "client_setup"
-     number_of_supported_versions: uint64
-     supported_versions: [* uint64]
      number_of_parameters: uint64
      ? setup_parameters: [* $MOQTSetupParameter]
    }
@@ -943,7 +941,6 @@ Table of Contents
 
    MOQTServerSetupMessage = {
      type: "server_setup"
-     selected_version: uint64
      number_of_parameters: uint64
      ? setup_parameters: [* $MOQTSetupParameter]
    }

@@ -5,10 +5,10 @@
 Media Over QUIC                                                L. Pardue
 Internet-Draft                                                Cloudflare
 Intended status: Informational                              M. Engelbart
-Expires: 17 July 2026                     Technical University of Munich
+Expires: 25 July 2026                     Technical University of Munich
                                                                A. Sharma
                                                                     Meta
-                                                         13 January 2026
+                                                         21 January 2026
 
 
                        MoQ qlog event definitions
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 17 July 2026.
+   This Internet-Draft will expire on 25 July 2026.
 
 Copyright Notice
 
@@ -982,12 +982,6 @@ Table of Contents
      request_id: uint64
      track_namespace: [ *MOQTByteString]
      track_name: MOQTByteString
-     subscriber_priority: uint8
-     group_order: uint8
-     forward: uint8
-     filter_type: uint64
-     ? start_location: MOQTLocation
-     ? end_group: uint64
      number_of_parameters: uint64
      ? parameters: [* $MOQTParameter]
    }
@@ -1000,10 +994,6 @@ Table of Contents
      type: "subscribe_ok"
      request_id: uint64
      track_alias: uint64
-     expires: uint64
-     group_order: uint8
-     content_exists: uint8
-     ? largest_location: MOQTLocation
      number_of_parameters: uint64
      ? parameters: [* $MOQTParameter]
    }
@@ -1028,10 +1018,6 @@ Table of Contents
      type: "subscribe_update"
      request_id: uint64
      subscription_request_id: uint64
-     start_location: MOQTLocation
-     end_group: uint64
-     subscriber_priority: uint8
-     forward: uint8
      number_of_parameters: uint64
      ? parameters: [* $MOQTParameter]
    }
@@ -1362,9 +1348,9 @@ Table of Contents
 
    [MOQT]     Nandakumar, S., Vasiliev, V., Swett, I., and A. Frindell,
               "Media over QUIC Transport", Work in Progress, Internet-
-              Draft, draft-ietf-moq-transport-15, 20 October 2025,
+              Draft, draft-ietf-moq-transport-16, 13 January 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-moq-
-              transport-15>.
+              transport-16>.
 
    [QLOG-MAIN]
               Marx, R., Niccolini, L., Seemann, M., and L. Pardue,

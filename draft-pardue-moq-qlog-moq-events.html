@@ -3014,10 +3014,6 @@ MOQTPublish = {
   track_namespace: [ *MOQTByteString]
   track_name: MOQTByteString
   track_alias: uint64
-  group_order: uint8
-  content_exists: uint8
-  ? largest: MOQTLocation
-  forward: uint8
   number_of_parameters: uint64
   ? parameters: [* $MOQTParameter]
 }
@@ -3041,12 +3037,6 @@ MOQTPublish = {
 MOQTPublishOk = {
   type: "publish_ok"
   request_id: uint64
-  forward: uint8
-  subscriber_priority: uint8
-  group_order: uint8
-  filter_type: uint64
-  ? start: MOQTLocation
-  ? end_group: uint64
   number_of_parameters: uint64
   ? parameters: [* $MOQTParameter]
 }

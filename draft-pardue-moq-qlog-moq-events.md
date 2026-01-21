@@ -809,30 +809,23 @@ MOQTBaseControlMessages = MOQTClientSetupMessage /
                           MOQTGoaway /
                           MOQTMaxRequestId /
                           MOQTRequestsBlocked /
+                          MOQTRequestOk /
+                          MOQTRequestError /
                           MOQTSubscribe /
                           MOQTSubscribeOk /
-                          MOQTSubscribeError /
                           MOQTSubscribeUpdate /
                           MOQTUnsubscribe /
                           MOQTPublishDone /
                           MOQTPublish /
                           MOQTPublishOk /
-                          MOQTPublishError /
                           MOQTFetch /
                           MOQTFetchOk /
-                          MOQTFetchError /
                           MOQTFetchCancel /
                           MOQTTrackStatus /
-                          MOQTTrackStatusOk /
-                          MOQTTrackStatusError /
                           MOQTPublishNamespace /
-                          MOQTPublishNamespaceOk /
-                          MOQTPublishNamespaceError /
                           MOQTPublishNamespaceDone /
                           MOQTPublishNamespaceCancel /
                           MOQTSubscribeNamespace /
-                          MOQTSubscribeNamespaceOk /
-                          MOQTSubscribeNamespaceError /
                           MOQTUnsubscribeNamespace
 
 $MOQTControlMessage /= MOQTBaseControlMessages
@@ -893,6 +886,32 @@ MOQTRequestsBlocked = {
 ~~~
 {: #subscribesblocked-def title="MOQTRequestsBlocked definition"}
 
+### MOQTRequestOk
+
+~~~ cddl
+MOQTRequestOk = {
+  type: "request_ok"
+  request_id: uint64
+  number_of_parameters: uint64
+  ? parameters: [* $MOQTParameter]
+}
+~~~
+{: #requestok-def title="MOQTRequestOk definition"}
+
+### MOQTRequestError
+
+~~~ cddl
+MOQTRequestError = {
+  type: "request_error"
+  request_id: uint64
+  error_code: uint64
+  retry_interval: uint64
+  ? reason: text
+  ? reason_bytes: hexstring
+}
+~~~
+{: #requesterror-def title="MOQTRequestError definition"}
+
 ### MOQTSubscribe
 
 ~~~ cddl
@@ -919,19 +938,6 @@ MOQTSubscribeOk = {
 }
 ~~~
 {: #subscribeok-def title="MOQTSubscribeOk definition"}
-
-### MOQTSubscribeError
-
-~~~ cddl
-MOQTSubscribeError = {
-  type: "subscribe_error"
-  request_id: uint64
-  error_code: uint64
-  ? reason: text
-  ? reason_bytes: hexstring
-}
-~~~
-{: #subscribeerror-def title="MOQTSubscribeError definition"}
 
 ### MOQTSubscribeUpdate
 
@@ -997,19 +1003,6 @@ MOQTPublishOk = {
 ~~~
 {: #publishok-def title="MOQTPublishOk definition"}
 
-### MOQTPublishError
-
-~~~ cddl
-MOQTPublishError = {
-  type: "publish_error"
-  request_id: uint64
-  error_code: uint64
-  ? reason: text
-  ? reason_bytes: hexstring
-}
-~~~
-{: #publisherror-def title="MOQTPublishError definition"}
-
 ### MOQTFetch
 
 ~~~ cddl
@@ -1057,19 +1050,6 @@ MOQTFetchOk = {
 ~~~
 {: #fetchok-def title="MOQTFetchOk definition"}
 
-### MOQTFetchError
-
-~~~ cddl
-MOQTFetchError = {
-  type: "fetch_error"
-  request_id: uint64
-  error_code: uint64
-  ? reason: text
-  ? reason_bytes: hexstring
-}
-~~~
-{: #fetcherror-def title="MOQTFetchError definition"}
-
 ### MOQTFetchCancel
 
 ~~~ cddl
@@ -1100,36 +1080,6 @@ MOQTTrackStatus = {
 ~~~
 {: #trackstatus-def title="MOQTTrackStatus definition"}
 
-### MOQTTrackStatusOk
-
-~~~ cddl
-MOQTTrackStatusOk = {
-  type: "track_status_ok"
-  request_id: uint64
-  track_alias: uint64
-  expires: uint64
-  group_order: uint8
-  content_exists: uint8
-  ? largest_location: MOQTLocation
-  number_of_parameters: uint64
-  ? parameters: [* $MOQTParameter]
-}
-~~~
-{: #trackstatusok-def title="MOQTTrackStatusOk definition"}
-
-### MOQTTrackStatusError
-
-~~~ cddl
-MOQTTrackStatusError = {
-  type: "track_status_error"
-  request_id: uint64
-  error_code: uint64
-  ? reason: text
-  ? reason_bytes: hexstring
-}
-~~~
-{: #trackstatuserror-def title="MOQTTrackStatusError definition"}
-
 ### MOQTPublishNamespace
 
 ~~~ cddl
@@ -1142,29 +1092,6 @@ MOQTPublishNamespace = {
 }
 ~~~
 {: #publishnamespace-def title="MOQTPublishNamespace definition"}
-
-### MOQTPublishNamespaceOk
-
-~~~ cddl
-MOQTPublishNamespaceOk = {
-  type: "publish_namespace_ok"
-  request_id: uint64
-}
-~~~
-{: #publishnamespaceok-def title="MOQTPublishNamespaceOk definition"}
-
-### MOQTPublishNamespaceError
-
-~~~ cddl
-MOQTPublishNamespaceError = {
-  type: "publish_namespace_error"
-  request_id: uint64
-  error_code: uint64
-  ? reason: text
-  ? reason_bytes: hexstring
-}
-~~~
-{: #publishnamespaceerror-def title="MOQTPublishNamespaceError definition"}
 
 ### MOQTPublishNamespaceDone
 
@@ -1201,29 +1128,6 @@ MOQTSubscribeNamespace = {
 }
 ~~~
 {: #subscribenamespace-def title="MOQTSubscribeNamespace definition"}
-
-### MOQTSubscribeNamespaceOk
-
-~~~ cddl
-MOQTSubscribeNamespaceOk = {
-  type: "subscribe_namespace_ok"
-  request_id: uint64
-}
-~~~
-{: #subscribenamespaceok  -def title="MOQTSubscribeNamespaceOk definition"}
-
-### MOQTSubscribeNamespaceError
-
-~~~ cddl
-MOQTSubscribeNamespaceError = {
-  type: "subscribe_namespace_error"
-  request_id: uint64
-  error_code: uint64
-  ? reason: text
-  ? reason_bytes: hexstring
-}
-~~~
-{: #subscribenamespaceerror-def title="MOQTSubscribeNamespaceError definition"}
 
 ### MOQTUnsubscribeNamespace
 

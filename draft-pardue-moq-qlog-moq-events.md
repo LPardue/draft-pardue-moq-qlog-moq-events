@@ -901,12 +901,6 @@ MOQTSubscribe = {
   request_id: uint64
   track_namespace: [ *MOQTByteString]
   track_name: MOQTByteString
-  subscriber_priority: uint8
-  group_order: uint8
-  forward: uint8
-  filter_type: uint64
-  ? start_location: MOQTLocation
-  ? end_group: uint64
   number_of_parameters: uint64
   ? parameters: [* $MOQTParameter]
 }
@@ -920,10 +914,6 @@ MOQTSubscribeOk = {
   type: "subscribe_ok"
   request_id: uint64
   track_alias: uint64
-  expires: uint64
-  group_order: uint8
-  content_exists: uint8
-  ? largest_location: MOQTLocation
   number_of_parameters: uint64
   ? parameters: [* $MOQTParameter]
 }
@@ -950,10 +940,6 @@ MOQTSubscribeUpdate = {
   type: "subscribe_update"
   request_id: uint64
   subscription_request_id: uint64
-  start_location: MOQTLocation
-  end_group: uint64
-  subscriber_priority: uint8
-  forward: uint8
   number_of_parameters: uint64
   ? parameters: [* $MOQTParameter]
 }

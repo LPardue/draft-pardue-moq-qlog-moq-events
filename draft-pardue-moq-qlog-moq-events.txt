@@ -122,31 +122,24 @@ Table of Contents
        5.7.3.  MOQTGoaway
        5.7.4.  MOQTMaxRequestId
        5.7.5.  MOQTRequestsBlocked
-       5.7.6.  MOQTSubscribe
-       5.7.7.  MOQTSubscribeOk
-       5.7.8.  MOQTSubscribeError
-       5.7.9.  MOQTSubscribeUpdate
-       5.7.10. MOQTUnsubscribe
-       5.7.11. MOQTPublishDone
-       5.7.12. MOQTPublish
-       5.7.13. MOQTPublishOk
-       5.7.14. MOQTPublishError
+       5.7.6.  MOQTRequestOk
+       5.7.7.  MOQTRequestError
+       5.7.8.  MOQTSubscribe
+       5.7.9.  MOQTSubscribeOk
+       5.7.10. MOQTSubscribeUpdate
+       5.7.11. MOQTUnsubscribe
+       5.7.12. MOQTPublishDone
+       5.7.13. MOQTPublish
+       5.7.14. MOQTPublishOk
        5.7.15. MOQTFetch
        5.7.16. MOQTFetchOk
-       5.7.17. MOQTFetchError
-       5.7.18. MOQTFetchCancel
-       5.7.19. MOQTTrackStatus
-       5.7.20. MOQTTrackStatusOk
-       5.7.21. MOQTTrackStatusError
-       5.7.22. MOQTPublishNamespace
-       5.7.23. MOQTPublishNamespaceOk
-       5.7.24. MOQTPublishNamespaceError
-       5.7.25. MOQTPublishNamespaceDone
-       5.7.26. MOQTPublishNamespaceCancel
-       5.7.27. MOQTSubscribeNamespace
-       5.7.28. MOQTSubscribeNamespaceOk
-       5.7.29. MOQTSubscribeNamespaceError
-       5.7.30. MOQTUnsubscribeNamespace
+       5.7.17. MOQTFetchCancel
+       5.7.18. MOQTTrackStatus
+       5.7.19. MOQTPublishNamespace
+       5.7.20. MOQTPublishNamespaceDone
+       5.7.21. MOQTPublishNamespaceCancel
+       5.7.22. MOQTSubscribeNamespace
+       5.7.23. MOQTUnsubscribeNamespace
      5.8.  MOQTExtensionHeader
    6.  Security Considerations
    7.  IANA Considerations
@@ -897,30 +890,23 @@ Table of Contents
                              MOQTGoaway /
                              MOQTMaxRequestId /
                              MOQTRequestsBlocked /
+                             MOQTRequestOk /
+                             MOQTRequestError /
                              MOQTSubscribe /
                              MOQTSubscribeOk /
-                             MOQTSubscribeError /
                              MOQTSubscribeUpdate /
                              MOQTUnsubscribe /
                              MOQTPublishDone /
                              MOQTPublish /
                              MOQTPublishOk /
-                             MOQTPublishError /
                              MOQTFetch /
                              MOQTFetchOk /
-                             MOQTFetchError /
                              MOQTFetchCancel /
                              MOQTTrackStatus /
-                             MOQTTrackStatusOk /
-                             MOQTTrackStatusError /
                              MOQTPublishNamespace /
-                             MOQTPublishNamespaceOk /
-                             MOQTPublishNamespaceError /
                              MOQTPublishNamespaceDone /
                              MOQTPublishNamespaceCancel /
                              MOQTSubscribeNamespace /
-                             MOQTSubscribeNamespaceOk /
-                             MOQTSubscribeNamespaceError /
                              MOQTUnsubscribeNamespace
 
    $MOQTControlMessage /= MOQTBaseControlMessages
@@ -975,7 +961,31 @@ Table of Contents
 
                  Figure 49: MOQTRequestsBlocked definition
 
-5.7.6.  MOQTSubscribe
+5.7.6.  MOQTRequestOk
+
+   MOQTRequestOk = {
+     type: "request_ok"
+     request_id: uint64
+     number_of_parameters: uint64
+     ? parameters: [* $MOQTParameter]
+   }
+
+                    Figure 50: MOQTRequestOk definition
+
+5.7.7.  MOQTRequestError
+
+   MOQTRequestError = {
+     type: "request_error"
+     request_id: uint64
+     error_code: uint64
+     retry_interval: uint64
+     ? reason: text
+     ? reason_bytes: hexstring
+   }
+
+                   Figure 51: MOQTRequestError definition
+
+5.7.8.  MOQTSubscribe
 
    MOQTSubscribe = {
      type: "subscribe"
@@ -986,9 +996,9 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                    Figure 50: MOQTSubscribe definition
+                    Figure 52: MOQTSubscribe definition
 
-5.7.7.  MOQTSubscribeOk
+5.7.9.  MOQTSubscribeOk
 
    MOQTSubscribeOk = {
      type: "subscribe_ok"
@@ -998,21 +1008,9 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                   Figure 51: MOQTSubscribeOk definition
+                   Figure 53: MOQTSubscribeOk definition
 
-5.7.8.  MOQTSubscribeError
-
-   MOQTSubscribeError = {
-     type: "subscribe_error"
-     request_id: uint64
-     error_code: uint64
-     ? reason: text
-     ? reason_bytes: hexstring
-   }
-
-                  Figure 52: MOQTSubscribeError definition
-
-5.7.9.  MOQTSubscribeUpdate
+5.7.10.  MOQTSubscribeUpdate
 
    MOQTSubscribeUpdate = {
      type: "subscribe_update"
@@ -1022,18 +1020,18 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                 Figure 53: MOQTSubscribeUpdate definition
+                 Figure 54: MOQTSubscribeUpdate definition
 
-5.7.10.  MOQTUnsubscribe
+5.7.11.  MOQTUnsubscribe
 
    MOQTUnsubscribe = {
      type: "unsubscribe"
      request_id: uint64
    }
 
-                   Figure 54: MOQTUnsubscribe definition
+                   Figure 55: MOQTUnsubscribe definition
 
-5.7.11.  MOQTPublishDone
+5.7.12.  MOQTPublishDone
 
    MOQTPublishDone = {
      type: "publish_done"
@@ -1044,9 +1042,9 @@ Table of Contents
      ? reason_bytes: hexstring
    }
 
-                   Figure 55: MOQTPublishDone definition
+                   Figure 56: MOQTPublishDone definition
 
-5.7.12.  MOQTPublish
+5.7.13.  MOQTPublish
 
    MOQTPublish = {
      type: "publish"
@@ -1058,9 +1056,9 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                     Figure 56: MOQTPublish definition
+                     Figure 57: MOQTPublish definition
 
-5.7.13.  MOQTPublishOk
+5.7.14.  MOQTPublishOk
 
    MOQTPublishOk = {
      type: "publish_ok"
@@ -1069,19 +1067,7 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                    Figure 57: MOQTPublishOk definition
-
-5.7.14.  MOQTPublishError
-
-   MOQTPublishError = {
-     type: "publish_error"
-     request_id: uint64
-     error_code: uint64
-     ? reason: text
-     ? reason_bytes: hexstring
-   }
-
-                   Figure 58: MOQTPublishError definition
+                    Figure 58: MOQTPublishOk definition
 
 5.7.15.  MOQTFetch
 
@@ -1128,28 +1114,16 @@ Table of Contents
 
                      Figure 60: MOQTFetchOk definition
 
-5.7.17.  MOQTFetchError
-
-   MOQTFetchError = {
-     type: "fetch_error"
-     request_id: uint64
-     error_code: uint64
-     ? reason: text
-     ? reason_bytes: hexstring
-   }
-
-                    Figure 61: MOQTFetchError definition
-
-5.7.18.  MOQTFetchCancel
+5.7.17.  MOQTFetchCancel
 
    MOQTFetchCancel = {
      type: "fetch_cancel"
      request_id: uint64
    }
 
-                   Figure 62: MOQTFetchCancel definition
+                   Figure 61: MOQTFetchCancel definition
 
-5.7.19.  MOQTTrackStatus
+5.7.18.  MOQTTrackStatus
 
    MOQTTrackStatus = {
      type: "track_status"
@@ -1166,37 +1140,9 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                   Figure 63: MOQTTrackStatus definition
+                   Figure 62: MOQTTrackStatus definition
 
-5.7.20.  MOQTTrackStatusOk
-
-   MOQTTrackStatusOk = {
-     type: "track_status_ok"
-     request_id: uint64
-     track_alias: uint64
-     expires: uint64
-     group_order: uint8
-     content_exists: uint8
-     ? largest_location: MOQTLocation
-     number_of_parameters: uint64
-     ? parameters: [* $MOQTParameter]
-   }
-
-                  Figure 64: MOQTTrackStatusOk definition
-
-5.7.21.  MOQTTrackStatusError
-
-   MOQTTrackStatusError = {
-     type: "track_status_error"
-     request_id: uint64
-     error_code: uint64
-     ? reason: text
-     ? reason_bytes: hexstring
-   }
-
-                 Figure 65: MOQTTrackStatusError definition
-
-5.7.22.  MOQTPublishNamespace
+5.7.19.  MOQTPublishNamespace
 
    MOQTPublishNamespace = {
      type: "publish_namespace"
@@ -1206,39 +1152,18 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                 Figure 66: MOQTPublishNamespace definition
+                 Figure 63: MOQTPublishNamespace definition
 
-5.7.23.  MOQTPublishNamespaceOk
-
-   MOQTPublishNamespaceOk = {
-     type: "publish_namespace_ok"
-     request_id: uint64
-   }
-
-                Figure 67: MOQTPublishNamespaceOk definition
-
-5.7.24.  MOQTPublishNamespaceError
-
-   MOQTPublishNamespaceError = {
-     type: "publish_namespace_error"
-     request_id: uint64
-     error_code: uint64
-     ? reason: text
-     ? reason_bytes: hexstring
-   }
-
-              Figure 68: MOQTPublishNamespaceError definition
-
-5.7.25.  MOQTPublishNamespaceDone
+5.7.20.  MOQTPublishNamespaceDone
 
    MOQTPublishNamespaceDone = {
      type: "publish_namespace_done"
      track_namespace: [ *MOQTByteString]
    }
 
-               Figure 69: MOQTPublishNamespaceDone definition
+               Figure 64: MOQTPublishNamespaceDone definition
 
-5.7.26.  MOQTPublishNamespaceCancel
+5.7.21.  MOQTPublishNamespaceCancel
 
    MOQTPublishNamespaceCancel = {
      type: "publish_namespace_cancel"
@@ -1248,9 +1173,9 @@ Table of Contents
      ? reason_bytes: hexstring
    }
 
-              Figure 70: MOQTPublishNamespaceCancel definition
+              Figure 65: MOQTPublishNamespaceCancel definition
 
-5.7.27.  MOQTSubscribeNamespace
+5.7.22.  MOQTSubscribeNamespace
 
    MOQTSubscribeNamespace = {
      type: "subscribe_namespace"
@@ -1260,37 +1185,16 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                Figure 71: MOQTSubscribeNamespace definition
+                Figure 66: MOQTSubscribeNamespace definition
 
-5.7.28.  MOQTSubscribeNamespaceOk
-
-   MOQTSubscribeNamespaceOk = {
-     type: "subscribe_namespace_ok"
-     request_id: uint64
-   }
-
-               Figure 72: MOQTSubscribeNamespaceOk definition
-
-5.7.29.  MOQTSubscribeNamespaceError
-
-   MOQTSubscribeNamespaceError = {
-     type: "subscribe_namespace_error"
-     request_id: uint64
-     error_code: uint64
-     ? reason: text
-     ? reason_bytes: hexstring
-   }
-
-             Figure 73: MOQTSubscribeNamespaceError definition
-
-5.7.30.  MOQTUnsubscribeNamespace
+5.7.23.  MOQTUnsubscribeNamespace
 
    MOQTUnsubscribeNamespace = {
      type: "unsubscribe_namespace"
      track_namespace_prefix: [ *MOQTByteString]
    }
 
-               Figure 74: MOQTUnsubscribeNamespace definition
+               Figure 67: MOQTUnsubscribeNamespace definition
 
 5.8.  MOQTExtensionHeader
 
@@ -1301,7 +1205,7 @@ Table of Contents
      ? payload: RawInfo
    }
 
-                   Figure 75: Extension Header definition
+                   Figure 68: Extension Header definition
 
 6.  Security Considerations
 

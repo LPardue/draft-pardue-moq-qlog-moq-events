@@ -1134,7 +1134,7 @@ MOQTSubscribeNamespace = {
 ~~~ cddl
 MOQTUnsubscribeNamespace = {
   type: "unsubscribe_namespace"
-  track_namespace_prefix: [ *MOQTByteString]
+  request_id: uint64
 }
 ~~~
 {: #unsubscribenamespace-def title="MOQTUnsubscribeNamespace definition"}

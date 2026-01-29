@@ -1009,8 +1009,6 @@ MOQTPublishOk = {
 MOQTFetch = {
   type: "fetch"
   request_id: uint64
-  subscriber_priority: uint8
-  group_order: uint8
   fetch_type: $MOQTFetchType
   ? standalone_fetch: $MOQTStandaloneFetch
   ? joining_fetch: $MOQTJoiningFetch

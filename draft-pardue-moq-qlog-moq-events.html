@@ -3149,12 +3149,6 @@ MOQTTrackStatus = {
   request_id: uint64
   track_namespace: [ *MOQTByteString]
   track_name: MOQTByteString
-  subscriber_priority: uint8
-  group_order: uint8
-  forward: uint8
-  filter_type: uint64
-  ? start_location: MOQTLocation
-  ? end_group: uint64
   number_of_parameters: uint64
   ? parameters: [* $MOQTParameter]
 }

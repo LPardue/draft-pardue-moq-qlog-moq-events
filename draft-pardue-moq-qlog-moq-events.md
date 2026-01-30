@@ -1039,7 +1039,6 @@ $MOQTFetchType /=  "standalone" /
 MOQTFetchOk = {
   type: "fetch_ok"
   request_id: uint64
-  group_order: uint8
   end_of_track: uint8
   end_location: MOQTLocation
   number_of_parameters: uint64

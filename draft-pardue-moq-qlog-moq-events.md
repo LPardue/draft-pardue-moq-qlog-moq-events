@@ -189,7 +189,7 @@ The definition of control message content is in {{moqtcontrolmessage}}.
 ~~~ cddl
 MOQTControlMessageCreated = {
     stream_id: uint64
-    ? length: uint64
+    length: uint16
     message: $MOQTControlMessage
     ? raw: RawInfo
 
@@ -208,7 +208,7 @@ The definition of control message content is in {{moqtcontrolmessage}}.
 ~~~ cddl
 MOQTControlMessageParsed = {
     stream_id: uint64
-    ? length: uint64
+    length: uint16
     message: $MOQTControlMessage
     ? raw: RawInfo
 

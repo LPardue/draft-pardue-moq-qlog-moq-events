@@ -247,7 +247,7 @@ MOQTObjectDatagramCreated = {
     track_alias: uint64
     group_id: uint64
     ? object_id: uint64
-    publisher_priority: uint8
+    ? publisher_priority: uint8
     ? extension_headers_length: uint64
     ? extension_headers: [* MOQTExtensionHeader]
     ? object_status: uint64

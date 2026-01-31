@@ -860,7 +860,6 @@ MOQTServerSetupMessage = {
 ~~~ cddl
 MOQTGoaway = {
   type: "goaway"
-  ? length: uint64
   new_session_uri: RawInfo
 }
 ~~~

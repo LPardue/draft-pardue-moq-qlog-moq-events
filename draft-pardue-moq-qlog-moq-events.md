@@ -508,10 +508,10 @@ $MOQTSetupParameter /= {
 
 ~~~ cddl
 MOQTBaseSetupParameters /=  MOQTAuthoritySetupParameter /
-                            MOQTAuthorizationTokenSetupParameter /
                             MOQTPathSetupParameter /
                             MOQTMaxRequestIdSetupParameter /
                             MOQTMaxAuthTokenCacheSizeSetupParameter /
+                            MOQTAuthorizationTokenSetupParameter /
                             MOQTImplementationSetupParameter /
                             MOQTUnknownSetupParameter
 
@@ -528,24 +528,6 @@ MOQTAuthoritySetupParameter = {
 }
 ~~~
 {: #moqtauthoritysetupparameter-def title="MOQTAuthoritySetupParameter definition"}
-
-### MOQTAuthorizationTokenSetupParameter
-
-~~~ cddl
-MOQTAuthorizationTokenSetupParameter = {
-  name: "authorization_token"
-  alias_type: $MOQTAliasType
-  ? token_alias: uint64
-  ? token_type: uint64
-  ? token_value: RawInfo
-}
-
-$MOQTAliasType /=  "delete" /
-                   "register" /
-                   "use_alias" /
-                   "use_value"
-~~~
-{: #moqtauthorizationtokensetupparameter-def title="MOQTAuthorizationTokenSetupParameter definition"}
 
 ### MOQTPathSetupParameter
 
@@ -576,6 +558,24 @@ MOQTMaxAuthTokenCacheSizeSetupParameter = {
 }
 ~~~
 {: #moqtmaxauthtokencachesizesetupparameter-def title="MOQTMaxAuthTokenCacheSizeSetupParameter definition"}
+
+### MOQTAuthorizationTokenSetupParameter
+
+~~~ cddl
+MOQTAuthorizationTokenSetupParameter = {
+  name: "authorization_token"
+  alias_type: $MOQTAliasType
+  ? token_alias: uint64
+  ? token_type: uint64
+  ? token_value: RawInfo
+}
+
+$MOQTAliasType /=  "delete" /
+                   "register" /
+                   "use_alias" /
+                   "use_value"
+~~~
+{: #moqtauthorizationtokensetupparameter-def title="MOQTAuthorizationTokenSetupParameter definition"}
 
 ### MOQTImplementationSetupParameter
 

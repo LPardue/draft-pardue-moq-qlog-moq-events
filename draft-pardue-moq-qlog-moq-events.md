@@ -815,9 +815,9 @@ MOQTBaseControlMessages = MOQTClientSetupMessage /
                           MOQTSubscribeOk /
                           MOQTSubscribeUpdate /
                           MOQTUnsubscribe /
-                          MOQTPublishDone /
                           MOQTPublish /
                           MOQTPublishOk /
+                          MOQTPublishDone /
                           MOQTFetch /
                           MOQTFetchOk /
                           MOQTFetchCancel /
@@ -961,20 +961,6 @@ MOQTUnsubscribe = {
 ~~~
 {: #unsubscribe-def title="MOQTUnsubscribe definition"}
 
-### MOQTPublishDone
-
-~~~ cddl
-MOQTPublishDone = {
-  type: "publish_done"
-  request_id: uint64
-  status_code: uint64
-  stream_count: uint64
-  ? reason: text
-  ? reason_bytes: hexstring
-}
-~~~
-{: #publishdone-def title="MOQTPublishDone definition"}
-
 ### MOQTPublish
 
 ~~~ cddl
@@ -1001,6 +987,20 @@ MOQTPublishOk = {
 }
 ~~~
 {: #publishok-def title="MOQTPublishOk definition"}
+
+### MOQTPublishDone
+
+~~~ cddl
+MOQTPublishDone = {
+  type: "publish_done"
+  request_id: uint64
+  status_code: uint64
+  stream_count: uint64
+  ? reason: text
+  ? reason_bytes: hexstring
+}
+~~~
+{: #publishdone-def title="MOQTPublishDone definition"}
 
 ### MOQTFetch
 

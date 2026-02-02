@@ -5,10 +5,10 @@
 Media Over QUIC                                                L. Pardue
 Internet-Draft                                                Cloudflare
 Intended status: Informational                              M. Engelbart
-Expires: 3 August 2026                    Technical University of Munich
+Expires: 6 August 2026                    Technical University of Munich
                                                                A. Sharma
                                                                     Meta
-                                                         30 January 2026
+                                                         2 February 2026
 
 
                        MoQ qlog event definitions
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 3 August 2026.
+   This Internet-Draft will expire on 6 August 2026.
 
 Copyright Notice
 
@@ -307,7 +307,7 @@ Table of Contents
 
    MOQTControlMessageCreated = {
        stream_id: uint64
-       length: uint16
+       ? length: uint16
        message: $MOQTControlMessage
        ? raw: RawInfo
 
@@ -325,7 +325,7 @@ Table of Contents
 
    MOQTControlMessageParsed = {
        stream_id: uint64
-       length: uint16
+       ? length: uint16
        message: $MOQTControlMessage
        ? raw: RawInfo
 

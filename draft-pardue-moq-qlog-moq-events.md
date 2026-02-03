@@ -905,7 +905,6 @@ MOQTRequestError = {
   type: "request_error"
   request_id: uint64
   error_code: uint64
-  retry_interval: uint64
   ? reason: text
   ? reason_bytes: hexstring
 }

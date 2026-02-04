@@ -1651,7 +1651,7 @@ It has Core importance level.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
 <pre>
 MOQTControlMessageCreated = {
     stream_id: uint64
-    ? length: uint64
+    ? length: uint16
     message: $MOQTControlMessage
     ? raw: RawInfo
 
@@ -1679,7 +1679,7 @@ It has Core importance level.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
 <pre>
 MOQTControlMessageParsed = {
     stream_id: uint64
-    ? length: uint64
+    ? length: uint16
     message: $MOQTControlMessage
     ? raw: RawInfo
 

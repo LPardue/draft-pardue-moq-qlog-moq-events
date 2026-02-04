@@ -5,10 +5,10 @@
 Media Over QUIC                                                L. Pardue
 Internet-Draft                                                Cloudflare
 Intended status: Informational                              M. Engelbart
-Expires: 7 August 2026                    Technical University of Munich
+Expires: 8 August 2026                    Technical University of Munich
                                                                A. Sharma
                                                                     Meta
-                                                         3 February 2026
+                                                         4 February 2026
 
 
                        MoQ qlog event definitions
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 August 2026.
+   This Internet-Draft will expire on 8 August 2026.
 
 Copyright Notice
 
@@ -95,10 +95,10 @@ Table of Contents
      5.3.  MOQTSubscriptionFilter
      5.4.  MOQTSetupParameter
        5.4.1.  MOQTAuthoritySetupParameter
-       5.4.2.  MOQTAuthorizationTokenSetupParameter
-       5.4.3.  MOQTPathSetupParameter
-       5.4.4.  MOQTMaxRequestIdSetupParameter
-       5.4.5.  MOQTMaxAuthTokenCacheSizeSetupParameter
+       5.4.2.  MOQTPathSetupParameter
+       5.4.3.  MOQTMaxRequestIdSetupParameter
+       5.4.4.  MOQTMaxAuthTokenCacheSizeSetupParameter
+       5.4.5.  MOQTAuthorizationTokenSetupParameter
        5.4.6.  MOQTImplementationSetupParameter
        5.4.7.  MOQTUnknownSetupParameter
      5.5.  MOQTParameter
@@ -128,9 +128,9 @@ Table of Contents
        5.7.9.  MOQTSubscribeOk
        5.7.10. MOQTSubscribeUpdate
        5.7.11. MOQTUnsubscribe
-       5.7.12. MOQTPublishDone
-       5.7.13. MOQTPublish
-       5.7.14. MOQTPublishOk
+       5.7.12. MOQTPublish
+       5.7.13. MOQTPublishOk
+       5.7.14. MOQTPublishDone
        5.7.15. MOQTFetch
        5.7.16. MOQTFetchOk
        5.7.17. MOQTFetchCancel
@@ -612,10 +612,10 @@ Table of Contents
             Figure 18: MOQTSetupParameter type socket definition
 
    MOQTBaseSetupParameters /=  MOQTAuthoritySetupParameter /
-                               MOQTAuthorizationTokenSetupParameter /
                                MOQTPathSetupParameter /
                                MOQTMaxRequestIdSetupParameter /
                                MOQTMaxAuthTokenCacheSizeSetupParameter /
+                               MOQTAuthorizationTokenSetupParameter /
                                MOQTImplementationSetupParameter /
                                MOQTUnknownSetupParameter
 
@@ -632,7 +632,34 @@ Table of Contents
 
              Figure 20: MOQTAuthoritySetupParameter definition
 
-5.4.2.  MOQTAuthorizationTokenSetupParameter
+5.4.2.  MOQTPathSetupParameter
+
+   MOQTPathSetupParameter = {
+     name: "path"
+     value: text
+   }
+
+                Figure 21: MOQTPathSetupParameter definition
+
+5.4.3.  MOQTMaxRequestIdSetupParameter
+
+   MOQTMaxRequestIdSetupParameter = {
+     name: "max_request_id"
+     value: uint64
+   }
+
+            Figure 22: MOQTMaxRequestIdSetupParameter definition
+
+5.4.4.  MOQTMaxAuthTokenCacheSizeSetupParameter
+
+   MOQTMaxAuthTokenCacheSizeSetupParameter = {
+     name: "max_auth_token_cache_size"
+     value: uint64
+   }
+
+       Figure 23: MOQTMaxAuthTokenCacheSizeSetupParameter definition
+
+5.4.5.  MOQTAuthorizationTokenSetupParameter
 
    MOQTAuthorizationTokenSetupParameter = {
      name: "authorization_token"
@@ -647,34 +674,7 @@ Table of Contents
                       "use_alias" /
                       "use_value"
 
-         Figure 21: MOQTAuthorizationTokenSetupParameter definition
-
-5.4.3.  MOQTPathSetupParameter
-
-   MOQTPathSetupParameter = {
-     name: "path"
-     value: text
-   }
-
-                Figure 22: MOQTPathSetupParameter definition
-
-5.4.4.  MOQTMaxRequestIdSetupParameter
-
-   MOQTMaxRequestIdSetupParameter = {
-     name: "max_request_id"
-     value: uint64
-   }
-
-            Figure 23: MOQTMaxRequestIdSetupParameter definition
-
-5.4.5.  MOQTMaxAuthTokenCacheSizeSetupParameter
-
-   MOQTMaxAuthTokenCacheSizeSetupParameter = {
-     name: "max_auth_token_cache_size"
-     value: uint64
-   }
-
-       Figure 24: MOQTMaxAuthTokenCacheSizeSetupParameter definition
+         Figure 24: MOQTAuthorizationTokenSetupParameter definition
 
 5.4.6.  MOQTImplementationSetupParameter
 
@@ -896,9 +896,9 @@ Table of Contents
                              MOQTSubscribeOk /
                              MOQTSubscribeUpdate /
                              MOQTUnsubscribe /
-                             MOQTPublishDone /
                              MOQTPublish /
                              MOQTPublishOk /
+                             MOQTPublishDone /
                              MOQTFetch /
                              MOQTFetchOk /
                              MOQTFetchCancel /
@@ -937,7 +937,6 @@ Table of Contents
 
    MOQTGoaway = {
      type: "goaway"
-     ? length: uint64
      new_session_uri: RawInfo
    }
 
@@ -1030,20 +1029,7 @@ Table of Contents
 
                    Figure 55: MOQTUnsubscribe definition
 
-5.7.12.  MOQTPublishDone
-
-   MOQTPublishDone = {
-     type: "publish_done"
-     request_id: uint64
-     status_code: uint64
-     stream_count: uint64
-     ? reason: text
-     ? reason_bytes: hexstring
-   }
-
-                   Figure 56: MOQTPublishDone definition
-
-5.7.13.  MOQTPublish
+5.7.12.  MOQTPublish
 
    MOQTPublish = {
      type: "publish"
@@ -1055,9 +1041,9 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                     Figure 57: MOQTPublish definition
+                     Figure 56: MOQTPublish definition
 
-5.7.14.  MOQTPublishOk
+5.7.13.  MOQTPublishOk
 
    MOQTPublishOk = {
      type: "publish_ok"
@@ -1066,7 +1052,20 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                    Figure 58: MOQTPublishOk definition
+                    Figure 57: MOQTPublishOk definition
+
+5.7.14.  MOQTPublishDone
+
+   MOQTPublishDone = {
+     type: "publish_done"
+     request_id: uint64
+     status_code: uint64
+     stream_count: uint64
+     ? reason: text
+     ? reason_bytes: hexstring
+   }
+
+                   Figure 58: MOQTPublishDone definition
 
 5.7.15.  MOQTFetch
 

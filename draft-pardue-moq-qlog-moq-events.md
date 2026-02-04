@@ -508,10 +508,10 @@ $MOQTSetupParameter /= {
 
 ~~~ cddl
 MOQTBaseSetupParameters /=  MOQTAuthoritySetupParameter /
-                            MOQTAuthorizationTokenSetupParameter /
                             MOQTPathSetupParameter /
                             MOQTMaxRequestIdSetupParameter /
                             MOQTMaxAuthTokenCacheSizeSetupParameter /
+                            MOQTAuthorizationTokenSetupParameter /
                             MOQTImplementationSetupParameter /
                             MOQTUnknownSetupParameter
 
@@ -528,24 +528,6 @@ MOQTAuthoritySetupParameter = {
 }
 ~~~
 {: #moqtauthoritysetupparameter-def title="MOQTAuthoritySetupParameter definition"}
-
-### MOQTAuthorizationTokenSetupParameter
-
-~~~ cddl
-MOQTAuthorizationTokenSetupParameter = {
-  name: "authorization_token"
-  alias_type: $MOQTAliasType
-  ? token_alias: uint64
-  ? token_type: uint64
-  ? token_value: RawInfo
-}
-
-$MOQTAliasType /=  "delete" /
-                   "register" /
-                   "use_alias" /
-                   "use_value"
-~~~
-{: #moqtauthorizationtokensetupparameter-def title="MOQTAuthorizationTokenSetupParameter definition"}
 
 ### MOQTPathSetupParameter
 
@@ -576,6 +558,24 @@ MOQTMaxAuthTokenCacheSizeSetupParameter = {
 }
 ~~~
 {: #moqtmaxauthtokencachesizesetupparameter-def title="MOQTMaxAuthTokenCacheSizeSetupParameter definition"}
+
+### MOQTAuthorizationTokenSetupParameter
+
+~~~ cddl
+MOQTAuthorizationTokenSetupParameter = {
+  name: "authorization_token"
+  alias_type: $MOQTAliasType
+  ? token_alias: uint64
+  ? token_type: uint64
+  ? token_value: RawInfo
+}
+
+$MOQTAliasType /=  "delete" /
+                   "register" /
+                   "use_alias" /
+                   "use_value"
+~~~
+{: #moqtauthorizationtokensetupparameter-def title="MOQTAuthorizationTokenSetupParameter definition"}
 
 ### MOQTImplementationSetupParameter
 
@@ -815,9 +815,9 @@ MOQTBaseControlMessages = MOQTClientSetupMessage /
                           MOQTSubscribeOk /
                           MOQTSubscribeUpdate /
                           MOQTUnsubscribe /
-                          MOQTPublishDone /
                           MOQTPublish /
                           MOQTPublishOk /
+                          MOQTPublishDone /
                           MOQTFetch /
                           MOQTFetchOk /
                           MOQTFetchCancel /
@@ -860,7 +860,6 @@ MOQTServerSetupMessage = {
 ~~~ cddl
 MOQTGoaway = {
   type: "goaway"
-  ? length: uint64
   new_session_uri: RawInfo
 }
 ~~~
@@ -961,20 +960,6 @@ MOQTUnsubscribe = {
 ~~~
 {: #unsubscribe-def title="MOQTUnsubscribe definition"}
 
-### MOQTPublishDone
-
-~~~ cddl
-MOQTPublishDone = {
-  type: "publish_done"
-  request_id: uint64
-  status_code: uint64
-  stream_count: uint64
-  ? reason: text
-  ? reason_bytes: hexstring
-}
-~~~
-{: #publishdone-def title="MOQTPublishDone definition"}
-
 ### MOQTPublish
 
 ~~~ cddl
@@ -1001,6 +986,20 @@ MOQTPublishOk = {
 }
 ~~~
 {: #publishok-def title="MOQTPublishOk definition"}
+
+### MOQTPublishDone
+
+~~~ cddl
+MOQTPublishDone = {
+  type: "publish_done"
+  request_id: uint64
+  status_code: uint64
+  stream_count: uint64
+  ? reason: text
+  ? reason_bytes: hexstring
+}
+~~~
+{: #publishdone-def title="MOQTPublishDone definition"}
 
 ### MOQTFetch
 

@@ -813,7 +813,7 @@ MOQTBaseControlMessages = MOQTClientSetupMessage /
                           MOQTRequestError /
                           MOQTSubscribe /
                           MOQTSubscribeOk /
-                          MOQTSubscribeUpdate /
+                          MOQTRequestUpdate /
                           MOQTUnsubscribe /
                           MOQTPublish /
                           MOQTPublishOk /
@@ -937,18 +937,18 @@ MOQTSubscribeOk = {
 ~~~
 {: #subscribeok-def title="MOQTSubscribeOk definition"}
 
-### MOQTSubscribeUpdate
+### MOQTRequestUpdate
 
 ~~~ cddl
-MOQTSubscribeUpdate = {
-  type: "subscribe_update"
+MOQTRequestUpdate = {
+  type: "request_update"
   request_id: uint64
-  subscription_request_id: uint64
+  existing_request_id: uint64
   number_of_parameters: uint64
   ? parameters: [* $MOQTParameter]
 }
 ~~~
-{: #subscribeupdate-def title="MOQTSubscribeUpdate definition"}
+{: #requestupdate-def title="MOQTRequestUpdate definition"}
 
 ### MOQTUnsubscribe
 

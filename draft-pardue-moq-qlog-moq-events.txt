@@ -126,7 +126,7 @@ Table of Contents
        5.7.7.  MOQTRequestError
        5.7.8.  MOQTSubscribe
        5.7.9.  MOQTSubscribeOk
-       5.7.10. MOQTSubscribeUpdate
+       5.7.10. MOQTRequestUpdate
        5.7.11. MOQTUnsubscribe
        5.7.12. MOQTPublish
        5.7.13. MOQTPublishOk
@@ -896,7 +896,7 @@ Table of Contents
                              MOQTRequestError /
                              MOQTSubscribe /
                              MOQTSubscribeOk /
-                             MOQTSubscribeUpdate /
+                             MOQTRequestUpdate /
                              MOQTUnsubscribe /
                              MOQTPublish /
                              MOQTPublishOk /
@@ -1012,17 +1012,17 @@ Table of Contents
 
                    Figure 53: MOQTSubscribeOk definition
 
-5.7.10.  MOQTSubscribeUpdate
+5.7.10.  MOQTRequestUpdate
 
-   MOQTSubscribeUpdate = {
-     type: "subscribe_update"
+   MOQTRequestUpdate = {
+     type: "request_update"
      request_id: uint64
-     subscription_request_id: uint64
+     existing_request_id: uint64
      number_of_parameters: uint64
      ? parameters: [* $MOQTParameter]
    }
 
-                 Figure 54: MOQTSubscribeUpdate definition
+                  Figure 54: MOQTRequestUpdate definition
 
 5.7.11.  MOQTUnsubscribe
 

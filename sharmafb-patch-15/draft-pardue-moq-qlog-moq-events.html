@@ -167,7 +167,7 @@
   font-weight: 400;
   font-display: swap;
   src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin-ext.woff2') format('woff2');
-  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 @font-face {
   font-family: 'Oxygen Mono';
@@ -175,7 +175,8 @@
   font-weight: 400;
   font-display: swap;
   src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 }
 
 @font-face {
@@ -1050,7 +1051,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Pardue, et al.</td>
-<td class="center">Expires 9 August 2026</td>
+<td class="center">Expires 16 August 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1063,12 +1064,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-pardue-moq-qlog-moq-events-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-02-05" class="published">5 February 2026</time>
+<time datetime="2026-02-12" class="published">12 February 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-08-09">9 August 2026</time></dd>
+<dd class="expires"><time datetime="2026-08-16">16 August 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1126,7 +1127,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 9 August 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 16 August 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1364,16 +1365,22 @@ svg :is([fill="white"], [fill^="#fff"]) {
                     <p id="section-toc.1-1.5.2.7.2.19.1"><a href="#section-5.7.19" class="auto internal xref">5.7.19</a>. <a href="#name-moqtpublishnamespace" class="internal xref">MOQTPublishNamespace</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.7.2.20">
-                    <p id="section-toc.1-1.5.2.7.2.20.1"><a href="#section-5.7.20" class="auto internal xref">5.7.20</a>. <a href="#name-moqtpublishnamespacedone" class="internal xref">MOQTPublishNamespaceDone</a></p>
+                    <p id="section-toc.1-1.5.2.7.2.20.1"><a href="#section-5.7.20" class="auto internal xref">5.7.20</a>. <a href="#name-moqtnamespace" class="internal xref">MOQTNamespace</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.7.2.21">
-                    <p id="section-toc.1-1.5.2.7.2.21.1"><a href="#section-5.7.21" class="auto internal xref">5.7.21</a>. <a href="#name-moqtpublishnamespacecancel" class="internal xref">MOQTPublishNamespaceCancel</a></p>
+                    <p id="section-toc.1-1.5.2.7.2.21.1"><a href="#section-5.7.21" class="auto internal xref">5.7.21</a>. <a href="#name-moqtpublishnamespacedone" class="internal xref">MOQTPublishNamespaceDone</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.7.2.22">
-                    <p id="section-toc.1-1.5.2.7.2.22.1"><a href="#section-5.7.22" class="auto internal xref">5.7.22</a>. <a href="#name-moqtsubscribenamespace" class="internal xref">MOQTSubscribeNamespace</a></p>
+                    <p id="section-toc.1-1.5.2.7.2.22.1"><a href="#section-5.7.22" class="auto internal xref">5.7.22</a>. <a href="#name-moqtnamespacedone" class="internal xref">MOQTNamespaceDone</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.7.2.23">
-                    <p id="section-toc.1-1.5.2.7.2.23.1"><a href="#section-5.7.23" class="auto internal xref">5.7.23</a>. <a href="#name-moqtunsubscribenamespace" class="internal xref">MOQTUnsubscribeNamespace</a></p>
+                    <p id="section-toc.1-1.5.2.7.2.23.1"><a href="#section-5.7.23" class="auto internal xref">5.7.23</a>. <a href="#name-moqtpublishnamespacecancel" class="internal xref">MOQTPublishNamespaceCancel</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.7.2.24">
+                    <p id="section-toc.1-1.5.2.7.2.24.1"><a href="#section-5.7.24" class="auto internal xref">5.7.24</a>. <a href="#name-moqtsubscribenamespace" class="internal xref">MOQTSubscribeNamespace</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.7.2.25">
+                    <p id="section-toc.1-1.5.2.7.2.25.1"><a href="#section-5.7.25" class="auto internal xref">5.7.25</a>. <a href="#name-moqtunsubscribenamespace" class="internal xref">MOQTUnsubscribeNamespace</a></p>
 </li>
                 </ul>
 </li>
@@ -2709,7 +2716,9 @@ MOQTBaseControlMessages = MOQTClientSetupMessage /
                           MOQTFetchCancel /
                           MOQTTrackStatus /
                           MOQTPublishNamespace /
+                          MOQTNamespace /
                           MOQTPublishNamespaceDone /
+                          MOQTNamespaceDone /
                           MOQTPublishNamespaceCancel /
                           MOQTSubscribeNamespace /
                           MOQTUnsubscribeNamespace
@@ -3179,14 +3188,35 @@ MOQTPublishNamespace = {
 </div>
 </section>
 </div>
-<div id="moqtpublishnamespacedone">
+<div id="moqtnamespace">
 <section id="section-5.7.20">
-          <h4 id="name-moqtpublishnamespacedone">
-<a href="#section-5.7.20" class="section-number selfRef">5.7.20. </a><a href="#name-moqtpublishnamespacedone" class="section-name selfRef">MOQTPublishNamespaceDone</a>
+          <h4 id="name-moqtnamespace">
+<a href="#section-5.7.20" class="section-number selfRef">5.7.20. </a><a href="#name-moqtnamespace" class="section-name selfRef">MOQTNamespace</a>
           </h4>
-<span id="name-moqtpublishnamespacedone-de"></span><div id="publishnamespacedone-def">
+<span id="name-moqtnamespace-definition"></span><div id="namespace-def">
 <figure id="figure-64">
             <div class="lang-cddl sourcecode" id="section-5.7.20-1.1">
+<pre>
+MOQTNamespace = {
+  type: "namespace"
+  track_namespace_suffix: [ *MOQTByteString]
+}
+</pre>
+</div>
+<figcaption><a href="#figure-64" class="selfRef">Figure 64</a>:
+<a href="#name-moqtnamespace-definition" class="selfRef">MOQTNamespace definition</a>
+            </figcaption></figure>
+</div>
+</section>
+</div>
+<div id="moqtpublishnamespacedone">
+<section id="section-5.7.21">
+          <h4 id="name-moqtpublishnamespacedone">
+<a href="#section-5.7.21" class="section-number selfRef">5.7.21. </a><a href="#name-moqtpublishnamespacedone" class="section-name selfRef">MOQTPublishNamespaceDone</a>
+          </h4>
+<span id="name-moqtpublishnamespacedone-de"></span><div id="publishnamespacedone-def">
+<figure id="figure-65">
+            <div class="lang-cddl sourcecode" id="section-5.7.21-1.1">
 <pre>
 MOQTPublishNamespaceDone = {
   type: "publish_namespace_done"
@@ -3194,20 +3224,41 @@ MOQTPublishNamespaceDone = {
 }
 </pre>
 </div>
-<figcaption><a href="#figure-64" class="selfRef">Figure 64</a>:
+<figcaption><a href="#figure-65" class="selfRef">Figure 65</a>:
 <a href="#name-moqtpublishnamespacedone-de" class="selfRef">MOQTPublishNamespaceDone definition</a>
             </figcaption></figure>
 </div>
 </section>
 </div>
+<div id="moqtnamespacedone">
+<section id="section-5.7.22">
+          <h4 id="name-moqtnamespacedone">
+<a href="#section-5.7.22" class="section-number selfRef">5.7.22. </a><a href="#name-moqtnamespacedone" class="section-name selfRef">MOQTNamespaceDone</a>
+          </h4>
+<span id="name-moqtnamespacedone-definitio"></span><div id="namespacedone-def">
+<figure id="figure-66">
+            <div class="lang-cddl sourcecode" id="section-5.7.22-1.1">
+<pre>
+MOQTNamespaceDone = {
+  type: "namespace_done"
+  track_namespace_suffix: [ *MOQTByteString]
+}
+</pre>
+</div>
+<figcaption><a href="#figure-66" class="selfRef">Figure 66</a>:
+<a href="#name-moqtnamespacedone-definitio" class="selfRef">MOQTNamespaceDone definition</a>
+            </figcaption></figure>
+</div>
+</section>
+</div>
 <div id="moqtpublishnamespacecancel">
-<section id="section-5.7.21">
+<section id="section-5.7.23">
           <h4 id="name-moqtpublishnamespacecancel">
-<a href="#section-5.7.21" class="section-number selfRef">5.7.21. </a><a href="#name-moqtpublishnamespacecancel" class="section-name selfRef">MOQTPublishNamespaceCancel</a>
+<a href="#section-5.7.23" class="section-number selfRef">5.7.23. </a><a href="#name-moqtpublishnamespacecancel" class="section-name selfRef">MOQTPublishNamespaceCancel</a>
           </h4>
 <span id="name-moqtpublishnamespacecancel-"></span><div id="publishnamespacecancel-def">
-<figure id="figure-65">
-            <div class="lang-cddl sourcecode" id="section-5.7.21-1.1">
+<figure id="figure-67">
+            <div class="lang-cddl sourcecode" id="section-5.7.23-1.1">
 <pre>
 MOQTPublishNamespaceCancel = {
   type: "publish_namespace_cancel"
@@ -3218,20 +3269,20 @@ MOQTPublishNamespaceCancel = {
 }
 </pre>
 </div>
-<figcaption><a href="#figure-65" class="selfRef">Figure 65</a>:
+<figcaption><a href="#figure-67" class="selfRef">Figure 67</a>:
 <a href="#name-moqtpublishnamespacecancel-" class="selfRef">MOQTPublishNamespaceCancel definition</a>
             </figcaption></figure>
 </div>
 </section>
 </div>
 <div id="moqtsubscribenamespace">
-<section id="section-5.7.22">
+<section id="section-5.7.24">
           <h4 id="name-moqtsubscribenamespace">
-<a href="#section-5.7.22" class="section-number selfRef">5.7.22. </a><a href="#name-moqtsubscribenamespace" class="section-name selfRef">MOQTSubscribeNamespace</a>
+<a href="#section-5.7.24" class="section-number selfRef">5.7.24. </a><a href="#name-moqtsubscribenamespace" class="section-name selfRef">MOQTSubscribeNamespace</a>
           </h4>
 <span id="name-moqtsubscribenamespace-defi"></span><div id="subscribenamespace-def">
-<figure id="figure-66">
-            <div class="lang-cddl sourcecode" id="section-5.7.22-1.1">
+<figure id="figure-68">
+            <div class="lang-cddl sourcecode" id="section-5.7.24-1.1">
 <pre>
 MOQTSubscribeNamespace = {
   type: "subscribe_namespace"
@@ -3242,20 +3293,20 @@ MOQTSubscribeNamespace = {
 }
 </pre>
 </div>
-<figcaption><a href="#figure-66" class="selfRef">Figure 66</a>:
+<figcaption><a href="#figure-68" class="selfRef">Figure 68</a>:
 <a href="#name-moqtsubscribenamespace-defi" class="selfRef">MOQTSubscribeNamespace definition</a>
             </figcaption></figure>
 </div>
 </section>
 </div>
 <div id="moqtunsubscribenamespace">
-<section id="section-5.7.23">
+<section id="section-5.7.25">
           <h4 id="name-moqtunsubscribenamespace">
-<a href="#section-5.7.23" class="section-number selfRef">5.7.23. </a><a href="#name-moqtunsubscribenamespace" class="section-name selfRef">MOQTUnsubscribeNamespace</a>
+<a href="#section-5.7.25" class="section-number selfRef">5.7.25. </a><a href="#name-moqtunsubscribenamespace" class="section-name selfRef">MOQTUnsubscribeNamespace</a>
           </h4>
 <span id="name-moqtunsubscribenamespace-de"></span><div id="unsubscribenamespace-def">
-<figure id="figure-67">
-            <div class="lang-cddl sourcecode" id="section-5.7.23-1.1">
+<figure id="figure-69">
+            <div class="lang-cddl sourcecode" id="section-5.7.25-1.1">
 <pre>
 MOQTUnsubscribeNamespace = {
   type: "unsubscribe_namespace"
@@ -3263,7 +3314,7 @@ MOQTUnsubscribeNamespace = {
 }
 </pre>
 </div>
-<figcaption><a href="#figure-67" class="selfRef">Figure 67</a>:
+<figcaption><a href="#figure-69" class="selfRef">Figure 69</a>:
 <a href="#name-moqtunsubscribenamespace-de" class="selfRef">MOQTUnsubscribeNamespace definition</a>
             </figcaption></figure>
 </div>
@@ -3277,7 +3328,7 @@ MOQTUnsubscribeNamespace = {
 <a href="#section-5.8" class="section-number selfRef">5.8. </a><a href="#name-moqtextensionheader" class="section-name selfRef">MOQTExtensionHeader</a>
         </h3>
 <span id="name-extension-header-definition"></span><div id="extensionheader-def">
-<figure id="figure-68">
+<figure id="figure-70">
           <div class="lang-cddl sourcecode" id="section-5.8-1.1">
 <pre>
 MOQTExtensionHeader = {
@@ -3288,7 +3339,7 @@ MOQTExtensionHeader = {
 }
 </pre>
 </div>
-<figcaption><a href="#figure-68" class="selfRef">Figure 68</a>:
+<figcaption><a href="#figure-70" class="selfRef">Figure 70</a>:
 <a href="#name-extension-header-definition" class="selfRef">Extension Header definition</a>
           </figcaption></figure>
 </div>

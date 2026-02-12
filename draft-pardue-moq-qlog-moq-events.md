@@ -823,7 +823,9 @@ MOQTBaseControlMessages = MOQTClientSetupMessage /
                           MOQTFetchCancel /
                           MOQTTrackStatus /
                           MOQTPublishNamespace /
+                          MOQTNamespace /
                           MOQTPublishNamespaceDone /
+                          MOQTNamespaceDone /
                           MOQTPublishNamespaceCancel /
                           MOQTSubscribeNamespace /
                           MOQTUnsubscribeNamespace
@@ -1082,6 +1084,16 @@ MOQTPublishNamespace = {
 ~~~
 {: #publishnamespace-def title="MOQTPublishNamespace definition"}
 
+### MOQTNamespace
+
+~~~ cddl
+MOQTNamespace = {
+  type: "namespace"
+  track_namespace_suffix: [ *MOQTByteString]
+}
+~~~
+{: #namespace-def title="MOQTNamespace definition"}
+
 ### MOQTPublishNamespaceDone
 
 ~~~ cddl
@@ -1091,6 +1103,16 @@ MOQTPublishNamespaceDone = {
 }
 ~~~
 {: #publishnamespacedone-def title="MOQTPublishNamespaceDone definition"}
+
+### MOQTNamespaceDone
+
+~~~ cddl
+MOQTNamespaceDone = {
+  type: "namespace_done"
+  track_namespace_suffix: [ *MOQTByteString]
+}
+~~~
+{: #namespacedone-def title="MOQTNamespaceDone definition"}
 
 ### MOQTPublishNamespaceCancel
 

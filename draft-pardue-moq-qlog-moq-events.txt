@@ -5,10 +5,10 @@
 Media Over QUIC                                                L. Pardue
 Internet-Draft                                                Cloudflare
 Intended status: Informational                              M. Engelbart
-Expires: 8 August 2026                    Technical University of Munich
+Expires: 16 August 2026                   Technical University of Munich
                                                                A. Sharma
                                                                     Meta
-                                                         4 February 2026
+                                                        12 February 2026
 
 
                        MoQ qlog event definitions
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 August 2026.
+   This Internet-Draft will expire on 16 August 2026.
 
 Copyright Notice
 
@@ -136,10 +136,12 @@ Table of Contents
        5.7.17. MOQTFetchCancel
        5.7.18. MOQTTrackStatus
        5.7.19. MOQTPublishNamespace
-       5.7.20. MOQTPublishNamespaceDone
-       5.7.21. MOQTPublishNamespaceCancel
-       5.7.22. MOQTSubscribeNamespace
-       5.7.23. MOQTUnsubscribeNamespace
+       5.7.20. MOQTNamespace
+       5.7.21. MOQTPublishNamespaceDone
+       5.7.22. MOQTNamespaceDone
+       5.7.23. MOQTPublishNamespaceCancel
+       5.7.24. MOQTSubscribeNamespace
+       5.7.25. MOQTUnsubscribeNamespace
      5.8.  MOQTExtensionHeader
    6.  Security Considerations
    7.  IANA Considerations
@@ -904,7 +906,9 @@ Table of Contents
                              MOQTFetchCancel /
                              MOQTTrackStatus /
                              MOQTPublishNamespace /
+                             MOQTNamespace /
                              MOQTPublishNamespaceDone /
+                             MOQTNamespaceDone /
                              MOQTPublishNamespaceCancel /
                              MOQTSubscribeNamespace /
                              MOQTUnsubscribeNamespace
@@ -1143,16 +1147,34 @@ Table of Contents
 
                  Figure 63: MOQTPublishNamespace definition
 
-5.7.20.  MOQTPublishNamespaceDone
+5.7.20.  MOQTNamespace
+
+   MOQTNamespace = {
+     type: "namespace"
+     track_namespace_suffix: [ *MOQTByteString]
+   }
+
+                    Figure 64: MOQTNamespace definition
+
+5.7.21.  MOQTPublishNamespaceDone
 
    MOQTPublishNamespaceDone = {
      type: "publish_namespace_done"
      track_namespace: [ *MOQTByteString]
    }
 
-               Figure 64: MOQTPublishNamespaceDone definition
+               Figure 65: MOQTPublishNamespaceDone definition
 
-5.7.21.  MOQTPublishNamespaceCancel
+5.7.22.  MOQTNamespaceDone
+
+   MOQTNamespaceDone = {
+     type: "namespace_done"
+     track_namespace_suffix: [ *MOQTByteString]
+   }
+
+                  Figure 66: MOQTNamespaceDone definition
+
+5.7.23.  MOQTPublishNamespaceCancel
 
    MOQTPublishNamespaceCancel = {
      type: "publish_namespace_cancel"
@@ -1162,9 +1184,9 @@ Table of Contents
      ? reason_bytes: hexstring
    }
 
-              Figure 65: MOQTPublishNamespaceCancel definition
+              Figure 67: MOQTPublishNamespaceCancel definition
 
-5.7.22.  MOQTSubscribeNamespace
+5.7.24.  MOQTSubscribeNamespace
 
    MOQTSubscribeNamespace = {
      type: "subscribe_namespace"
@@ -1174,16 +1196,16 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                Figure 66: MOQTSubscribeNamespace definition
+                Figure 68: MOQTSubscribeNamespace definition
 
-5.7.23.  MOQTUnsubscribeNamespace
+5.7.25.  MOQTUnsubscribeNamespace
 
    MOQTUnsubscribeNamespace = {
      type: "unsubscribe_namespace"
      request_id: uint64
    }
 
-               Figure 67: MOQTUnsubscribeNamespace definition
+               Figure 69: MOQTUnsubscribeNamespace definition
 
 5.8.  MOQTExtensionHeader
 
@@ -1194,7 +1216,7 @@ Table of Contents
      ? payload: RawInfo
    }
 
-                   Figure 68: Extension Header definition
+                   Figure 70: Extension Header definition
 
 6.  Security Considerations
 

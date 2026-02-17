@@ -2924,7 +2924,7 @@ MOQTSubscribeOk = {
   track_alias: uint64
   number_of_parameters: uint64
   ? parameters: [* $MOQTParameter]
-  ? track_extensions [* MOQTExtensionHeader]
+  ? track_extensions: [* MOQTExtensionHeader]
 }
 </pre>
 </div>
@@ -2996,7 +2996,7 @@ MOQTPublish = {
   track_alias: uint64
   number_of_parameters: uint64
   ? parameters: [* $MOQTParameter]
-  ? track_extensions [* MOQTExtensionHeader]
+  ? track_extensions: [* MOQTExtensionHeader]
 }
 </pre>
 </div>
@@ -3111,7 +3111,7 @@ MOQTFetchOk = {
   end_location: MOQTLocation
   number_of_parameters: uint64
   ? parameters: [* $MOQTParameter]
-  ? track_extensions [* MOQTExtensionHeader]
+  ? track_extensions: [* MOQTExtensionHeader]
 }
 </pre>
 </div>

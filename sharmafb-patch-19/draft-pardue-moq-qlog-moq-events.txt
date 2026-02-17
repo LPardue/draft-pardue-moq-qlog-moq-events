@@ -1008,7 +1008,7 @@ Table of Contents
      track_alias: uint64
      number_of_parameters: uint64
      ? parameters: [* $MOQTParameter]
-     ? track_extensions [* MOQTExtensionHeader]
+     ? track_extensions: [* MOQTExtensionHeader]
    }
 
                    Figure 53: MOQTSubscribeOk definition
@@ -1044,7 +1044,7 @@ Table of Contents
      track_alias: uint64
      number_of_parameters: uint64
      ? parameters: [* $MOQTParameter]
-     ? track_extensions [* MOQTExtensionHeader]
+     ? track_extensions: [* MOQTExtensionHeader]
    }
 
                      Figure 56: MOQTPublish definition
@@ -1111,7 +1111,7 @@ Table of Contents
      end_location: MOQTLocation
      number_of_parameters: uint64
      ? parameters: [* $MOQTParameter]
-     ? track_extensions [* MOQTExtensionHeader]
+     ? track_extensions: [* MOQTExtensionHeader]
    }
 
                      Figure 60: MOQTFetchOk definition

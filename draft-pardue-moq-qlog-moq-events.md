@@ -905,6 +905,7 @@ MOQTRequestError = {
   type: "request_error"
   request_id: uint64
   error_code: uint64
+  retry_interval: uint64
   ? reason: text
   ? reason_bytes: hexstring
 }
@@ -934,6 +935,7 @@ MOQTSubscribeOk = {
   track_alias: uint64
   number_of_parameters: uint64
   ? parameters: [* $MOQTParameter]
+  ? track_extensions: [* MOQTExtensionHeader]
 }
 ~~~
 {: #subscribeok-def title="MOQTSubscribeOk definition"}
@@ -972,6 +974,7 @@ MOQTPublish = {
   track_alias: uint64
   number_of_parameters: uint64
   ? parameters: [* $MOQTParameter]
+  ? track_extensions: [* MOQTExtensionHeader]
 }
 ~~~
 {: #publish-def title="MOQTPublish definition"}
@@ -1042,6 +1045,7 @@ MOQTFetchOk = {
   end_location: MOQTLocation
   number_of_parameters: uint64
   ? parameters: [* $MOQTParameter]
+  ? track_extensions: [* MOQTExtensionHeader]
 }
 ~~~
 {: #fetchok-def title="MOQTFetchOk definition"}

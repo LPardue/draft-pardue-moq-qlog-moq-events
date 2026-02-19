@@ -827,8 +827,7 @@ MOQTBaseControlMessages = MOQTClientSetupMessage /
                           MOQTPublishNamespaceDone /
                           MOQTNamespaceDone /
                           MOQTPublishNamespaceCancel /
-                          MOQTSubscribeNamespace /
-                          MOQTUnsubscribeNamespace
+                          MOQTSubscribeNamespace
 
 $MOQTControlMessage /= MOQTBaseControlMessages
 ~~~
@@ -1143,16 +1142,6 @@ MOQTSubscribeNamespace = {
 }
 ~~~
 {: #subscribenamespace-def title="MOQTSubscribeNamespace definition"}
-
-### MOQTUnsubscribeNamespace
-
-~~~ cddl
-MOQTUnsubscribeNamespace = {
-  type: "unsubscribe_namespace"
-  request_id: uint64
-}
-~~~
-{: #unsubscribenamespace-def title="MOQTUnsubscribeNamespace definition"}
 
 ## MOQTExtensionHeader
 

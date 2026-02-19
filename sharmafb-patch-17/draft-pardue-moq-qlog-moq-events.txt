@@ -5,10 +5,10 @@
 Media Over QUIC                                                L. Pardue
 Internet-Draft                                                Cloudflare
 Intended status: Informational                              M. Engelbart
-Expires: 21 August 2026                   Technical University of Munich
+Expires: 23 August 2026                   Technical University of Munich
                                                                A. Sharma
                                                                     Meta
-                                                        17 February 2026
+                                                        19 February 2026
 
 
                        MoQ qlog event definitions
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 August 2026.
+   This Internet-Draft will expire on 23 August 2026.
 
 Copyright Notice
 
@@ -979,6 +979,7 @@ Table of Contents
      type: "request_error"
      request_id: uint64
      error_code: uint64
+     retry_interval: uint64
      ? reason: text
      ? reason_bytes: hexstring
    }
@@ -1006,6 +1007,7 @@ Table of Contents
      track_alias: uint64
      number_of_parameters: uint64
      ? parameters: [* $MOQTParameter]
+     ? track_extensions: [* MOQTExtensionHeader]
    }
 
                    Figure 53: MOQTSubscribeOk definition
@@ -1041,6 +1043,7 @@ Table of Contents
      track_alias: uint64
      number_of_parameters: uint64
      ? parameters: [* $MOQTParameter]
+     ? track_extensions: [* MOQTExtensionHeader]
    }
 
                      Figure 56: MOQTPublish definition
@@ -1107,6 +1110,7 @@ Table of Contents
      end_location: MOQTLocation
      number_of_parameters: uint64
      ? parameters: [* $MOQTParameter]
+     ? track_extensions: [* MOQTExtensionHeader]
    }
 
                      Figure 60: MOQTFetchOk definition

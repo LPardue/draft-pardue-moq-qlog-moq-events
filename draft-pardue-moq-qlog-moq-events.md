@@ -233,7 +233,8 @@ MOQTStreamTypeSet = {
 
 $MOQTStreamType /=  "control" /
                     "subgroup_header" /
-                    "fetch_header"
+                    "fetch_header" /
+                    "subscribe_namespace"
 ~~~
 {: #streamtypeset-def title="MOQTStreamTypeSet definition"}
 

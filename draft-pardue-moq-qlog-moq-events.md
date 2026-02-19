@@ -1137,9 +1137,15 @@ MOQTSubscribeNamespace = {
   type: "subscribe_namespace"
   request_id: uint64
   track_namespace_prefix: [ *MOQTByteString]
+  subscribe_options: $MOQTSubscribeOptions
   number_of_parameters: uint64
   ? parameters: [* $MOQTParameter]
 }
+
+$MOQTSubscribeOptions /=  "publish" /
+                          "namespace" /
+                          "both" /
+                          "unknown"
 ~~~
 {: #subscribenamespace-def title="MOQTSubscribeNamespace definition"}
 

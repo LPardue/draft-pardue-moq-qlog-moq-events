@@ -141,7 +141,6 @@ Table of Contents
        5.7.22. MOQTNamespaceDone
        5.7.23. MOQTPublishNamespaceCancel
        5.7.24. MOQTSubscribeNamespace
-       5.7.25. MOQTUnsubscribeNamespace
      5.8.  MOQTExtensionHeader
    6.  Security Considerations
    7.  IANA Considerations
@@ -910,8 +909,7 @@ Table of Contents
                              MOQTPublishNamespaceDone /
                              MOQTNamespaceDone /
                              MOQTPublishNamespaceCancel /
-                             MOQTSubscribeNamespace /
-                             MOQTUnsubscribeNamespace
+                             MOQTSubscribeNamespace
 
    $MOQTControlMessage /= MOQTBaseControlMessages
 
@@ -1202,15 +1200,6 @@ Table of Contents
 
                 Figure 68: MOQTSubscribeNamespace definition
 
-5.7.25.  MOQTUnsubscribeNamespace
-
-   MOQTUnsubscribeNamespace = {
-     type: "unsubscribe_namespace"
-     request_id: uint64
-   }
-
-               Figure 69: MOQTUnsubscribeNamespace definition
-
 5.8.  MOQTExtensionHeader
 
    MOQTExtensionHeader = {
@@ -1220,7 +1209,7 @@ Table of Contents
      ? payload: RawInfo
    }
 
-                   Figure 70: Extension Header definition
+                   Figure 69: Extension Header definition
 
 6.  Security Considerations
 

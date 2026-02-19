@@ -1379,9 +1379,6 @@ svg :is([fill="white"], [fill^="#fff"]) {
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.7.2.24">
                     <p id="section-toc.1-1.5.2.7.2.24.1"><a href="#section-5.7.24" class="auto internal xref">5.7.24</a>. <a href="#name-moqtsubscribenamespace" class="internal xref">MOQTSubscribeNamespace</a></p>
 </li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.7.2.25">
-                    <p id="section-toc.1-1.5.2.7.2.25.1"><a href="#section-5.7.25" class="auto internal xref">5.7.25</a>. <a href="#name-moqtunsubscribenamespace" class="internal xref">MOQTUnsubscribeNamespace</a></p>
-</li>
                 </ul>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.8">
@@ -2720,8 +2717,7 @@ MOQTBaseControlMessages = MOQTClientSetupMessage /
                           MOQTPublishNamespaceDone /
                           MOQTNamespaceDone /
                           MOQTPublishNamespaceCancel /
-                          MOQTSubscribeNamespace /
-                          MOQTUnsubscribeNamespace
+                          MOQTSubscribeNamespace
 
 $MOQTControlMessage /= MOQTBaseControlMessages
 </pre>
@@ -3303,27 +3299,6 @@ MOQTSubscribeNamespace = {
 </div>
 </section>
 </div>
-<div id="moqtunsubscribenamespace">
-<section id="section-5.7.25">
-          <h4 id="name-moqtunsubscribenamespace">
-<a href="#section-5.7.25" class="section-number selfRef">5.7.25. </a><a href="#name-moqtunsubscribenamespace" class="section-name selfRef">MOQTUnsubscribeNamespace</a>
-          </h4>
-<span id="name-moqtunsubscribenamespace-de"></span><div id="unsubscribenamespace-def">
-<figure id="figure-69">
-            <div class="lang-cddl sourcecode" id="section-5.7.25-1.1">
-<pre>
-MOQTUnsubscribeNamespace = {
-  type: "unsubscribe_namespace"
-  request_id: uint64
-}
-</pre>
-</div>
-<figcaption><a href="#figure-69" class="selfRef">Figure 69</a>:
-<a href="#name-moqtunsubscribenamespace-de" class="selfRef">MOQTUnsubscribeNamespace definition</a>
-            </figcaption></figure>
-</div>
-</section>
-</div>
 </section>
 </div>
 <div id="moqtextensionheader">
@@ -3332,7 +3307,7 @@ MOQTUnsubscribeNamespace = {
 <a href="#section-5.8" class="section-number selfRef">5.8. </a><a href="#name-moqtextensionheader" class="section-name selfRef">MOQTExtensionHeader</a>
         </h3>
 <span id="name-extension-header-definition"></span><div id="extensionheader-def">
-<figure id="figure-70">
+<figure id="figure-69">
           <div class="lang-cddl sourcecode" id="section-5.8-1.1">
 <pre>
 MOQTExtensionHeader = {
@@ -3343,7 +3318,7 @@ MOQTExtensionHeader = {
 }
 </pre>
 </div>
-<figcaption><a href="#figure-70" class="selfRef">Figure 70</a>:
+<figcaption><a href="#figure-69" class="selfRef">Figure 69</a>:
 <a href="#name-extension-header-definition" class="selfRef">Extension Header definition</a>
           </figcaption></figure>
 </div>

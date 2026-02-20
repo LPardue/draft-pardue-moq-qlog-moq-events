@@ -1103,7 +1103,7 @@ MOQTNamespace = {
 ~~~ cddl
 MOQTPublishNamespaceDone = {
   type: "publish_namespace_done"
-  track_namespace: [ *MOQTByteString]
+  request_id: uint64
 }
 ~~~
 {: #publishnamespacedone-def title="MOQTPublishNamespaceDone definition"}

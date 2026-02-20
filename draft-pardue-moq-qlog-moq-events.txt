@@ -5,10 +5,10 @@
 Media Over QUIC                                                L. Pardue
 Internet-Draft                                                Cloudflare
 Intended status: Informational                              M. Engelbart
-Expires: 23 August 2026                   Technical University of Munich
+Expires: 24 August 2026                   Technical University of Munich
                                                                A. Sharma
                                                                     Meta
-                                                        19 February 2026
+                                                        20 February 2026
 
 
                        MoQ qlog event definitions
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 23 August 2026.
+   This Internet-Draft will expire on 24 August 2026.
 
 Copyright Notice
 
@@ -1162,7 +1162,7 @@ Table of Contents
 
    MOQTPublishNamespaceDone = {
      type: "publish_namespace_done"
-     track_namespace: [ *MOQTByteString]
+     request_id: uint64
    }
 
                Figure 65: MOQTPublishNamespaceDone definition

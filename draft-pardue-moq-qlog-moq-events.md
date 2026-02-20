@@ -1144,8 +1144,7 @@ MOQTSubscribeNamespace = {
 
 $MOQTSubscribeOptions /=  "publish" /
                           "namespace" /
-                          "both" /
-                          "unknown"
+                          "both"
 ~~~
 {: #subscribenamespace-def title="MOQTSubscribeNamespace definition"}
 

@@ -156,7 +156,10 @@ MOQTEventData = MOQTControlMessageCreated /
                 MOQTFetchHeaderCreated /
                 MOQTFetchHeaderParsed /
                 MOQTFetchObjectCreated /
-                MOQTFetchObjectParsed
+                MOQTFetchObjectParsed /
+                MOQTDataStreamFin /
+                MOQTDataStreamReset /
+                MOQTDataStreamStopSending
 
 $ProtocolEventData /= MOQTEventData
 ~~~
@@ -456,6 +459,54 @@ MOQTFetchObjectParsed = {
 }
 ~~~
 {: #fetchobjectparsed-def title="MOQTFetchObjectParsed definition"}
+
+## data_stream_fin {#datastreamfin}
+
+The `data_stream_fin` event is emitted when a stream is closed with a
+FIN. The `sender` field describes who sent the FIN.
+
+~~~ cddl
+MOQTDataStreamFin = {
+    stream_id: uint64
+    sender: Owner
+
+    * $$moqt-datastreamfin-extension
+}
+~~~
+{: #datastreamfin-def title="MOQTDataStreamFin definition"}
+
+## data_stream_reset {#datastreamreset}
+
+The `data_stream_reset` event is emitted when a stream is reset. The
+`sender` field describes who reset the stream.
+
+~~~ cddl
+MOQTDataStreamReset = {
+    stream_id: uint64
+    error_code: uint64
+    sender: Owner
+
+    * $$moqt-datastreamreset-extension
+}
+~~~
+{: #datastreamreset-def title="MOQTDataStreamReset definition"}
+
+## data_stream_stop_sending {#datastreamstopsending}
+
+The `data_stream_stop_sending` event is emitted when a STOP_SENDING
+is either sent or received on a stream. The `sender` field describes
+who sent the STOP_SENDING.
+
+~~~ cddl
+MOQTDataStreamStopSending = {
+    stream_id: uint64
+    error_code: uint64
+    sender: Owner
+
+    * $$moqt-datastreamstopsending-extension
+}
+~~~
+{: #datastreamstopsending-def title="MOQTDataStreamStopSending definition"}
 
 # MOQT Data Type Definitions
 

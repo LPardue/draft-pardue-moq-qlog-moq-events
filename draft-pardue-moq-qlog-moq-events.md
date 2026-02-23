@@ -233,7 +233,8 @@ MOQTStreamTypeSet = {
 
 $MOQTStreamType /=  "control" /
                     "subgroup_header" /
-                    "fetch_header"
+                    "fetch_header" /
+                    "subscribe_namespace"
 ~~~
 {: #streamtypeset-def title="MOQTStreamTypeSet definition"}
 
@@ -1102,7 +1103,7 @@ MOQTNamespace = {
 ~~~ cddl
 MOQTPublishNamespaceDone = {
   type: "publish_namespace_done"
-  track_namespace: [ *MOQTByteString]
+  request_id: uint64
 }
 ~~~
 {: #publishnamespacedone-def title="MOQTPublishNamespaceDone definition"}

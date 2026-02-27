@@ -300,8 +300,9 @@ MOQTSubgroupHeaderCreated = {
     stream_id: uint64
     track_alias: uint64
     group_id: uint64
+    subgroup_id_mode: uint8
     ? subgroup_id: uint64
-    publisher_priority: uint8
+    ? publisher_priority: uint8
     contains_end_of_group: bool
     extensions_present: bool
 
@@ -327,8 +328,9 @@ MOQTSubgroupHeaderParsed = {
     stream_id: uint64
     track_alias: uint64
     group_id: uint64
+    subgroup_id_mode: uint8
     ? subgroup_id: uint64
-    publisher_priority: uint8
+    ? publisher_priority: uint8
     contains_end_of_group: bool
     extensions_present: bool
 

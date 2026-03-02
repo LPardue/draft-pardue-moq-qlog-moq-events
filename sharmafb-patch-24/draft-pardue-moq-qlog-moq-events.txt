@@ -5,10 +5,10 @@
 Media Over QUIC                                                L. Pardue
 Internet-Draft                                                Cloudflare
 Intended status: Informational                              M. Engelbart
-Expires: 31 August 2026                   Technical University of Munich
+Expires: 3 September 2026                 Technical University of Munich
                                                                A. Sharma
                                                                     Meta
-                                                        27 February 2026
+                                                            2 March 2026
 
 
                        MoQ qlog event definitions
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 31 August 2026.
+   This Internet-Draft will expire on 3 September 2026.
 
 Copyright Notice
 
@@ -431,13 +431,13 @@ Table of Contents
    The subgroup_header_parsed event is emitted when the SUBGROUP_HEADER
    is parsed.  It has Core importance level.
 
-   The SUBGROUP_HEADER object in MoQT uses 12 type values to encode
-   various properties.  The event conveys these as explicit fields, such
-   as contains_end_of_group.
+   The SUBGROUP_HEADER object in MoQT uses 5 bits in the type value to
+   convey various properties.  The subgroup_header_created event conveys
+   these as explicit fields, such as contains_end_of_group.
 
-   If the subgroup_id is the object_id of the first object, the
-   subgroup_id is omitted.  Otherwise, it is included with the relevant
-   value.
+   If the publisher_priority is absent, it means that the subgroup
+   inherits the Publisher Priority specified in the control message that
+   established the subscription.
 
    MOQTSubgroupHeaderParsed = {
        stream_id: uint64

@@ -447,6 +447,10 @@ MOQTFetchObjectCreated = {
 The `fetch_object_parsed` event is emitted when a fetch object is parsed. It has
 Core importance level.
 
+The FETCH object in MoQT uses serialization flags to encode various
+properties. The event conveys these as explicit fields, such as
+end_of_unknown_range.
+
 ~~~ cddl
 MOQTFetchObjectParsed = {
     stream_id: uint64

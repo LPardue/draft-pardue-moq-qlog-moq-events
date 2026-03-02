@@ -5,10 +5,10 @@
 Media Over QUIC                                                L. Pardue
 Internet-Draft                                                Cloudflare
 Intended status: Informational                              M. Engelbart
-Expires: 31 August 2026                   Technical University of Munich
+Expires: 3 September 2026                 Technical University of Munich
                                                                A. Sharma
                                                                     Meta
-                                                        27 February 2026
+                                                            2 March 2026
 
 
                        MoQ qlog event definitions
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 31 August 2026.
+   This Internet-Draft will expire on 3 September 2026.
 
 Copyright Notice
 
@@ -556,6 +556,10 @@ Table of Contents
 
    The fetch_object_parsed event is emitted when a fetch object is
    parsed.  It has Core importance level.
+
+   The FETCH object in MoQT uses serialization flags to encode various
+   properties.  The event conveys these as explicit fields, such as
+   end_of_unknown_range.
 
    MOQTFetchObjectParsed = {
        stream_id: uint64

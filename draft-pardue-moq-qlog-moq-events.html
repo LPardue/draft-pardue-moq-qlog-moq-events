@@ -1047,11 +1047,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">MoQ qlog event definitions</td>
-<td class="right">February 2026</td>
+<td class="right">March 2026</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Pardue, et al.</td>
-<td class="center">Expires 27 August 2026</td>
+<td class="center">Expires 3 September 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1064,12 +1064,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-pardue-moq-qlog-moq-events-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-02-23" class="published">23 February 2026</time>
+<time datetime="2026-03-02" class="published">2 March 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-08-27">27 August 2026</time></dd>
+<dd class="expires"><time datetime="2026-09-03">3 September 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1127,7 +1127,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 27 August 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 3 September 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1875,12 +1875,8 @@ created. It has Core importance level.<a href="#section-4.8-1" class="pilcrow">�
 <pre>
 MOQTSubgroupObjectCreated = {
     stream_id: uint64
-    ? group_id: uint64
-    ? subgroup_id: uint64
-    object_id: uint64
-    extension_headers_length: uint64
+    object_id_delta: uint64
     ? extension_headers: [* MOQTExtensionHeader]
-    object_payload_length: uint64
     ? object_status: uint64
     ? object_payload: RawInfo
 
@@ -1907,12 +1903,8 @@ It has Core importance level.<a href="#section-4.9-1" class="pilcrow">¶</a></p>
 <pre>
 MOQTSubgroupObjectParsed = {
     stream_id: uint64
-    ? group_id: uint64
-    ? subgroup_id: uint64
-    object_id: uint64
-    extension_headers_length: uint64
+    object_id_delta: uint64
     ? extension_headers: [* MOQTExtensionHeader]
-    object_payload_length: uint64
     ? object_status: uint64
     ? object_payload: RawInfo
 

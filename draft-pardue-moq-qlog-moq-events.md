@@ -349,12 +349,8 @@ created. It has Core importance level.
 ~~~ cddl
 MOQTSubgroupObjectCreated = {
     stream_id: uint64
-    ? group_id: uint64
-    ? subgroup_id: uint64
-    object_id: uint64
-    extension_headers_length: uint64
+    object_id_delta: uint64
     ? extension_headers: [* MOQTExtensionHeader]
-    object_payload_length: uint64
     ? object_status: uint64
     ? object_payload: RawInfo
 
@@ -371,12 +367,8 @@ It has Core importance level.
 ~~~ cddl
 MOQTSubgroupObjectParsed = {
     stream_id: uint64
-    ? group_id: uint64
-    ? subgroup_id: uint64
-    object_id: uint64
-    extension_headers_length: uint64
+    object_id_delta: uint64
     ? extension_headers: [* MOQTExtensionHeader]
-    object_payload_length: uint64
     ? object_status: uint64
     ? object_payload: RawInfo
 
@@ -420,13 +412,21 @@ MOQTFetchHeaderParsed = {
 The `fetch_object_created` event is emitted when a fetch object is created. It
 has Core importance level.
 
+The FETCH object in MoQT uses serialization flags to encode various
+properties. The event conveys these as explicit fields, such as
+end_of_unknown_range.
+
 ~~~ cddl
 MOQTFetchObjectCreated = {
     stream_id: uint64
-    group_id: uint64
-    subgroup_id: uint64
-    object_id: uint64
-    publisher_priority: uint8
+    datagram: bool
+    end_of_nonexistent_range: bool
+    end_of_unknown_range: bool
+    ? subgroup_id_bits: uint8
+    ? group_id: uint64
+    ? subgroup_id: uint64
+    ? object_id: uint64
+    ? publisher_priority: uint8
     extension_headers_length: uint64
     ? extension_headers: [* MOQTExtensionHeader]
     object_payload_length: uint64
@@ -443,13 +443,21 @@ MOQTFetchObjectCreated = {
 The `fetch_object_parsed` event is emitted when a fetch object is parsed. It has
 Core importance level.
 
+The FETCH object in MoQT uses serialization flags to encode various
+properties. The event conveys these as explicit fields, such as
+end_of_unknown_range.
+
 ~~~ cddl
 MOQTFetchObjectParsed = {
     stream_id: uint64
-    group_id: uint64
-    subgroup_id: uint64
-    object_id: uint64
-    publisher_priority: uint8
+    datagram: bool
+    end_of_nonexistent_range: bool
+    end_of_unknown_range: bool
+    ? subgroup_id_bits: uint8
+    ? group_id: uint64
+    ? subgroup_id: uint64
+    ? object_id: uint64
+    ? publisher_priority: uint8
     extension_headers_length: uint64
     ? extension_headers: [* MOQTExtensionHeader]
     object_payload_length: uint64

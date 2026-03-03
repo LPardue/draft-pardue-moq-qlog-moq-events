@@ -345,12 +345,8 @@ created. It has Core importance level.
 ~~~ cddl
 MOQTSubgroupObjectCreated = {
     stream_id: uint64
-    ? group_id: uint64
-    ? subgroup_id: uint64
-    object_id: uint64
-    extension_headers_length: uint64
+    object_id_delta: uint64
     ? extension_headers: [* MOQTExtensionHeader]
-    object_payload_length: uint64
     ? object_status: uint64
     ? object_payload: RawInfo
 
@@ -367,12 +363,8 @@ It has Core importance level.
 ~~~ cddl
 MOQTSubgroupObjectParsed = {
     stream_id: uint64
-    ? group_id: uint64
-    ? subgroup_id: uint64
-    object_id: uint64
-    extension_headers_length: uint64
+    object_id_delta: uint64
     ? extension_headers: [* MOQTExtensionHeader]
-    object_payload_length: uint64
     ? object_status: uint64
     ? object_payload: RawInfo
 

@@ -1027,6 +1027,7 @@ MOQTFetch = {
   fetch_type: $MOQTFetchType
   ? standalone_fetch: $MOQTStandaloneFetch
   ? joining_fetch: $MOQTJoiningFetch
+  number_of_parameters: uint64
   ? parameters: [* $MOQTParameter]
 }
 

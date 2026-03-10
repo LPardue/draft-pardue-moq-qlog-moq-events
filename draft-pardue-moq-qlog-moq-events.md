@@ -357,6 +357,7 @@ MOQTSubgroupObjectCreated = {
     stream_id: uint64
     object_id_delta: uint64
     ? extension_headers: [* MOQTExtensionHeader]
+    object_payload_length: uint64
     ? object_status: uint64
     ? object_payload: RawInfo
 
@@ -375,6 +376,7 @@ MOQTSubgroupObjectParsed = {
     stream_id: uint64
     object_id_delta: uint64
     ? extension_headers: [* MOQTExtensionHeader]
+    object_payload_length: uint64
     ? object_status: uint64
     ? object_payload: RawInfo
 

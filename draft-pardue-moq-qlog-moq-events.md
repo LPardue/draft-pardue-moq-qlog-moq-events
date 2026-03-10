@@ -1135,7 +1135,7 @@ MOQTNamespaceDone = {
 ~~~ cddl
 MOQTPublishNamespaceCancel = {
   type: "publish_namespace_cancel"
-  track_namespace: [ *MOQTByteString]
+  request_id: uint64
   error_code: uint64
   ? reason: text
   ? reason_bytes: hexstring

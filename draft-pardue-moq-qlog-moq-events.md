@@ -243,12 +243,15 @@ $MOQTStreamType /=  "control" /
 The `object_datagram_created` event is emitted when the OBJECT_DATAGRAM message
 is created. It has Core importance level.
 
+If the publisher_priority is absent, it means that the object inherits the
+Publisher Priority specified in the control message that established the subscription.
+
 ~~~ cddl
 MOQTObjectDatagramCreated = {
     track_alias: uint64
     group_id: uint64
     ? object_id: uint64
-    publisher_priority: uint8
+    ? publisher_priority: uint8
     ? extension_headers_length: uint64
     ? extension_headers: [* MOQTExtensionHeader]
     ? object_status: uint64
@@ -265,12 +268,15 @@ MOQTObjectDatagramCreated = {
 The `object_datagram_parsed` event is emitted when the OBJECT_DATAGRAM message
 is parsed. It has Core importance level.
 
+If the publisher_priority is absent, it means that the object inherits the
+Publisher Priority specified in the control message that established the subscription.
+
 ~~~ cddl
 MOQTObjectDatagramParsed = {
     track_alias: uint64
     group_id: uint64
     ? object_id: uint64
-    publisher_priority: uint8
+    ? publisher_priority: uint8
     ? extension_headers_length: uint64
     ? extension_headers: [* MOQTExtensionHeader]
     ? object_status: uint64
@@ -1136,7 +1142,7 @@ MOQTNamespaceDone = {
 ~~~ cddl
 MOQTPublishNamespaceCancel = {
   type: "publish_namespace_cancel"
-  track_namespace: [ *MOQTByteString]
+  request_id: uint64
   error_code: uint64
   ? reason: text
   ? reason_bytes: hexstring

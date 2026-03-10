@@ -1735,15 +1735,17 @@ $MOQTStreamType /=  "control" /
         </h3>
 <p id="section-4.4-1">The <code>object_datagram_created</code> event is emitted when the OBJECT_DATAGRAM message
 is created. It has Core importance level.<a href="#section-4.4-1" class="pilcrow">¶</a></p>
+<p id="section-4.4-2">If the publisher_priority is absent, it means that the object inherits the
+Publisher Priority specified in the control message that established the subscription.<a href="#section-4.4-2" class="pilcrow">¶</a></p>
 <span id="name-moqtobjectdatagramcreated-d"></span><div id="objectdatagramcreated-def">
 <figure id="figure-5">
-          <div class="lang-cddl sourcecode" id="section-4.4-2.1">
+          <div class="lang-cddl sourcecode" id="section-4.4-3.1">
 <pre>
 MOQTObjectDatagramCreated = {
     track_alias: uint64
     group_id: uint64
     ? object_id: uint64
-    publisher_priority: uint8
+    ? publisher_priority: uint8
     ? extension_headers_length: uint64
     ? extension_headers: [* MOQTExtensionHeader]
     ? object_status: uint64
@@ -1767,15 +1769,17 @@ MOQTObjectDatagramCreated = {
         </h3>
 <p id="section-4.5-1">The <code>object_datagram_parsed</code> event is emitted when the OBJECT_DATAGRAM message
 is parsed. It has Core importance level.<a href="#section-4.5-1" class="pilcrow">¶</a></p>
+<p id="section-4.5-2">If the publisher_priority is absent, it means that the object inherits the
+Publisher Priority specified in the control message that established the subscription.<a href="#section-4.5-2" class="pilcrow">¶</a></p>
 <span id="name-moqtobjectdatagramparsed-de"></span><div id="objectdatagramparsed-def">
 <figure id="figure-6">
-          <div class="lang-cddl sourcecode" id="section-4.5-2.1">
+          <div class="lang-cddl sourcecode" id="section-4.5-3.1">
 <pre>
 MOQTObjectDatagramParsed = {
     track_alias: uint64
     group_id: uint64
     ? object_id: uint64
-    publisher_priority: uint8
+    ? publisher_priority: uint8
     ? extension_headers_length: uint64
     ? extension_headers: [* MOQTExtensionHeader]
     ? object_status: uint64

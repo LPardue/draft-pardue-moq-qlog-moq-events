@@ -433,7 +433,7 @@ MOQTFetchObjectCreated = {
     ? subgroup_id: uint64
     ? object_id: uint64
     ? publisher_priority: uint8
-    extension_headers_length: uint64
+    ? extension_headers_length: uint64
     ? extension_headers: [* MOQTExtensionHeader]
     object_payload_length: uint64
     ? object_status: uint64
@@ -464,7 +464,7 @@ MOQTFetchObjectParsed = {
     ? subgroup_id: uint64
     ? object_id: uint64
     ? publisher_priority: uint8
-    extension_headers_length: uint64
+    ? extension_headers_length: uint64
     ? extension_headers: [* MOQTExtensionHeader]
     object_payload_length: uint64
     ? object_status: uint64

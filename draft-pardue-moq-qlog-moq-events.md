@@ -514,76 +514,76 @@ MOQTSubscriptionFilter = {
 ~~~
 {: #moqtsubscriptionfilter-def title="MOQTSubscriptionFilter definition"}
 
-## MOQTSetupParameter
+## MOQTSetupOption
 
-The generic $MOQTSetupParameter is defined here as a CDDL "type socket"
-extension point. It can be extended to support additional MOQT Setup Parameters.
+The generic $MOQTSetupOption is defined here as a CDDL "type socket"
+extension point. It can be extended to support additional MOQT Setup Options.
 
 ~~~ cddl
-; The MOQTSetupParameter is any key-value map (e.g., JSON object)
-$MOQTSetupParameter /= {
+; The MOQTSetupOption is any key-value map (e.g., JSON object)
+$MOQTSetupOption /= {
     * text => any
 }
 ~~~
-{: #moqtsetupparameter-def title="MOQTSetupParameter type socket definition"}
+{: #moqtsetupoption-def title="MOQTSetupOption type socket definition"}
 
 ~~~ cddl
-MOQTBaseSetupParameters /=  MOQTAuthoritySetupParameter /
-                            MOQTPathSetupParameter /
-                            MOQTMaxRequestIdSetupParameter /
-                            MOQTMaxAuthTokenCacheSizeSetupParameter /
-                            MOQTAuthorizationTokenSetupParameter /
-                            MOQTImplementationSetupParameter /
-                            MOQTUnknownSetupParameter
+MOQTBaseSetupOptions /=  MOQTAuthoritySetupOption /
+                         MOQTPathSetupOption /
+                         MOQTMaxRequestIdSetupOption /
+                         MOQTMaxAuthTokenCacheSizeSetupOption /
+                         MOQTAuthorizationTokenSetupOption /
+                         MOQTImplementationSetupOption /
+                         MOQTUnknownSetupOption
 
-$MOQTSetupParameter /= MOQTBaseSetupParameters
+$MOQTSetupOption /= MOQTBaseSetupOptions
 ~~~
-{: #moqtbasesetupparameters-def title="MOQTBaseSetupParameters definition"}
+{: #moqtbasesetupoptions-def title="MOQTBaseSetupOptions definition"}
 
-### MOQTAuthoritySetupParameter
+### MOQTAuthoritySetupOption
 
 ~~~ cddl
-MOQTAuthoritySetupParameter = {
+MOQTAuthoritySetupOption = {
   name: "authority"
   value: text
 }
 ~~~
-{: #moqtauthoritysetupparameter-def title="MOQTAuthoritySetupParameter definition"}
+{: #moqtauthoritysetupoption-def title="MOQTAuthoritySetupOption definition"}
 
-### MOQTPathSetupParameter
+### MOQTPathSetupOption
 
 ~~~ cddl
-MOQTPathSetupParameter = {
+MOQTPathSetupOption = {
   name: "path"
   value: text
 }
 ~~~
-{: #moqtpathsetupparameter-def title="MOQTPathSetupParameter definition"}
+{: #moqtpathsetupoption-def title="MOQTPathSetupOption definition"}
 
-### MOQTMaxRequestIdSetupParameter
+### MOQTMaxRequestIdSetupOption
 
 ~~~ cddl
-MOQTMaxRequestIdSetupParameter = {
+MOQTMaxRequestIdSetupOption = {
   name: "max_request_id"
   value: uint64
 }
 ~~~
-{: #moqtmaxsubscribeidsetupparameter-def title="MOQTMaxRequestIdSetupParameter definition"}
+{: #moqtmaxsubscribeidsetupoption-def title="MOQTMaxRequestIdSetupOption definition"}
 
-### MOQTMaxAuthTokenCacheSizeSetupParameter
+### MOQTMaxAuthTokenCacheSizeSetupOption
 
 ~~~ cddl
-MOQTMaxAuthTokenCacheSizeSetupParameter = {
+MOQTMaxAuthTokenCacheSizeSetupOption = {
   name: "max_auth_token_cache_size"
   value: uint64
 }
 ~~~
-{: #moqtmaxauthtokencachesizesetupparameter-def title="MOQTMaxAuthTokenCacheSizeSetupParameter definition"}
+{: #moqtmaxauthtokencachesizesetupoption-def title="MOQTMaxAuthTokenCacheSizeSetupOption definition"}
 
-### MOQTAuthorizationTokenSetupParameter
+### MOQTAuthorizationTokenSetupOption
 
 ~~~ cddl
-MOQTAuthorizationTokenSetupParameter = {
+MOQTAuthorizationTokenSetupOption = {
   name: "authorization_token"
   alias_type: $MOQTAliasType
   ? token_alias: uint64
@@ -596,22 +596,22 @@ $MOQTAliasType /=  "delete" /
                    "use_alias" /
                    "use_value"
 ~~~
-{: #moqtauthorizationtokensetupparameter-def title="MOQTAuthorizationTokenSetupParameter definition"}
+{: #moqtauthorizationtokensetupoption-def title="MOQTAuthorizationTokenSetupOption definition"}
 
-### MOQTImplementationSetupParameter
+### MOQTImplementationSetupOption
 
 ~~~ cddl
-MOQTImplementationSetupParameter = {
+MOQTImplementationSetupOption = {
   name: "implementation"
   value: text
 }
 ~~~
-{: #moqtimplementationsetupparameter-def title="MOQTImplementationSetupParameter definition"}
+{: #moqtimplementationsetupoption-def title="MOQTImplementationSetupOption definition"}
 
-### MOQTUnknownSetupParameter
+### MOQTUnknownSetupOption
 
 ~~~ cddl
-MOQTUnknownSetupParameter = {
+MOQTUnknownSetupOption = {
   name:"unknown"
   name_bytes: uint64
   ? length: uint64
@@ -619,7 +619,7 @@ MOQTUnknownSetupParameter = {
   ? value_bytes: RawInfo
 }
 ~~~
-{: #moqtunknownsetupparameter-def title="MOQTUnknownSetupParameter definition"}
+{: #moqtunknownsetupoption-def title="MOQTUnknownSetupOption definition"}
 
 ## MOQTParameter
 
@@ -861,7 +861,7 @@ $MOQTControlMessage /= MOQTBaseControlMessages
 MOQTClientSetupMessage = {
   type: "client_setup"
   number_of_parameters: uint64
-  ? setup_parameters: [* $MOQTSetupParameter]
+  ? setup_parameters: [* $MOQTSetupOption]
 }
 ~~~
 {: #clientsetup-def title="MOQTClientSetupMessage definition"}
@@ -872,7 +872,7 @@ MOQTClientSetupMessage = {
 MOQTServerSetupMessage = {
   type: "server_setup"
   number_of_parameters: uint64
-  ? setup_parameters: [* $MOQTSetupParameter]
+  ? setup_parameters: [* $MOQTSetupOption]
 }
 ~~~
 {: #serversetup-def title="MOQTServerSetupMessage definition"}

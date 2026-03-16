@@ -839,6 +839,7 @@ MOQTBaseControlMessages = MOQTClientSetupMessage /
                           MOQTPublish /
                           MOQTPublishOk /
                           MOQTPublishDone /
+                          MOQTPublishBlocked /
                           MOQTFetch /
                           MOQTFetchOk /
                           MOQTFetchCancel /
@@ -1025,6 +1026,17 @@ MOQTPublishDone = {
 }
 ~~~
 {: #publishdone-def title="MOQTPublishDone definition"}
+
+### MOQTPublishBlocked
+
+~~~ cddl
+MOQTPublishBlocked = {
+  type: "publish_blocked"
+  track_namespace: [ *MOQTByteString]
+  track_name: MOQTByteString
+}
+~~~
+{: #publishblocked-def title="MOQTPublishBlocked definition"}
 
 ### MOQTFetch
 

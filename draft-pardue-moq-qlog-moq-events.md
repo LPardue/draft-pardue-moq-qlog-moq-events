@@ -849,7 +849,7 @@ MOQTBaseControlMessages = MOQTClientSetupMessage /
                           MOQTNamespaceDone /
                           MOQTPublishNamespaceCancel /
                           MOQTSubscribeNamespace /
-                          MOQTPublishBlocked /
+                          MOQTPublishBlocked
 
 $MOQTControlMessage /= MOQTBaseControlMessages
 ~~~

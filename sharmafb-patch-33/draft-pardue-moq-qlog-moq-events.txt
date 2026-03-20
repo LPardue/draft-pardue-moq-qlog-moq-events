@@ -5,10 +5,10 @@
 Media Over QUIC                                                L. Pardue
 Internet-Draft                                                Cloudflare
 Intended status: Informational                              M. Engelbart
-Expires: 17 September 2026                Technical University of Munich
+Expires: 21 September 2026                Technical University of Munich
                                                                A. Sharma
                                                                     Meta
-                                                           16 March 2026
+                                                           20 March 2026
 
 
                        MoQ qlog event definitions
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 17 September 2026.
+   This Internet-Draft will expire on 21 September 2026.
 
 Copyright Notice
 
@@ -131,17 +131,17 @@ Table of Contents
        5.7.12. MOQTPublish
        5.7.13. MOQTPublishOk
        5.7.14. MOQTPublishDone
-       5.7.15. MOQTPublishBlocked
-       5.7.16. MOQTFetch
-       5.7.17. MOQTFetchOk
-       5.7.18. MOQTFetchCancel
-       5.7.19. MOQTTrackStatus
-       5.7.20. MOQTPublishNamespace
-       5.7.21. MOQTNamespace
-       5.7.22. MOQTPublishNamespaceDone
-       5.7.23. MOQTNamespaceDone
-       5.7.24. MOQTPublishNamespaceCancel
-       5.7.25. MOQTSubscribeNamespace
+       5.7.15. MOQTFetch
+       5.7.16. MOQTFetchOk
+       5.7.17. MOQTFetchCancel
+       5.7.18. MOQTTrackStatus
+       5.7.19. MOQTPublishNamespace
+       5.7.20. MOQTNamespace
+       5.7.21. MOQTPublishNamespaceDone
+       5.7.22. MOQTNamespaceDone
+       5.7.23. MOQTPublishNamespaceCancel
+       5.7.24. MOQTSubscribeNamespace
+       5.7.25. MOQTPublishBlocked
      5.8.  MOQTExtensionHeader
    6.  Security Considerations
    7.  IANA Considerations
@@ -922,7 +922,6 @@ Table of Contents
                              MOQTPublish /
                              MOQTPublishOk /
                              MOQTPublishDone /
-                             MOQTPublishBlocked /
                              MOQTFetch /
                              MOQTFetchOk /
                              MOQTFetchCancel /
@@ -932,7 +931,8 @@ Table of Contents
                              MOQTPublishNamespaceDone /
                              MOQTNamespaceDone /
                              MOQTPublishNamespaceCancel /
-                             MOQTSubscribeNamespace
+                             MOQTSubscribeNamespace /
+                             MOQTPublishBlocked /
 
    $MOQTControlMessage /= MOQTBaseControlMessages
 
@@ -1095,17 +1095,7 @@ Table of Contents
 
                    Figure 58: MOQTPublishDone definition
 
-5.7.15.  MOQTPublishBlocked
-
-   MOQTPublishBlocked = {
-     type: "publish_blocked"
-     track_namespace: [ *MOQTByteString]
-     track_name: MOQTByteString
-   }
-
-                  Figure 59: MOQTPublishBlocked definition
-
-5.7.16.  MOQTFetch
+5.7.15.  MOQTFetch
 
    MOQTFetch = {
      type: "fetch"
@@ -1133,9 +1123,9 @@ Table of Contents
                       "absolute_joining" /
                       "relative_joining"
 
-                      Figure 60: MOQTFetch definition
+                      Figure 59: MOQTFetch definition
 
-5.7.17.  MOQTFetchOk
+5.7.16.  MOQTFetchOk
 
    MOQTFetchOk = {
      type: "fetch_ok"
@@ -1147,18 +1137,18 @@ Table of Contents
      ? track_extensions: [* MOQTExtensionHeader]
    }
 
-                     Figure 61: MOQTFetchOk definition
+                     Figure 60: MOQTFetchOk definition
 
-5.7.18.  MOQTFetchCancel
+5.7.17.  MOQTFetchCancel
 
    MOQTFetchCancel = {
      type: "fetch_cancel"
      request_id: uint64
    }
 
-                   Figure 62: MOQTFetchCancel definition
+                   Figure 61: MOQTFetchCancel definition
 
-5.7.19.  MOQTTrackStatus
+5.7.18.  MOQTTrackStatus
 
    MOQTTrackStatus = {
      type: "track_status"
@@ -1169,9 +1159,9 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                   Figure 63: MOQTTrackStatus definition
+                   Figure 62: MOQTTrackStatus definition
 
-5.7.20.  MOQTPublishNamespace
+5.7.19.  MOQTPublishNamespace
 
    MOQTPublishNamespace = {
      type: "publish_namespace"
@@ -1181,36 +1171,36 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                 Figure 64: MOQTPublishNamespace definition
+                 Figure 63: MOQTPublishNamespace definition
 
-5.7.21.  MOQTNamespace
+5.7.20.  MOQTNamespace
 
    MOQTNamespace = {
      type: "namespace"
      track_namespace_suffix: [ *MOQTByteString]
    }
 
-                    Figure 65: MOQTNamespace definition
+                    Figure 64: MOQTNamespace definition
 
-5.7.22.  MOQTPublishNamespaceDone
+5.7.21.  MOQTPublishNamespaceDone
 
    MOQTPublishNamespaceDone = {
      type: "publish_namespace_done"
      request_id: uint64
    }
 
-               Figure 66: MOQTPublishNamespaceDone definition
+               Figure 65: MOQTPublishNamespaceDone definition
 
-5.7.23.  MOQTNamespaceDone
+5.7.22.  MOQTNamespaceDone
 
    MOQTNamespaceDone = {
      type: "namespace_done"
      track_namespace_suffix: [ *MOQTByteString]
    }
 
-                  Figure 67: MOQTNamespaceDone definition
+                  Figure 66: MOQTNamespaceDone definition
 
-5.7.24.  MOQTPublishNamespaceCancel
+5.7.23.  MOQTPublishNamespaceCancel
 
    MOQTPublishNamespaceCancel = {
      type: "publish_namespace_cancel"
@@ -1220,9 +1210,9 @@ Table of Contents
      ? reason_bytes: hexstring
    }
 
-              Figure 68: MOQTPublishNamespaceCancel definition
+              Figure 67: MOQTPublishNamespaceCancel definition
 
-5.7.25.  MOQTSubscribeNamespace
+5.7.24.  MOQTSubscribeNamespace
 
    MOQTSubscribeNamespace = {
      type: "subscribe_namespace"
@@ -1237,7 +1227,17 @@ Table of Contents
                              "namespace" /
                              "both"
 
-                Figure 69: MOQTSubscribeNamespace definition
+                Figure 68: MOQTSubscribeNamespace definition
+
+5.7.25.  MOQTPublishBlocked
+
+   MOQTPublishBlocked = {
+     type: "publish_blocked"
+     track_namespace_suffix: [ *MOQTByteString]
+     track_name: MOQTByteString
+   }
+
+                  Figure 69: MOQTPublishBlocked definition
 
 5.8.  MOQTExtensionHeader
 

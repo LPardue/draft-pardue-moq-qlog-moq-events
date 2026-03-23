@@ -5,10 +5,10 @@
 Media Over QUIC                                                L. Pardue
 Internet-Draft                                                Cloudflare
 Intended status: Informational                              M. Engelbart
-Expires: 21 September 2026                Technical University of Munich
+Expires: 24 September 2026                Technical University of Munich
                                                                A. Sharma
                                                                     Meta
-                                                           20 March 2026
+                                                           23 March 2026
 
 
                        MoQ qlog event definitions
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 September 2026.
+   This Internet-Draft will expire on 24 September 2026.
 
 Copyright Notice
 
@@ -141,6 +141,7 @@ Table of Contents
        5.7.22. MOQTNamespaceDone
        5.7.23. MOQTPublishNamespaceCancel
        5.7.24. MOQTSubscribeNamespace
+       5.7.25. MOQTPublishBlocked
      5.8.  MOQTExtensionHeader
    6.  Security Considerations
    7.  IANA Considerations
@@ -930,7 +931,8 @@ Table of Contents
                              MOQTPublishNamespaceDone /
                              MOQTNamespaceDone /
                              MOQTPublishNamespaceCancel /
-                             MOQTSubscribeNamespace
+                             MOQTSubscribeNamespace /
+                             MOQTPublishBlocked
 
    $MOQTControlMessage /= MOQTBaseControlMessages
 
@@ -1227,6 +1229,16 @@ Table of Contents
 
                 Figure 68: MOQTSubscribeNamespace definition
 
+5.7.25.  MOQTPublishBlocked
+
+   MOQTPublishBlocked = {
+     type: "publish_blocked"
+     track_namespace_suffix: [ *MOQTByteString]
+     track_name: MOQTByteString
+   }
+
+                  Figure 69: MOQTPublishBlocked definition
+
 5.8.  MOQTExtensionHeader
 
    MOQTExtensionHeader = {
@@ -1236,7 +1248,7 @@ Table of Contents
      ? payload: RawInfo
    }
 
-                   Figure 69: Extension Header definition
+                   Figure 70: Extension Header definition
 
 6.  Security Considerations
 

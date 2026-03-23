@@ -1051,7 +1051,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Pardue, et al.</td>
-<td class="center">Expires 21 September 2026</td>
+<td class="center">Expires 24 September 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1064,12 +1064,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-pardue-moq-qlog-moq-events-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-03-20" class="published">20 March 2026</time>
+<time datetime="2026-03-23" class="published">23 March 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-09-21">21 September 2026</time></dd>
+<dd class="expires"><time datetime="2026-09-24">24 September 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1127,7 +1127,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 21 September 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 24 September 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1378,6 +1378,9 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.7.2.24">
                     <p id="section-toc.1-1.5.2.7.2.24.1"><a href="#section-5.7.24" class="auto internal xref">5.7.24</a>. <a href="#name-moqtsubscribenamespace" class="internal xref">MOQTSubscribeNamespace</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.7.2.25">
+                    <p id="section-toc.1-1.5.2.7.2.25.1"><a href="#section-5.7.25" class="auto internal xref">5.7.25</a>. <a href="#name-moqtpublishblocked" class="internal xref">MOQTPublishBlocked</a></p>
 </li>
                 </ul>
 </li>
@@ -2734,7 +2737,8 @@ MOQTBaseControlMessages = MOQTClientSetupMessage /
                           MOQTPublishNamespaceDone /
                           MOQTNamespaceDone /
                           MOQTPublishNamespaceCancel /
-                          MOQTSubscribeNamespace
+                          MOQTSubscribeNamespace /
+                          MOQTPublishBlocked
 
 $MOQTControlMessage /= MOQTBaseControlMessages
 </pre>
@@ -3322,6 +3326,28 @@ $MOQTSubscribeOptions /=  "publish" /
 </div>
 </section>
 </div>
+<div id="moqtpublishblocked">
+<section id="section-5.7.25">
+          <h4 id="name-moqtpublishblocked">
+<a href="#section-5.7.25" class="section-number selfRef">5.7.25. </a><a href="#name-moqtpublishblocked" class="section-name selfRef">MOQTPublishBlocked</a>
+          </h4>
+<span id="name-moqtpublishblocked-definiti"></span><div id="publishblocked-def">
+<figure id="figure-69">
+            <div class="lang-cddl sourcecode" id="section-5.7.25-1.1">
+<pre>
+MOQTPublishBlocked = {
+  type: "publish_blocked"
+  track_namespace_suffix: [ *MOQTByteString]
+  track_name: MOQTByteString
+}
+</pre>
+</div>
+<figcaption><a href="#figure-69" class="selfRef">Figure 69</a>:
+<a href="#name-moqtpublishblocked-definiti" class="selfRef">MOQTPublishBlocked definition</a>
+            </figcaption></figure>
+</div>
+</section>
+</div>
 </section>
 </div>
 <div id="moqtextensionheader">
@@ -3330,7 +3356,7 @@ $MOQTSubscribeOptions /=  "publish" /
 <a href="#section-5.8" class="section-number selfRef">5.8. </a><a href="#name-moqtextensionheader" class="section-name selfRef">MOQTExtensionHeader</a>
         </h3>
 <span id="name-extension-header-definition"></span><div id="extensionheader-def">
-<figure id="figure-69">
+<figure id="figure-70">
           <div class="lang-cddl sourcecode" id="section-5.8-1.1">
 <pre>
 MOQTExtensionHeader = {
@@ -3341,7 +3367,7 @@ MOQTExtensionHeader = {
 }
 </pre>
 </div>
-<figcaption><a href="#figure-69" class="selfRef">Figure 69</a>:
+<figcaption><a href="#figure-70" class="selfRef">Figure 70</a>:
 <a href="#name-extension-header-definition" class="selfRef">Extension Header definition</a>
           </figcaption></figure>
 </div>

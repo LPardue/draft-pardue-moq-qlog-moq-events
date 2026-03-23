@@ -848,7 +848,8 @@ MOQTBaseControlMessages = MOQTClientSetupMessage /
                           MOQTPublishNamespaceDone /
                           MOQTNamespaceDone /
                           MOQTPublishNamespaceCancel /
-                          MOQTSubscribeNamespace
+                          MOQTSubscribeNamespace /
+                          MOQTPublishBlocked
 
 $MOQTControlMessage /= MOQTBaseControlMessages
 ~~~
@@ -1169,6 +1170,17 @@ $MOQTSubscribeOptions /=  "publish" /
                           "both"
 ~~~
 {: #subscribenamespace-def title="MOQTSubscribeNamespace definition"}
+
+### MOQTPublishBlocked
+
+~~~ cddl
+MOQTPublishBlocked = {
+  type: "publish_blocked"
+  track_namespace_suffix: [ *MOQTByteString]
+  track_name: MOQTByteString
+}
+~~~
+{: #publishblocked-def title="MOQTPublishBlocked definition"}
 
 ## MOQTExtensionHeader
 

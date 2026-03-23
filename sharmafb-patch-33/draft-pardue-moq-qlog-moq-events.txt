@@ -5,10 +5,10 @@
 Media Over QUIC                                                L. Pardue
 Internet-Draft                                                Cloudflare
 Intended status: Informational                              M. Engelbart
-Expires: 21 September 2026                Technical University of Munich
+Expires: 24 September 2026                Technical University of Munich
                                                                A. Sharma
                                                                     Meta
-                                                           20 March 2026
+                                                           23 March 2026
 
 
                        MoQ qlog event definitions
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 September 2026.
+   This Internet-Draft will expire on 24 September 2026.
 
 Copyright Notice
 
@@ -93,14 +93,14 @@ Table of Contents
      5.1.  Owner
      5.2.  MOQTLocation
      5.3.  MOQTSubscriptionFilter
-     5.4.  MOQTSetupParameter
-       5.4.1.  MOQTAuthoritySetupParameter
-       5.4.2.  MOQTPathSetupParameter
-       5.4.3.  MOQTMaxRequestIdSetupParameter
-       5.4.4.  MOQTMaxAuthTokenCacheSizeSetupParameter
-       5.4.5.  MOQTAuthorizationTokenSetupParameter
-       5.4.6.  MOQTImplementationSetupParameter
-       5.4.7.  MOQTUnknownSetupParameter
+     5.4.  MOQTSetupOption
+       5.4.1.  MOQTAuthoritySetupOption
+       5.4.2.  MOQTPathSetupOption
+       5.4.3.  MOQTMaxRequestIdSetupOption
+       5.4.4.  MOQTMaxAuthTokenCacheSizeSetupOption
+       5.4.5.  MOQTAuthorizationTokenSetupOption
+       5.4.6.  MOQTImplementationSetupOption
+       5.4.7.  MOQTUnknownSetupOption
      5.5.  MOQTParameter
        5.5.1.  MOQTAuthorizationTokenParameter
        5.5.2.  MOQTDeliveryTimeoutParameter
@@ -621,70 +621,70 @@ Table of Contents
 
                 Figure 17: MOQTSubscriptionFilter definition
 
-5.4.  MOQTSetupParameter
+5.4.  MOQTSetupOption
 
-   The generic $MOQTSetupParameter is defined here as a CDDL "type
-   socket" extension point.  It can be extended to support additional
-   MOQT Setup Parameters.
+   The generic $MOQTSetupOption is defined here as a CDDL "type socket"
+   extension point.  It can be extended to support additional MOQT Setup
+   Options.
 
-   ; The MOQTSetupParameter is any key-value map (e.g., JSON object)
-   $MOQTSetupParameter /= {
+   ; The MOQTSetupOption is any key-value map (e.g., JSON object)
+   $MOQTSetupOption /= {
        * text => any
    }
 
-            Figure 18: MOQTSetupParameter type socket definition
+             Figure 18: MOQTSetupOption type socket definition
 
-   MOQTBaseSetupParameters /=  MOQTAuthoritySetupParameter /
-                               MOQTPathSetupParameter /
-                               MOQTMaxRequestIdSetupParameter /
-                               MOQTMaxAuthTokenCacheSizeSetupParameter /
-                               MOQTAuthorizationTokenSetupParameter /
-                               MOQTImplementationSetupParameter /
-                               MOQTUnknownSetupParameter
+   MOQTBaseSetupOptions /=  MOQTAuthoritySetupOption /
+                            MOQTPathSetupOption /
+                            MOQTMaxRequestIdSetupOption /
+                            MOQTMaxAuthTokenCacheSizeSetupOption /
+                            MOQTAuthorizationTokenSetupOption /
+                            MOQTImplementationSetupOption /
+                            MOQTUnknownSetupOption
 
-   $MOQTSetupParameter /= MOQTBaseSetupParameters
+   $MOQTSetupOption /= MOQTBaseSetupOptions
 
-               Figure 19: MOQTBaseSetupParameters definition
+                 Figure 19: MOQTBaseSetupOptions definition
 
-5.4.1.  MOQTAuthoritySetupParameter
+5.4.1.  MOQTAuthoritySetupOption
 
-   MOQTAuthoritySetupParameter = {
+   MOQTAuthoritySetupOption = {
      name: "authority"
      value: text
    }
 
-             Figure 20: MOQTAuthoritySetupParameter definition
+               Figure 20: MOQTAuthoritySetupOption definition
 
-5.4.2.  MOQTPathSetupParameter
+5.4.2.  MOQTPathSetupOption
 
-   MOQTPathSetupParameter = {
+   MOQTPathSetupOption = {
      name: "path"
      value: text
    }
 
-                Figure 21: MOQTPathSetupParameter definition
+                 Figure 21: MOQTPathSetupOption definition
 
-5.4.3.  MOQTMaxRequestIdSetupParameter
+5.4.3.  MOQTMaxRequestIdSetupOption
 
-   MOQTMaxRequestIdSetupParameter = {
+   MOQTMaxRequestIdSetupOption = {
      name: "max_request_id"
      value: uint64
    }
 
-            Figure 22: MOQTMaxRequestIdSetupParameter definition
+             Figure 22: MOQTMaxRequestIdSetupOption definition
 
-5.4.4.  MOQTMaxAuthTokenCacheSizeSetupParameter
+5.4.4.  MOQTMaxAuthTokenCacheSizeSetupOption
 
-   MOQTMaxAuthTokenCacheSizeSetupParameter = {
+   MOQTMaxAuthTokenCacheSizeSetupOption = {
      name: "max_auth_token_cache_size"
      value: uint64
    }
 
-       Figure 23: MOQTMaxAuthTokenCacheSizeSetupParameter definition
+         Figure 23: MOQTMaxAuthTokenCacheSizeSetupOption definition
 
-5.4.5.  MOQTAuthorizationTokenSetupParameter
+5.4.5.  MOQTAuthorizationTokenSetupOption
 
-   MOQTAuthorizationTokenSetupParameter = {
+   MOQTAuthorizationTokenSetupOption = {
      name: "authorization_token"
      alias_type: $MOQTAliasType
      ? token_alias: uint64
@@ -697,20 +697,20 @@ Table of Contents
                       "use_alias" /
                       "use_value"
 
-         Figure 24: MOQTAuthorizationTokenSetupParameter definition
+          Figure 24: MOQTAuthorizationTokenSetupOption definition
 
-5.4.6.  MOQTImplementationSetupParameter
+5.4.6.  MOQTImplementationSetupOption
 
-   MOQTImplementationSetupParameter = {
+   MOQTImplementationSetupOption = {
      name: "implementation"
      value: text
    }
 
-           Figure 25: MOQTImplementationSetupParameter definition
+            Figure 25: MOQTImplementationSetupOption definition
 
-5.4.7.  MOQTUnknownSetupParameter
+5.4.7.  MOQTUnknownSetupOption
 
-   MOQTUnknownSetupParameter = {
+   MOQTUnknownSetupOption = {
      name:"unknown"
      name_bytes: uint64
      ? length: uint64
@@ -718,7 +718,7 @@ Table of Contents
      ? value_bytes: RawInfo
    }
 
-              Figure 26: MOQTUnknownSetupParameter definition
+                Figure 26: MOQTUnknownSetupOption definition
 
 5.5.  MOQTParameter
 
@@ -943,7 +943,7 @@ Table of Contents
    MOQTClientSetupMessage = {
      type: "client_setup"
      number_of_parameters: uint64
-     ? setup_parameters: [* $MOQTSetupParameter]
+     ? setup_parameters: [* $MOQTSetupOption]
    }
 
                 Figure 45: MOQTClientSetupMessage definition
@@ -953,7 +953,7 @@ Table of Contents
    MOQTServerSetupMessage = {
      type: "server_setup"
      number_of_parameters: uint64
-     ? setup_parameters: [* $MOQTSetupParameter]
+     ? setup_parameters: [* $MOQTSetupOption]
    }
 
                 Figure 46: MOQTServerSetupMessage definition

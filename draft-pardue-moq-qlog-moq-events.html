@@ -1051,7 +1051,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Pardue, et al.</td>
-<td class="center">Expires 24 September 2026</td>
+<td class="center">Expires 1 October 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1064,12 +1064,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-pardue-moq-qlog-moq-events-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-03-23" class="published">23 March 2026</time>
+<time datetime="2026-03-30" class="published">30 March 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-09-24">24 September 2026</time></dd>
+<dd class="expires"><time datetime="2026-10-01">1 October 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1127,7 +1127,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 24 September 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 1 October 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1385,7 +1385,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
                 </ul>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.8">
-                <p id="section-toc.1-1.5.2.8.1"><a href="#section-5.8" class="auto internal xref">5.8</a>.  <a href="#name-moqtextensionheader" class="internal xref">MOQTExtensionHeader</a></p>
+                <p id="section-toc.1-1.5.2.8.1"><a href="#section-5.8" class="auto internal xref">5.8</a>.  <a href="#name-moqtproperty" class="internal xref">MOQTProperty</a></p>
 </li>
             </ul>
 </li>
@@ -1749,8 +1749,8 @@ MOQTObjectDatagramCreated = {
     group_id: uint64
     ? object_id: uint64
     ? publisher_priority: uint8
-    ? extension_headers_length: uint64
-    ? extension_headers: [* MOQTExtensionHeader]
+    ? properties_length: uint64
+    ? properties: [* MOQTProperty]
     ? object_status: uint64
     ? object_payload: RawInfo
     end_of_group: bool
@@ -1783,8 +1783,8 @@ MOQTObjectDatagramParsed = {
     group_id: uint64
     ? object_id: uint64
     ? publisher_priority: uint8
-    ? extension_headers_length: uint64
-    ? extension_headers: [* MOQTExtensionHeader]
+    ? properties_length: uint64
+    ? properties: [* MOQTProperty]
     ? object_status: uint64
     ? object_payload: RawInfo
     end_of_group: bool
@@ -1887,7 +1887,7 @@ created. It has Core importance level.<a href="#section-4.8-1" class="pilcrow">�
 MOQTSubgroupObjectCreated = {
     stream_id: uint64
     object_id_delta: uint64
-    ? extension_headers: [* MOQTExtensionHeader]
+    ? properties: [* MOQTProperty]
     object_payload_length: uint64
     ? object_status: uint64
     ? object_payload: RawInfo
@@ -1916,7 +1916,7 @@ It has Core importance level.<a href="#section-4.9-1" class="pilcrow">¶</a></p>
 MOQTSubgroupObjectParsed = {
     stream_id: uint64
     object_id_delta: uint64
-    ? extension_headers: [* MOQTExtensionHeader]
+    ? properties: [* MOQTProperty]
     object_payload_length: uint64
     ? object_status: uint64
     ? object_payload: RawInfo
@@ -2005,8 +2005,8 @@ MOQTFetchObjectCreated = {
     ? subgroup_id: uint64
     ? object_id: uint64
     ? publisher_priority: uint8
-    ? extension_headers_length: uint64
-    ? extension_headers: [* MOQTExtensionHeader]
+    ? properties_length: uint64
+    ? properties: [* MOQTProperty]
     object_payload_length: uint64
     ? object_status: uint64
     ? object_payload: RawInfo
@@ -2045,8 +2045,8 @@ MOQTFetchObjectParsed = {
     ? subgroup_id: uint64
     ? object_id: uint64
     ? publisher_priority: uint8
-    ? extension_headers_length: uint64
-    ? extension_headers: [* MOQTExtensionHeader]
+    ? properties_length: uint64
+    ? properties: [* MOQTProperty]
     object_payload_length: uint64
     ? object_status: uint64
     ? object_payload: RawInfo
@@ -2942,7 +2942,7 @@ MOQTSubscribeOk = {
   track_alias: uint64
   number_of_parameters: uint64
   ? parameters: [* $MOQTParameter]
-  ? track_extensions: [* MOQTExtensionHeader]
+  ? track_extensions: [* MOQTProperty]
 }
 </pre>
 </div>
@@ -3014,7 +3014,7 @@ MOQTPublish = {
   track_alias: uint64
   number_of_parameters: uint64
   ? parameters: [* $MOQTParameter]
-  ? track_extensions: [* MOQTExtensionHeader]
+  ? track_extensions: [* MOQTProperty]
 }
 </pre>
 </div>
@@ -3130,7 +3130,7 @@ MOQTFetchOk = {
   end_location: MOQTLocation
   number_of_parameters: uint64
   ? parameters: [* $MOQTParameter]
-  ? track_extensions: [* MOQTExtensionHeader]
+  ? track_extensions: [* MOQTProperty]
 }
 </pre>
 </div>
@@ -3350,16 +3350,16 @@ MOQTPublishBlocked = {
 </div>
 </section>
 </div>
-<div id="moqtextensionheader">
+<div id="moqtproperty">
 <section id="section-5.8">
-        <h3 id="name-moqtextensionheader">
-<a href="#section-5.8" class="section-number selfRef">5.8. </a><a href="#name-moqtextensionheader" class="section-name selfRef">MOQTExtensionHeader</a>
+        <h3 id="name-moqtproperty">
+<a href="#section-5.8" class="section-number selfRef">5.8. </a><a href="#name-moqtproperty" class="section-name selfRef">MOQTProperty</a>
         </h3>
-<span id="name-extension-header-definition"></span><div id="extensionheader-def">
+<span id="name-property-definition"></span><div id="property-def">
 <figure id="figure-70">
           <div class="lang-cddl sourcecode" id="section-5.8-1.1">
 <pre>
-MOQTExtensionHeader = {
+MOQTProperty = {
   header_type: uint64
   ? header_value: uint64
   ? header_length: uint64
@@ -3368,7 +3368,7 @@ MOQTExtensionHeader = {
 </pre>
 </div>
 <figcaption><a href="#figure-70" class="selfRef">Figure 70</a>:
-<a href="#name-extension-header-definition" class="selfRef">Extension Header definition</a>
+<a href="#name-property-definition" class="selfRef">Property definition</a>
           </figcaption></figure>
 </div>
 </section>

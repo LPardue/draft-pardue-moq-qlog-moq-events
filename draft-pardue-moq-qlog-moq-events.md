@@ -252,8 +252,8 @@ MOQTObjectDatagramCreated = {
     group_id: uint64
     ? object_id: uint64
     ? publisher_priority: uint8
-    ? extension_headers_length: uint64
-    ? extension_headers: [* MOQTExtensionHeader]
+    ? properties_length: uint64
+    ? properties: [* MOQTProperty]
     ? object_status: uint64
     ? object_payload: RawInfo
     end_of_group: bool
@@ -277,8 +277,8 @@ MOQTObjectDatagramParsed = {
     group_id: uint64
     ? object_id: uint64
     ? publisher_priority: uint8
-    ? extension_headers_length: uint64
-    ? extension_headers: [* MOQTExtensionHeader]
+    ? properties_length: uint64
+    ? properties: [* MOQTProperty]
     ? object_status: uint64
     ? object_payload: RawInfo
     end_of_group: bool
@@ -356,7 +356,7 @@ created. It has Core importance level.
 MOQTSubgroupObjectCreated = {
     stream_id: uint64
     object_id_delta: uint64
-    ? extension_headers: [* MOQTExtensionHeader]
+    ? properties: [* MOQTProperty]
     object_payload_length: uint64
     ? object_status: uint64
     ? object_payload: RawInfo
@@ -375,7 +375,7 @@ It has Core importance level.
 MOQTSubgroupObjectParsed = {
     stream_id: uint64
     object_id_delta: uint64
-    ? extension_headers: [* MOQTExtensionHeader]
+    ? properties: [* MOQTProperty]
     object_payload_length: uint64
     ? object_status: uint64
     ? object_payload: RawInfo
@@ -435,8 +435,8 @@ MOQTFetchObjectCreated = {
     ? subgroup_id: uint64
     ? object_id: uint64
     ? publisher_priority: uint8
-    ? extension_headers_length: uint64
-    ? extension_headers: [* MOQTExtensionHeader]
+    ? properties_length: uint64
+    ? properties: [* MOQTProperty]
     object_payload_length: uint64
     ? object_status: uint64
     ? object_payload: RawInfo
@@ -466,8 +466,8 @@ MOQTFetchObjectParsed = {
     ? subgroup_id: uint64
     ? object_id: uint64
     ? publisher_priority: uint8
-    ? extension_headers_length: uint64
-    ? extension_headers: [* MOQTExtensionHeader]
+    ? properties_length: uint64
+    ? properties: [* MOQTProperty]
     object_payload_length: uint64
     ? object_status: uint64
     ? object_payload: RawInfo
@@ -957,7 +957,7 @@ MOQTSubscribeOk = {
   track_alias: uint64
   number_of_parameters: uint64
   ? parameters: [* $MOQTParameter]
-  ? track_extensions: [* MOQTExtensionHeader]
+  ? track_extensions: [* MOQTProperty]
 }
 ~~~
 {: #subscribeok-def title="MOQTSubscribeOk definition"}
@@ -996,7 +996,7 @@ MOQTPublish = {
   track_alias: uint64
   number_of_parameters: uint64
   ? parameters: [* $MOQTParameter]
-  ? track_extensions: [* MOQTExtensionHeader]
+  ? track_extensions: [* MOQTProperty]
 }
 ~~~
 {: #publish-def title="MOQTPublish definition"}
@@ -1068,7 +1068,7 @@ MOQTFetchOk = {
   end_location: MOQTLocation
   number_of_parameters: uint64
   ? parameters: [* $MOQTParameter]
-  ? track_extensions: [* MOQTExtensionHeader]
+  ? track_extensions: [* MOQTProperty]
 }
 ~~~
 {: #fetchok-def title="MOQTFetchOk definition"}
@@ -1182,17 +1182,17 @@ MOQTPublishBlocked = {
 ~~~
 {: #publishblocked-def title="MOQTPublishBlocked definition"}
 
-## MOQTExtensionHeader
+## MOQTProperty
 
 ~~~ cddl
-MOQTExtensionHeader = {
+MOQTProperty = {
   header_type: uint64
   ? header_value: uint64
   ? header_length: uint64
   ? payload: RawInfo
 }
 ~~~
-{: #extensionheader-def title="Extension Header definition"}
+{: #property-def title="Property definition"}
 
 # Security Considerations
 

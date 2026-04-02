@@ -633,7 +633,6 @@ Table of Contents
 
    MOQTBaseSetupOptions /=  MOQTAuthoritySetupOption /
                             MOQTPathSetupOption /
-                            MOQTMaxRequestIdSetupOption /
                             MOQTMaxAuthTokenCacheSizeSetupOption /
                             MOQTAuthorizationTokenSetupOption /
                             MOQTImplementationSetupOption /

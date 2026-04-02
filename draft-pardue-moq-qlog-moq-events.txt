@@ -5,10 +5,10 @@
 Media Over QUIC                                                L. Pardue
 Internet-Draft                                                Cloudflare
 Intended status: Informational                              M. Engelbart
-Expires: 1 October 2026                   Technical University of Munich
+Expires: 4 October 2026                   Technical University of Munich
                                                                A. Sharma
                                                                     Meta
-                                                           30 March 2026
+                                                            2 April 2026
 
 
                        MoQ qlog event definitions
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 1 October 2026.
+   This Internet-Draft will expire on 4 October 2026.
 
 Copyright Notice
 
@@ -1014,6 +1014,7 @@ Table of Contents
    MOQTSubscribe = {
      type: "subscribe"
      request_id: uint64
+     required_request_id_delta: uint64
      track_namespace: [ *MOQTByteString]
      track_name: MOQTByteString
      number_of_parameters: uint64
@@ -1040,6 +1041,7 @@ Table of Contents
    MOQTRequestUpdate = {
      type: "request_update"
      request_id: uint64
+     required_request_id_delta: uint64
      existing_request_id: uint64
      number_of_parameters: uint64
      ? parameters: [* $MOQTParameter]
@@ -1061,6 +1063,7 @@ Table of Contents
    MOQTPublish = {
      type: "publish"
      request_id: uint64
+     required_request_id_delta: uint64
      track_namespace: [ *MOQTByteString]
      track_name: MOQTByteString
      track_alias: uint64
@@ -1100,6 +1103,7 @@ Table of Contents
    MOQTFetch = {
      type: "fetch"
      request_id: uint64
+     required_request_id_delta: uint64
      fetch_type: $MOQTFetchType
      ? standalone_fetch: $MOQTStandaloneFetch
      ? joining_fetch: $MOQTJoiningFetch
@@ -1166,6 +1170,7 @@ Table of Contents
    MOQTPublishNamespace = {
      type: "publish_namespace"
      request_id: uint64
+     required_request_id_delta: uint64
      track_namespace: [ *MOQTByteString]
      number_of_parameters: uint64
      ? parameters: [* $MOQTParameter]
@@ -1217,6 +1222,7 @@ Table of Contents
    MOQTSubscribeNamespace = {
      type: "subscribe_namespace"
      request_id: uint64
+     required_request_id_delta: uint64
      track_namespace_prefix: [ *MOQTByteString]
      subscribe_options: $MOQTSubscribeOptions
      number_of_parameters: uint64

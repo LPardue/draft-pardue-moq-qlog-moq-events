@@ -958,7 +958,7 @@ MOQTSubscribeOk = {
   track_alias: uint64
   number_of_parameters: uint64
   ? parameters: [* $MOQTParameter]
-  ? track_extensions: [* MOQTProperty]
+  ? track_properties: [* MOQTProperty]
 }
 ~~~
 {: #subscribeok-def title="MOQTSubscribeOk definition"}
@@ -999,7 +999,7 @@ MOQTPublish = {
   track_alias: uint64
   number_of_parameters: uint64
   ? parameters: [* $MOQTParameter]
-  ? track_extensions: [* MOQTProperty]
+  ? track_properties: [* MOQTProperty]
 }
 ~~~
 {: #publish-def title="MOQTPublish definition"}
@@ -1072,7 +1072,7 @@ MOQTFetchOk = {
   end_location: MOQTLocation
   number_of_parameters: uint64
   ? parameters: [* $MOQTParameter]
-  ? track_extensions: [* MOQTProperty]
+  ? track_properties: [* MOQTProperty]
 }
 ~~~
 {: #fetchok-def title="MOQTFetchOk definition"}

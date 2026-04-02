@@ -530,7 +530,6 @@ $MOQTSetupOption /= {
 ~~~ cddl
 MOQTBaseSetupOptions /=  MOQTAuthoritySetupOption /
                          MOQTPathSetupOption /
-                         MOQTMaxRequestIdSetupOption /
                          MOQTMaxAuthTokenCacheSizeSetupOption /
                          MOQTAuthorizationTokenSetupOption /
                          MOQTImplementationSetupOption /

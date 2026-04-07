@@ -522,7 +522,7 @@ extension point. It can be extended to support additional MOQT Setup Options.
 ~~~ cddl
 ; The MOQTSetupOption is any key-value map (e.g., JSON object)
 $MOQTSetupOption /= {
-    * text => any
+    * uint64 => any
 }
 ~~~
 {: #moqtsetupoption-def title="MOQTSetupOption type socket definition"}
@@ -618,7 +618,7 @@ point. It can be extended to support additional MOQT Parameters.
 ~~~ cddl
 ; The MOQTParameter is any key-value map (e.g., JSON object)
 $MOQTParameter /= {
-    * text => any
+    * uint64 => any
 }
 ~~~
 {: #moqtparameter-def title="MOQTParameter type socket definition"}

@@ -530,7 +530,6 @@ $MOQTSetupOption /= {
 ~~~ cddl
 MOQTBaseSetupOptions /=  MOQTAuthoritySetupOption /
                          MOQTPathSetupOption /
-                         MOQTMaxRequestIdSetupOption /
                          MOQTMaxAuthTokenCacheSizeSetupOption /
                          MOQTAuthorizationTokenSetupOption /
                          MOQTImplementationSetupOption /
@@ -559,16 +558,6 @@ MOQTPathSetupOption = {
 }
 ~~~
 {: #moqtpathsetupoption-def title="MOQTPathSetupOption definition"}
-
-### MOQTMaxRequestIdSetupOption
-
-~~~ cddl
-MOQTMaxRequestIdSetupOption = {
-  name: "max_request_id"
-  value: uint64
-}
-~~~
-{: #moqtmaxsubscribeidsetupoption-def title="MOQTMaxRequestIdSetupOption definition"}
 
 ### MOQTMaxAuthTokenCacheSizeSetupOption
 
@@ -828,8 +817,6 @@ The MOQT control message types defined in this document are as follows:
 MOQTBaseControlMessages = MOQTClientSetupMessage /
                           MOQTServerSetupMessage /
                           MOQTGoaway /
-                          MOQTMaxRequestId /
-                          MOQTRequestsBlocked /
                           MOQTRequestOk /
                           MOQTRequestError /
                           MOQTSubscribe /
@@ -887,26 +874,6 @@ MOQTGoaway = {
 }
 ~~~
 {: #goaway-def title="MOQTGoaway definition"}
-
-### MOQTMaxRequestId
-
-~~~ cddl
-MOQTMaxRequestId = {
-  type: "max_request_id"
-  request_id: uint64
-}
-~~~
-{: #maxsubscribeid-def title="MOQTMaxRequestId definition"}
-
-### MOQTRequestsBlocked
-
-~~~ cddl
-MOQTRequestsBlocked = {
-  type: "requests_blocked"
-  maximum_request_id: uint64
-}
-~~~
-{: #subscribesblocked-def title="MOQTRequestsBlocked definition"}
 
 ### MOQTRequestOk
 

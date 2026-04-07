@@ -814,8 +814,7 @@ $MOQTControlMessage /= {
 The MOQT control message types defined in this document are as follows:
 
 ~~~ cddl
-MOQTBaseControlMessages = MOQTClientSetupMessage /
-                          MOQTServerSetupMessage /
+MOQTBaseControlMessages = MOQTSetupMessage /
                           MOQTGoaway /
                           MOQTRequestOk /
                           MOQTRequestError /
@@ -843,27 +842,15 @@ $MOQTControlMessage /= MOQTBaseControlMessages
 {: #moqtbasecontrolmessage-def title="MOQTBaseControlMessages definition"}
 
 
-### MOQTClientSetupMessage
+### MOQTSetupMessage
 
 ~~~ cddl
-MOQTClientSetupMessage = {
-  type: "client_setup"
-  number_of_parameters: uint64
-  ? setup_parameters: [* $MOQTSetupOption]
+MOQTSetupMessage = {
+  type: "setup"
+  ? setup_options: [* $MOQTSetupOption]
 }
 ~~~
-{: #clientsetup-def title="MOQTClientSetupMessage definition"}
-
-### MOQTServerSetupMessage
-
-~~~ cddl
-MOQTServerSetupMessage = {
-  type: "server_setup"
-  number_of_parameters: uint64
-  ? setup_parameters: [* $MOQTSetupOption]
-}
-~~~
-{: #serversetup-def title="MOQTServerSetupMessage definition"}
+{: #setup-def title="MOQTSetupMessage definition"}
 
 ### MOQTGoaway
 

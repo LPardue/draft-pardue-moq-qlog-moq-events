@@ -5,10 +5,10 @@
 Media Over QUIC                                                L. Pardue
 Internet-Draft                                                Cloudflare
 Intended status: Informational                              M. Engelbart
-Expires: 9 October 2026                   Technical University of Munich
+Expires: 22 October 2026                  Technical University of Munich
                                                                A. Sharma
                                                                     Meta
-                                                            7 April 2026
+                                                           20 April 2026
 
 
                        MoQ qlog event definitions
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 October 2026.
+   This Internet-Draft will expire on 22 October 2026.
 
 Copyright Notice
 
@@ -116,29 +116,28 @@ Table of Contents
        5.5.13. MOQTUnknownParameter
      5.6.  MOQTByteString
      5.7.  MOQTControlMessage
-       5.7.1.  MOQTClientSetupMessage
-       5.7.2.  MOQTServerSetupMessage
-       5.7.3.  MOQTGoaway
-       5.7.4.  MOQTRequestOk
-       5.7.5.  MOQTRequestError
-       5.7.6.  MOQTSubscribe
-       5.7.7.  MOQTSubscribeOk
-       5.7.8.  MOQTRequestUpdate
-       5.7.9.  MOQTUnsubscribe
-       5.7.10. MOQTPublish
-       5.7.11. MOQTPublishOk
-       5.7.12. MOQTPublishDone
-       5.7.13. MOQTFetch
-       5.7.14. MOQTFetchOk
-       5.7.15. MOQTFetchCancel
-       5.7.16. MOQTTrackStatus
-       5.7.17. MOQTPublishNamespace
-       5.7.18. MOQTNamespace
-       5.7.19. MOQTPublishNamespaceDone
-       5.7.20. MOQTNamespaceDone
-       5.7.21. MOQTPublishNamespaceCancel
-       5.7.22. MOQTSubscribeNamespace
-       5.7.23. MOQTPublishBlocked
+       5.7.1.  MOQTSetupMessage
+       5.7.2.  MOQTGoaway
+       5.7.3.  MOQTRequestOk
+       5.7.4.  MOQTRequestError
+       5.7.5.  MOQTSubscribe
+       5.7.6.  MOQTSubscribeOk
+       5.7.7.  MOQTRequestUpdate
+       5.7.8.  MOQTUnsubscribe
+       5.7.9.  MOQTPublish
+       5.7.10. MOQTPublishOk
+       5.7.11. MOQTPublishDone
+       5.7.12. MOQTFetch
+       5.7.13. MOQTFetchOk
+       5.7.14. MOQTFetchCancel
+       5.7.15. MOQTTrackStatus
+       5.7.16. MOQTPublishNamespace
+       5.7.17. MOQTNamespace
+       5.7.18. MOQTPublishNamespaceDone
+       5.7.19. MOQTNamespaceDone
+       5.7.20. MOQTPublishNamespaceCancel
+       5.7.21. MOQTSubscribeNamespace
+       5.7.22. MOQTPublishBlocked
      5.8.  MOQTProperty
    6.  Security Considerations
    7.  IANA Considerations
@@ -895,8 +894,7 @@ Table of Contents
    The MOQT control message types defined in this document are as
    follows:
 
-   MOQTBaseControlMessages = MOQTClientSetupMessage /
-                             MOQTServerSetupMessage /
+   MOQTBaseControlMessages = MOQTSetupMessage /
                              MOQTGoaway /
                              MOQTRequestOk /
                              MOQTRequestError /
@@ -923,36 +921,25 @@ Table of Contents
 
                Figure 43: MOQTBaseControlMessages definition
 
-5.7.1.  MOQTClientSetupMessage
+5.7.1.  MOQTSetupMessage
 
-   MOQTClientSetupMessage = {
-     type: "client_setup"
-     number_of_parameters: uint64
-     ? setup_parameters: [* $MOQTSetupOption]
+   MOQTSetupMessage = {
+     type: "setup"
+     ? setup_options: [* $MOQTSetupOption]
    }
 
-                Figure 44: MOQTClientSetupMessage definition
+                   Figure 44: MOQTSetupMessage definition
 
-5.7.2.  MOQTServerSetupMessage
-
-   MOQTServerSetupMessage = {
-     type: "server_setup"
-     number_of_parameters: uint64
-     ? setup_parameters: [* $MOQTSetupOption]
-   }
-
-                Figure 45: MOQTServerSetupMessage definition
-
-5.7.3.  MOQTGoaway
+5.7.2.  MOQTGoaway
 
    MOQTGoaway = {
      type: "goaway"
      new_session_uri: RawInfo
    }
 
-                      Figure 46: MOQTGoaway definition
+                      Figure 45: MOQTGoaway definition
 
-5.7.4.  MOQTRequestOk
+5.7.3.  MOQTRequestOk
 
    MOQTRequestOk = {
      type: "request_ok"
@@ -961,9 +948,9 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                    Figure 47: MOQTRequestOk definition
+                    Figure 46: MOQTRequestOk definition
 
-5.7.5.  MOQTRequestError
+5.7.4.  MOQTRequestError
 
    MOQTRequestError = {
      type: "request_error"
@@ -974,9 +961,9 @@ Table of Contents
      ? reason_bytes: hexstring
    }
 
-                   Figure 48: MOQTRequestError definition
+                   Figure 47: MOQTRequestError definition
 
-5.7.6.  MOQTSubscribe
+5.7.5.  MOQTSubscribe
 
    MOQTSubscribe = {
      type: "subscribe"
@@ -988,9 +975,9 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                    Figure 49: MOQTSubscribe definition
+                    Figure 48: MOQTSubscribe definition
 
-5.7.7.  MOQTSubscribeOk
+5.7.6.  MOQTSubscribeOk
 
    MOQTSubscribeOk = {
      type: "subscribe_ok"
@@ -1001,9 +988,9 @@ Table of Contents
      ? track_properties: [* MOQTProperty]
    }
 
-                   Figure 50: MOQTSubscribeOk definition
+                   Figure 49: MOQTSubscribeOk definition
 
-5.7.8.  MOQTRequestUpdate
+5.7.7.  MOQTRequestUpdate
 
    MOQTRequestUpdate = {
      type: "request_update"
@@ -1014,18 +1001,18 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                  Figure 51: MOQTRequestUpdate definition
+                  Figure 50: MOQTRequestUpdate definition
 
-5.7.9.  MOQTUnsubscribe
+5.7.8.  MOQTUnsubscribe
 
    MOQTUnsubscribe = {
      type: "unsubscribe"
      request_id: uint64
    }
 
-                   Figure 52: MOQTUnsubscribe definition
+                   Figure 51: MOQTUnsubscribe definition
 
-5.7.10.  MOQTPublish
+5.7.9.  MOQTPublish
 
    MOQTPublish = {
      type: "publish"
@@ -1039,9 +1026,9 @@ Table of Contents
      ? track_properties: [* MOQTProperty]
    }
 
-                     Figure 53: MOQTPublish definition
+                     Figure 52: MOQTPublish definition
 
-5.7.11.  MOQTPublishOk
+5.7.10.  MOQTPublishOk
 
    MOQTPublishOk = {
      type: "publish_ok"
@@ -1050,9 +1037,9 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                    Figure 54: MOQTPublishOk definition
+                    Figure 53: MOQTPublishOk definition
 
-5.7.12.  MOQTPublishDone
+5.7.11.  MOQTPublishDone
 
    MOQTPublishDone = {
      type: "publish_done"
@@ -1063,9 +1050,9 @@ Table of Contents
      ? reason_bytes: hexstring
    }
 
-                   Figure 55: MOQTPublishDone definition
+                   Figure 54: MOQTPublishDone definition
 
-5.7.13.  MOQTFetch
+5.7.12.  MOQTFetch
 
    MOQTFetch = {
      type: "fetch"
@@ -1094,9 +1081,9 @@ Table of Contents
                       "absolute_joining" /
                       "relative_joining"
 
-                      Figure 56: MOQTFetch definition
+                      Figure 55: MOQTFetch definition
 
-5.7.14.  MOQTFetchOk
+5.7.13.  MOQTFetchOk
 
    MOQTFetchOk = {
      type: "fetch_ok"
@@ -1108,18 +1095,18 @@ Table of Contents
      ? track_properties: [* MOQTProperty]
    }
 
-                     Figure 57: MOQTFetchOk definition
+                     Figure 56: MOQTFetchOk definition
 
-5.7.15.  MOQTFetchCancel
+5.7.14.  MOQTFetchCancel
 
    MOQTFetchCancel = {
      type: "fetch_cancel"
      request_id: uint64
    }
 
-                   Figure 58: MOQTFetchCancel definition
+                   Figure 57: MOQTFetchCancel definition
 
-5.7.16.  MOQTTrackStatus
+5.7.15.  MOQTTrackStatus
 
    MOQTTrackStatus = {
      type: "track_status"
@@ -1130,9 +1117,9 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                   Figure 59: MOQTTrackStatus definition
+                   Figure 58: MOQTTrackStatus definition
 
-5.7.17.  MOQTPublishNamespace
+5.7.16.  MOQTPublishNamespace
 
    MOQTPublishNamespace = {
      type: "publish_namespace"
@@ -1143,36 +1130,36 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                 Figure 60: MOQTPublishNamespace definition
+                 Figure 59: MOQTPublishNamespace definition
 
-5.7.18.  MOQTNamespace
+5.7.17.  MOQTNamespace
 
    MOQTNamespace = {
      type: "namespace"
      track_namespace_suffix: [ *MOQTByteString]
    }
 
-                    Figure 61: MOQTNamespace definition
+                    Figure 60: MOQTNamespace definition
 
-5.7.19.  MOQTPublishNamespaceDone
+5.7.18.  MOQTPublishNamespaceDone
 
    MOQTPublishNamespaceDone = {
      type: "publish_namespace_done"
      request_id: uint64
    }
 
-               Figure 62: MOQTPublishNamespaceDone definition
+               Figure 61: MOQTPublishNamespaceDone definition
 
-5.7.20.  MOQTNamespaceDone
+5.7.19.  MOQTNamespaceDone
 
    MOQTNamespaceDone = {
      type: "namespace_done"
      track_namespace_suffix: [ *MOQTByteString]
    }
 
-                  Figure 63: MOQTNamespaceDone definition
+                  Figure 62: MOQTNamespaceDone definition
 
-5.7.21.  MOQTPublishNamespaceCancel
+5.7.20.  MOQTPublishNamespaceCancel
 
    MOQTPublishNamespaceCancel = {
      type: "publish_namespace_cancel"
@@ -1182,9 +1169,9 @@ Table of Contents
      ? reason_bytes: hexstring
    }
 
-              Figure 64: MOQTPublishNamespaceCancel definition
+              Figure 63: MOQTPublishNamespaceCancel definition
 
-5.7.22.  MOQTSubscribeNamespace
+5.7.21.  MOQTSubscribeNamespace
 
    MOQTSubscribeNamespace = {
      type: "subscribe_namespace"
@@ -1200,9 +1187,9 @@ Table of Contents
                              "namespace" /
                              "both"
 
-                Figure 65: MOQTSubscribeNamespace definition
+                Figure 64: MOQTSubscribeNamespace definition
 
-5.7.23.  MOQTPublishBlocked
+5.7.22.  MOQTPublishBlocked
 
    MOQTPublishBlocked = {
      type: "publish_blocked"
@@ -1210,7 +1197,7 @@ Table of Contents
      track_name: MOQTByteString
    }
 
-                  Figure 66: MOQTPublishBlocked definition
+                  Figure 65: MOQTPublishBlocked definition
 
 5.8.  MOQTProperty
 
@@ -1221,7 +1208,7 @@ Table of Contents
      ? payload: RawInfo
    }
 
-                       Figure 67: Property definition
+                       Figure 66: Property definition
 
 6.  Security Considerations
 

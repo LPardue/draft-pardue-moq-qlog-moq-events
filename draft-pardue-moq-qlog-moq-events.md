@@ -509,7 +509,7 @@ A Subscription Filter, as defined in {{Section 5.1.2 of MOQT}}
 MOQTSubscriptionFilter = {
   filter_type: uint64
   ? start_location: MOQTLocation
-  ? end_group: uint64
+  ? end_group_delta: uint64
 }
 ~~~
 {: #moqtsubscriptionfilter-def title="MOQTSubscriptionFilter definition"}

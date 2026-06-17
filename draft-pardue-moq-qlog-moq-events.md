@@ -491,7 +491,7 @@ Owner = "local" /
 
 ## MOQTLocation
 
-A Location, as defined in {{Section 1.4.1 of MOQT}}
+A Location, as defined in {{Section 1.4.2 of MOQT}}
 
 ~~~ cddl
 MOQTLocation = {

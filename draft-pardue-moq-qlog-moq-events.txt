@@ -612,7 +612,7 @@ Table of Contents
    MOQTSubscriptionFilter = {
      filter_type: uint64
      ? start_location: MOQTLocation
-     ? end_group: uint64
+     ? end_group_delta: uint64
    }
 
                 Figure 17: MOQTSubscriptionFilter definition

@@ -821,19 +821,15 @@ MOQTBaseControlMessages = MOQTSetupMessage /
                           MOQTSubscribe /
                           MOQTSubscribeOk /
                           MOQTRequestUpdate /
-                          MOQTUnsubscribe /
                           MOQTPublish /
                           MOQTPublishOk /
                           MOQTPublishDone /
                           MOQTFetch /
                           MOQTFetchOk /
-                          MOQTFetchCancel /
                           MOQTTrackStatus /
                           MOQTPublishNamespace /
                           MOQTNamespace /
-                          MOQTPublishNamespaceDone /
                           MOQTNamespaceDone /
-                          MOQTPublishNamespaceCancel /
                           MOQTSubscribeNamespace /
                           MOQTPublishBlocked
 
@@ -932,16 +928,6 @@ MOQTRequestUpdate = {
 ~~~
 {: #requestupdate-def title="MOQTRequestUpdate definition"}
 
-### MOQTUnsubscribe
-
-~~~ cddl
-MOQTUnsubscribe = {
-  type: "unsubscribe"
-  request_id: uint64
-}
-~~~
-{: #unsubscribe-def title="MOQTUnsubscribe definition"}
-
 ### MOQTPublish
 
 ~~~ cddl
@@ -1032,16 +1018,6 @@ MOQTFetchOk = {
 ~~~
 {: #fetchok-def title="MOQTFetchOk definition"}
 
-### MOQTFetchCancel
-
-~~~ cddl
-MOQTFetchCancel = {
-  type: "fetch_cancel"
-  request_id: uint64
-}
-~~~
-{: #fetchcancel-def title="MOQTFetchCancel definition"}
-
 ### MOQTTrackStatus
 
 ~~~ cddl
@@ -1080,16 +1056,6 @@ MOQTNamespace = {
 ~~~
 {: #namespace-def title="MOQTNamespace definition"}
 
-### MOQTPublishNamespaceDone
-
-~~~ cddl
-MOQTPublishNamespaceDone = {
-  type: "publish_namespace_done"
-  request_id: uint64
-}
-~~~
-{: #publishnamespacedone-def title="MOQTPublishNamespaceDone definition"}
-
 ### MOQTNamespaceDone
 
 ~~~ cddl
@@ -1099,19 +1065,6 @@ MOQTNamespaceDone = {
 }
 ~~~
 {: #namespacedone-def title="MOQTNamespaceDone definition"}
-
-### MOQTPublishNamespaceCancel
-
-~~~ cddl
-MOQTPublishNamespaceCancel = {
-  type: "publish_namespace_cancel"
-  request_id: uint64
-  error_code: uint64
-  ? reason: text
-  ? reason_bytes: hexstring
-}
-~~~
-{: #publishnamespacecancel-def title="MOQTPublishNamespaceCancel definition"}
 
 ### MOQTSubscribeNamespace
 

@@ -1035,6 +1035,7 @@ MOQTFetchOk = {
 MOQTTrackStatus = {
   type: "track_status"
   request_id: uint64
+  required_request_id_delta: uint64
   track_namespace: [ *MOQTByteString]
   track_name: MOQTByteString
   number_of_parameters: uint64

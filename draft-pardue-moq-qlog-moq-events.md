@@ -626,6 +626,7 @@ $MOQTParameter /= {
 ~~~ cddl
 MOQTBaseParameters /= MOQTAuthorizationTokenParameter /
                       MOQTDeliveryTimeoutParameter /
+                      MOQTRendezvousTimeoutParameter /
                       MOQTMaxCacheDurationParameter /
                       MOQTPublisherPriorityParameter /
                       MOQTSubscriberPriorityParameter /
@@ -664,6 +665,16 @@ MOQTDeliveryTimeoutParameter = {
 }
 ~~~
 {: #moqtdeliverytimeoutparameter-def title="MOQTDeliveryTimeoutParameter definition"}
+
+### MOQTRendezvousTimeoutParameter
+
+~~~ cddl
+MOQTRendezvousTimeoutParameter = {
+  name: "rendezvous_timeout"
+  value: uint64
+}
+~~~
+{: #moqtrendezvoustimeoutparameter-def title="MOQTRendezvousTimeoutParameter definition"}
 
 ### MOQTMaxCacheDurationParameter
 

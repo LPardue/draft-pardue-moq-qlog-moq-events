@@ -627,15 +627,12 @@ $MOQTParameter /= {
 MOQTBaseParameters /= MOQTAuthorizationTokenParameter /
                       MOQTDeliveryTimeoutParameter /
                       MOQTRendezvousTimeoutParameter /
-                      MOQTMaxCacheDurationParameter /
-                      MOQTPublisherPriorityParameter /
                       MOQTSubscriberPriorityParameter /
                       MOQTGroupOrderParameter /
                       MOQTSubscriptionFilterParameter /
                       MOQTExpiresParameter /
                       MOQTLargestObjectParameter /
                       MOQTForwardParameter /
-                      MOQTDynamicGroupsParameter /
                       MOQTNewGroupRequestParameter /
                       MOQTUnknownParameter
 
@@ -675,26 +672,6 @@ MOQTRendezvousTimeoutParameter = {
 }
 ~~~
 {: #moqtrendezvoustimeoutparameter-def title="MOQTRendezvousTimeoutParameter definition"}
-
-### MOQTMaxCacheDurationParameter
-
-~~~ cddl
-MOQTMaxCacheDurationParameter = {
-  name: "max_cache_duration"
-  value: uint64
-}
-~~~
-{: #moqtmaxcachedurationparameter-def title="MOQTMaxCacheDurationParameter definition"}
-
-### MOQTPublisherPriorityParameter
-
-~~~ cddl
-MOQTPublisherPriorityParameter = {
-  name: "publisher_priority"
-  value: uint64
-}
-~~~
-{: #moqtpublisherpriorityparameter-def title="MOQTPublisherPriorityParameter definition"}
 
 ### MOQTSubscriberPriorityParameter
 
@@ -755,16 +732,6 @@ MOQTForwardParameter = {
 }
 ~~~
 {: #moqtforwardparameter-def title="MOQTForwardParameter definition"}
-
-### MOQTDynamicGroupsParameter
-
-~~~ cddl
-MOQTDynamicGroupsParameter = {
-  name: "dynamic_groups"
-  value: uint64
-}
-~~~
-{: #moqtdynamicgroupsparameter-def title="MOQTDynamicGroupsParameter definition"}
 
 ### MOQTNewGroupRequestParameter
 

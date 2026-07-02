@@ -1079,10 +1079,10 @@ MOQTPublishBlocked = {
 
 ~~~ cddl
 MOQTProperty = {
-  header_type: uint64
-  ? header_value: uint64
-  ? header_length: uint64
-  ? payload: RawInfo
+  type: uint64
+  ? value: uint64
+  ? length: uint64
+  ? value_bytes: RawInfo
 }
 ~~~
 {: #property-def title="Property definition"}

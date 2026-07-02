@@ -311,7 +311,7 @@ MOQTSubgroupHeaderCreated = {
     ? subgroup_id: uint64
     ? publisher_priority: uint8
     contains_end_of_group: bool
-    extensions_present: bool
+    properties_present: bool
 
     * $$moqt-subgroupheadercreated-extension
 }
@@ -340,7 +340,7 @@ MOQTSubgroupHeaderParsed = {
     ? subgroup_id: uint64
     ? publisher_priority: uint8
     contains_end_of_group: bool
-    extensions_present: bool
+    properties_present: bool
 
     * $$moqt-subgroupheaderparsed-extension
 }

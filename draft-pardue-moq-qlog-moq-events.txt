@@ -5,10 +5,10 @@
 Media Over QUIC                                                L. Pardue
 Internet-Draft                                                Cloudflare
 Intended status: Informational                              M. Engelbart
-Expires: 29 December 2026                 Technical University of Munich
+Expires: 3 January 2027                   Technical University of Munich
                                                                A. Sharma
                                                                     Meta
-                                                            27 June 2026
+                                                             2 July 2026
 
 
                        MoQ qlog event definitions
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 29 December 2026.
+   This Internet-Draft will expire on 3 January 2027.
 
 Copyright Notice
 
@@ -1135,10 +1135,10 @@ Table of Contents
 5.8.  MOQTProperty
 
    MOQTProperty = {
-     header_type: uint64
-     ? header_value: uint64
-     ? header_length: uint64
-     ? payload: RawInfo
+     type: uint64
+     ? value: uint64
+     ? length: uint64
+     ? value_bytes: RawInfo
    }
 
                        Figure 60: Property definition

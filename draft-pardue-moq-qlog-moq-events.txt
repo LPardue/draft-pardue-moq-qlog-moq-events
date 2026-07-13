@@ -5,10 +5,10 @@
 Media Over QUIC                                                L. Pardue
 Internet-Draft                                                Cloudflare
 Intended status: Informational                              M. Engelbart
-Expires: 3 January 2027                   Technical University of Munich
+Expires: 14 January 2027                  Technical University of Munich
                                                                A. Sharma
                                                                     Meta
-                                                             2 July 2026
+                                                            13 July 2026
 
 
                        MoQ qlog event definitions
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 3 January 2027.
+   This Internet-Draft will expire on 14 January 2027.
 
 Copyright Notice
 
@@ -539,7 +539,6 @@ Table of Contents
        ? properties_length: uint64
        ? properties: [* MOQTProperty]
        object_payload_length: uint64
-       ? object_status: uint64
        ? object_payload: RawInfo
 
        * $$moqt-fetchobjectcreated-extension
@@ -569,7 +568,6 @@ Table of Contents
        ? properties_length: uint64
        ? properties: [* MOQTProperty]
        object_payload_length: uint64
-       ? object_status: uint64
        ? object_payload: RawInfo
 
        * $$moqt-fetchobjectparsed-extension
@@ -1178,24 +1176,24 @@ Table of Contents
 
    [MOQT]     Nandakumar, S., Vasiliev, V., Swett, I., and A. Frindell,
               "Media over QUIC Transport", Work in Progress, Internet-
-              Draft, draft-ietf-moq-transport-18, 12 May 2026,
+              Draft, draft-ietf-moq-transport-19, 6 July 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-moq-
-              transport-18>.
+              transport-19>.
 
    [QLOG-MAIN]
               Marx, R., Niccolini, L., Seemann, M., and L. Pardue,
               "qlog: Structured Logging for Network Protocols", Work in
               Progress, Internet-Draft, draft-ietf-quic-qlog-main-
-              schema-13, 20 October 2025,
+              schema-14, 6 July 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-quic-
-              qlog-main-schema-13>.
+              qlog-main-schema-14>.
 
    [QLOG-QUIC]
               Marx, R., Niccolini, L., Seemann, M., and L. Pardue, "QUIC
               event definitions for qlog", Work in Progress, Internet-
-              Draft, draft-ietf-quic-qlog-quic-events-12, 20 October
-              2025, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              quic-qlog-quic-events-12>.
+              Draft, draft-ietf-quic-qlog-quic-events-13, 6 July 2026,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-quic-
+              qlog-quic-events-13>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,

@@ -438,7 +438,6 @@ MOQTFetchObjectCreated = {
     ? properties_length: uint64
     ? properties: [* MOQTProperty]
     object_payload_length: uint64
-    ? object_status: uint64
     ? object_payload: RawInfo
 
     * $$moqt-fetchobjectcreated-extension
@@ -469,7 +468,6 @@ MOQTFetchObjectParsed = {
     ? properties_length: uint64
     ? properties: [* MOQTProperty]
     object_payload_length: uint64
-    ? object_status: uint64
     ? object_payload: RawInfo
 
     * $$moqt-fetchobjectparsed-extension

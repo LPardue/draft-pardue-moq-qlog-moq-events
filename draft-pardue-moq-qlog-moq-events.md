@@ -868,7 +868,6 @@ MOQTRequestError = {
 MOQTSubscribe = {
   type: "subscribe"
   request_id: uint64
-  required_request_id_delta: uint64
   track_namespace: [ *MOQTByteString]
   track_name: MOQTByteString
   number_of_parameters: uint64
@@ -897,7 +896,6 @@ MOQTSubscribeOk = {
 MOQTRequestUpdate = {
   type: "request_update"
   request_id: uint64
-  required_request_id_delta: uint64
   existing_request_id: uint64
   number_of_parameters: uint64
   ? parameters: [* $MOQTParameter]
@@ -911,7 +909,6 @@ MOQTRequestUpdate = {
 MOQTPublish = {
   type: "publish"
   request_id: uint64
-  required_request_id_delta: uint64
   track_namespace: [ *MOQTByteString]
   track_name: MOQTByteString
   track_alias: uint64
@@ -954,7 +951,6 @@ MOQTPublishDone = {
 MOQTFetch = {
   type: "fetch"
   request_id: uint64
-  required_request_id_delta: uint64
   fetch_type: $MOQTFetchType
   ? standalone_fetch: $MOQTStandaloneFetch
   ? joining_fetch: $MOQTJoiningFetch
@@ -1001,7 +997,6 @@ MOQTFetchOk = {
 MOQTTrackStatus = {
   type: "track_status"
   request_id: uint64
-  required_request_id_delta: uint64
   track_namespace: [ *MOQTByteString]
   track_name: MOQTByteString
   number_of_parameters: uint64
@@ -1016,7 +1011,6 @@ MOQTTrackStatus = {
 MOQTPublishNamespace = {
   type: "publish_namespace"
   request_id: uint64
-  required_request_id_delta: uint64
   track_namespace: [ *MOQTByteString]
   number_of_parameters: uint64
   ? parameters: [* $MOQTParameter]
@@ -1050,7 +1044,6 @@ MOQTNamespaceDone = {
 MOQTSubscribeNamespace = {
   type: "subscribe_namespace"
   request_id: uint64
-  required_request_id_delta: uint64
   track_namespace_prefix: [ *MOQTByteString]
   subscribe_options: $MOQTSubscribeOptions
   number_of_parameters: uint64

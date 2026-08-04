@@ -5,10 +5,10 @@
 Media Over QUIC                                                L. Pardue
 Internet-Draft                                                Cloudflare
 Intended status: Informational                              M. Engelbart
-Expires: 1 February 2027                  Technical University of Munich
+Expires: 5 February 2027                  Technical University of Munich
                                                                A. Sharma
                                                                     Meta
-                                                            31 July 2026
+                                                           4 August 2026
 
 
                        MoQ qlog event definitions
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 1 February 2027.
+   This Internet-Draft will expire on 5 February 2027.
 
 Copyright Notice
 
@@ -904,6 +904,7 @@ Table of Contents
      type: "goaway"
      new_session_uri: RawInfo
      timeout: uint64
+     ? request_id : uint64
    }
 
                       Figure 43: MOQTGoaway definition

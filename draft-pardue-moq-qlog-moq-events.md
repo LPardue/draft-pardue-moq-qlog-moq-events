@@ -431,9 +431,9 @@ MOQTFetchObjectCreated = {
     end_of_nonexistent_range: bool
     end_of_unknown_range: bool
     ? subgroup_id_bits: uint8
-    ? group_id: uint64
+    ? group_id_delta: uint64
     ? subgroup_id: uint64
-    ? object_id: uint64
+    ? object_id_delta: uint64
     ? publisher_priority: uint8
     ? properties_length: uint64
     ? properties: [* MOQTProperty]
@@ -461,9 +461,9 @@ MOQTFetchObjectParsed = {
     end_of_nonexistent_range: bool
     end_of_unknown_range: bool
     ? subgroup_id_bits: uint8
-    ? group_id: uint64
+    ? group_id_delta: uint64
     ? subgroup_id: uint64
-    ? object_id: uint64
+    ? object_id_delta: uint64
     ? publisher_priority: uint8
     ? properties_length: uint64
     ? properties: [* MOQTProperty]

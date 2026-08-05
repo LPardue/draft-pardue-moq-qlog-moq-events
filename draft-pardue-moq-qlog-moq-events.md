@@ -402,7 +402,7 @@ MOQTFetchHeaderCreated = {
 
 ## fetch_header_parsed {#fetchheaderparsed}
 
-The `fetch_header_parsed` event is emitted when the SUBGROUP_HEADER is
+The `fetch_header_parsed` event is emitted when the FETCH_HEADER is
 parsed. It has Core importance level.
 
 ~~~ cddl

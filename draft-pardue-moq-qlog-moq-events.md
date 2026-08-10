@@ -841,7 +841,6 @@ MOQTGoaway = {
 ~~~ cddl
 MOQTRequestOk = {
   type: "request_ok"
-  request_id: uint64
   number_of_parameters: uint64
   ? parameters: [* $MOQTParameter]
 }

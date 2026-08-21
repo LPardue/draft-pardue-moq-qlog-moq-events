@@ -798,7 +798,6 @@ MOQTBaseControlMessages = MOQTSetupMessage /
                           MOQTSubscribeOk /
                           MOQTRequestUpdate /
                           MOQTPublish /
-                          MOQTPublishOk /
                           MOQTPublishDone /
                           MOQTFetch /
                           MOQTFetchOk /
@@ -918,18 +917,6 @@ MOQTPublish = {
 }
 ~~~
 {: #publish-def title="MOQTPublish definition"}
-
-### MOQTPublishOk
-
-~~~ cddl
-MOQTPublishOk = {
-  type: "publish_ok"
-  request_id: uint64
-  number_of_parameters: uint64
-  ? parameters: [* $MOQTParameter]
-}
-~~~
-{: #publishok-def title="MOQTPublishOk definition"}
 
 ### MOQTPublishDone
 

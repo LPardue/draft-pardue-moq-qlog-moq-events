@@ -5,10 +5,10 @@
 Media Over QUIC                                                L. Pardue
 Internet-Draft                                                Cloudflare
 Intended status: Informational                              M. Engelbart
-Expires: 11 February 2027                 Technical University of Munich
+Expires: 22 February 2027                 Technical University of Munich
                                                                A. Sharma
                                                                     Meta
-                                                          10 August 2026
+                                                          21 August 2026
 
 
                        MoQ qlog event definitions
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 February 2027.
+   This Internet-Draft will expire on 22 February 2027.
 
 Copyright Notice
 
@@ -131,7 +131,8 @@ Table of Contents
        5.7.15. MOQTNamespace
        5.7.16. MOQTNamespaceDone
        5.7.17. MOQTSubscribeNamespace
-       5.7.18. MOQTPublishBlocked
+       5.7.18. MOQTSubscribeTracks
+       5.7.19. MOQTPublishBlocked
      5.8.  MOQTProperty
    6.  Security Considerations
    7.  IANA Considerations
@@ -883,6 +884,7 @@ Table of Contents
                              MOQTNamespace /
                              MOQTNamespaceDone /
                              MOQTSubscribeNamespace /
+                             MOQTSubscribeTracks /
                              MOQTPublishBlocked
 
    $MOQTControlMessage /= MOQTBaseControlMessages
@@ -1102,18 +1104,25 @@ Table of Contents
      type: "subscribe_namespace"
      request_id: uint64
      track_namespace_prefix: [ *MOQTByteString]
-     subscribe_options: $MOQTSubscribeOptions
      number_of_parameters: uint64
      ? parameters: [* $MOQTParameter]
    }
 
-   $MOQTSubscribeOptions /=  "publish" /
-                             "namespace" /
-                             "both"
-
                 Figure 58: MOQTSubscribeNamespace definition
 
-5.7.18.  MOQTPublishBlocked
+5.7.18.  MOQTSubscribeTracks
+
+   MOQTSubscribeTracks = {
+     type: "subscribe_tracks"
+     request_id: uint64
+     track_namespace_prefix: [ *MOQTByteString]
+     number_of_parameters: uint64
+     ? parameters: [* $MOQTParameter]
+   }
+
+                 Figure 59: MOQTSubscribeTracks definition
+
+5.7.19.  MOQTPublishBlocked
 
    MOQTPublishBlocked = {
      type: "publish_blocked"
@@ -1121,7 +1130,7 @@ Table of Contents
      track_name: MOQTByteString
    }
 
-                  Figure 59: MOQTPublishBlocked definition
+                  Figure 60: MOQTPublishBlocked definition
 
 5.8.  MOQTProperty
 
@@ -1132,7 +1141,7 @@ Table of Contents
      ? value_bytes: RawInfo
    }
 
-                       Figure 60: Property definition
+                       Figure 61: Property definition
 
 6.  Security Considerations
 

@@ -843,6 +843,7 @@ MOQTRequestOk = {
   type: "request_ok"
   number_of_parameters: uint64
   ? parameters: [* $MOQTParameter]
+  ? track_properties: [* MOQTProperty]
 }
 ~~~
 {: #requestok-def title="MOQTRequestOk definition"}

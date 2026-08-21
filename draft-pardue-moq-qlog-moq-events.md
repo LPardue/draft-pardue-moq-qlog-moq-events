@@ -807,6 +807,7 @@ MOQTBaseControlMessages = MOQTSetupMessage /
                           MOQTNamespace /
                           MOQTNamespaceDone /
                           MOQTSubscribeNamespace /
+                          MOQTSubscribeTracks /
                           MOQTPublishBlocked
 
 $MOQTControlMessage /= MOQTBaseControlMessages
@@ -1044,16 +1045,27 @@ MOQTSubscribeNamespace = {
   type: "subscribe_namespace"
   request_id: uint64
   track_namespace_prefix: [ *MOQTByteString]
-  subscribe_options: $MOQTSubscribeOptions
   number_of_parameters: uint64
   ? parameters: [* $MOQTParameter]
 }
 
-$MOQTSubscribeOptions /=  "publish" /
-                          "namespace" /
-                          "both"
 ~~~
 {: #subscribenamespace-def title="MOQTSubscribeNamespace definition"}
+
+### MOQTSubscribeTracks
+
+~~~ cddl
+MOQTSubscribeTracks = {
+  type: "subscribe_tracks"
+  request_id: uint64
+  track_namespace_prefix: [ *MOQTByteString]
+  number_of_parameters: uint64
+  ? parameters: [* $MOQTParameter]
+}
+
+~~~
+{: #subscribetracks-def title="MOQTSubscribeTracks definition"}
+
 
 ### MOQTPublishBlocked
 

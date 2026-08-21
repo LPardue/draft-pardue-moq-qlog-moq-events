@@ -915,6 +915,7 @@ Table of Contents
      type: "request_ok"
      number_of_parameters: uint64
      ? parameters: [* $MOQTParameter]
+     ? track_properties: [* MOQTProperty]
    }
 
                     Figure 44: MOQTRequestOk definition

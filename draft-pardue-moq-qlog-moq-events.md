@@ -858,6 +858,13 @@ MOQTRequestError = {
   retry_interval: uint64
   ? reason: text
   ? reason_bytes: hexstring
+  ? redirect: $MOQTRedirect
+}
+
+MOQTRedirect = {
+  connect_uri: RawInfo
+  track_namespace: [ *MOQTByteString]
+  track_name: MOQTByteString
 }
 ~~~
 {: #requesterror-def title="MOQTRequestError definition"}

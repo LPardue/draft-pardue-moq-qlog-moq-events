@@ -623,7 +623,8 @@ $MOQTParameter /= {
 
 ~~~ cddl
 MOQTBaseParameters /= MOQTAuthorizationTokenParameter /
-                      MOQTDeliveryTimeoutParameter /
+                      MOQTSubgroupDeliveryTimeoutParameter /
+                      MOQTObjectDeliveryTimeoutParameter /
                       MOQTRendezvousTimeoutParameter /
                       MOQTSubscriberPriorityParameter /
                       MOQTGroupOrderParameter /
@@ -651,15 +652,25 @@ MOQTAuthorizationTokenParameter = {
 ~~~
 {: #moqtauthorizationTokenparameter-def title="MOQTAuthorizationTokenParameter definition"}
 
-### MOQTDeliveryTimeoutParameter
+### MOQTSubgroupDeliveryTimeoutParameter
 
 ~~~ cddl
-MOQTDeliveryTimeoutParameter = {
-  name: "delivery_timeout"
+MOQTSubgroupDeliveryTimeoutParameter = {
+  name: "subgroup_delivery_timeout"
   value: uint64
 }
 ~~~
-{: #moqtdeliverytimeoutparameter-def title="MOQTDeliveryTimeoutParameter definition"}
+{: #moqtsubgroupdeliverytimeoutparameter-def title="MOQTSubgroupDeliveryTimeoutParameter definition"}
+
+### MOQTObjectDeliveryTimeoutParameter
+
+~~~ cddl
+MOQTObjectDeliveryTimeoutParameter = {
+  name: "object_delivery_timeout"
+  value: uint64
+}
+~~~
+{: #moqtobjectdeliverytimeoutparameter-def title="MOQTObjectDeliveryTimeoutParameter definition"}
 
 ### MOQTRendezvousTimeoutParameter
 

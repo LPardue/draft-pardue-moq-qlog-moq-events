@@ -626,6 +626,7 @@ MOQTBaseParameters /= MOQTAuthorizationTokenParameter /
                       MOQTLargestObjectParameter /
                       MOQTForwardParameter /
                       MOQTNewGroupRequestParameter /
+                      MOQTTrackNamespacePrefixParameter /
                       MOQTUnknownParameter
 
 $MOQTParameter /= MOQTBaseParameters
@@ -754,6 +755,16 @@ MOQTNewGroupRequestParameter = {
 }
 ~~~
 {: #moqtnewgrouprequestparameter-def title="MOQTNewGroupRequestParameter definition"}
+
+### MOQTTrackNamespacePrefixParameter
+
+~~~ cddl
+MOQTTrackNamespacePrefixParameter = {
+  name: "track_namespace_prefix"
+  value: [ *MOQTByteString]
+}
+~~~
+{: #moqttracknamespaceprefixparameter-def title="MOQTTrackNamespacePrefixParameter definition"}
 
 ### MOQTUnknownParameter
 

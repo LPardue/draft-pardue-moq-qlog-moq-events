@@ -171,14 +171,6 @@ The exchange of data between the HTTP and QUIC layer is logged via the
 The concrete MOQT event types are further defined below, their type identifier
 is the heading name.
 
-Some MOQT messages include a reason phrase that can provide additional
-information in the format of a byte sequences. However, these sequences are not
-guaranteed to be presentable as UTF-8. In order to accomodate various encodings,
-where the wire image of a message includes a reason phrase, the MOQT qlog event
-type, includes two option fields: `reason` (for UTF-8) and `reason_bytes` (a
-hex-encoded string representing raw bytes). Implementations SHOULD log at least
-one format, but MAY log both or none.
-
 ## control_message_created {#controlmessagecreated}
 
 The `control_message_created` event is emitted when a control message is created.
@@ -889,8 +881,7 @@ MOQTRequestError = {
   request_id: uint64
   error_code: uint64
   retry_interval: uint64
-  ? reason: text
-  ? reason_bytes: hexstring
+  ? reason_phrase: text
   ? redirect: $MOQTRedirect
 }
 
@@ -967,8 +958,7 @@ MOQTPublishDone = {
   request_id: uint64
   status_code: uint64
   stream_count: uint64
-  ? reason: text
-  ? reason_bytes: hexstring
+  ? reason_phrase: text
 }
 ~~~
 {: #publishdone-def title="MOQTPublishDone definition"}

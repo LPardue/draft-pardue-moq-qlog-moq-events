@@ -73,6 +73,8 @@ bottom of this document for clarity.
 | moqt:stream_type_set                | Core       | {{streamtypeset}} |
 | moqt:object_datagram_created        | Core       | {{objectdatagramcreated}} |
 | moqt:object_datagram_parsed         | Core       | {{objectdatagramparsed}} |
+| moqt:padding_datagram_created       | Core       | {{paddingdatagramcreated}} |
+| moqt:padding_datagram_parsed        | Core       | {{paddingdatagramparsed}} |
 | moqt:subgroup_header_created        | Core       | {{subgroupheadercreated}} |
 | moqt:subgroup_header_parsed         | Core       | {{subgroupheaderparsed}} |
 | moqt:subgroup_object_created        | Core       | {{subgroupobjectcreated}} |
@@ -149,6 +151,8 @@ MOQTEventData = MOQTControlMessageCreated /
                 MOQTStreamTypeSet /
                 MOQTObjectDatagramCreated /
                 MOQTObjectDatagramParsed /
+                MOQTPaddingDatagramCreated /
+                MOQTPaddingDatagramParsed /
                 MOQTSubgroupHeaderCreated /
                 MOQTSubgroupHeaderParsed /
                 MOQTSubgroupObjectCreated /
@@ -279,6 +283,40 @@ MOQTObjectDatagramParsed = {
 }
 ~~~
 {: #objectdatagramparsed-def title="MOQTObjectDatagramParsed definition"}
+
+## padding_datagram_created {#paddingdatagramcreated}
+
+The `padding_datagram_created` event is emitted when a padding datagram is
+created. It has Core importance level.
+
+Padding datagrams contain no application data. The optional `padding_data`
+field describes the padding bytes following the datagram type.
+
+~~~ cddl
+MOQTPaddingDatagramCreated = {
+    ? padding_data: RawInfo
+
+    * $$moqt-paddingdatagramcreated-extension
+}
+~~~
+{: #paddingdatagramcreated-def title="MOQTPaddingDatagramCreated definition"}
+
+## padding_datagram_parsed {#paddingdatagramparsed}
+
+The `padding_datagram_parsed` event is emitted when a padding datagram is
+parsed. It has Core importance level.
+
+Padding datagrams contain no application data. The optional `padding_data`
+field describes the padding bytes following the datagram type.
+
+~~~ cddl
+MOQTPaddingDatagramParsed = {
+    ? padding_data: RawInfo
+
+    * $$moqt-paddingdatagramparsed-extension
+}
+~~~
+{: #paddingdatagramparsed-def title="MOQTPaddingDatagramParsed definition"}
 
 ## subgroup_header_created {#subgroupheadercreated}
 
@@ -1129,6 +1167,8 @@ Event Types
   stream_type_set,
   object_datagram_created,
   object_datagram_parsed,
+  padding_datagram_created,
+  padding_datagram_parsed,
   subgroup_header_created,
   subgroup_header_parsed,
   subgroup_object_created,

@@ -5,10 +5,10 @@
 Media Over QUIC                                                L. Pardue
 Internet-Draft                                                Cloudflare
 Intended status: Informational                              M. Engelbart
-Expires: 1 March 2027                     Technical University of Munich
+Expires: 5 March 2027                     Technical University of Munich
                                                                A. Sharma
                                                                     Meta
-                                                          28 August 2026
+                                                        1 September 2026
 
 
                        MoQ qlog event definitions
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 1 March 2027.
+   This Internet-Draft will expire on 5 March 2027.
 
 Copyright Notice
 
@@ -113,7 +113,8 @@ Table of Contents
        5.5.10. MOQTLargestObjectParameter
        5.5.11. MOQTForwardParameter
        5.5.12. MOQTNewGroupRequestParameter
-       5.5.13. MOQTUnknownParameter
+       5.5.13. MOQTTrackNamespacePrefixParameter
+       5.5.14. MOQTUnknownParameter
      5.6.  MOQTByteString
      5.7.  MOQTControlMessage
        5.7.1.  MOQTSetupMessage
@@ -725,6 +726,7 @@ Table of Contents
                          MOQTLargestObjectParameter /
                          MOQTForwardParameter /
                          MOQTNewGroupRequestParameter /
+                         MOQTTrackNamespacePrefixParameter /
                          MOQTUnknownParameter
 
    $MOQTParameter /= MOQTBaseParameters
@@ -842,7 +844,16 @@ Table of Contents
 
              Figure 39: MOQTNewGroupRequestParameter definition
 
-5.5.13.  MOQTUnknownParameter
+5.5.13.  MOQTTrackNamespacePrefixParameter
+
+   MOQTTrackNamespacePrefixParameter = {
+     name: "track_namespace_prefix"
+     value: [ *MOQTByteString]
+   }
+
+          Figure 40: MOQTTrackNamespacePrefixParameter definition
+
+5.5.14.  MOQTUnknownParameter
 
    MOQTUnknownParameter = {
      name:"unknown"
@@ -852,7 +863,7 @@ Table of Contents
      ? value_bytes: RawInfo
    }
 
-                 Figure 40: MOQTUnknownParameter definition
+                 Figure 41: MOQTUnknownParameter definition
 
 5.6.  MOQTByteString
 
@@ -870,7 +881,7 @@ Table of Contents
      ? value_bytes: hexstring
    }
 
-                    Figure 41: MOQTByteString definition
+                    Figure 42: MOQTByteString definition
 
 5.7.  MOQTControlMessage
 
@@ -883,7 +894,7 @@ Table of Contents
        * text => any
    }
 
-            Figure 42: MOQTControlMessage type socket definition
+            Figure 43: MOQTControlMessage type socket definition
 
    The MOQT control message types defined in this document are as
    follows:
@@ -909,7 +920,7 @@ Table of Contents
 
    $MOQTControlMessage /= MOQTBaseControlMessages
 
-               Figure 43: MOQTBaseControlMessages definition
+               Figure 44: MOQTBaseControlMessages definition
 
 5.7.1.  MOQTSetupMessage
 
@@ -918,7 +929,7 @@ Table of Contents
      ? setup_options: [* $MOQTSetupOption]
    }
 
-                   Figure 44: MOQTSetupMessage definition
+                   Figure 45: MOQTSetupMessage definition
 
 5.7.2.  MOQTGoaway
 
@@ -929,7 +940,7 @@ Table of Contents
      ? request_id : uint64
    }
 
-                      Figure 45: MOQTGoaway definition
+                      Figure 46: MOQTGoaway definition
 
 5.7.3.  MOQTRequestOk
 
@@ -940,7 +951,7 @@ Table of Contents
      ? track_properties: [* MOQTProperty]
    }
 
-                    Figure 46: MOQTRequestOk definition
+                    Figure 47: MOQTRequestOk definition
 
 5.7.4.  MOQTRequestError
 
@@ -960,7 +971,7 @@ Table of Contents
      track_name: MOQTByteString
    }
 
-                   Figure 47: MOQTRequestError definition
+                   Figure 48: MOQTRequestError definition
 
 5.7.5.  MOQTSubscribe
 
@@ -973,7 +984,7 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                    Figure 48: MOQTSubscribe definition
+                    Figure 49: MOQTSubscribe definition
 
 5.7.6.  MOQTSubscribeOk
 
@@ -986,7 +997,7 @@ Table of Contents
      ? track_properties: [* MOQTProperty]
    }
 
-                   Figure 49: MOQTSubscribeOk definition
+                   Figure 50: MOQTSubscribeOk definition
 
 5.7.7.  MOQTRequestUpdate
 
@@ -998,7 +1009,7 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                  Figure 50: MOQTRequestUpdate definition
+                  Figure 51: MOQTRequestUpdate definition
 
 5.7.8.  MOQTPublish
 
@@ -1013,7 +1024,7 @@ Table of Contents
      ? track_properties: [* MOQTProperty]
    }
 
-                     Figure 51: MOQTPublish definition
+                     Figure 52: MOQTPublish definition
 
 5.7.9.  MOQTPublishDone
 
@@ -1026,7 +1037,7 @@ Table of Contents
      ? reason_bytes: hexstring
    }
 
-                   Figure 52: MOQTPublishDone definition
+                   Figure 53: MOQTPublishDone definition
 
 5.7.10.  MOQTFetch
 
@@ -1056,7 +1067,7 @@ Table of Contents
                       "absolute_joining" /
                       "relative_joining"
 
-                      Figure 53: MOQTFetch definition
+                      Figure 54: MOQTFetch definition
 
 5.7.11.  MOQTFetchOk
 
@@ -1070,7 +1081,7 @@ Table of Contents
      ? track_properties: [* MOQTProperty]
    }
 
-                     Figure 54: MOQTFetchOk definition
+                     Figure 55: MOQTFetchOk definition
 
 5.7.12.  MOQTTrackStatus
 
@@ -1083,7 +1094,7 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                   Figure 55: MOQTTrackStatus definition
+                   Figure 56: MOQTTrackStatus definition
 
 5.7.13.  MOQTPublishNamespace
 
@@ -1095,7 +1106,7 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                 Figure 56: MOQTPublishNamespace definition
+                 Figure 57: MOQTPublishNamespace definition
 
 5.7.14.  MOQTNamespace
 
@@ -1104,7 +1115,7 @@ Table of Contents
      track_namespace_suffix: [ *MOQTByteString]
    }
 
-                    Figure 57: MOQTNamespace definition
+                    Figure 58: MOQTNamespace definition
 
 5.7.15.  MOQTNamespaceDone
 
@@ -1113,7 +1124,7 @@ Table of Contents
      track_namespace_suffix: [ *MOQTByteString]
    }
 
-                  Figure 58: MOQTNamespaceDone definition
+                  Figure 59: MOQTNamespaceDone definition
 
 5.7.16.  MOQTSubscribeNamespace
 
@@ -1125,7 +1136,7 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                Figure 59: MOQTSubscribeNamespace definition
+                Figure 60: MOQTSubscribeNamespace definition
 
 5.7.17.  MOQTSubscribeTracks
 
@@ -1137,7 +1148,7 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                 Figure 60: MOQTSubscribeTracks definition
+                 Figure 61: MOQTSubscribeTracks definition
 
 5.7.18.  MOQTPublishBlocked
 
@@ -1147,7 +1158,7 @@ Table of Contents
      track_name: MOQTByteString
    }
 
-                  Figure 61: MOQTPublishBlocked definition
+                  Figure 62: MOQTPublishBlocked definition
 
 5.8.  MOQTProperty
 
@@ -1158,7 +1169,7 @@ Table of Contents
      ? value_bytes: RawInfo
    }
 
-                       Figure 62: Property definition
+                       Figure 63: Property definition
 
 6.  Security Considerations
 
@@ -1195,9 +1206,9 @@ Table of Contents
 
    [MOQT]     Nandakumar, S., Vasiliev, V., Swett, I., and A. Frindell,
               "Media over QUIC Transport", Work in Progress, Internet-
-              Draft, draft-ietf-moq-transport-19, 6 July 2026,
+              Draft, draft-ietf-moq-transport-20, 31 August 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-moq-
-              transport-19>.
+              transport-20>.
 
    [QLOG-MAIN]
               Marx, R., Niccolini, L., Seemann, M., and L. Pardue,

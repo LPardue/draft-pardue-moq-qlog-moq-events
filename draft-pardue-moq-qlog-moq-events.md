@@ -289,12 +289,11 @@ MOQTObjectDatagramParsed = {
 The `padding_datagram_created` event is emitted when a padding datagram is
 created. It has Core importance level.
 
-Padding datagrams contain no application data. The optional `padding_data`
-field describes the padding bytes following the datagram type.
+Padding datagrams contain no application data.
 
 ~~~ cddl
 MOQTPaddingDatagramCreated = {
-    ? padding_data: RawInfo
+    padding_length: uint64
 
     * $$moqt-paddingdatagramcreated-extension
 }
@@ -306,12 +305,11 @@ MOQTPaddingDatagramCreated = {
 The `padding_datagram_parsed` event is emitted when a padding datagram is
 parsed. It has Core importance level.
 
-Padding datagrams contain no application data. The optional `padding_data`
-field describes the padding bytes following the datagram type.
+Padding datagrams contain no application data.
 
 ~~~ cddl
 MOQTPaddingDatagramParsed = {
-    ? padding_data: RawInfo
+    padding_length: uint64
 
     * $$moqt-paddingdatagramparsed-extension
 }

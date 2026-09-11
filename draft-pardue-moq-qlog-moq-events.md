@@ -674,7 +674,7 @@ $MOQTParameter /= MOQTBaseParameters
 ~~~ cddl
 MOQTAuthorizationTokenParameter = {
   name: "authorization_token"
-  alias_type: uint64
+  alias_type: $MOQTAliasType
   ? token_alias: uint64
   ? token_type: uint64
   ? token_value: RawInfo

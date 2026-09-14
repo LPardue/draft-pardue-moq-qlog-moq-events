@@ -540,6 +540,16 @@ MOQTSubscriptionFilter = {
 ~~~
 {: #moqtsubscriptionfilter-def title="MOQTSubscriptionFilter definition"}
 
+## MOQTAliasType
+
+~~~ cddl
+$MOQTAliasType /=  "delete" /
+                   "register" /
+                   "use_alias" /
+                   "use_value"
+~~~
+{: #moqtaliastype-def title="MOQTAliasType definition"}
+
 ## MOQTSetupOption
 
 The generic $MOQTSetupOption is defined here as a CDDL "type socket"
@@ -605,11 +615,6 @@ MOQTAuthorizationTokenSetupOption = {
   ? token_type: uint64
   ? token_value: RawInfo
 }
-
-$MOQTAliasType /=  "delete" /
-                   "register" /
-                   "use_alias" /
-                   "use_value"
 ~~~
 {: #moqtauthorizationtokensetupoption-def title="MOQTAuthorizationTokenSetupOption definition"}
 
@@ -674,7 +679,7 @@ $MOQTParameter /= MOQTBaseParameters
 ~~~ cddl
 MOQTAuthorizationTokenParameter = {
   name: "authorization_token"
-  alias_type: uint64
+  alias_type: $MOQTAliasType
   ? token_alias: uint64
   ? token_type: uint64
   ? token_value: RawInfo

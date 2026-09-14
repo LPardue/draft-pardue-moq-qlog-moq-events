@@ -919,7 +919,6 @@ MOQTRequestOk = {
 ~~~ cddl
 MOQTRequestError = {
   type: "request_error"
-  request_id: uint64
   error_code: uint64
   retry_interval: uint64
   ? reason_phrase: text
@@ -953,7 +952,6 @@ MOQTSubscribe = {
 ~~~ cddl
 MOQTSubscribeOk = {
   type: "subscribe_ok"
-  request_id: uint64
   track_alias: uint64
   number_of_parameters: uint64
   ? parameters: [* $MOQTParameter]
@@ -996,7 +994,6 @@ MOQTPublish = {
 ~~~ cddl
 MOQTPublishDone = {
   type: "publish_done"
-  request_id: uint64
   status_code: uint64
   stream_count: uint64
   ? reason_phrase: text
@@ -1040,7 +1037,6 @@ $MOQTFetchType /=  "standalone" /
 ~~~ cddl
 MOQTFetchOk = {
   type: "fetch_ok"
-  request_id: uint64
   end_of_track: uint8
   end_location: MOQTLocation
   number_of_parameters: uint64

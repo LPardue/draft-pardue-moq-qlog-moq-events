@@ -966,7 +966,6 @@ MOQTSubscribeOk = {
 MOQTRequestUpdate = {
   type: "request_update"
   request_id: uint64
-  existing_request_id: uint64
   number_of_parameters: uint64
   ? parameters: [* $MOQTParameter]
 }

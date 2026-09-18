@@ -529,11 +529,7 @@ MOQTLocation = {
 
 ## MOQTLocationFilter
 
-A Location Filter, as defined in {{Section 5.1.2 of MOQT}}. The fields that are
-present are determined by the length of the parameter value. The permitted
-combinations are no fields; `start_group`; `start_group` and `start_object`;
-those fields and `end_group_delta`; or all four fields. An empty map represents
-a zero-length Location Filter.
+A Location Filter, as defined in {{Section 5.1.2 of MOQT}}
 
 ~~~ cddl
 MOQTLocationFilter = {

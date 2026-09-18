@@ -527,18 +527,23 @@ MOQTLocation = {
 ~~~
 {: #moqtlocation-def title="MOQTLocation definition"}
 
-## MOQTSubscriptionFilter
+## MOQTLocationFilter
 
-A Subscription Filter, as defined in {{Section 5.1.2 of MOQT}}
+A Location Filter, as defined in {{Section 5.1.2 of MOQT}}. The fields that are
+present are determined by the length of the parameter value. The permitted
+combinations are no fields; `start_group`; `start_group` and `start_object`;
+those fields and `end_group_delta`; or all four fields. An empty map represents
+a zero-length Location Filter.
 
 ~~~ cddl
-MOQTSubscriptionFilter = {
-  filter_type: uint64
-  ? start_location: MOQTLocation
+MOQTLocationFilter = {
+  ? start_group: uint64
+  ? start_object: uint64
   ? end_group_delta: uint64
+  ? end_object: uint64
 }
 ~~~
-{: #moqtsubscriptionfilter-def title="MOQTSubscriptionFilter definition"}
+{: #moqtlocationfilter-def title="MOQTLocationFilter definition"}
 
 ## MOQTAliasType
 
@@ -662,7 +667,7 @@ MOQTBaseParameters /= MOQTAuthorizationTokenParameter /
                       MOQTRendezvousTimeoutParameter /
                       MOQTSubscriberPriorityParameter /
                       MOQTGroupOrderParameter /
-                      MOQTSubscriptionFilterParameter /
+                      MOQTLocationFilterParameter /
                       MOQTExpiresParameter /
                       MOQTLargestObjectParameter /
                       MOQTForwardParameter /
@@ -747,15 +752,15 @@ MOQTGroupOrderParameter = {
 ~~~
 {: #moqtgrouporderparameter-def title="MOQTGroupOrderParameter definition"}
 
-### MOQTSubscriptionFilterParameter
+### MOQTLocationFilterParameter
 
 ~~~ cddl
-MOQTSubscriptionFilterParameter = {
-  name: "subscription_filter"
-  value: MOQTSubscriptionFilter
+MOQTLocationFilterParameter = {
+  name: "location_filter"
+  value: MOQTLocationFilter
 }
 ~~~
-{: #moqtsubscriptionfilterparameter-def title="MOQTSubscriptionFilterParameter definition"}
+{: #moqtlocationfilterparameter-def title="MOQTLocationFilterParameter definition"}
 
 ### MOQTExpiresParameter
 

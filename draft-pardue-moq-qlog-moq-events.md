@@ -568,6 +568,8 @@ $MOQTSetupOption /= {
 MOQTBaseSetupOptions /=  MOQTAuthoritySetupOption /
                          MOQTPathSetupOption /
                          MOQTMaxAuthTokenCacheSizeSetupOption /
+                         MOQTMaxFilterRangesSetupOption /
+                         MOQTMaxRequestUpdatesSetupOption /
                          MOQTAuthorizationTokenSetupOption /
                          MOQTImplementationSetupOption /
                          MOQTUnknownSetupOption
@@ -605,6 +607,26 @@ MOQTMaxAuthTokenCacheSizeSetupOption = {
 }
 ~~~
 {: #moqtmaxauthtokencachesizesetupoption-def title="MOQTMaxAuthTokenCacheSizeSetupOption definition"}
+
+### MOQTMaxFilterRangesSetupOption
+
+~~~ cddl
+MOQTMaxFilterRangesSetupOption = {
+  name: "max_filter_ranges"
+  value: uint64
+}
+~~~
+{: #moqtmaxfilterrangessetupoption-def title="MOQTMaxFilterRangesSetupOption definition"}
+
+### MOQTMaxRequestUpdatesSetupOption
+
+~~~ cddl
+MOQTMaxRequestUpdatesSetupOption = {
+  name: "max_request_updates"
+  value: uint64
+}
+~~~
+{: #moqtmaxrequestupdatessetupoption-def title="MOQTMaxRequestUpdatesSetupOption definition"}
 
 ### MOQTAuthorizationTokenSetupOption
 

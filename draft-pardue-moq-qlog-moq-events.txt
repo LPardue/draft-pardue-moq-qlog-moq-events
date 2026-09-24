@@ -5,10 +5,10 @@
 Media Over QUIC                                                L. Pardue
 Internet-Draft                                                Cloudflare
 Intended status: Informational                              M. Engelbart
-Expires: 20 March 2027                    Technical University of Munich
+Expires: 28 March 2027                    Technical University of Munich
                                                                A. Sharma
                                                                     Meta
-                                                       16 September 2026
+                                                       24 September 2026
 
 
                        MoQ qlog event definitions
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 March 2027.
+   This Internet-Draft will expire on 28 March 2027.
 
 Copyright Notice
 
@@ -94,7 +94,7 @@ Table of Contents
    5.  MOQT Data Type Definitions
      5.1.  Owner
      5.2.  MOQTLocation
-     5.3.  MOQTSubscriptionFilter
+     5.3.  MOQTLocationFilter
      5.4.  MOQTAliasType
      5.5.  MOQTSetupOption
        5.5.1.  MOQTAuthoritySetupOption
@@ -111,7 +111,7 @@ Table of Contents
        5.6.5.  MOQTRendezvousTimeoutParameter
        5.6.6.  MOQTSubscriberPriorityParameter
        5.6.7.  MOQTGroupOrderParameter
-       5.6.8.  MOQTSubscriptionFilterParameter
+       5.6.8.  MOQTLocationFilterParameter
        5.6.9.  MOQTExpiresParameter
        5.6.10. MOQTLargestObjectParameter
        5.6.11. MOQTForwardParameter
@@ -630,17 +630,18 @@ Table of Contents
 
                      Figure 18: MOQTLocation definition
 
-5.3.  MOQTSubscriptionFilter
+5.3.  MOQTLocationFilter
 
-   A Subscription Filter, as defined in Section 5.1.2 of [MOQT]
+   A Location Filter, as defined in Section 5.1.2 of [MOQT]
 
-   MOQTSubscriptionFilter = {
-     filter_type: uint64
-     ? start_location: MOQTLocation
+   MOQTLocationFilter = {
+     ? start_group: uint64
+     ? start_object: uint64
      ? end_group_delta: uint64
+     ? end_object: uint64
    }
 
-                Figure 19: MOQTSubscriptionFilter definition
+                  Figure 19: MOQTLocationFilter definition
 
 5.4.  MOQTAliasType
 
@@ -755,7 +756,7 @@ Table of Contents
                          MOQTRendezvousTimeoutParameter /
                          MOQTSubscriberPriorityParameter /
                          MOQTGroupOrderParameter /
-                         MOQTSubscriptionFilterParameter /
+                         MOQTLocationFilterParameter /
                          MOQTExpiresParameter /
                          MOQTLargestObjectParameter /
                          MOQTForwardParameter /
@@ -833,14 +834,14 @@ Table of Contents
 
                Figure 37: MOQTGroupOrderParameter definition
 
-5.6.8.  MOQTSubscriptionFilterParameter
+5.6.8.  MOQTLocationFilterParameter
 
-   MOQTSubscriptionFilterParameter = {
-     name: "subscription_filter"
-     value: MOQTSubscriptionFilter
+   MOQTLocationFilterParameter = {
+     name: "location_filter"
+     value: MOQTLocationFilter
    }
 
-           Figure 38: MOQTSubscriptionFilterParameter definition
+             Figure 38: MOQTLocationFilterParameter definition
 
 5.6.9.  MOQTExpiresParameter
 

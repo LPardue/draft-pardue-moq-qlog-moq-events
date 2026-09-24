@@ -864,6 +864,7 @@ MOQTBaseControlMessages = MOQTSetupMessage /
                           MOQTSubscribe /
                           MOQTSubscribeOk /
                           MOQTRequestUpdate /
+                          MOQTPublishStateNotify /
                           MOQTPublish /
                           MOQTPublishDone /
                           MOQTFetch /
@@ -972,6 +973,17 @@ MOQTRequestUpdate = {
 }
 ~~~
 {: #requestupdate-def title="MOQTRequestUpdate definition"}
+
+### MOQTPublishStateNotify
+
+~~~ cddl
+MOQTPublishStateNotify = {
+  type: "publish_state_notify"
+  number_of_parameters: uint64
+  ? parameters: [* $MOQTParameter]
+}
+~~~
+{: #publishstatenotify-def title="MOQTPublishStateNotify definition"}
 
 ### MOQTPublish
 

@@ -129,17 +129,18 @@ Table of Contents
        5.8.5.  MOQTSubscribe
        5.8.6.  MOQTSubscribeOk
        5.8.7.  MOQTRequestUpdate
-       5.8.8.  MOQTPublish
-       5.8.9.  MOQTPublishDone
-       5.8.10. MOQTFetch
-       5.8.11. MOQTFetchOk
-       5.8.12. MOQTTrackStatus
-       5.8.13. MOQTPublishNamespace
-       5.8.14. MOQTNamespace
-       5.8.15. MOQTNamespaceDone
-       5.8.16. MOQTSubscribeNamespace
-       5.8.17. MOQTSubscribeTracks
-       5.8.18. MOQTPublishBlocked
+       5.8.8.  MOQTPublishStateNotify
+       5.8.9.  MOQTPublish
+       5.8.10. MOQTPublishDone
+       5.8.11. MOQTFetch
+       5.8.12. MOQTFetchOk
+       5.8.13. MOQTTrackStatus
+       5.8.14. MOQTPublishNamespace
+       5.8.15. MOQTNamespace
+       5.8.16. MOQTNamespaceDone
+       5.8.17. MOQTSubscribeNamespace
+       5.8.18. MOQTSubscribeTracks
+       5.8.19. MOQTPublishBlocked
      5.9.  MOQTProperty
    6.  Security Considerations
    7.  IANA Considerations
@@ -963,6 +964,7 @@ Table of Contents
                              MOQTSubscribe /
                              MOQTSubscribeOk /
                              MOQTRequestUpdate /
+                             MOQTPublishStateNotify /
                              MOQTPublish /
                              MOQTPublishDone /
                              MOQTFetch /
@@ -1064,7 +1066,17 @@ Table of Contents
 
                   Figure 56: MOQTRequestUpdate definition
 
-5.8.8.  MOQTPublish
+5.8.8.  MOQTPublishStateNotify
+
+   MOQTPublishStateNotify = {
+     type: "publish_state_notify"
+     number_of_parameters: uint64
+     ? parameters: [* $MOQTParameter]
+   }
+
+                Figure 57: MOQTPublishStateNotify definition
+
+5.8.9.  MOQTPublish
 
    MOQTPublish = {
      type: "publish"
@@ -1077,9 +1089,9 @@ Table of Contents
      ? track_properties: [* MOQTProperty]
    }
 
-                     Figure 57: MOQTPublish definition
+                     Figure 58: MOQTPublish definition
 
-5.8.9.  MOQTPublishDone
+5.8.10.  MOQTPublishDone
 
    MOQTPublishDone = {
      type: "publish_done"
@@ -1088,9 +1100,9 @@ Table of Contents
      ? reason_phrase: text
    }
 
-                   Figure 58: MOQTPublishDone definition
+                   Figure 59: MOQTPublishDone definition
 
-5.8.10.  MOQTFetch
+5.8.11.  MOQTFetch
 
    MOQTFetch = {
      type: "fetch"
@@ -1118,9 +1130,9 @@ Table of Contents
                       "absolute_joining" /
                       "relative_joining"
 
-                      Figure 59: MOQTFetch definition
+                      Figure 60: MOQTFetch definition
 
-5.8.11.  MOQTFetchOk
+5.8.12.  MOQTFetchOk
 
    MOQTFetchOk = {
      type: "fetch_ok"
@@ -1131,9 +1143,9 @@ Table of Contents
      ? track_properties: [* MOQTProperty]
    }
 
-                     Figure 60: MOQTFetchOk definition
+                     Figure 61: MOQTFetchOk definition
 
-5.8.12.  MOQTTrackStatus
+5.8.13.  MOQTTrackStatus
 
    MOQTTrackStatus = {
      type: "track_status"
@@ -1144,9 +1156,9 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                   Figure 61: MOQTTrackStatus definition
+                   Figure 62: MOQTTrackStatus definition
 
-5.8.13.  MOQTPublishNamespace
+5.8.14.  MOQTPublishNamespace
 
    MOQTPublishNamespace = {
      type: "publish_namespace"
@@ -1156,27 +1168,27 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                 Figure 62: MOQTPublishNamespace definition
+                 Figure 63: MOQTPublishNamespace definition
 
-5.8.14.  MOQTNamespace
+5.8.15.  MOQTNamespace
 
    MOQTNamespace = {
      type: "namespace"
      track_namespace_suffix: [ *MOQTByteString]
    }
 
-                    Figure 63: MOQTNamespace definition
+                    Figure 64: MOQTNamespace definition
 
-5.8.15.  MOQTNamespaceDone
+5.8.16.  MOQTNamespaceDone
 
    MOQTNamespaceDone = {
      type: "namespace_done"
      track_namespace_suffix: [ *MOQTByteString]
    }
 
-                  Figure 64: MOQTNamespaceDone definition
+                  Figure 65: MOQTNamespaceDone definition
 
-5.8.16.  MOQTSubscribeNamespace
+5.8.17.  MOQTSubscribeNamespace
 
    MOQTSubscribeNamespace = {
      type: "subscribe_namespace"
@@ -1186,9 +1198,9 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                Figure 65: MOQTSubscribeNamespace definition
+                Figure 66: MOQTSubscribeNamespace definition
 
-5.8.17.  MOQTSubscribeTracks
+5.8.18.  MOQTSubscribeTracks
 
    MOQTSubscribeTracks = {
      type: "subscribe_tracks"
@@ -1198,9 +1210,9 @@ Table of Contents
      ? parameters: [* $MOQTParameter]
    }
 
-                 Figure 66: MOQTSubscribeTracks definition
+                 Figure 67: MOQTSubscribeTracks definition
 
-5.8.18.  MOQTPublishBlocked
+5.8.19.  MOQTPublishBlocked
 
    MOQTPublishBlocked = {
      type: "publish_blocked"
@@ -1208,7 +1220,7 @@ Table of Contents
      track_name: MOQTByteString
    }
 
-                  Figure 67: MOQTPublishBlocked definition
+                  Figure 68: MOQTPublishBlocked definition
 
 5.9.  MOQTProperty
 
@@ -1219,7 +1231,7 @@ Table of Contents
      ? value_bytes: RawInfo
    }
 
-                       Figure 68: Property definition
+                       Figure 69: Property definition
 
 6.  Security Considerations
 

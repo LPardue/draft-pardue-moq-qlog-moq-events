@@ -458,6 +458,7 @@ MOQTFetchObjectCreated = {
     datagram: bool
     end_of_nonexistent_range: bool
     end_of_unknown_range: bool
+    end_of_timed_out_range: bool
     ? subgroup_id_bits: uint8
     ? group_id_delta: uint64
     ? subgroup_id: uint64
@@ -488,6 +489,7 @@ MOQTFetchObjectParsed = {
     datagram: bool
     end_of_nonexistent_range: bool
     end_of_unknown_range: bool
+    end_of_timed_out_range: bool
     ? subgroup_id_bits: uint8
     ? group_id_delta: uint64
     ? subgroup_id: uint64

@@ -899,7 +899,7 @@ MOQTBaseControlMessages = MOQTSetupMessage /
                           MOQTNamespaceDone /
                           MOQTSubscribeNamespace /
                           MOQTSubscribeTracks /
-                          MOQTPublishBlocked
+                          MOQTPublishSkipped
 
 $MOQTControlMessage /= MOQTBaseControlMessages
 ~~~
@@ -1158,16 +1158,16 @@ MOQTSubscribeTracks = {
 {: #subscribetracks-def title="MOQTSubscribeTracks definition"}
 
 
-### MOQTPublishBlocked
+### MOQTPublishSkipped
 
 ~~~ cddl
-MOQTPublishBlocked = {
-  type: "publish_blocked"
+MOQTPublishSkipped = {
+  type: "publish_skipped"
   track_namespace_suffix: [ *MOQTByteString]
   track_name: MOQTByteString
 }
 ~~~
-{: #publishblocked-def title="MOQTPublishBlocked definition"}
+{: #publishskipped-def title="MOQTPublishSkipped definition"}
 
 ## MOQTProperty
 

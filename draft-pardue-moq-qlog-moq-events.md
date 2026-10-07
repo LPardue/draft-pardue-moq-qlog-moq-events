@@ -418,6 +418,10 @@ MOQTSubgroupObjectParsed = {
 The `fetch_header_created` event is emitted when a stream begins and a
 FETCH_HEADER is created. It has Core importance level.
 
+The `request_id` field identifies the `FETCH` that requested the stream. For a
+fill fetch stream, it instead identifies the `SUBSCRIBE` or `REQUEST_UPDATE`
+that requested the fill ({{Section 5.1.3 of MOQT}}).
+
 ~~~ cddl
 MOQTFetchHeaderCreated = {
     stream_id: uint64
@@ -432,6 +436,10 @@ MOQTFetchHeaderCreated = {
 
 The `fetch_header_parsed` event is emitted when the FETCH_HEADER is
 parsed. It has Core importance level.
+
+The `request_id` field identifies the `FETCH` that requested the stream. For a
+fill fetch stream, it instead identifies the `SUBSCRIBE` or `REQUEST_UPDATE`
+that requested the fill ({{Section 5.1.3 of MOQT}}).
 
 ~~~ cddl
 MOQTFetchHeaderParsed = {
@@ -1043,28 +1051,11 @@ MOQTPublishDone = {
 MOQTFetch = {
   type: "fetch"
   request_id: uint64
-  fetch_type: $MOQTFetchType
-  ? standalone_fetch: $MOQTStandaloneFetch
-  ? joining_fetch: $MOQTJoiningFetch
+  track_namespace: [ *MOQTByteString]
+  track_name: MOQTByteString
   number_of_parameters: uint64
   ? parameters: [* $MOQTParameter]
 }
-
-$MOQTStandaloneFetch = {
-  track_namespace: [ *MOQTByteString]
-  track_name: MOQTByteString
-  start_location: MOQTLocation
-  end_location: MOQTLocation
-}
-
-$MOQTJoiningFetch = {
-  joining_request_id: uint64
-  joining_start: uint64
-}
-
-$MOQTFetchType /=  "standalone" /
-                   "absolute_joining" /
-                   "relative_joining"
 ~~~
 {: #fetch-def title="MOQTFetch definition"}
 

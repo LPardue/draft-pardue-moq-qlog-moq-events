@@ -701,6 +701,7 @@ MOQTBaseParameters /= MOQTAuthorizationTokenParameter /
                       MOQTForwardParameter /
                       MOQTNewGroupRequestParameter /
                       MOQTTrackNamespacePrefixParameter /
+                      MOQTIncludePropertiesParameter /
                       MOQTUnknownParameter
 
 $MOQTParameter /= MOQTBaseParameters
@@ -839,6 +840,16 @@ MOQTTrackNamespacePrefixParameter = {
 }
 ~~~
 {: #moqttracknamespaceprefixparameter-def title="MOQTTrackNamespacePrefixParameter definition"}
+
+### MOQTIncludePropertiesParameter
+
+~~~ cddl
+MOQTIncludePropertiesParameter = {
+  name: "include_properties"
+  value: uint8
+}
+~~~
+{: #moqtincludepropertiesparameter-def title="MOQTIncludePropertiesParameter definition"}
 
 ### MOQTUnknownParameter
 

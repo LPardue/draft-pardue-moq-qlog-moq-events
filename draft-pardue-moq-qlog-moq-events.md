@@ -931,7 +931,6 @@ MOQTGoaway = {
   type: "goaway"
   new_session_uri: RawInfo
   timeout: uint64
-  ? request_id : uint64
 }
 ~~~
 {: #goaway-def title="MOQTGoaway definition"}

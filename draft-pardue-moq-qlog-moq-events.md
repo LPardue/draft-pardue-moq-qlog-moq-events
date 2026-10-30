@@ -322,9 +322,9 @@ The `subgroup_header_created` event is emitted when a stream begins and a
 SUBGROUP_HEADER is created. It has Core importance level; see {{Section 9.2 of
 QLOG-MAIN}}.
 
-The SUBGROUP_HEADER object in MoQT uses 5 bits in the type value to convey
-various properties. The `subgroup_header_created` event conveys these as
-explicit fields, such as contains_end_of_group.
+The SUBGROUP_HEADER in MoQT uses a Type Flags field to convey various
+properties. The `subgroup_header_created` event conveys these as explicit
+fields, such as `contains_end_of_group` and `first_object`.
 
 If the publisher_priority is absent, it means that the subgroup inherits the
 Publisher Priority specified in the control message that established the
@@ -340,6 +340,7 @@ MOQTSubgroupHeaderCreated = {
     ? publisher_priority: uint8
     contains_end_of_group: bool
     properties_present: bool
+    first_object: bool
 
     * $$moqt-subgroupheadercreated-extension
 }
@@ -351,9 +352,9 @@ MOQTSubgroupHeaderCreated = {
 The `subgroup_header_parsed` event is emitted when the SUBGROUP_HEADER is
 parsed. It has Core importance level.
 
-The SUBGROUP_HEADER object in MoQT uses 5 bits in the type value to convey
-various properties. The `subgroup_header_created` event conveys these as explicit
-fields, such as contains_end_of_group.
+The SUBGROUP_HEADER in MoQT uses a Type Flags field to convey various
+properties. The `subgroup_header_parsed` event conveys these as explicit
+fields, such as `contains_end_of_group` and `first_object`.
 
 If the publisher_priority is absent, it means that the subgroup inherits the
 Publisher Priority specified in the control message that established the
@@ -369,6 +370,7 @@ MOQTSubgroupHeaderParsed = {
     ? publisher_priority: uint8
     contains_end_of_group: bool
     properties_present: bool
+    first_object: bool
 
     * $$moqt-subgroupheaderparsed-extension
 }

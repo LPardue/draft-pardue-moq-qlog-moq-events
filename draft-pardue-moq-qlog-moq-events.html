@@ -1308,7 +1308,10 @@ svg {
                     <p id="section-toc.1-1.5.2.6.2.13.1"><a href="#section-5.6.13" class="auto internal xref">5.6.13</a>. <a href="#name-moqttracknamespaceprefixpar" class="internal xref">MOQTTrackNamespacePrefixParameter</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.6.2.14">
-                    <p id="section-toc.1-1.5.2.6.2.14.1"><a href="#section-5.6.14" class="auto internal xref">5.6.14</a>. <a href="#name-moqtunknownparameter" class="internal xref">MOQTUnknownParameter</a></p>
+                    <p id="section-toc.1-1.5.2.6.2.14.1"><a href="#section-5.6.14" class="auto internal xref">5.6.14</a>. <a href="#name-moqtincludepropertiesparame" class="internal xref">MOQTIncludePropertiesParameter</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.6.2.15">
+                    <p id="section-toc.1-1.5.2.6.2.15.1"><a href="#section-5.6.15" class="auto internal xref">5.6.15</a>. <a href="#name-moqtunknownparameter" class="internal xref">MOQTUnknownParameter</a></p>
 </li>
                 </ul>
 </li>
@@ -2468,6 +2471,7 @@ MOQTBaseParameters /= MOQTAuthorizationTokenParameter /
                       MOQTForwardParameter /
                       MOQTNewGroupRequestParameter /
                       MOQTTrackNamespacePrefixParameter /
+                      MOQTIncludePropertiesParameter /
                       MOQTUnknownParameter
 
 $MOQTParameter /= MOQTBaseParameters
@@ -2753,14 +2757,35 @@ MOQTTrackNamespacePrefixParameter = {
 </div>
 </section>
 </div>
-<div id="moqtunknownparameter">
+<div id="moqtincludepropertiesparameter">
 <section id="section-5.6.14">
-          <h4 id="name-moqtunknownparameter">
-<a href="#section-5.6.14" class="section-number selfRef">5.6.14. </a><a href="#name-moqtunknownparameter" class="section-name selfRef">MOQTUnknownParameter</a>
+          <h4 id="name-moqtincludepropertiesparame">
+<a href="#section-5.6.14" class="section-number selfRef">5.6.14. </a><a href="#name-moqtincludepropertiesparame" class="section-name selfRef">MOQTIncludePropertiesParameter</a>
           </h4>
-<span id="name-moqtunknownparameter-defini"></span><div id="moqtunknownparameter-def">
+<span id="name-moqtincludepropertiesparamet"></span><div id="moqtincludepropertiesparameter-def">
 <figure id="figure-46">
             <div class="lang-cddl sourcecode" id="section-5.6.14-1.1">
+<pre>
+MOQTIncludePropertiesParameter = {
+  name: "include_properties"
+  value: uint8
+}
+</pre>
+</div>
+<figcaption><a href="#figure-46" class="selfRef">Figure 46</a>:
+<a href="#name-moqtincludepropertiesparamet" class="selfRef">MOQTIncludePropertiesParameter definition</a>
+            </figcaption></figure>
+</div>
+</section>
+</div>
+<div id="moqtunknownparameter">
+<section id="section-5.6.15">
+          <h4 id="name-moqtunknownparameter">
+<a href="#section-5.6.15" class="section-number selfRef">5.6.15. </a><a href="#name-moqtunknownparameter" class="section-name selfRef">MOQTUnknownParameter</a>
+          </h4>
+<span id="name-moqtunknownparameter-defini"></span><div id="moqtunknownparameter-def">
+<figure id="figure-47">
+            <div class="lang-cddl sourcecode" id="section-5.6.15-1.1">
 <pre>
 MOQTUnknownParameter = {
   name:"unknown"
@@ -2771,7 +2796,7 @@ MOQTUnknownParameter = {
 }
 </pre>
 </div>
-<figcaption><a href="#figure-46" class="selfRef">Figure 46</a>:
+<figcaption><a href="#figure-47" class="selfRef">Figure 47</a>:
 <a href="#name-moqtunknownparameter-defini" class="selfRef">MOQTUnknownParameter definition</a>
             </figcaption></figure>
 </div>
@@ -2792,7 +2817,7 @@ of a Track or Track Namespace tuple field, using two different encodings. The
 <p id="section-5.7-2">Implementations <span class="bcp14">SHOULD</span> populate one of either the <code>value</code> or <code>value_bytes</code>
 field. Populating both fields is redundant.<a href="#section-5.7-2" class="pilcrow">¶</a></p>
 <span id="name-moqtbytestring-definition"></span><div id="MOQTByteString-def">
-<figure id="figure-47">
+<figure id="figure-48">
           <div class="lang-cddl sourcecode" id="section-5.7-3.1">
 <pre>
 MOQTByteString = {
@@ -2801,7 +2826,7 @@ MOQTByteString = {
 }
 </pre>
 </div>
-<figcaption><a href="#figure-47" class="selfRef">Figure 47</a>:
+<figcaption><a href="#figure-48" class="selfRef">Figure 48</a>:
 <a href="#name-moqtbytestring-definition" class="selfRef">MOQTByteString definition</a>
           </figcaption></figure>
 </div>
@@ -2815,7 +2840,7 @@ MOQTByteString = {
 <p id="section-5.8-1">The generic <code>$MOQTControlMessage</code> is defined here as a CDDL "type socket" extension point.
 It can be extended to support additional MOQT control message types.<a href="#section-5.8-1" class="pilcrow">¶</a></p>
 <span id="name-moqtcontrolmessage-type-soc"></span><div id="control-message-def">
-<figure id="figure-48">
+<figure id="figure-49">
           <div class="alignLeft art-text artwork" id="section-5.8-2.1">
 <pre>
 ; The MOQTControlMessage is any key-value map (e.g., JSON object)
@@ -2824,13 +2849,13 @@ $MOQTControlMessage /= {
 }
 </pre>
 </div>
-<figcaption><a href="#figure-48" class="selfRef">Figure 48</a>:
+<figcaption><a href="#figure-49" class="selfRef">Figure 49</a>:
 <a href="#name-moqtcontrolmessage-type-soc" class="selfRef">MOQTControlMessage type socket definition</a>
           </figcaption></figure>
 </div>
 <p id="section-5.8-3">The MOQT control message types defined in this document are as follows:<a href="#section-5.8-3" class="pilcrow">¶</a></p>
 <span id="name-moqtbasecontrolmessages-def"></span><div id="moqtbasecontrolmessage-def">
-<figure id="figure-49">
+<figure id="figure-50">
           <div class="lang-cddl sourcecode" id="section-5.8-4.1">
 <pre>
 MOQTBaseControlMessages = MOQTSetupMessage /
@@ -2856,7 +2881,7 @@ MOQTBaseControlMessages = MOQTSetupMessage /
 $MOQTControlMessage /= MOQTBaseControlMessages
 </pre>
 </div>
-<figcaption><a href="#figure-49" class="selfRef">Figure 49</a>:
+<figcaption><a href="#figure-50" class="selfRef">Figure 50</a>:
 <a href="#name-moqtbasecontrolmessages-def" class="selfRef">MOQTBaseControlMessages definition</a>
           </figcaption></figure>
 </div>
@@ -2866,7 +2891,7 @@ $MOQTControlMessage /= MOQTBaseControlMessages
 <a href="#section-5.8.1" class="section-number selfRef">5.8.1. </a><a href="#name-moqtsetupmessage" class="section-name selfRef">MOQTSetupMessage</a>
           </h4>
 <span id="name-moqtsetupmessage-definition"></span><div id="setup-def">
-<figure id="figure-50">
+<figure id="figure-51">
             <div class="lang-cddl sourcecode" id="section-5.8.1-1.1">
 <pre>
 MOQTSetupMessage = {
@@ -2875,7 +2900,7 @@ MOQTSetupMessage = {
 }
 </pre>
 </div>
-<figcaption><a href="#figure-50" class="selfRef">Figure 50</a>:
+<figcaption><a href="#figure-51" class="selfRef">Figure 51</a>:
 <a href="#name-moqtsetupmessage-definition" class="selfRef">MOQTSetupMessage definition</a>
             </figcaption></figure>
 </div>
@@ -2887,7 +2912,7 @@ MOQTSetupMessage = {
 <a href="#section-5.8.2" class="section-number selfRef">5.8.2. </a><a href="#name-moqtgoaway" class="section-name selfRef">MOQTGoaway</a>
           </h4>
 <span id="name-moqtgoaway-definition"></span><div id="goaway-def">
-<figure id="figure-51">
+<figure id="figure-52">
             <div class="lang-cddl sourcecode" id="section-5.8.2-1.1">
 <pre>
 MOQTGoaway = {
@@ -2897,7 +2922,7 @@ MOQTGoaway = {
 }
 </pre>
 </div>
-<figcaption><a href="#figure-51" class="selfRef">Figure 51</a>:
+<figcaption><a href="#figure-52" class="selfRef">Figure 52</a>:
 <a href="#name-moqtgoaway-definition" class="selfRef">MOQTGoaway definition</a>
             </figcaption></figure>
 </div>
@@ -2909,7 +2934,7 @@ MOQTGoaway = {
 <a href="#section-5.8.3" class="section-number selfRef">5.8.3. </a><a href="#name-moqtrequestok" class="section-name selfRef">MOQTRequestOk</a>
           </h4>
 <span id="name-moqtrequestok-definition"></span><div id="requestok-def">
-<figure id="figure-52">
+<figure id="figure-53">
             <div class="lang-cddl sourcecode" id="section-5.8.3-1.1">
 <pre>
 MOQTRequestOk = {
@@ -2920,7 +2945,7 @@ MOQTRequestOk = {
 }
 </pre>
 </div>
-<figcaption><a href="#figure-52" class="selfRef">Figure 52</a>:
+<figcaption><a href="#figure-53" class="selfRef">Figure 53</a>:
 <a href="#name-moqtrequestok-definition" class="selfRef">MOQTRequestOk definition</a>
             </figcaption></figure>
 </div>
@@ -2932,7 +2957,7 @@ MOQTRequestOk = {
 <a href="#section-5.8.4" class="section-number selfRef">5.8.4. </a><a href="#name-moqtrequesterror" class="section-name selfRef">MOQTRequestError</a>
           </h4>
 <span id="name-moqtrequesterror-definition"></span><div id="requesterror-def">
-<figure id="figure-53">
+<figure id="figure-54">
             <div class="lang-cddl sourcecode" id="section-5.8.4-1.1">
 <pre>
 MOQTRequestError = {
@@ -2950,7 +2975,7 @@ MOQTRedirect = {
 }
 </pre>
 </div>
-<figcaption><a href="#figure-53" class="selfRef">Figure 53</a>:
+<figcaption><a href="#figure-54" class="selfRef">Figure 54</a>:
 <a href="#name-moqtrequesterror-definition" class="selfRef">MOQTRequestError definition</a>
             </figcaption></figure>
 </div>
@@ -2962,7 +2987,7 @@ MOQTRedirect = {
 <a href="#section-5.8.5" class="section-number selfRef">5.8.5. </a><a href="#name-moqtsubscribe" class="section-name selfRef">MOQTSubscribe</a>
           </h4>
 <span id="name-moqtsubscribe-definition"></span><div id="subscribe-def">
-<figure id="figure-54">
+<figure id="figure-55">
             <div class="lang-cddl sourcecode" id="section-5.8.5-1.1">
 <pre>
 MOQTSubscribe = {
@@ -2975,7 +3000,7 @@ MOQTSubscribe = {
 }
 </pre>
 </div>
-<figcaption><a href="#figure-54" class="selfRef">Figure 54</a>:
+<figcaption><a href="#figure-55" class="selfRef">Figure 55</a>:
 <a href="#name-moqtsubscribe-definition" class="selfRef">MOQTSubscribe definition</a>
             </figcaption></figure>
 </div>
@@ -2987,7 +3012,7 @@ MOQTSubscribe = {
 <a href="#section-5.8.6" class="section-number selfRef">5.8.6. </a><a href="#name-moqtsubscribeok" class="section-name selfRef">MOQTSubscribeOk</a>
           </h4>
 <span id="name-moqtsubscribeok-definition"></span><div id="subscribeok-def">
-<figure id="figure-55">
+<figure id="figure-56">
             <div class="lang-cddl sourcecode" id="section-5.8.6-1.1">
 <pre>
 MOQTSubscribeOk = {
@@ -2999,7 +3024,7 @@ MOQTSubscribeOk = {
 }
 </pre>
 </div>
-<figcaption><a href="#figure-55" class="selfRef">Figure 55</a>:
+<figcaption><a href="#figure-56" class="selfRef">Figure 56</a>:
 <a href="#name-moqtsubscribeok-definition" class="selfRef">MOQTSubscribeOk definition</a>
             </figcaption></figure>
 </div>
@@ -3011,7 +3036,7 @@ MOQTSubscribeOk = {
 <a href="#section-5.8.7" class="section-number selfRef">5.8.7. </a><a href="#name-moqtrequestupdate" class="section-name selfRef">MOQTRequestUpdate</a>
           </h4>
 <span id="name-moqtrequestupdate-definitio"></span><div id="requestupdate-def">
-<figure id="figure-56">
+<figure id="figure-57">
             <div class="lang-cddl sourcecode" id="section-5.8.7-1.1">
 <pre>
 MOQTRequestUpdate = {
@@ -3022,7 +3047,7 @@ MOQTRequestUpdate = {
 }
 </pre>
 </div>
-<figcaption><a href="#figure-56" class="selfRef">Figure 56</a>:
+<figcaption><a href="#figure-57" class="selfRef">Figure 57</a>:
 <a href="#name-moqtrequestupdate-definitio" class="selfRef">MOQTRequestUpdate definition</a>
             </figcaption></figure>
 </div>
@@ -3034,7 +3059,7 @@ MOQTRequestUpdate = {
 <a href="#section-5.8.8" class="section-number selfRef">5.8.8. </a><a href="#name-moqtpublishstatenotify" class="section-name selfRef">MOQTPublishStateNotify</a>
           </h4>
 <span id="name-moqtpublishstatenotify-defi"></span><div id="publishstatenotify-def">
-<figure id="figure-57">
+<figure id="figure-58">
             <div class="lang-cddl sourcecode" id="section-5.8.8-1.1">
 <pre>
 MOQTPublishStateNotify = {
@@ -3044,7 +3069,7 @@ MOQTPublishStateNotify = {
 }
 </pre>
 </div>
-<figcaption><a href="#figure-57" class="selfRef">Figure 57</a>:
+<figcaption><a href="#figure-58" class="selfRef">Figure 58</a>:
 <a href="#name-moqtpublishstatenotify-defi" class="selfRef">MOQTPublishStateNotify definition</a>
             </figcaption></figure>
 </div>
@@ -3056,7 +3081,7 @@ MOQTPublishStateNotify = {
 <a href="#section-5.8.9" class="section-number selfRef">5.8.9. </a><a href="#name-moqtpublish" class="section-name selfRef">MOQTPublish</a>
           </h4>
 <span id="name-moqtpublish-definition"></span><div id="publish-def">
-<figure id="figure-58">
+<figure id="figure-59">
             <div class="lang-cddl sourcecode" id="section-5.8.9-1.1">
 <pre>
 MOQTPublish = {
@@ -3071,7 +3096,7 @@ MOQTPublish = {
 }
 </pre>
 </div>
-<figcaption><a href="#figure-58" class="selfRef">Figure 58</a>:
+<figcaption><a href="#figure-59" class="selfRef">Figure 59</a>:
 <a href="#name-moqtpublish-definition" class="selfRef">MOQTPublish definition</a>
             </figcaption></figure>
 </div>
@@ -3083,7 +3108,7 @@ MOQTPublish = {
 <a href="#section-5.8.10" class="section-number selfRef">5.8.10. </a><a href="#name-moqtpublishdone" class="section-name selfRef">MOQTPublishDone</a>
           </h4>
 <span id="name-moqtpublishdone-definition"></span><div id="publishdone-def">
-<figure id="figure-59">
+<figure id="figure-60">
             <div class="lang-cddl sourcecode" id="section-5.8.10-1.1">
 <pre>
 MOQTPublishDone = {
@@ -3094,7 +3119,7 @@ MOQTPublishDone = {
 }
 </pre>
 </div>
-<figcaption><a href="#figure-59" class="selfRef">Figure 59</a>:
+<figcaption><a href="#figure-60" class="selfRef">Figure 60</a>:
 <a href="#name-moqtpublishdone-definition" class="selfRef">MOQTPublishDone definition</a>
             </figcaption></figure>
 </div>
@@ -3106,7 +3131,7 @@ MOQTPublishDone = {
 <a href="#section-5.8.11" class="section-number selfRef">5.8.11. </a><a href="#name-moqtfetch" class="section-name selfRef">MOQTFetch</a>
           </h4>
 <span id="name-moqtfetch-definition"></span><div id="fetch-def">
-<figure id="figure-60">
+<figure id="figure-61">
             <div class="lang-cddl sourcecode" id="section-5.8.11-1.1">
 <pre>
 MOQTFetch = {
@@ -3119,7 +3144,7 @@ MOQTFetch = {
 }
 </pre>
 </div>
-<figcaption><a href="#figure-60" class="selfRef">Figure 60</a>:
+<figcaption><a href="#figure-61" class="selfRef">Figure 61</a>:
 <a href="#name-moqtfetch-definition" class="selfRef">MOQTFetch definition</a>
             </figcaption></figure>
 </div>
@@ -3131,7 +3156,7 @@ MOQTFetch = {
 <a href="#section-5.8.12" class="section-number selfRef">5.8.12. </a><a href="#name-moqtfetchok" class="section-name selfRef">MOQTFetchOk</a>
           </h4>
 <span id="name-moqtfetchok-definition"></span><div id="fetchok-def">
-<figure id="figure-61">
+<figure id="figure-62">
             <div class="lang-cddl sourcecode" id="section-5.8.12-1.1">
 <pre>
 MOQTFetchOk = {
@@ -3144,7 +3169,7 @@ MOQTFetchOk = {
 }
 </pre>
 </div>
-<figcaption><a href="#figure-61" class="selfRef">Figure 61</a>:
+<figcaption><a href="#figure-62" class="selfRef">Figure 62</a>:
 <a href="#name-moqtfetchok-definition" class="selfRef">MOQTFetchOk definition</a>
             </figcaption></figure>
 </div>
@@ -3156,7 +3181,7 @@ MOQTFetchOk = {
 <a href="#section-5.8.13" class="section-number selfRef">5.8.13. </a><a href="#name-moqttrackstatus" class="section-name selfRef">MOQTTrackStatus</a>
           </h4>
 <span id="name-moqttrackstatus-definition"></span><div id="trackstatus-def">
-<figure id="figure-62">
+<figure id="figure-63">
             <div class="lang-cddl sourcecode" id="section-5.8.13-1.1">
 <pre>
 MOQTTrackStatus = {
@@ -3169,7 +3194,7 @@ MOQTTrackStatus = {
 }
 </pre>
 </div>
-<figcaption><a href="#figure-62" class="selfRef">Figure 62</a>:
+<figcaption><a href="#figure-63" class="selfRef">Figure 63</a>:
 <a href="#name-moqttrackstatus-definition" class="selfRef">MOQTTrackStatus definition</a>
             </figcaption></figure>
 </div>
@@ -3181,7 +3206,7 @@ MOQTTrackStatus = {
 <a href="#section-5.8.14" class="section-number selfRef">5.8.14. </a><a href="#name-moqtpublishnamespace" class="section-name selfRef">MOQTPublishNamespace</a>
           </h4>
 <span id="name-moqtpublishnamespace-defini"></span><div id="publishnamespace-def">
-<figure id="figure-63">
+<figure id="figure-64">
             <div class="lang-cddl sourcecode" id="section-5.8.14-1.1">
 <pre>
 MOQTPublishNamespace = {
@@ -3193,7 +3218,7 @@ MOQTPublishNamespace = {
 }
 </pre>
 </div>
-<figcaption><a href="#figure-63" class="selfRef">Figure 63</a>:
+<figcaption><a href="#figure-64" class="selfRef">Figure 64</a>:
 <a href="#name-moqtpublishnamespace-defini" class="selfRef">MOQTPublishNamespace definition</a>
             </figcaption></figure>
 </div>
@@ -3205,7 +3230,7 @@ MOQTPublishNamespace = {
 <a href="#section-5.8.15" class="section-number selfRef">5.8.15. </a><a href="#name-moqtnamespace" class="section-name selfRef">MOQTNamespace</a>
           </h4>
 <span id="name-moqtnamespace-definition"></span><div id="namespace-def">
-<figure id="figure-64">
+<figure id="figure-65">
             <div class="lang-cddl sourcecode" id="section-5.8.15-1.1">
 <pre>
 MOQTNamespace = {
@@ -3214,7 +3239,7 @@ MOQTNamespace = {
 }
 </pre>
 </div>
-<figcaption><a href="#figure-64" class="selfRef">Figure 64</a>:
+<figcaption><a href="#figure-65" class="selfRef">Figure 65</a>:
 <a href="#name-moqtnamespace-definition" class="selfRef">MOQTNamespace definition</a>
             </figcaption></figure>
 </div>
@@ -3226,7 +3251,7 @@ MOQTNamespace = {
 <a href="#section-5.8.16" class="section-number selfRef">5.8.16. </a><a href="#name-moqtnamespacedone" class="section-name selfRef">MOQTNamespaceDone</a>
           </h4>
 <span id="name-moqtnamespacedone-definitio"></span><div id="namespacedone-def">
-<figure id="figure-65">
+<figure id="figure-66">
             <div class="lang-cddl sourcecode" id="section-5.8.16-1.1">
 <pre>
 MOQTNamespaceDone = {
@@ -3235,7 +3260,7 @@ MOQTNamespaceDone = {
 }
 </pre>
 </div>
-<figcaption><a href="#figure-65" class="selfRef">Figure 65</a>:
+<figcaption><a href="#figure-66" class="selfRef">Figure 66</a>:
 <a href="#name-moqtnamespacedone-definitio" class="selfRef">MOQTNamespaceDone definition</a>
             </figcaption></figure>
 </div>
@@ -3247,7 +3272,7 @@ MOQTNamespaceDone = {
 <a href="#section-5.8.17" class="section-number selfRef">5.8.17. </a><a href="#name-moqtsubscribenamespace" class="section-name selfRef">MOQTSubscribeNamespace</a>
           </h4>
 <span id="name-moqtsubscribenamespace-defi"></span><div id="subscribenamespace-def">
-<figure id="figure-66">
+<figure id="figure-67">
             <div class="lang-cddl sourcecode" id="section-5.8.17-1.1">
 <pre>
 MOQTSubscribeNamespace = {
@@ -3260,7 +3285,7 @@ MOQTSubscribeNamespace = {
 
 </pre>
 </div>
-<figcaption><a href="#figure-66" class="selfRef">Figure 66</a>:
+<figcaption><a href="#figure-67" class="selfRef">Figure 67</a>:
 <a href="#name-moqtsubscribenamespace-defi" class="selfRef">MOQTSubscribeNamespace definition</a>
             </figcaption></figure>
 </div>
@@ -3272,7 +3297,7 @@ MOQTSubscribeNamespace = {
 <a href="#section-5.8.18" class="section-number selfRef">5.8.18. </a><a href="#name-moqtsubscribetracks" class="section-name selfRef">MOQTSubscribeTracks</a>
           </h4>
 <span id="name-moqtsubscribetracks-definit"></span><div id="subscribetracks-def">
-<figure id="figure-67">
+<figure id="figure-68">
             <div class="lang-cddl sourcecode" id="section-5.8.18-1.1">
 <pre>
 MOQTSubscribeTracks = {
@@ -3285,7 +3310,7 @@ MOQTSubscribeTracks = {
 
 </pre>
 </div>
-<figcaption><a href="#figure-67" class="selfRef">Figure 67</a>:
+<figcaption><a href="#figure-68" class="selfRef">Figure 68</a>:
 <a href="#name-moqtsubscribetracks-definit" class="selfRef">MOQTSubscribeTracks definition</a>
             </figcaption></figure>
 </div>
@@ -3297,7 +3322,7 @@ MOQTSubscribeTracks = {
 <a href="#section-5.8.19" class="section-number selfRef">5.8.19. </a><a href="#name-moqtpublishskipped" class="section-name selfRef">MOQTPublishSkipped</a>
           </h4>
 <span id="name-moqtpublishskipped-definiti"></span><div id="publishskipped-def">
-<figure id="figure-68">
+<figure id="figure-69">
             <div class="lang-cddl sourcecode" id="section-5.8.19-1.1">
 <pre>
 MOQTPublishSkipped = {
@@ -3307,7 +3332,7 @@ MOQTPublishSkipped = {
 }
 </pre>
 </div>
-<figcaption><a href="#figure-68" class="selfRef">Figure 68</a>:
+<figcaption><a href="#figure-69" class="selfRef">Figure 69</a>:
 <a href="#name-moqtpublishskipped-definiti" class="selfRef">MOQTPublishSkipped definition</a>
             </figcaption></figure>
 </div>
@@ -3321,7 +3346,7 @@ MOQTPublishSkipped = {
 <a href="#section-5.9" class="section-number selfRef">5.9. </a><a href="#name-moqtproperty" class="section-name selfRef">MOQTProperty</a>
         </h3>
 <span id="name-property-definition"></span><div id="property-def">
-<figure id="figure-69">
+<figure id="figure-70">
           <div class="lang-cddl sourcecode" id="section-5.9-1.1">
 <pre>
 MOQTProperty = {
@@ -3332,7 +3357,7 @@ MOQTProperty = {
 }
 </pre>
 </div>
-<figcaption><a href="#figure-69" class="selfRef">Figure 69</a>:
+<figcaption><a href="#figure-70" class="selfRef">Figure 70</a>:
 <a href="#name-property-definition" class="selfRef">Property definition</a>
           </figcaption></figure>
 </div>

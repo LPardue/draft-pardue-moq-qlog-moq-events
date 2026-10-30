@@ -551,6 +551,16 @@ MOQTLocationFilter = {
 ~~~
 {: #moqtlocationfilter-def title="MOQTLocationFilter definition"}
 
+## MOQTRange
+
+~~~ cddl
+MOQTRange = {
+  start: uint64
+  ? end: uint64
+}
+~~~
+{: #moqtrange-def title="MOQTRange definition"}
+
 ## MOQTAliasType
 
 ~~~ cddl
@@ -696,6 +706,7 @@ MOQTBaseParameters /= MOQTAuthorizationTokenParameter /
                       MOQTSubscriberPriorityParameter /
                       MOQTGroupOrderParameter /
                       MOQTLocationFilterParameter /
+                      MOQTFillParametersParameter /
                       MOQTExpiresParameter /
                       MOQTLargestObjectParameter /
                       MOQTForwardParameter /
@@ -790,6 +801,74 @@ MOQTLocationFilterParameter = {
 }
 ~~~
 {: #moqtlocationfilterparameter-def title="MOQTLocationFilterParameter definition"}
+
+### MOQTSubgroupFilterParameter
+
+~~~ cddl
+MOQTSubgroupFilterParameter = {
+  name: "subgroup_filter"
+  ? set_id: uint8
+  ? ranges: [* MOQTRange]
+}
+~~~
+{: #moqtsubgroupfilterparameter-def title="MOQTSubgroupFilterParameter definition"}
+
+### MOQTObjectIDFilterParameter
+
+~~~ cddl
+MOQTObjectIDFilterParameter = {
+  name: "objectid_filter"
+  ? set_id: uint8
+  ? ranges: [* MOQTRange]
+}
+~~~
+{: #moqtobjectidfilterparameter-def title="MOQTObjectIDFilterParameter definition"}
+
+### MOQTPriorityFilterParameter
+
+~~~ cddl
+MOQTPriorityFilterParameter = {
+  name: "priority_filter"
+  ? set_id: uint8
+  ? ranges: [* MOQTRange]
+}
+~~~
+{: #moqtpriorityfilterparameter-def title="MOQTPriorityFilterParameter definition"}
+
+### MOQTObjectPropertyFilterParameter
+
+~~~ cddl
+MOQTObjectPropertyFilterParameter = {
+  name: "object_property_filter"
+  ? set_id: uint8
+  ? property_type: uint64
+  ? ranges: [* MOQTRange]
+}
+~~~
+{: #moqtobjectpropertyfilterparameter-def title="MOQTObjectPropertyFilterParameter definition"}
+
+### MOQTFillParametersParameter
+
+The `FILL_PARAMETERS` parameter is defined in {{Section 10.2.15 of MOQT}}.
+Its `value` sequence can be empty. The presence of an empty `FILL_PARAMETERS`
+requests a fill using inherited settings.
+
+~~~ cddl
+MOQTFillParametersParameter = {
+  name: "fill_parameters"
+  value: [* MOQTFillParameter]
+}
+
+MOQTFillParameter = MOQTFillTimeoutParameter /
+                    MOQTSubscriberPriorityParameter /
+                    MOQTLocationFilterParameter /
+                    MOQTGroupOrderParameter /
+                    MOQTSubgroupFilterParameter /
+                    MOQTObjectIDFilterParameter /
+                    MOQTPriorityFilterParameter /
+                    MOQTObjectPropertyFilterParameter
+~~~
+{: #moqtfillparametersparameter-def title="MOQTFillParametersParameter definition"}
 
 ### MOQTExpiresParameter
 

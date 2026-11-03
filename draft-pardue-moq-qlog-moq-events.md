@@ -715,6 +715,7 @@ MOQTBaseParameters /= MOQTAuthorizationTokenParameter /
                       MOQTNewGroupRequestParameter /
                       MOQTTrackNamespacePrefixParameter /
                       MOQTIncludePropertiesParameter /
+                      MOQTTrackPropertyFilterParameter /
                       MOQTUnknownParameter
 
 $MOQTParameter /= MOQTBaseParameters
@@ -931,6 +932,21 @@ MOQTIncludePropertiesParameter = {
 }
 ~~~
 {: #moqtincludepropertiesparameter-def title="MOQTIncludePropertiesParameter definition"}
+
+### MOQTTrackPropertyFilterParameter
+
+A Track Property Filter, as defined in {{Section 10.2.14 of MOQT}}, uses the
+range encoding in {{Section 5.1.4 of MOQT}}.
+
+~~~ cddl
+MOQTTrackPropertyFilterParameter = {
+  name: "track_property_filter"
+  ? set_id: uint8
+  ? property_type: uint64
+  ? ranges: [* MOQTRange]
+}
+~~~
+{: #moqttrackpropertyfilterparameter-def title="MOQTTrackPropertyFilterParameter definition"}
 
 ### MOQTUnknownParameter
 

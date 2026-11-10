@@ -709,6 +709,10 @@ MOQTBaseParameters /= MOQTAuthorizationTokenParameter /
                       MOQTSubscriberPriorityParameter /
                       MOQTGroupOrderParameter /
                       MOQTLocationFilterParameter /
+                      MOQTSubgroupFilterParameter /
+                      MOQTObjectIDFilterParameter /
+                      MOQTPriorityFilterParameter /
+                      MOQTObjectPropertyFilterParameter /
                       MOQTFillParametersParameter /
                       MOQTExpiresParameter /
                       MOQTLargestObjectParameter /

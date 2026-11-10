@@ -54,7 +54,8 @@ This document defines a qlog event schema containing concrete events for MoQ.
 
 # Introduction
 This document defines a qlog event schema ({{Section 8 of QLOG-MAIN}})
-containing concrete events for Media over QUIC Transport {{!MOQT=I-D.ietf-moq-transport}}.
+containing concrete events for Media over QUIC Transport
+{{!MOQT=I-D.ietf-moq-transport-22}}.
 
 The event namespace with identifier `moqt` is defined; see {{schema-def}}. In
 this namespace multiple events derive from the qlog abstract Event class
@@ -422,7 +423,7 @@ FETCH_HEADER is created. It has Core importance level.
 
 The `request_id` field identifies the `FETCH` that requested the stream. For a
 fill fetch stream, it instead identifies the `SUBSCRIBE` or `REQUEST_UPDATE`
-that requested the fill ({{Section 5.1.3 of MOQT}}).
+that requested the fill ({{Section 3.4 of MOQT}}).
 
 ~~~ cddl
 MOQTFetchHeaderCreated = {
@@ -441,7 +442,7 @@ parsed. It has Core importance level.
 
 The `request_id` field identifies the `FETCH` that requested the stream. For a
 fill fetch stream, it instead identifies the `SUBSCRIBE` or `REQUEST_UPDATE`
-that requested the fill ({{Section 5.1.3 of MOQT}}).
+that requested the fill ({{Section 3.4 of MOQT}}).
 
 ~~~ cddl
 MOQTFetchHeaderParsed = {
@@ -529,7 +530,7 @@ Owner = "local" /
 
 ## MOQTLocation
 
-A Location, as defined in {{Section 1.4.2 of MOQT}}
+A Location, as defined in {{Section 8.2 of MOQT}}
 
 ~~~ cddl
 MOQTLocation = {
@@ -541,7 +542,7 @@ MOQTLocation = {
 
 ## MOQTLocationFilter
 
-A Location Filter, as defined in {{Section 5.1.2 of MOQT}}
+A Location Filter, as defined in {{Section 9.20.9 of MOQT}}
 
 ~~~ cddl
 MOQTLocationFilter = {
@@ -856,7 +857,7 @@ MOQTObjectPropertyFilterParameter = {
 
 ### MOQTFillParametersParameter
 
-The `FILL_PARAMETERS` parameter is defined in {{Section 10.2.15 of MOQT}}.
+The `FILL_PARAMETERS` parameter is defined in {{Section 9.20.15 of MOQT}}.
 Its `value` sequence can be empty. The presence of an empty `FILL_PARAMETERS`
 requests a fill using inherited settings.
 
@@ -939,8 +940,8 @@ MOQTIncludePropertiesParameter = {
 
 ### MOQTTrackPropertyFilterParameter
 
-A Track Property Filter, as defined in {{Section 10.2.14 of MOQT}}, uses the
-range encoding in {{Section 5.1.4 of MOQT}}.
+A Track Property Filter, as defined in {{Section 9.20.14 of MOQT}}, uses the
+range encoding in {{Section 8.6 of MOQT}}.
 
 ~~~ cddl
 MOQTTrackPropertyFilterParameter = {
